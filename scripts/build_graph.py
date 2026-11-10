@@ -227,7 +227,7 @@ for sec_num in sorted(sections.keys()):
     sec_id = f"sec_{sec_num}"
     add_node(sec_id, "Section", {
         "number": sec_num,
-        "text": sections[sec_num][:3000],
+        "text": sections[sec_num],
     })
 
     ch = get_chapter_for_section(sec_num)

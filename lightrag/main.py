@@ -6,7 +6,7 @@ Pipeline: Load pre-built graph → Parse MD → Embed → Index → Retrieve
 """
 
 import sys
-from .knowledge_graph import ingest_pdpa
+from .knowledge_graph import ingest_pdpa, node_description
 from .vector_index import VectorIndex
 from .retrieval import retrieve, generate_answer
 
@@ -16,6 +16,7 @@ class PDPALightRAG:
         self.knowledge_graph = None
         self.index = None
         self.chunk_store = {}
+        self._section_bodies = {}   # เลขมาตรา (int) → ตัวบทเต็มจาก markdown
         self._initialized = False
 
     def build(self, use_llm_extract: bool = False, use_llm_profile: bool = False):
@@ -39,6 +40,11 @@ class PDPALightRAG:
         )
         print(f"  ✅ {self.knowledge_graph.number_of_nodes()} nodes, "
               f"{self.knowledge_graph.number_of_edges()} edges")
+
+        self._section_bodies = {
+            c["number"]: c["body"] for c in self.chunk_store.values()
+            if c.get("number") is not None and c.get("body")
+        }
 
         print("\n[2/3] สร้าง Vector Index (BGE-M3 + Qdrant)...")
         self.index = VectorIndex()
@@ -98,7 +104,7 @@ class PDPALightRAG:
                 "target": v,
                 "target_type": v_data.get("type", ""),
                 "relation": edata.get("relation", edata.get("relationship", edata.get("type", ""))),
-                "description": edata.get("description", v_data.get("description", "")),
+                "description": edata.get("description") or node_description(v_data, max_len=200),
             })
 
         # Incoming edges
@@ -109,14 +115,14 @@ class PDPALightRAG:
                 "source": u,
                 "source_type": u_data.get("type", ""),
                 "relation": edata.get("relation", edata.get("relationship", edata.get("type", ""))),
-                "description": edata.get("description", u_data.get("description", "")),
+                "description": edata.get("description") or node_description(u_data, max_len=200),
             })
 
         node_data = G.nodes.get(section_id, {})
         return {
             "section_id": section_id,
             "section_type": node_data.get("type", ""),
-            "description": node_data.get("description", node_data.get("label", "")),
+            "description": node_description(node_data) or node_data.get("label", ""),
             "outgoing_relations": outgoing,
             "incoming_relations": incoming,
             "total_connections": len(outgoing) + len(incoming),
@@ -155,7 +161,9 @@ class PDPALightRAG:
                 "error": f"'{sid}' ไม่ใช่ node ประเภท Section (เป็น {node.get('label')})",
             }
 
-        text = (node.get("text") or "").strip()
+        # ตัวบทเต็มมาจาก markdown (แหล่งเดียวกับ pdpa_chunks) — field "text" ใน graph
+        # ถูกตัดที่ 3000 ตัวอักษรตอน build (ม.26 ขาดวรรคข้อมูลชีวภาพ) จึงใช้เป็น fallback เท่านั้น
+        text = (self._section_bodies.get(node.get("number")) or node.get("text") or "").strip()
         return {
             "section_id": sid,
             "number": node.get("number"),

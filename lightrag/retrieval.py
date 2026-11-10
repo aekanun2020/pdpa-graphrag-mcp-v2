@@ -8,6 +8,7 @@ keyword extraction → vector search → multi-hop BFS → hybrid context
 import networkx as nx
 from .llm_provider import query_llm_json, query_llm
 from .vector_index import VectorIndex
+from .knowledge_graph import node_description
 
 KEYWORD_PROMPT = """จากคำถามนี้: "{query}"
 
@@ -91,13 +92,16 @@ def _expand_from_graph(results: list[dict], G: nx.DiGraph,
     expanded = []
     visited = set()
 
+    # seed = node profiles อันดับต้น — กรอง edge profiles (id มี "--") ออก "ก่อน" ตัด top-N
+    # ไม่เช่นนั้นถ้า 3 อันดับแรกเป็น edge ทั้งหมดจะไม่มี seed และไม่มีการเดินกราฟเลย
     seed_ids = []
-    for r in results[:max_expand]:
+    for r in results:
         node_id = r["profile"]["id"]
-        if "--" in node_id:
+        if "--" in node_id or not G.has_node(node_id):
             continue
-        if G.has_node(node_id):
-            seed_ids.append(node_id)
+        seed_ids.append(node_id)
+        if len(seed_ids) >= max_expand:
+            break
 
     from collections import deque
     queue = deque()
@@ -121,7 +125,7 @@ def _expand_from_graph(results: list[dict], G: nx.DiGraph,
             edge_in = G.edges.get((neighbor, current), {})
             edge = edge_out or edge_in
 
-            desc = n_data.get("description", n_data.get("label", neighbor))
+            desc = node_description(n_data, max_len=200) or n_data.get("label", neighbor)
             rel = edge.get("relation", edge.get("relationship", edge.get("type", "related")))
 
             hop_label = f"hop{hop+1}"

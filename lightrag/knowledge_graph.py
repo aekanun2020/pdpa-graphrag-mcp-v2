@@ -16,6 +16,23 @@ DATA_DIR = os.environ.get("DATA_DIR", os.path.join(os.path.dirname(__file__), ".
 PDPA_MD = os.path.join(DATA_DIR, "pdpa_full_text_v2.md")
 PDPA_GRAPH_JSON = os.path.join(DATA_DIR, "pdpa_knowledge_graph.json")
 
+_THAI_DIGITS = str.maketrans("๐๑๒๓๔๕๖๗๘๙", "0123456789")
+_SPLIT_SARA_AM = re.compile("([ก-ฮ][่-๋]?) า")
+
+
+def node_description(data: dict, max_len: int = 300) -> str:
+    """คืนเนื้อหาที่อ่านได้ของ node (คืน "" ถ้าไม่มี)
+
+    pre-built graph เก็บเนื้อหาไว้คนละ field ตามประเภท node:
+    Exemption/Penalty ใช้ description, Definition ใช้ term_th + definition,
+    Right/Obligation/Principle/LawfulBasis ใช้ name_th, Chapter/Part/Law ใช้ title_th,
+    Section ใช้ text — ถ้าอ่านแค่ description จะได้เนื้อหาเพียง 33 จาก 190 nodes
+    """
+    name = data.get("name_th") or data.get("term_th") or data.get("title_th") or ""
+    body = data.get("description") or data.get("definition") or data.get("text") or ""
+    parts = [str(p).strip() for p in (name, body) if p and str(p).strip()]
+    return ": ".join(parts)[:max_len]
+
 
 # ─── Markdown Chunking (MarkdownNodeParser-style) ─────────
 
@@ -63,8 +80,12 @@ def chunk_markdown(filepath: str) -> tuple[list[dict], dict]:
 
         # chunk_store key
         safe_id = re.sub(r'\s+', '-', section_id)
+        digits = re.sub(r"\D", "", section_id.translate(_THAI_DIGITS))
         chunk_store[safe_id] = {
             "text": f"[{current_h2}] [{current_h3}] {section_id}\n{body_text}" if current_h3 else f"[{current_h2}] {section_id}\n{body_text}",
+            # ตัวบทล้วน (ไม่มี prefix หมวด/ส่วน) + เลขมาตราเป็น int — ใช้โดย get_section_text
+            "body": re.sub(r"\s+", " ", f"{section_id} {body_text}").strip(),
+            "number": int(digits) if digits else None,
             "section_id": section_id,
             "header_2": current_h2,
             "header_3": current_h3,
@@ -200,6 +221,9 @@ def load_prebuilt_graph(filepath: str) -> nx.DiGraph:
     for node in data.get("nodes", []):
         node_id = node.get("id", "")
         attrs = {k: v for k, v in node.items() if k != "id"}
+        if isinstance(attrs.get("text"), str):
+            # ตัวบทใน graph ยังเหลือสระอำแตกจากการแปลง PDF ("จัดท า" → "จัดทำ")
+            attrs["text"] = _SPLIT_SARA_AM.sub(lambda m: m.group(1) + "ำ", attrs["text"])
         attrs["node_category"] = "prebuilt"
         attrs["graph_source"] = "prebuilt"
         G.add_node(node_id, **attrs)
@@ -227,7 +251,7 @@ def profile_knowledge_graph(G: nx.DiGraph, use_llm: bool = False) -> list[dict]:
         if use_llm:
             prompt = PROFILE_PROMPT.format(
                 name=node, etype=data.get("type", ""),
-                description=data.get("description", data.get("label", "")),
+                description=node_description(data) or data.get("label", ""),
                 relations="; ".join(rels[:8]),
             )
             kw_result = query_llm_json(
@@ -241,17 +265,17 @@ def profile_knowledge_graph(G: nx.DiGraph, use_llm: bool = False) -> list[dict]:
             all_keys = [node]
             node_type = data.get("type", "")
             label = data.get("label", "")
-            desc = data.get("description", "")
+            desc = node_description(data, max_len=200)
             if node_type:
                 all_keys.append(node_type)
             if label and label != node:
                 all_keys.append(label)
             if desc:
-                all_keys.append(desc[:200])
+                all_keys.append(desc)
             all_keys += [r.split(":")[0].strip() for r in rels[:5]]
 
         all_keys = [k for k in all_keys if k and str(k).strip()]
-        desc_text = data.get("description", data.get("label", ""))
+        desc_text = node_description(data) or data.get("label", "")
         value = (f"{node} ({data.get('type', '')}): {desc_text}\n"
                  f"ความสัมพันธ์: {'; '.join(rels[:8])}")
         profiles.append({

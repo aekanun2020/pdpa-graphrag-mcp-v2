@@ -43,7 +43,8 @@ Dockerfile, docker-compose.yml, requirements.txt, .env.example
 - **Knowledge graph**: NetworkX, in memory. 96 Section nodes plus Definition, LawfulBasis, Right,
   Obligation, Penalty, Exemption and Principle nodes; the backbone edges are `REFERENCES_SECTION`
   (122, section cites section) and `CONTAINS_SECTION` (119).
-- **Vector index**: BGE-M3 (dense 1024-d + sparse lexical weights) in Qdrant with RRF fusion.
+- **Vector index**: BGE-M3 (dense 1024-d + sparse lexical weights) in Qdrant with RRF fusion
+  (k = 60, set with `RRF_K`; needs Qdrant server and client 1.16+, otherwise Qdrant's default k = 2 applies).
   Two collections: `pdpa_chunks` (96 full sections) and `pdpa_profiles` (570 = every node and edge
   rendered as a short text, so vector search can land on graph nodes).
 - **MCP server**: FastMCP, `stateless_http=True`. Each tool's docstring is the description the agent
@@ -99,7 +100,7 @@ A typical run makes 7 tool calls in 4 rounds: `search_pdpa` -> `get_related_sect
 | `search_pdpa(query, top_k=5)` | Hybrid retrieval: LLM keywords -> profile search -> 2-hop BFS -> chunk search -> context (JSON) |
 | `get_related_sections(section_id)` | In- and out-edges of one section, grouped by relationship |
 | `get_penalty(section_id)` | BFS (max 3 hops) from the violated section to Penalty nodes. Pass the violated section (`sec_26`), not the penalty section |
-| `get_section_text(section_id)` | Full statute text of one section by id, deterministic (no vector search) |
+| `get_section_text(section_id)` | Full statute text of one section by id, deterministic (no vector search). Read from the Markdown, not from the graph node, whose `text` is cut at 3,000 characters |
 | `get_pdpa_summary()` | Node/edge counts and the schema of the graph |
 
 Section ids are `sec_<number>` with Arabic digits (`sec_26`), even though the statute text uses Thai

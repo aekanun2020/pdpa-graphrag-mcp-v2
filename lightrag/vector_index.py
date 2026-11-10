@@ -16,10 +16,23 @@ from qdrant_client.models import (
     Prefetch, FusionQuery, Fusion,
 )
 
+try:  # qdrant-client >= 1.16 — RRF ที่กำหนดค่า k ได้
+    from qdrant_client.models import RrfQuery, Rrf
+except ImportError:  # client เก่า: ใช้ Fusion.RRF (k ตามค่า default ของ Qdrant = 2)
+    RrfQuery = Rrf = None
+
 PROFILE_COLLECTION = "pdpa_profiles"
 CHUNK_COLLECTION = "pdpa_chunks"
 QDRANT_HOST = os.environ.get("QDRANT_HOST", "localhost")
 QDRANT_PORT = int(os.environ.get("QDRANT_PORT", "6333"))
+
+# RRF: score(d) = Σ 1 / (k + rank)  — k=60 ตาม paper ต้นฉบับของ RRF (Cormack et al., 2009)
+# Qdrant ใช้ k=2 ถ้าไม่ระบุ; ตั้ง RRF_K=0 เพื่อกลับไปใช้ค่า default ของ Qdrant
+RRF_K = int(os.environ.get("RRF_K", "60"))
+
+# BGE-M3 รับได้ถึง 8192 tokens; มาตราที่ยาวที่สุด (ม.26) = 810 tokens
+# ค่าเดิม 512 ทำให้ 7 มาตราถูกตัดท้ายตอน embed
+CHUNK_MAX_LENGTH = int(os.environ.get("CHUNK_MAX_LENGTH", "1024"))
 
 
 class VectorIndex:
@@ -30,13 +43,38 @@ class VectorIndex:
         self.client = QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
         self.profiles = []
         self.chunk_store = {}
+        self._rrf_k_ok = RRF_K > 0 and RrfQuery is not None
 
-    def _embed(self, texts: list[str]) -> dict:
+    def _embed(self, texts: list[str], max_length: int = 512) -> dict:
         result = self.model.encode(
-            texts, batch_size=32, max_length=512,
+            texts, batch_size=32, max_length=max_length,
             return_dense=True, return_sparse=True,
         )
         return {"dense": result["dense_vecs"], "sparse": result["lexical_weights"]}
+
+    def _hybrid_query(self, collection: str, dense_vec, sparse_vec, top_k: int):
+        """Dense + sparse prefetch แล้วรวมอันดับด้วย RRF
+
+        ใช้ k = RRF_K เมื่อ client และ server รองรับ (Qdrant >= 1.16)
+        ถ้าไม่รองรับจะถอยไปใช้ Fusion.RRF ซึ่ง k เป็นค่า default ของ Qdrant (2) และแจ้งเตือนครั้งเดียว
+        """
+        prefetch = [
+            Prefetch(query=dense_vec.tolist(), using="dense", limit=top_k * 2),
+            Prefetch(query=sparse_vec, using="sparse", limit=top_k * 2),
+        ]
+        if self._rrf_k_ok:
+            try:
+                return self.client.query_points(
+                    collection_name=collection, prefetch=prefetch,
+                    query=RrfQuery(rrf=Rrf(k=RRF_K)), limit=top_k,
+                )
+            except Exception as e:  # server เก่ากว่า 1.16 ไม่รู้จัก query แบบ rrf
+                self._rrf_k_ok = False
+                print(f"  ⚠️ RRF k={RRF_K} ใช้ไม่ได้ ({type(e).__name__}) — ใช้ค่า default ของ Qdrant (k=2) แทน")
+        return self.client.query_points(
+            collection_name=collection, prefetch=prefetch,
+            query=FusionQuery(fusion=Fusion.RRF), limit=top_k,
+        )
 
     @staticmethod
     def _to_sparse_vector(lexical_weights: dict) -> SparseVector:
@@ -100,15 +138,7 @@ class VectorIndex:
         dense_vec = embeddings["dense"][0]
         sparse_vec = self._to_sparse_vector(embeddings["sparse"][0])
 
-        results = self.client.query_points(
-            collection_name=PROFILE_COLLECTION,
-            prefetch=[
-                Prefetch(query=dense_vec.tolist(), using="dense", limit=top_k * 2),
-                Prefetch(query=sparse_vec, using="sparse", limit=top_k * 2),
-            ],
-            query=FusionQuery(fusion=Fusion.RRF),
-            limit=top_k,
-        )
+        results = self._hybrid_query(PROFILE_COLLECTION, dense_vec, sparse_vec, top_k)
 
         output = []
         for point in results.points:
@@ -143,7 +173,7 @@ class VectorIndex:
         chunk_ids = sorted(chunk_store.keys())
         texts = [chunk_store[cid]["text"] for cid in chunk_ids]
         print(f"  Embedding {len(texts)} chunks (full text)...")
-        embeddings = self._embed(texts)
+        embeddings = self._embed(texts, max_length=CHUNK_MAX_LENGTH)
 
         points = []
         for i, cid in enumerate(chunk_ids):
@@ -177,15 +207,7 @@ class VectorIndex:
         dense_vec = embeddings["dense"][0]
         sparse_vec = self._to_sparse_vector(embeddings["sparse"][0])
 
-        results = self.client.query_points(
-            collection_name=CHUNK_COLLECTION,
-            prefetch=[
-                Prefetch(query=dense_vec.tolist(), using="dense", limit=top_k * 2),
-                Prefetch(query=sparse_vec, using="sparse", limit=top_k * 2),
-            ],
-            query=FusionQuery(fusion=Fusion.RRF),
-            limit=top_k,
-        )
+        results = self._hybrid_query(CHUNK_COLLECTION, dense_vec, sparse_vec, top_k)
 
         output = []
         for point in results.points:
