@@ -1,18 +1,40 @@
-# PDPA GraphRAG + MCP
+# PDPA GraphRAG + MCP (teaching version, v2)
 
 A GraphRAG agent over Thailand's Personal Data Protection Act (PDPA, B.E. 2562 / 2019).
 The 96 sections of the statute become a 190-node / 380-edge knowledge graph plus a dense + sparse
 vector index, exposed as five MCP tools that any agent can call. Everything runs locally with
 Docker.
 
-This is the companion code for the article series **"Why Vector RAG Answers Only Half of a Legal
-Question"** (part 1 builds this system in five steps; parts 2 and 3 cover a graph bug and tool
-design for agents). Statutes do not repeat themselves, they *point*: a prohibition lives in one
-section, its exceptions in sub-clauses, and the penalty chapters later in a sentence that only says
-"whoever violates Section 26". Vector search finds the first half; the graph walk finds the second.
+This repository is the version used in the GraphRAG course. It continues
+[aekanun2020/pdpa-graphrag-mcp](https://github.com/aekanun2020/pdpa-graphrag-mcp), the companion code
+for the article series **"Why Vector RAG Answers Only Half of a Legal Question"**, which is now
+archived. The original shows the system exactly as the articles describe it; this one fixes the
+defects found in a pre-course review (see [What changed from the original](#what-changed-from-the-original)),
+so its search results differ from the runs shown in the articles.
+
+Statutes do not repeat themselves, they *point*: a prohibition lives in one section, its exceptions
+in sub-clauses, and the penalty chapters later in a sentence that only says "whoever violates
+Section 26". Vector search finds the first half; the graph walk finds the second.
 
 The example is Thai law, but the structure is the same for GDPR, HIPAA, the CCPA or Japan's APPI,
 and the embedding model is multilingual.
+
+## What changed from the original
+
+| Area | Original | This version |
+|---|---|---|
+| Fresh image build | Installs mcp 2.x, which removed `FastMCP`; the container crashes at import and restarts in a loop | `mcp[cli]` pinned below 2 |
+| `get_section_text` | Read the graph node's `text`, cut at 3,000 characters: Section 26 lost its biometric-data and criminal-record paragraphs | Reads the full section from the Markdown |
+| Statute Markdown | 801 split sara-am from PDF extraction ("ก าหนด", "จ าคุก") | Repaired ("กำหนด", "จำคุก"); graph node text is repaired at load time |
+| Node profiles | Built from `description` only, which 33 of 190 nodes have; a Section profile held just its id and relation names | Also read `name_th`, `term_th`, `definition`, `title_th` and `text` |
+| Section embedding | `max_length=512`; 7 sections are longer (Section 26 is 810 tokens) and lost their tail | `CHUNK_MAX_LENGTH`, default 1024 |
+| RRF constant | Not set, so Qdrant's default k = 2 | `RRF_K`, default 60 |
+| Result order | RRF scores tie often and Qdrant does not order ties, so the same keywords gave different seeds per call | Fused candidates are sorted by (score, id); the same keywords give the same context |
+| Seed selection | Took the top 3 profiles, then dropped edge profiles: possibly no seed at all | Drops edge profiles first, then takes 3 |
+| `build_graph.py` | Truncated section text at 3,000 characters | No truncation |
+
+Not changed: `get_penalty` and the shipped graph (see Known limitations), the graph's `metadata`
+counts, and the 15-node cap on graph expansion.
 
 ## What's inside
 
@@ -28,7 +50,7 @@ scripts/
 labs/
   core/                  minimal MCP client (httpx), tool registry (MCP inputSchema -> OpenAI tools), LLM client
   lab7/agent_loop.py     the smallest possible agent loop, local tools only
-  lab8/agent_pdpa_mcp.py the same loop wired to this MCP server (the run shown in the article)
+  lab8/agent_pdpa_mcp.py the same loop wired to this MCP server
 examples/mcp_curl.sh     talk to the server with plain curl + jq
 docs/                    architecture and pipeline figures
 Dockerfile, docker-compose.yml, requirements.txt, .env.example
@@ -90,8 +112,9 @@ python labs/lab8/agent_pdpa_mcp.py "เก็บข้อมูลสุขภ�
 
 The statute and the agent's system prompt are in Thai, so Thai questions work best (the model
 answers in Thai; change `SYSTEM` in `labs/lab8/agent_pdpa_mcp.py` to answer in another language).
-A typical run makes 7 tool calls in 4 rounds: `search_pdpa` -> `get_related_sections` +
-`get_penalty` -> `get_section_text` x4 -> answer citing Sections 26 / 79 / 84.
+With the original code a typical run made 7 tool calls in 4 rounds: `search_pdpa` ->
+`get_related_sections` + `get_penalty` -> `get_section_text` x4 -> answer citing Sections 26 / 79 / 84.
+The agent run has not been repeated with this version; expect the calls to differ.
 
 ## MCP tools
 
@@ -99,7 +122,7 @@ A typical run makes 7 tool calls in 4 rounds: `search_pdpa` -> `get_related_sect
 |---|---|
 | `search_pdpa(query, top_k=5)` | Hybrid retrieval: LLM keywords -> profile search -> 2-hop BFS -> chunk search -> context (JSON) |
 | `get_related_sections(section_id)` | In- and out-edges of one section, grouped by relationship |
-| `get_penalty(section_id)` | BFS (max 3 hops) from the violated section to Penalty nodes. Pass the violated section (`sec_26`), not the penalty section |
+| `get_penalty(section_id)` | BFS in both directions from the violated section to Penalty nodes. It reports Penalty nodes up to 2 hops away (the loop stops at hop 3 before recording one). Pass the violated section (`sec_26`), not the penalty section |
 | `get_section_text(section_id)` | Full statute text of one section by id, deterministic (no vector search). Read from the Markdown, not from the graph node, whose `text` is cut at 3,000 characters |
 | `get_pdpa_summary()` | Node/edge counts and the schema of the graph |
 
@@ -112,8 +135,10 @@ numerals (มาตรา ๒๖).
 
 1. An LLM splits the question into low-level keywords (section numbers, named rights, penalties) and
    high-level keywords (principles, concepts), after LightRAG's dual-level scheme.
-2. Profile search (`pdpa_profiles`, dense + sparse, RRF) finds up to 3 seed nodes.
-3. Chunk search (`pdpa_chunks`) fetches the full text of up to 5 sections.
+2. Profile search (`pdpa_profiles`, dense + sparse, RRF) runs once per keyword level; the top 3
+   node profiles become the seed nodes. No LLM is involved in picking seeds.
+3. Chunk search (`pdpa_chunks`) fetches the full text of up to 5 sections, using the same keywords.
+   It does not use the graph result.
 4. BFS from the seeds, 2 hops, following edges in both directions; every reached node is written as
    `[hop1][GRANTS_EXEMPTION] sec26_ex5c: ...` so the model knows *why* it is there.
 5. The context is capped (8 profiles, 15 expanded nodes, 5 full sections) and returned as JSON.
@@ -147,7 +172,12 @@ To use this on another statute, swap the heading pattern (`Article\s+(\d+)` for 
 - There is no formal evaluation set yet. Contributions of question/answer pairs with expected
   section citations are welcome.
 - The shipped graph has a known gap that affects `get_penalty` for one section; it is the subject of
-  part 2 of the article series and is left as is until that article is published.
+  part 2 of the article series and is left as is until that article is published. Only Sections 77,
+  79, 85, 86 and 90 have a Penalty node, so `get_penalty('sec_26')` returns the two criminal
+  penalties of Section 79 and no administrative fine.
+- The keyword LLM is the remaining source of run-to-run variation: at temperature 0 the same question
+  still produced two different keyword sets in four calls, and each set gives its own context.
+- The keyword prompt invites the LLM to guess section numbers, and the guesses can be wrong.
 
 ## Data
 
@@ -156,6 +186,8 @@ from the version published by the Office of the Council of State of Thailand. Th
 code and figures are by the author.
 
 ## Article series
+
+Written for the original repository; the runs they show come from the original code.
 
 1. Why Vector RAG Answers Only Half of a Legal Question (Thai: https://aekanunbigdata.medium.com/a0f1e09e3450 — English version coming)
 2. One missing edge: why the agent cited the wrong penalty section (coming)
