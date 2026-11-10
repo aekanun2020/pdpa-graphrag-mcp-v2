@@ -1,4 +1,4 @@
-mcp[cli]>=1.9.0
+mcp[cli]>=1.9.0,<2   # mcp 2.x renamed FastMCP to MCPServer; this server uses the 1.x API
 FlagEmbedding>=1.2.0
 transformers>=4.44.0,<5.0.0
 qdrant-client>=1.16.0

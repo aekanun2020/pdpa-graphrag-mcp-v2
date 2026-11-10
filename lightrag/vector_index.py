@@ -52,29 +52,40 @@ class VectorIndex:
         )
         return {"dense": result["dense_vecs"], "sparse": result["lexical_weights"]}
 
-    def _hybrid_query(self, collection: str, dense_vec, sparse_vec, top_k: int):
-        """Dense + sparse prefetch แล้วรวมอันดับด้วย RRF
+    def _hybrid_query(self, collection: str, dense_vec, sparse_vec, top_k: int, id_key: str) -> list:
+        """Dense + sparse prefetch แล้วรวมอันดับด้วย RRF — คืน list ของ points (top_k)
 
-        ใช้ k = RRF_K เมื่อ client และ server รองรับ (Qdrant >= 1.16)
-        ถ้าไม่รองรับจะถอยไปใช้ Fusion.RRF ซึ่ง k เป็นค่า default ของ Qdrant (2) และแจ้งเตือนครั้งเดียว
+        k: ใช้ RRF_K เมื่อ client และ server รองรับ (Qdrant >= 1.16) ถ้าไม่รองรับจะถอยไปใช้
+        Fusion.RRF ซึ่ง k เป็นค่า default ของ Qdrant (2) และแจ้งเตือนครั้งเดียว
+
+        ลำดับคงที่: RRF ให้คะแนนจากอันดับ จึงมีคะแนนเท่ากันบ่อย (เช่น อันดับ 3 ฝั่ง dense กับ
+        อันดับ 3 ฝั่ง sparse) และ Qdrant ไม่รับประกันลำดับของคะแนนที่เท่ากัน — คำค้นเดิมจึงได้
+        seed ต่างกันในแต่ละครั้ง จึงขอผลรวมทั้งหมดของสอง prefetch (ไม่เกิน 4 * top_k)
+        แล้วเรียงเองด้วย (คะแนน, id) ก่อนตัด top_k
         """
         prefetch = [
             Prefetch(query=dense_vec.tolist(), using="dense", limit=top_k * 2),
             Prefetch(query=sparse_vec, using="sparse", limit=top_k * 2),
         ]
+        fetch = top_k * 4
+        results = None
         if self._rrf_k_ok:
             try:
-                return self.client.query_points(
+                results = self.client.query_points(
                     collection_name=collection, prefetch=prefetch,
-                    query=RrfQuery(rrf=Rrf(k=RRF_K)), limit=top_k,
+                    query=RrfQuery(rrf=Rrf(k=RRF_K)), limit=fetch,
                 )
             except Exception as e:  # server เก่ากว่า 1.16 ไม่รู้จัก query แบบ rrf
                 self._rrf_k_ok = False
                 print(f"  ⚠️ RRF k={RRF_K} ใช้ไม่ได้ ({type(e).__name__}) — ใช้ค่า default ของ Qdrant (k=2) แทน")
-        return self.client.query_points(
-            collection_name=collection, prefetch=prefetch,
-            query=FusionQuery(fusion=Fusion.RRF), limit=top_k,
-        )
+        if results is None:
+            results = self.client.query_points(
+                collection_name=collection, prefetch=prefetch,
+                query=FusionQuery(fusion=Fusion.RRF), limit=fetch,
+            )
+        points = sorted(results.points,
+                        key=lambda pt: (-round(pt.score, 9), str(pt.payload.get(id_key, ""))))
+        return points[:top_k]
 
     @staticmethod
     def _to_sparse_vector(lexical_weights: dict) -> SparseVector:
@@ -138,10 +149,10 @@ class VectorIndex:
         dense_vec = embeddings["dense"][0]
         sparse_vec = self._to_sparse_vector(embeddings["sparse"][0])
 
-        results = self._hybrid_query(PROFILE_COLLECTION, dense_vec, sparse_vec, top_k)
+        points = self._hybrid_query(PROFILE_COLLECTION, dense_vec, sparse_vec, top_k, id_key="profile_id")
 
         output = []
-        for point in results.points:
+        for point in points:
             idx = point.payload.get("index", 0)
             if idx < len(self.profiles):
                 output.append({"profile": self.profiles[idx], "score": point.score})
@@ -207,10 +218,10 @@ class VectorIndex:
         dense_vec = embeddings["dense"][0]
         sparse_vec = self._to_sparse_vector(embeddings["sparse"][0])
 
-        results = self._hybrid_query(CHUNK_COLLECTION, dense_vec, sparse_vec, top_k)
+        points = self._hybrid_query(CHUNK_COLLECTION, dense_vec, sparse_vec, top_k, id_key="chunk_id")
 
         output = []
-        for point in results.points:
+        for point in points:
             cid = point.payload.get("chunk_id", "")
             chunk_data = self.chunk_store.get(cid, {})
             output.append({
