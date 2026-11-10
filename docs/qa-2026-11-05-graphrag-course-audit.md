@@ -41,3 +41,76 @@
 ## กลับมาที่ประโยคในคู่มือ
 
 ประโยคที่อาจารย์ยกมาหมายความว่า พอค้นเจอ profile ของ `def_biometric` ระบบหยิบ id นี้ไปเป็น seed ทันที ไม่มีขั้นที่ LLM อ่านผลค้นแล้วสกัดเลขมาตราออกมา และ seed ก็ไม่จำเป็นต้องเป็นมาตรา จะเป็นโหนดนิยาม ข้อยกเว้น หรือบทลงโทษก็ได้
+
+## Q2 — https://github.com/aekanun2020/pdpa-graphrag-mcp-v2/blob/main/docs/qa-2026-11-05-graphrag-course-audit.md
+
+> ยกตัวอย่างของจริงใน container มาครับ ผม start แล้ว
+
+ดึงมาจาก container ที่รันอยู่แล้วครับ ตัวเลขรวมตรงกับที่อธิบายไว้: profile ทั้งหมด 570 รายการ เป็นของโหนด 190 และของเส้น 380
+
+## 1. Profile จริง 4 แบบ
+
+**โหนดนิยาม `def_biometric`**
+```
+KEYS : ["def_biometric", "Definition",
+        "ข้อมูลชีวภาพ: ข้อมูลส่วนบุคคลที่เกิดจากการใช้เทคนิคหรือเทคโนโลยีที่เกี่ยวข้องกับการนำลักษณะเด่นทางกายภาพหรือทางพฤติกรรมของบุคคลมาใช้ทำให้สามารถยืนยันตัวตน",
+        "sec_26 DEFINES", "IS_SUBTYPE_OF"]
+VALUE: def_biometric (): ข้อมูลชีวภาพ: ข้อมูลส่วนบุคคลที่เกิดจากการใช้เทคนิค…ทำให้สามารถยืนยันตัวตน
+       ความสัมพันธ์: sec_26 DEFINES; IS_SUBTYPE_OF: def_sensitive_data
+```
+
+**โหนดมาตรา `sec_26`**
+```
+KEYS : ["sec_26", "Section",
+        "มาตรา ๒๖ ห้ามมิให้เก็บรวบรวมข้อมูลส่วนบุคคลเกี่ยวกับเชื้อชาติ เผ่าพันธุ์ … ข้อมูลสุขภาพ ความพิการ ข้อมูลสหภาพแรงง",
+        "ch2 CONTAINS_SECTION", "ch2_p2 CONTAINS_SECTION", "sec_25 REFERENCES_SECTION", "DEFINES", "DEFINES"]
+VALUE: sec_26 (): มาตรา ๒๖ ห้ามมิให้เก็บรวบรวมข้อมูลส่วนบุคคล… (ตัดที่ 300 ตัวอักษร)
+       ความสัมพันธ์: ch2 CONTAINS_SECTION; …; DEFINES: def_biometric; GRANTS_EXEMPTION: sec26_ex1; …
+```
+
+**โหนดสิทธิ `right_erasure`** (profile สั้น เพราะโหนดมีแค่ชื่อ)
+```
+KEYS : ["right_erasure", "Right", "สิทธิในการลบข้อมูล", "sec_33 GRANTS_RIGHT", "def_data_subject HAS_RIGHT"]
+VALUE: right_erasure (): สิทธิในการลบข้อมูล
+       ความสัมพันธ์: sec_33 GRANTS_RIGHT; def_data_subject HAS_RIGHT
+```
+
+**เส้น `sec_79--PRESCRIBES_PENALTY--pen_criminal_disclosure`** (edge profile ไม่มีเนื้อหา มีแค่การเชื่อม)
+```
+KEYS : ["PRESCRIBES_PENALTY", "sec_79", "pen_criminal_disclosure"]
+VALUE: sec_79 → [PRESCRIBES_PENALTY] → pen_criminal_disclosure
+```
+
+## 2. สิ่งที่เก็บใน Qdrant จริง
+
+จุดของ `def_biometric` ใน collection `pdpa_profiles`:
+
+| ส่วน | ค่าจริง |
+|---|---|
+| payload | `{"index": 121, "profile_id": "def_biometric", "node_category": "prebuilt"}` |
+| dense vector | ตัวเลข 1024 ตัว เริ่มด้วย -0.0022, -0.0183, -0.0348, 0.0206 |
+| sparse vector | 39 token น้ำหนักสูงสุด 0.291 |
+
+ใน payload **ไม่มี `value` และไม่มี `keys`** Qdrant เก็บแค่ vector กับเลขลำดับ `index: 121` เมื่อค้นเจอ ระบบใช้เลข 121 ไปหยิบ profile ลำดับที่ 121 จากหน่วยความจำของ server แล้วจึงได้ `value` ออกมา ข้อนี้ตรงกับที่อาจารย์สอนไว้ในคลิป 9 ก.ค. 13.27 นาทีที่ 11:31
+
+## 3. ผลค้นจริงหนึ่งคำถาม
+
+คำถาม: "บริษัทเก็บลายนิ้วมือพนักงานเพื่อลงเวลาทำงาน ต้องขอความยินยอมไหม"
+
+1. **LLM แตกคีย์เวิร์ด**
+   - low-level: ลายนิ้วมือ, ข้อมูลชีวภาพ, ข้อมูลอ่อนไหว, มาตรา ๒๔, มาตรา ๒๕, ความยินยอมโดยชัดแจ้ง และอีก 4 คำ
+   - high-level: consent, sensitive personal data, biometric data, purpose limitation และอีก 6 คำ
+2. **Profile ที่ค้นเจอ** เรียงตามลำดับ: `sec24_ex6`, `sec24_ex2`, `def_biometric`, `def_data_controller`, `def_personal_data`, `sec_24`, `def_sensitive_data`
+3. **Seed** คือ 3 ตัวแรก: `sec24_ex6`, `sec24_ex2`, `def_biometric`
+4. **เดินกราฟจาก seed** ได้ 15 รายการ เช่น
+   - `[hop1][DEFINES] sec_26: มาตรา ๒๖ ห้ามมิให้เก็บรวบรวม…`
+   - `[hop1][IS_SUBTYPE_OF] def_sensitive_data: ข้อมูลอ่อนไหว…`
+5. **Chunk ที่ค้นได้แยกต่างหาก:** มาตรา ๒๖, ๒๔, ๔๐, ๒๓, ๒๕
+
+ตัวอย่างนี้แสดงเส้นทางที่ profile ทำงานได้ชัด: คำว่า "ลายนิ้วมือ" ไม่มีอยู่ใน id ของโหนดไหนเลย แต่ค้นเจอ profile ของ `def_biometric` ตามความหมาย จากนั้นกราฟพาต่อไปถึง `sec_26` ผ่านเส้น `DEFINES` ใน 1 hop
+
+## ข้อสังเกตจากของจริง
+
+- ใน keys ของเส้นขาออก มีแต่ชื่อความสัมพันธ์โดยไม่มีปลายทาง เช่น `"IS_SUBTYPE_OF"` และ `"DEFINES", "DEFINES"` ของ `sec_26` ส่วนเส้นขาเข้ามีต้นทางครบ เช่น `"sec_26 DEFINES"` เป็นพฤติกรรมของโค้ดเดิมที่ผมไม่ได้แก้
+- LLM ใส่ "มาตรา ๒๔" และ "มาตรา ๒๕" ในคีย์เวิร์ดเอง ทั้งที่คำถามไม่ได้ระบุเลขมาตรา ผลคือ seed สองตัวแรกเป็นข้อยกเว้นของ ม.24 ไม่ใช่ของ ม.26 ซึ่งเป็นมาตราที่ตรงกับลายนิ้วมือมากกว่า
+- คำตอบใน Q&A log ที่ยกตัวอย่าง `def_biometric` ตรงกับของจริงทุกส่วน
