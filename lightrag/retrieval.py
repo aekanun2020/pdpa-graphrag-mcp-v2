@@ -83,7 +83,8 @@ def retrieve(query: str, index: VectorIndex,
                 profile_results.append(r)
 
     # Multi-hop BFS expansion
-    expanded = _expand_from_graph(profile_results, knowledge_graph, max_expand=3, max_hops=2)
+    expanded = _expand_from_graph(profile_results, knowledge_graph, max_expand=3, max_hops=2,
+                                  penalty_intent=_asks_about_penalty(query, keywords))
 
     # Chunk search (มาตรา text)
     chunk_query = f"{low_query} {high_query}".strip() or query
@@ -122,16 +123,48 @@ _STRUCTURAL_PRIORITY = 3      # เส้นโครงสร้าง: ได�
 # โหนดนี้ยังถูกค้นเจอและแสดง VALUE ใน context ได้ตามปกติ แค่ไม่ใช้เป็นจุดเริ่มเดินกราฟ
 _NON_SEED_LABELS = {"Law"}
 
+# หมวด/ส่วนของบทกำหนดโทษ (หมวด ๗: ส่วนที่ ๑ โทษอาญา, ส่วนที่ ๒ โทษทางปกครอง)
+# กราฟมีโหนด Penalty แค่บางมาตรา แต่ "มาตราโทษใดลงโทษการฝ่าฝืนมาตราใด" อยู่ในเส้น REFERENCES_SECTION
+# ที่ชี้จากมาตราโทษมายังมาตราหน้าที่ เช่น sec_83 → sec_37 เส้นนี้จึงได้ลำดับเดียวกับ PRESCRIBES_PENALTY
+# การค้นตัวบทด้วยข้อความหามาตราโทษที่ถูกต้องไม่ได้ เพราะ ม.๘๒–๙๐ ใช้ถ้อยคำเรื่องโทษคล้ายกันทุกมาตรา
+# (docs/eval/2026-11-13-chunk-search.md)
+# ยกลำดับเฉพาะเมื่อคำถามถามเรื่องโทษ (_asks_about_penalty) ถ้ายกทุกคำถาม มาตราโทษจะกินที่ราว 1 ใน 3
+# ของผลการเดินกราฟ และเบียดโหนดข้อยกเว้นออก (docs/eval/2026-11-13-penalty-reference.md)
+_PENALTY_CONTAINERS = {"ch7", "ch7_p1", "ch7_p2"}
+_PENALTY_REFERENCE_PRIORITY = 0
+_PENALTY_WORDS = ("โทษ", "ปรับ", "จำคุก", "penalt", "sanction", "punish", "imprison")
+
+
+def _asks_about_penalty(query: str, keywords: dict) -> bool:
+    """คำถามหรือ keywords ที่ LLM สกัดได้ มีคำเรื่องโทษหรือไม่"""
+    texts = [query] + keywords.get("low_level", []) + keywords.get("high_level", [])
+    return any(w in t.lower() for t in texts for w in _PENALTY_WORDS)
+
+
+def _is_penalty_section(G: nx.DiGraph, node_id: str) -> bool:
+    """มาตรานี้อยู่ในหมวดบทกำหนดโทษหรือไม่ — ดูจากเส้น CONTAINS_SECTION ที่ชี้เข้ามา"""
+    return any(p in _PENALTY_CONTAINERS for p in G.predecessors(node_id))
+
+
+def _candidate_priority(cand: dict, G: nx.DiGraph, penalty_intent: bool = False) -> int:
+    """ลำดับของโหนดที่เดินถึง: ปกติดูชนิดเส้น ยกเว้นเมื่อคำถามถามเรื่องโทษ
+    มาตราโทษที่อ้างมายังโหนดที่เดินมาจาก (เช่น sec_37 ←REFERENCES_SECTION— sec_83) ได้ลำดับแรก"""
+    if (penalty_intent and cand["rel"] == "REFERENCES_SECTION" and not cand["outgoing"]
+            and _is_penalty_section(G, cand["node"])):
+        return _PENALTY_REFERENCE_PRIORITY
+    return _EDGE_PRIORITY.get(cand["rel"], _DEFAULT_EDGE_PRIORITY)
+
 
 def _expand_from_graph(results: list[dict], G: nx.DiGraph,
                        max_expand: int = 3, max_hops: int = 2,
-                       max_items: int = 15) -> list[str]:
+                       max_items: int = 15, penalty_intent: bool = False) -> list[str]:
     """Multi-hop BFS expansion จาก knowledge graph — คืนไม่เกิน max_items บรรทัด
 
     การเลือก (เดิม: 15 โหนดแรกตามลำดับที่ BFS เดินถึง ทำให้ seed ที่มีเพื่อนบ้านมากกินโควตาหมด):
     1. แบ่งโควตาให้ทุก seed เท่ากันแบบ round-robin โควตาที่ seed หนึ่งใช้ไม่หมดตกเป็นของ seed อื่น
     2. ภายใน seed เดียวกัน เรียงตามชนิดเส้น (_EDGE_PRIORITY) แล้วตามจำนวน hop
     3. โหนด hop 2 ที่ถูกเลือกจะพาโหนด hop 1 ที่เป็นทางผ่านมาด้วยเสมอ เส้นทางจาก seed จึงไม่ขาดตอน
+       เมื่อ penalty_intent เป็นจริง มาตราโทษที่อ้างมายังโหนดที่เดินมาจากได้ลำดับแรกด้วย
     4. โหนดที่มาด้วยเส้นโครงสร้าง (หมวด/ส่วน) ได้ที่เฉพาะเมื่อโหนดอื่นของทุก seed ถูกหยิบหมดแล้ว
        กันกรณี seed เป็นโหนดระดับบน เช่น PDPA_2562 ซึ่งมีแต่เส้นโครงสร้าง มากินโควตาของ seed อื่น
 
@@ -188,10 +221,10 @@ def _expand_from_graph(results: list[dict], G: nx.DiGraph,
     main_seqs, rest_seqs = [], []
     for sid in seed_ids:
         ranked = sorted(by_seed[sid], key=lambda c: (
-            _EDGE_PRIORITY.get(c["rel"], _DEFAULT_EDGE_PRIORITY), c["hop"], c["order"]))
+            _candidate_priority(c, G, penalty_intent), c["hop"], c["order"]))
         main, rest, emitted = [], [], set()
         for cand in ranked:
-            structural = _EDGE_PRIORITY.get(cand["rel"], _DEFAULT_EDGE_PRIORITY) >= _STRUCTURAL_PRIORITY
+            structural = _candidate_priority(cand, G, penalty_intent) >= _STRUCTURAL_PRIORITY
             chain = []
             node = cand
             while node is not None and node["node"] not in emitted:

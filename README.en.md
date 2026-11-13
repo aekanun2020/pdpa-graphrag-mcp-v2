@@ -145,7 +145,8 @@ numerals (มาตรา ๒๖).
    It does not use the graph result.
 4. BFS from the seeds, 2 hops, following edges in both directions. At most 15 reached nodes go into the
    context: every seed gets an equal share, penalty and obligation edges come first, then cross-reference and
-   exemption edges, and
+   exemption edges. When the question or its keywords mention a penalty, sections of the penalty chapter
+   that reference a reached node (e.g. `sec_83` referencing `sec_37`) also come first. Finally,
    structural edges (chapter/part) only fill what is left. Each node is written as
    `[hop1] def_biometric ←DEFINES— sec_26: ...`: the left node is where the walk came from and the arrow
    follows the edge's direction in the graph, so the model can read a path from the seed step by step.
