@@ -5,6 +5,8 @@ keyword extraction → vector search → multi-hop BFS → hybrid context
 ปรับ prompts จาก XXX ระบบไฟฟ้า → PDPA กฎหมายคุ้มครองข้อมูลส่วนบุคคล
 """
 
+import re
+
 import networkx as nx
 from .llm_provider import query_llm_json, query_llm
 from .vector_index import VectorIndex
@@ -132,13 +134,15 @@ _NON_SEED_LABELS = {"Law"}
 # ของผลการเดินกราฟ และเบียดโหนดข้อยกเว้นออก (docs/eval/2026-11-13-penalty-reference.md)
 _PENALTY_CONTAINERS = {"ch7", "ch7_p1", "ch7_p2"}
 _PENALTY_REFERENCE_PRIORITY = 0
-_PENALTY_WORDS = ("โทษ", "ปรับ", "จำคุก", "penalt", "sanction", "punish", "imprison")
+# "ปรับ" ที่ตามด้วยคำเหล่านี้ไม่ใช่โทษปรับ เช่น "ปรับปรุงข้อมูลให้เป็นปัจจุบัน" (docs/eval รอบ 9 ข้อ C1)
+_PENALTY_PATTERN = re.compile(
+    r"โทษ|จำคุก|ปรับ(?!ปรุง|เปลี่ยน|ใช้|ตัว|แก้)|penalt|sanction|punish|imprison")
 
 
 def _asks_about_penalty(query: str, keywords: dict) -> bool:
     """คำถามหรือ keywords ที่ LLM สกัดได้ มีคำเรื่องโทษหรือไม่"""
     texts = [query] + keywords.get("low_level", []) + keywords.get("high_level", [])
-    return any(w in t.lower() for t in texts for w in _PENALTY_WORDS)
+    return any(_PENALTY_PATTERN.search(t.lower()) for t in texts)
 
 
 def _is_penalty_section(G: nx.DiGraph, node_id: str) -> bool:
