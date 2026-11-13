@@ -141,8 +141,11 @@ numerals (มาตรา ๒๖).
    node profiles become the seed nodes. No LLM is involved in picking seeds.
 3. Chunk search (`pdpa_chunks`) fetches the full text of up to 5 sections, using the same keywords.
    It does not use the graph result.
-4. BFS from the seeds, 2 hops, following edges in both directions; every reached node is written as
-   `[hop1][GRANTS_EXEMPTION] sec26_ex5c: ...` so the model knows *why* it is there.
+4. BFS from the seeds, 2 hops, following edges in both directions. At most 15 reached nodes go into the
+   context: every seed gets an equal share, penalty, cross-reference and exemption edges come first, and
+   structural edges (chapter/part) only fill what is left. Each node is written as
+   `[hop1] def_biometric ←DEFINES— sec_26: ...`: the left node is where the walk came from and the arrow
+   follows the edge's direction in the graph, so the model can read a path from the seed step by step.
 5. The context is capped (8 profiles, 15 expanded nodes, 5 full sections) and returned as JSON.
    The server never writes the answer.
 

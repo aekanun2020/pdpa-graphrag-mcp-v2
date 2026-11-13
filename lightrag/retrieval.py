@@ -86,12 +86,39 @@ def retrieve(query: str, index: VectorIndex,
     }
 
 
-def _expand_from_graph(results: list[dict], G: nx.DiGraph,
-                       max_expand: int = 3, max_hops: int = 2) -> list[str]:
-    """Multi-hop BFS expansion จาก knowledge graph"""
-    expanded = []
-    visited = set()
+# ลำดับความสำคัญของชนิดเส้นตอนเลือกผลการเดินกราฟลง context (เลขน้อย = มาก่อน)
+# vector search มักพลาด "ครึ่งหลัง" ของคำถามกฎหมาย คือบทลงโทษ การอ้างข้ามมาตรา และข้อยกเว้น
+# จึงให้เส้นเหล่านี้มาก่อน ส่วนเส้นโครงสร้างเอกสาร (หมวด/ส่วน) มาท้ายสุด
+_EDGE_PRIORITY = {
+    "PRESCRIBES_PENALTY": 0,
+    "REFERENCES_SECTION": 1,
+    "GRANTS_EXEMPTION": 1,
+    "REFERENCES_EXEMPTION": 1,
+    "CONTAINS_SECTION": 3,
+    "HAS_CHAPTER": 3,
+    "HAS_PART": 3,
+}
+_DEFAULT_EDGE_PRIORITY = 2
+_STRUCTURAL_PRIORITY = 3      # เส้นโครงสร้าง: ได้ที่ใน context เฉพาะเมื่อยังเหลือโควตา
 
+
+def _expand_from_graph(results: list[dict], G: nx.DiGraph,
+                       max_expand: int = 3, max_hops: int = 2,
+                       max_items: int = 15) -> list[str]:
+    """Multi-hop BFS expansion จาก knowledge graph — คืนไม่เกิน max_items บรรทัด
+
+    การเลือก (เดิม: 15 โหนดแรกตามลำดับที่ BFS เดินถึง ทำให้ seed ที่มีเพื่อนบ้านมากกินโควตาหมด):
+    1. แบ่งโควตาให้ทุก seed เท่ากันแบบ round-robin โควตาที่ seed หนึ่งใช้ไม่หมดตกเป็นของ seed อื่น
+    2. ภายใน seed เดียวกัน เรียงตามชนิดเส้น (_EDGE_PRIORITY) แล้วตามจำนวน hop
+    3. โหนด hop 2 ที่ถูกเลือกจะพาโหนด hop 1 ที่เป็นทางผ่านมาด้วยเสมอ เส้นทางจาก seed จึงไม่ขาดตอน
+    4. โหนดที่มาด้วยเส้นโครงสร้าง (หมวด/ส่วน) ได้ที่เฉพาะเมื่อโหนดอื่นของทุก seed ถูกหยิบหมดแล้ว
+       กันกรณี seed เป็นโหนดระดับบน เช่น PDPA_2562 ซึ่งมีแต่เส้นโครงสร้าง มากินโควตาของ seed อื่น
+
+    รูปแบบบรรทัด (เดิม: "[hop1][REL] node: desc" ไม่บอกต้นทางและทิศของเส้น):
+        [hop1] def_biometric ←DEFINES— sec_26: มาตรา ๒๖ ...
+        [hop2] sec_26 —GRANTS_EXEMPTION→ sec26_ex1: ...
+    โหนดซ้ายคือโหนดที่เดินมาจาก ลูกศรชี้ตามทิศของเส้นในกราฟ
+    """
     # seed = node profiles อันดับต้น — กรอง edge profiles (id มี "--") ออก "ก่อน" ตัด top-N
     # ไม่เช่นนั้นถ้า 3 อันดับแรกเป็น edge ทั้งหมดจะไม่มี seed และไม่มีการเดินกราฟเลย
     seed_ids = []
@@ -104,13 +131,14 @@ def _expand_from_graph(results: list[dict], G: nx.DiGraph,
             break
 
     from collections import deque
-    queue = deque()
-    for sid in seed_ids:
-        visited.add(sid)
-        queue.append((sid, 0))
+    visited = set(seed_ids)
+    queue = deque((sid, 0, sid) for sid in seed_ids)
+    candidates = {}                       # node id -> candidate dict
+    by_seed = {sid: [] for sid in seed_ids}
+    order = 0
 
     while queue:
-        current, hop = queue.popleft()
+        current, hop, root = queue.popleft()
         if hop >= max_hops:
             continue
 
@@ -120,18 +148,58 @@ def _expand_from_graph(results: list[dict], G: nx.DiGraph,
                 continue
             visited.add(neighbor)
 
-            n_data = G.nodes.get(neighbor, {})
-            edge_out = G.edges.get((current, neighbor), {})
-            edge_in = G.edges.get((neighbor, current), {})
-            edge = edge_out or edge_in
-
-            desc = node_description(n_data, max_len=200) or n_data.get("label", neighbor)
+            outgoing = G.has_edge(current, neighbor)
+            edge = G.edges.get((current, neighbor), {}) if outgoing else G.edges.get((neighbor, current), {})
             rel = edge.get("relation", edge.get("relationship", edge.get("type", "related")))
 
-            hop_label = f"hop{hop+1}"
-            expanded.append(f"[{hop_label}][{rel}] {neighbor}: {desc}")
+            cand = {"node": neighbor, "parent": current, "hop": hop + 1, "rel": rel,
+                    "outgoing": outgoing, "order": order}
+            order += 1
+            candidates[neighbor] = cand
+            by_seed[root].append(cand)
+            queue.append((neighbor, hop + 1, root))
 
-            queue.append((neighbor, hop + 1))
+    # ลำดับการหยิบของแต่ละ seed: ชนิดเส้น -> hop -> ลำดับที่เดินถึง และแทรกทางผ่านไว้ก่อนเสมอ
+    # แยกเป็นสองชุด: main = โหนดที่มาด้วยเส้นที่มีความหมายทางกฎหมาย, rest = เส้นโครงสร้าง
+    main_seqs, rest_seqs = [], []
+    for sid in seed_ids:
+        ranked = sorted(by_seed[sid], key=lambda c: (
+            _EDGE_PRIORITY.get(c["rel"], _DEFAULT_EDGE_PRIORITY), c["hop"], c["order"]))
+        main, rest, emitted = [], [], set()
+        for cand in ranked:
+            structural = _EDGE_PRIORITY.get(cand["rel"], _DEFAULT_EDGE_PRIORITY) >= _STRUCTURAL_PRIORITY
+            chain = []
+            node = cand
+            while node is not None and node["node"] not in emitted:
+                chain.append(node)
+                node = candidates.get(node["parent"])   # None เมื่อ parent คือ seed
+            for c in reversed(chain):
+                emitted.add(c["node"])
+                (rest if structural else main).append(c)
+        main_seqs.append(main)
+        rest_seqs.append(rest)
+
+    # round-robin สองรอบ: รอบแรกเฉพาะชุด main ของทุก seed แล้วจึงเติมด้วยชุด rest ถ้ายังไม่ครบ
+    picked = [[] for _ in seed_ids]
+    total = 0
+    for seqs in (main_seqs, rest_seqs):
+        taken = [0] * len(seqs)
+        while total < max_items and any(taken[i] < len(seqs[i]) for i in range(len(seqs))):
+            for i, seq in enumerate(seqs):
+                if total >= max_items:
+                    break
+                if taken[i] < len(seq):
+                    picked[i].append(seq[taken[i]])
+                    taken[i] += 1
+                    total += 1
+
+    expanded = []
+    for seq in picked:
+        for c in sorted(seq, key=lambda c: (c["hop"], c["order"])):
+            n_data = G.nodes.get(c["node"], {})
+            desc = node_description(n_data, max_len=200) or n_data.get("label", c["node"])
+            arrow = f"—{c['rel']}→" if c["outgoing"] else f"←{c['rel']}—"
+            expanded.append(f"[hop{c['hop']}] {c['parent']} {arrow} {c['node']}: {desc}")
 
     return expanded
 
@@ -146,6 +214,7 @@ def _build_context(profile_results, expanded, chunk_results) -> str:
             ctx += f"- {r['profile']['value']}\n"
         if expanded:
             ctx += "\n### ข้อมูลเชื่อมโยง (multi-hop graph):\n"
+            ctx += "(รูปแบบ: [hop] โหนดต้นทาง —ชนิดเส้น→ โหนดที่ไปถึง: เนื้อหา; ลูกศรชี้ตามทิศของเส้นในกราฟ)\n"
             for e in expanded[:15]:
                 ctx += f"- {e}\n"
 
