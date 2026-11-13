@@ -1,0 +1,66 @@
+# eval/ — เครื่องมือที่ใช้สร้างผลใน `docs/eval/`
+
+โฟลเดอร์นี้เก็บโค้ดและข้อมูลที่ใช้ทดสอบ branch `feat/expansion-quota-and-paths` เทียบกับ `main` รายงานของแต่ละรอบอยู่ที่ `docs/eval/` โฟลเดอร์นี้มีไว้ให้ตรวจย้อนและรันซ้ำได้
+
+ไม่มี API key ในไฟล์ใด ทุกสคริปต์อ่าน key จาก environment ของ container `mcp-pdpa-rag`
+
+## retrieval/ — รอบ 1 ถึง 10 (วัดจาก context)
+
+สคริปต์ชุดนี้รันใน container โดยไม่เรียก server แต่ละไฟล์มีชุดคำถาม แนวคำตอบ และสำเนา `retrieval.py` ของรุ่นที่เทียบฝังอยู่ในตัว จึงเป็นภาพของโค้ด ณ เวลาที่รัน ไม่ใช่ของโค้ดปัจจุบัน เลขท้ายชื่อไฟล์คือลำดับที่เขียน ไม่ใช่เลขรอบในรายงาน
+
+| ไฟล์ | ไฟล์ผลใน `docs/eval/` |
+|---|---|
+| `run_eval5.py` | `2026-11-13-pdpc-answers-results.json` |
+| `run_eval6.py` | `2026-11-13-keyword-prompt-results.json` |
+| `run_eval7.py` | `2026-11-13-keyword-prompt-penalty-results.json` |
+| `run_eval12.py` | `2026-11-13-penalty-reference-results.json` |
+| `run_eval14.py` | `2026-11-13-penalty-heldout-results.json` |
+| `run_eval16.py` | `2026-11-13-other-questions-results.json` |
+
+`run_eval8.py` ถึง `run_eval11.py`, `run_eval13.py` และ `run_eval15.py` เป็นรอบกลางทาง ผลของไฟล์เหล่านี้ไม่ตรงขนาดกับไฟล์ผลใดใน `docs/eval/` แบบหนึ่งต่อหนึ่ง จึงไม่ได้จับคู่ไว้ `variant_A.py` และ `variant_B.py` คือ `retrieval.py` สองแบบที่ลองในรอบขยายกราฟ `mk16.py` และ `sum16.py` ใช้สร้างและสรุปรอบสุดท้าย
+
+## agent/ — รอบ 11 (วัดจากคำตอบของ agent)
+
+รายงาน: `docs/eval/2026-11-13-agent-test.md`
+
+| ที่อยู่ | คืออะไร |
+|---|---|
+| `harness/src/dfai_harness/` | runtime ของ harness คัดลอกจาก `aekanun2020/SUT-AI-Chat-App-with-Fine-tuned-Harness-with-KM` commit `36f62c9` (`vendor/harness/src/dfai_harness/`) ไม่ได้แก้แม้ตัวอักษรเดียว |
+| `harness/harnesses/pdpa/` | ชุด PDPA ที่เขียนขึ้นสำหรับรอบนี้: `prompts/`, `hooks/pdpa.py`, `hooks/verify.py`, `policies/`, `contracts/`, `templates/` |
+| `harness/run_pdpa.py` | ตัวรันหนึ่งคำถามกับ server หนึ่งรุ่น (`--server main` คือ port 8100, `--server branch` คือ port 8101) |
+| `harness/offline_test.py` | ทดสอบ hook และตัวอ่านซ้ำ 20 ข้อโดยไม่เรียกโมเดล |
+| `serve_branch.py` | เปิด server รุ่น branch เป็น process ที่สองใน container ที่ port 8101 โดยข้ามขั้นสร้าง index เพราะ `rag.build()` ตามปกติจะลบและสร้าง collection ใน Qdrant ใหม่ ต้องวาง `lightrag/retrieval.py` ของ branch ไว้ที่ `branch/retrieval.py` ข้างสคริปต์ |
+| `run_all.py` | รันหลายคำถามกับทั้งสองรุ่น รันต่อจากที่ค้างได้ |
+| `questions.json` | คำถาม 52 ข้อ ไม่มีแนวคำตอบ เป็นไฟล์เดียวที่ agent เห็น |
+| `gold.json` | มาตราตามแนวคำตอบของแต่ละข้อ ใช้ตอนให้คะแนนเท่านั้น |
+| `summarise.py`, `score.py` | สรุปแต่ละรอบ และให้คะแนนเทียบ `gold.json` |
+| `probe.py` | ตรวจรูปแบบผลของเครื่องมือ MCP ก่อนเขียน hook |
+| `runs/runs.tar.gz` | โฟลเดอร์ผลดิบของทุกรอบ: `pilot` (4 รอบ), `r1` (48 รอบ), `r2` (รันซ้ำ 3 ข้อบน `main`) มีคำขอและคำตอบของโมเดล หลักฐานทุกชิ้น และ contract |
+| `timing/` | log ของ server ทั้งสองรุ่น, `gaps.py` วัดเวลาก่อนเริ่มค้น Qdrant ของ `search_pdpa` แต่ละครั้ง, `corr.py` เทียบเวลานั้นกับจำนวน keywords |
+| `judge/` | การตรวจ correctness และ faithfulness: `RUBRIC.md` เกณฑ์, `build.py` สร้างชุดคำตอบที่ปิดชื่อรุ่น, `packets/` ชุดที่ผู้ตรวจอ่าน, `out/` คำตัดสินรายคำตอบ, `key.json` รหัสกับรุ่น, `agg.py` รวมคะแนนและตรวจซ้ำกับหลักฐานดิบ, `judged.json` ผลรวม |
+
+### รันสคริปต์วิเคราะห์ซ้ำ (ไม่เรียกโมเดล)
+
+```bash
+cd eval/agent
+mkdir -p results && tar -xzf runs/runs.tar.gz -C results
+python3 summarise.py results/r1 && python3 score.py results/r1 gold.json
+python3 timing/gaps.py timing/main-server-r1.log timing/branch-server.log
+python3 timing/corr.py .
+python3 judge/agg.py . -v
+(cd harness && python3 -B offline_test.py)
+```
+
+### รันกับโมเดลซ้ำ (มีค่าใช้จ่าย)
+
+ต้องมี `OPENROUTER_API_KEY` ใน environment และ server ที่ port 8100 ถ้าจะเทียบกับ branch ต้องเปิด `serve_branch.py` ก่อน การเปิด process ใน container และการเรียกโมเดลต้องได้รับอนุมัติจากเจ้าของระบบทุกครั้ง
+
+```bash
+python -B run_all.py --ids R1,H3,O10 --tag r2 --servers main
+```
+
+### สิ่งที่ต้องรู้ก่อนใช้ผล
+
+- ชุด PDPA ของ harness เขียนโดยรู้ประเภทของคำถามในชุดทดสอบและจุดอ่อนที่พบในรอบ 4 ถึง 10 prompt ของขั้นสืบค้นจึงสั่งให้ตรวจขอบเขตการใช้บังคับและบทกำหนดโทษ ไม่มีเลขมาตราหรือคำจากโจทย์ แต่คะแนนสัมบูรณ์ของรอบ 11 น่าจะสูงกว่าที่ agent ทั่วไปจะได้ การเทียบ `main` กับ branch ยังใช้ได้เพราะใช้ harness เดียวกัน
+- `score.py`, `judge/build.py` และ `timing/corr.py` ถูกแก้ตำแหน่งไฟล์ให้เข้ากับโฟลเดอร์นี้หลังรันจริง ตรรกะไม่เปลี่ยน และรันซ้ำแล้วได้ตัวเลขเดิม
+- รายการ "มาตราที่ agent ดึงมา" ใน `judge/packets/` สกัดไม่ครบ ผู้ตรวจจึงแจ้งข้อความไม่มีหลักฐานเกินจริง `agg.py` ตรวจซ้ำกับหลักฐานดิบและรายงานเฉพาะที่ยืนยันได้

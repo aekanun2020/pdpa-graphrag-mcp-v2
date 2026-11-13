@@ -1,0 +1,13 @@
+{
+ "code": "X548",
+ "n_claims": 5,
+ "n_correct": 5,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "Section 39 para 1 requires the controller to keep the record and s.82 punishes failure to comply with s.39 para 1 with an administrative fine of up to one million baht, with the small-business exception in s.39 para 3 correctly noted.",
+ "uses_key_sections": true,
+ "problems": []
+}

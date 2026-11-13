@@ -32,7 +32,7 @@ and the embedding model is multilingual.
 | Section embedding | `max_length=512`; 7 sections are longer (Section 26 is 810 tokens) and lost their tail | `CHUNK_MAX_LENGTH`, default 1024 |
 | RRF constant | Not set, so Qdrant's default k = 2 | `RRF_K`, default 60 |
 | Result order | RRF scores tie often and Qdrant does not order ties, so the same keywords gave different seeds per call | Fused candidates are sorted by (score, id); the same keywords give the same context |
-| Seed selection | Took the top 3 profiles, then dropped edge profiles: possibly no seed at all | Drops edge profiles first, then takes 3 |
+| Seed selection | Took the top 3 profiles, then dropped edge profiles: possibly no seed at all | Drops edge profiles and the Act node (`PDPA_2562`) first, then takes 3 |
 | `build_graph.py` | Truncated section text at 3,000 characters | No truncation |
 
 Not changed: `get_penalty` and the shipped graph (see Known limitations), the graph's `metadata`
@@ -138,11 +138,18 @@ numerals (มาตรา ๒๖).
 1. An LLM splits the question into low-level keywords (section numbers, named rights, penalties) and
    high-level keywords (principles, concepts), after LightRAG's dual-level scheme.
 2. Profile search (`pdpa_profiles`, dense + sparse, RRF) runs once per keyword level; the top 3
-   node profiles become the seed nodes. No LLM is involved in picking seeds.
+   node profiles become the seed nodes, skipping the Act node (`PDPA_2562`) because its neighbours are
+   only chapters. That node can still appear in the context; it is just not a starting point for the
+   graph walk. No LLM is involved in picking seeds.
 3. Chunk search (`pdpa_chunks`) fetches the full text of up to 5 sections, using the same keywords.
    It does not use the graph result.
-4. BFS from the seeds, 2 hops, following edges in both directions; every reached node is written as
-   `[hop1][GRANTS_EXEMPTION] sec26_ex5c: ...` so the model knows *why* it is there.
+4. BFS from the seeds, 2 hops, following edges in both directions. At most 15 reached nodes go into the
+   context: every seed gets an equal share, penalty and obligation edges come first, then cross-reference and
+   exemption edges. When the question or its keywords mention a penalty, sections of the penalty chapter
+   that reference a reached node (e.g. `sec_83` referencing `sec_37`) also come first. Finally,
+   structural edges (chapter/part) only fill what is left. Each node is written as
+   `[hop1] def_biometric ←DEFINES— sec_26: ...`: the left node is where the walk came from and the arrow
+   follows the edge's direction in the graph, so the model can read a path from the seed step by step.
 5. The context is capped (8 profiles, 15 expanded nodes, 5 full sections) and returned as JSON.
    The server never writes the answer.
 

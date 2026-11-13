@@ -1,0 +1,15 @@
+{
+  "root": "../../runs",
+  "timestamp_format": "pdpa-%Y%m%dT%H%M%S%fZ",
+  "max_tool_calls": 24,
+  "max_rejected_tool_calls": 8,
+  "reserved_model_calls": 2,
+  "draft_artifact": "investigation.md",
+  "answer_artifact": "answer.md",
+  "receipt_artifact": "receipt.json",
+  "failure_artifact": "failure.json",
+  "verifier_receipt_artifact": "verifier-receipt.json",
+  "receipt_schema": "configurable-contract-agent-receipt-v1",
+  "compose_calls": 2,
+  "repair_calls": 2
+}

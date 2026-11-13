@@ -1,0 +1,5 @@
+results/
+harness/runs/
+harness/questions/*
+!harness/questions/smoke.txt
+__pycache__/

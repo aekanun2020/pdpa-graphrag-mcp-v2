@@ -1,0 +1,20 @@
+{
+ "code": "X504",
+ "n_claims": 11,
+ "n_correct": 11,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 1,
+ "conclusion": "correct",
+ "conclusion_reason": "Fingerprint templates are biometric data under s.26, so explicit consent is required unless a s.26 exception applies; s.84 fine up to 5 million baht for breaching s.26 para 1, and s.79 criminal penalties correctly limited to unlawful use/disclosure.",
+ "uses_key_sections": true,
+ "problems": [
+  {
+   "type": "not_in_evidence",
+   "quote": "มาตรา 19 กำหนดหลักทั่วไปว่า ผู้ควบคุมข้อมูลส่วนบุคคลจะกระทำการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลไม่ได้หากเจ้าของข้อมูลส่วนบุคคลไม่ได้ให้ความยินยอม",
+   "law_section": 19,
+   "why": "The statement matches s.19 paras 1-3, but s.19 is not among the retrieved sections (6, 24-27, 33, 37, 39, 79, 83, 84) and is not quoted in the tool results. (Minor, not counted: the biometric definition is s.26 paragraph two, not the last paragraph as the answer says.)"
+  }
+ ]
+}

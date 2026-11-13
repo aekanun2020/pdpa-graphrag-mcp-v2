@@ -1,0 +1,20 @@
+{
+ "code": "X894",
+ "n_claims": 12,
+ "n_correct": 11,
+ "n_partly": 1,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "partly",
+ "conclusion_reason": "The answer correctly makes s.4(1) decisive and states the s.83/s.82 fines accurately, but it never applies s.4(1) to the facts: the exemption turns on the collector's purpose (personal benefit or household activity only), which a home security camera ordinarily meets, yet the headline says it may be illegal and fined in the millions and treats the camera's view of a public road as possibly defeating the exemption, a limit the statute does not contain.",
+ "uses_key_sections": true,
+ "problems": [
+  {
+   "type": "partly",
+   "quote": "ล่วงล้ำไปเก็บข้อมูลของบุคคลอื่นในที่สาธารณะเกินกว่ากิจกรรมส่วนตัวหรือครอบครัว ย่อมมีปัญหาในการอ้างข้อยกเว้นนี้",
+   "law_section": 4,
+   "why": "Section 4(1) exempts collection, use or disclosure by a person who collects for personal benefit or household activity only; the test is the purpose, and the text says nothing about where the data is captured or whether other people in a public place appear."
+  }
+ ]
+}

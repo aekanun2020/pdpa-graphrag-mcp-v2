@@ -1,0 +1,528 @@
+2026-11-13T21:45:33.929356012Z INFO:     127.0.0.1:39834 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:45:33.929902804Z [11/13/26 21:45:33] INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:45:33.930561304Z INFO:     127.0.0.1:39838 - "POST /mcp HTTP/1.1" 202 Accepted
+2026-11-13T21:45:33.931023762Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:45:33.932062137Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:45:33.932068179Z                              ListToolsRequest                                   
+2026-11-13T21:45:33.932276137Z INFO:     127.0.0.1:39840 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:45:33.932646221Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:45:33.933647012Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:45:33.933650471Z                              CallToolRequest                                    
+2026-11-13T21:45:33.934319637Z INFO:     127.0.0.1:39844 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:45:33.934693679Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:45:47.952113838Z [11/13/26 21:45:47] INFO     Processing request of type            server.py:733
+2026-11-13T21:45:47.952156755Z                              CallToolRequest                                    
+2026-11-13T21:46:49.485682422Z [11/13/26 21:46:49] INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:46:49.485692547Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:46:49.485693964Z                              _profiles/points/query "HTTP/1.1                   
+2026-11-13T21:46:49.485695006Z                              200 OK"                                            
+2026-11-13T21:46:49.705428339Z                     INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:46:49.705439172Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:46:49.705440881Z                              _profiles/points/query "HTTP/1.1                   
+2026-11-13T21:46:49.705442089Z                              200 OK"                                            
+2026-11-13T21:46:49.706372214Z                     INFO     HTTP Request: GET                   _client.py:1025
+2026-11-13T21:46:49.706377922Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:46:49.706378881Z                              _chunks/exists "HTTP/1.1 200 OK"                   
+2026-11-13T21:46:50.046337964Z [11/13/26 21:46:50] INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:46:50.046349048Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:46:50.046350673Z                              _chunks/points/query "HTTP/1.1 200                 
+2026-11-13T21:46:50.046351923Z                              OK"                                                
+2026-11-13T21:46:50.050018798Z INFO:     127.0.0.1:43288 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:46:50.050694006Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:46:50.051959798Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:46:50.051968131Z                              CallToolRequest                                    
+2026-11-13T21:47:12.196893794Z [11/13/26 21:47:12] INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:47:12.196903252Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:47:12.196904502Z                              _profiles/points/query "HTTP/1.1                   
+2026-11-13T21:47:12.196905419Z                              200 OK"                                            
+2026-11-13T21:47:12.406592919Z                     INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:47:12.406601711Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:47:12.406602877Z                              _profiles/points/query "HTTP/1.1                   
+2026-11-13T21:47:12.406603711Z                              200 OK"                                            
+2026-11-13T21:47:12.407696211Z                     INFO     HTTP Request: GET                   _client.py:1025
+2026-11-13T21:47:12.407702544Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:47:12.407703711Z                              _chunks/exists "HTTP/1.1 200 OK"                   
+2026-11-13T21:47:12.696689127Z                     INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:47:12.696695502Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:47:12.696696294Z                              _chunks/points/query "HTTP/1.1 200                 
+2026-11-13T21:47:12.696697002Z                              OK"                                                
+2026-11-13T21:47:12.698745919Z INFO:     127.0.0.1:58640 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:47:12.699194044Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:47:15.708893045Z [11/13/26 21:47:15] INFO     Processing request of type            server.py:733
+2026-11-13T21:47:15.708936212Z                              CallToolRequest                                    
+2026-11-13T21:47:15.710339795Z INFO:     127.0.0.1:38698 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:47:15.711374045Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:47:15.713790170Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:47:15.713804170Z                              CallToolRequest                                    
+2026-11-13T21:47:15.714736879Z INFO:     127.0.0.1:38712 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:47:15.715600504Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:47:15.717449629Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:47:15.717466212Z                              CallToolRequest                                    
+2026-11-13T21:47:15.718184754Z INFO:     127.0.0.1:38718 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:47:15.718872462Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:47:15.720590170Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:47:15.720595212Z                              CallToolRequest                                    
+2026-11-13T21:47:15.721911837Z INFO:     127.0.0.1:38730 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:47:15.722551545Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:47:18.887190714Z [11/13/26 21:47:18] INFO     Processing request of type            server.py:733
+2026-11-13T21:47:18.887209880Z                              CallToolRequest                                    
+2026-11-13T21:47:18.888094422Z INFO:     127.0.0.1:38738 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:47:18.888818172Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:47:18.890451339Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:47:18.890456339Z                              CallToolRequest                                    
+2026-11-13T21:47:18.891131172Z INFO:     127.0.0.1:38746 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:47:18.891749130Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:47:18.893253714Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:47:18.893265089Z                              CallToolRequest                                    
+2026-11-13T21:47:18.893975464Z INFO:     127.0.0.1:38748 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:47:18.894598172Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:47:18.896111922Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:47:18.896117464Z                              CallToolRequest                                    
+2026-11-13T21:47:18.896759047Z INFO:     127.0.0.1:38752 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:47:18.897335130Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:47:23.583365966Z [11/13/26 21:47:23] INFO     Processing request of type            server.py:733
+2026-11-13T21:47:23.583431008Z                              CallToolRequest                                    
+2026-11-13T21:47:23.584877258Z INFO:     127.0.0.1:47614 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:47:23.585984633Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:47:23.588811716Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:47:23.588841424Z                              CallToolRequest                                    
+2026-11-13T21:47:23.589855883Z INFO:     127.0.0.1:47630 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:47:23.591021799Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:47:23.593163758Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:47:23.593174216Z                              CallToolRequest                                    
+2026-11-13T21:48:27.792933551Z [11/13/26 21:48:27] INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:48:27.792944093Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:48:27.792945593Z                              _profiles/points/query "HTTP/1.1                   
+2026-11-13T21:48:27.792946635Z                              200 OK"                                            
+2026-11-13T21:48:28.015148760Z [11/13/26 21:48:28] INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:48:28.015159385Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:48:28.015160676Z                              _profiles/points/query "HTTP/1.1                   
+2026-11-13T21:48:28.015161635Z                              200 OK"                                            
+2026-11-13T21:48:28.016188968Z                     INFO     HTTP Request: GET                   _client.py:1025
+2026-11-13T21:48:28.016192260Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:48:28.016193218Z                              _chunks/exists "HTTP/1.1 200 OK"                   
+2026-11-13T21:48:28.280440801Z                     INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:48:28.280457051Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:48:28.280458218Z                              _chunks/points/query "HTTP/1.1 200                 
+2026-11-13T21:48:28.280459093Z                              OK"                                                
+2026-11-13T21:48:28.283346135Z INFO:     127.0.0.1:47642 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:48:28.283927135Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:48:31.982259512Z [11/13/26 21:48:31] INFO     Processing request of type            server.py:733
+2026-11-13T21:48:31.982278637Z                              CallToolRequest                                    
+2026-11-13T21:48:31.982857553Z INFO:     127.0.0.1:58558 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:48:31.983507053Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:48:31.985905887Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:48:31.985919970Z                              CallToolRequest                                    
+2026-11-13T21:48:31.986803845Z INFO:     127.0.0.1:58568 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:48:31.987651512Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.205474467Z INFO:     127.0.0.1:42718 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.206020175Z [11/13/26 21:49:25] INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.206707008Z INFO:     127.0.0.1:42720 - "POST /mcp HTTP/1.1" 202 Accepted
+2026-11-13T21:49:25.207237300Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.208647175Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.208652842Z                              CallToolRequest                                    
+2026-11-13T21:49:25.209202383Z INFO:     127.0.0.1:42726 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.209625633Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.210614258Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.210618008Z                              CallToolRequest                                    
+2026-11-13T21:49:25.211050425Z INFO:     127.0.0.1:42734 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.211432175Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.212397717Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.212401092Z                              CallToolRequest                                    
+2026-11-13T21:49:25.212836175Z INFO:     127.0.0.1:42738 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.213222092Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.214154217Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.214158258Z                              CallToolRequest                                    
+2026-11-13T21:49:25.214573883Z INFO:     127.0.0.1:42748 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.215000092Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.215941842Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.215944800Z                              CallToolRequest                                    
+2026-11-13T21:49:25.216341675Z INFO:     127.0.0.1:42750 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.216703925Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.217749800Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.217752633Z                              CallToolRequest                                    
+2026-11-13T21:49:25.218176842Z INFO:     127.0.0.1:42762 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.218544842Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.219445842Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.219448883Z                              CallToolRequest                                    
+2026-11-13T21:49:25.219919342Z INFO:     127.0.0.1:42778 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.220284592Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.221214508Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.221217050Z                              CallToolRequest                                    
+2026-11-13T21:49:25.221666217Z INFO:     127.0.0.1:42784 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.222029467Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.222896092Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.222898842Z                              CallToolRequest                                    
+2026-11-13T21:49:25.223391175Z INFO:     127.0.0.1:42794 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.223688592Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.224588925Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.224592092Z                              CallToolRequest                                    
+2026-11-13T21:49:25.224997925Z INFO:     127.0.0.1:42796 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.225345258Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.226266425Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.226269217Z                              CallToolRequest                                    
+2026-11-13T21:49:25.226650675Z INFO:     127.0.0.1:42800 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.227012550Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.227851508Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.227854217Z                              CallToolRequest                                    
+2026-11-13T21:49:25.228235800Z INFO:     127.0.0.1:42808 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.228577508Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.229467050Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.229470175Z                              CallToolRequest                                    
+2026-11-13T21:49:25.229828675Z INFO:     127.0.0.1:42814 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.230176467Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.231004925Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.231007633Z                              CallToolRequest                                    
+2026-11-13T21:49:25.231378008Z INFO:     127.0.0.1:42826 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.231721925Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.232561842Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.232564717Z                              CallToolRequest                                    
+2026-11-13T21:49:25.232959050Z INFO:     127.0.0.1:42834 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.233288258Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.234128550Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.234131383Z                              CallToolRequest                                    
+2026-11-13T21:49:25.234508133Z INFO:     127.0.0.1:42836 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.234875092Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.235685800Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.235688175Z                              CallToolRequest                                    
+2026-11-13T21:49:25.236068258Z INFO:     127.0.0.1:42852 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.236425300Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.237280633Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.237283842Z                              CallToolRequest                                    
+2026-11-13T21:49:25.237644342Z INFO:     127.0.0.1:42854 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.237989550Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.238879550Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.238882508Z                              CallToolRequest                                    
+2026-11-13T21:49:25.239269050Z INFO:     127.0.0.1:42862 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.239616217Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.240458342Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.240461258Z                              CallToolRequest                                    
+2026-11-13T21:49:25.240838758Z INFO:     127.0.0.1:42878 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.241188967Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.242007675Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.242010633Z                              CallToolRequest                                    
+2026-11-13T21:49:25.242370550Z INFO:     127.0.0.1:42882 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.242713133Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.243650300Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.243653133Z                              CallToolRequest                                    
+2026-11-13T21:49:25.243953258Z INFO:     127.0.0.1:42886 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.244286175Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:49:25.245110800Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:49:25.245113592Z                              CallToolRequest                                    
+2026-11-13T21:49:25.245460925Z INFO:     127.0.0.1:42898 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:49:25.245999633Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:51:11.358702502Z INFO:     127.0.0.1:50088 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:51:11.359207252Z [11/13/26 21:51:11] INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:51:11.359816877Z INFO:     127.0.0.1:50098 - "POST /mcp HTTP/1.1" 202 Accepted
+2026-11-13T21:51:11.360273210Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:51:11.361244460Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:51:11.361248543Z                              ListToolsRequest                                   
+2026-11-13T21:51:11.361424960Z INFO:     127.0.0.1:50110 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:51:11.362835460Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:51:11.363937793Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:51:11.363944252Z                              CallToolRequest                                    
+2026-11-13T21:51:11.364546585Z INFO:     127.0.0.1:50116 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:51:11.364991085Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:51:35.068719596Z [11/13/26 21:51:35] INFO     Processing request of type            server.py:733
+2026-11-13T21:51:35.068771055Z                              CallToolRequest                                    
+2026-11-13T21:52:02.967614429Z [11/13/26 21:52:02] INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:52:02.967633679Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:52:02.967635345Z                              _profiles/points/query "HTTP/1.1                   
+2026-11-13T21:52:02.967636387Z                              200 OK"                                            
+2026-11-13T21:52:03.174358429Z [11/13/26 21:52:03] INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:52:03.174364845Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:52:03.174365970Z                              _profiles/points/query "HTTP/1.1                   
+2026-11-13T21:52:03.174366929Z                              200 OK"                                            
+2026-11-13T21:52:03.175943637Z                     INFO     HTTP Request: GET                   _client.py:1025
+2026-11-13T21:52:03.175946429Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:52:03.175947220Z                              _chunks/exists "HTTP/1.1 200 OK"                   
+2026-11-13T21:52:03.475971846Z                     INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:52:03.475984887Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:52:03.475986387Z                              _chunks/points/query "HTTP/1.1 200                 
+2026-11-13T21:52:03.475987429Z                              OK"                                                
+2026-11-13T21:52:03.477270179Z INFO:     127.0.0.1:57298 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:52:03.477760012Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:52:03.479042846Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:52:03.479046637Z                              CallToolRequest                                    
+2026-11-13T21:52:20.135308714Z [11/13/26 21:52:20] INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:52:20.135323089Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:52:20.135324131Z                              _profiles/points/query "HTTP/1.1                   
+2026-11-13T21:52:20.135325006Z                              200 OK"                                            
+2026-11-13T21:52:20.136527089Z                     INFO     HTTP Request: GET                   _client.py:1025
+2026-11-13T21:52:20.136534714Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:52:20.136536006Z                              _chunks/exists "HTTP/1.1 200 OK"                   
+2026-11-13T21:52:20.217340839Z                     INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:52:20.217349131Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:52:20.217350339Z                              _chunks/points/query "HTTP/1.1 200                 
+2026-11-13T21:52:20.217358673Z                              OK"                                                
+2026-11-13T21:52:20.219661923Z INFO:     127.0.0.1:39494 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:52:20.220150756Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:52:25.139226800Z [11/13/26 21:52:25] INFO     Processing request of type            server.py:733
+2026-11-13T21:52:25.139259800Z                              CallToolRequest                                    
+2026-11-13T21:52:25.139946550Z INFO:     127.0.0.1:52912 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:52:25.140898467Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:52:25.142942967Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:52:25.142956883Z                              CallToolRequest                                    
+2026-11-13T21:52:25.143816425Z INFO:     127.0.0.1:52916 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:52:25.144630258Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:52:25.146129258Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:52:25.146134925Z                              CallToolRequest                                    
+2026-11-13T21:52:25.146637217Z INFO:     127.0.0.1:52928 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:52:25.147206633Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:52:25.148483717Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:52:25.148489842Z                              CallToolRequest                                    
+2026-11-13T21:52:25.149020300Z INFO:     127.0.0.1:52932 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:52:25.149475300Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:52:25.150757925Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:52:25.150763133Z                              CallToolRequest                                    
+2026-11-13T21:52:25.151502717Z INFO:     127.0.0.1:52948 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:52:25.152031550Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:52:25.153645592Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:52:25.153649883Z                              CallToolRequest                                    
+2026-11-13T21:52:25.154327050Z INFO:     127.0.0.1:52960 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:52:25.154955383Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:52:29.057054802Z [11/13/26 21:52:29] INFO     Processing request of type            server.py:733
+2026-11-13T21:52:29.057138552Z                              CallToolRequest                                    
+2026-11-13T21:52:29.058522093Z INFO:     127.0.0.1:52974 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:52:29.059669677Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:52:29.063970760Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:52:29.063981510Z                              CallToolRequest                                    
+2026-11-13T21:52:29.064944385Z INFO:     127.0.0.1:52982 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:52:29.065969968Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:52:29.068476677Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:52:29.068487927Z                              CallToolRequest                                    
+2026-11-13T21:52:29.069413635Z INFO:     127.0.0.1:52988 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:52:29.070332135Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:52:29.072347177Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:52:29.072359010Z                              CallToolRequest                                    
+2026-11-13T21:52:29.073208718Z INFO:     127.0.0.1:53002 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:52:29.073891385Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:52:35.940209263Z [11/13/26 21:52:35] INFO     Processing request of type            server.py:733
+2026-11-13T21:52:35.940269055Z                              CallToolRequest                                    
+2026-11-13T21:52:59.565518594Z [11/13/26 21:52:59] INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:52:59.565530135Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:52:59.565531885Z                              _profiles/points/query "HTTP/1.1                   
+2026-11-13T21:52:59.565533260Z                              200 OK"                                            
+2026-11-13T21:52:59.805577135Z                     INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:52:59.805587344Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:52:59.805588760Z                              _profiles/points/query "HTTP/1.1                   
+2026-11-13T21:52:59.805589969Z                              200 OK"                                            
+2026-11-13T21:52:59.806877760Z                     INFO     HTTP Request: GET                   _client.py:1025
+2026-11-13T21:52:59.806882677Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:52:59.806883677Z                              _chunks/exists "HTTP/1.1 200 OK"                   
+2026-11-13T21:53:00.156527219Z [11/13/26 21:53:00] INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:53:00.156535261Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:53:00.156536344Z                              _chunks/points/query "HTTP/1.1 200                 
+2026-11-13T21:53:00.156537219Z                              OK"                                                
+2026-11-13T21:53:00.157634802Z INFO:     127.0.0.1:46474 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:00.158090927Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:00.160300802Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:00.160304719Z                              CallToolRequest                                    
+2026-11-13T21:53:00.160755094Z INFO:     127.0.0.1:52152 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:00.161148594Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:34.269471679Z [11/13/26 21:53:34] INFO     Processing request of type            server.py:733
+2026-11-13T21:53:34.269521679Z                              CallToolRequest                                    
+2026-11-13T21:53:34.271208554Z INFO:     127.0.0.1:34456 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:34.272316346Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:34.275691096Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:34.275707263Z                              CallToolRequest                                    
+2026-11-13T21:53:34.276763471Z INFO:     127.0.0.1:34470 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:34.277570388Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.495348757Z INFO:     127.0.0.1:53584 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.495877382Z [11/13/26 21:53:53] INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.496518882Z INFO:     127.0.0.1:53592 - "POST /mcp HTTP/1.1" 202 Accepted
+2026-11-13T21:53:53.496993882Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.498398299Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.498401799Z                              CallToolRequest                                    
+2026-11-13T21:53:53.499014091Z INFO:     127.0.0.1:53594 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.499478341Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.500642382Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.500647882Z                              CallToolRequest                                    
+2026-11-13T21:53:53.501258882Z INFO:     127.0.0.1:53600 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.501612382Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.502748674Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.502752299Z                              CallToolRequest                                    
+2026-11-13T21:53:53.503196882Z INFO:     127.0.0.1:53612 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.503613757Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.504576507Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.504578341Z                              CallToolRequest                                    
+2026-11-13T21:53:53.505016966Z INFO:     127.0.0.1:53616 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.505400132Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.506367757Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.506370299Z                              CallToolRequest                                    
+2026-11-13T21:53:53.506811216Z INFO:     127.0.0.1:53630 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.507307216Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.508616841Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.508625591Z                              CallToolRequest                                    
+2026-11-13T21:53:53.509163716Z INFO:     127.0.0.1:53640 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.509648049Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.510859716Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.510864591Z                              CallToolRequest                                    
+2026-11-13T21:53:53.511334216Z INFO:     127.0.0.1:53644 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.511738924Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.512816299Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.512820757Z                              CallToolRequest                                    
+2026-11-13T21:53:53.513291966Z INFO:     127.0.0.1:53658 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.513750424Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.514838257Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.514842382Z                              CallToolRequest                                    
+2026-11-13T21:53:53.515247466Z INFO:     127.0.0.1:53674 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.515631924Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.516535257Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.516537507Z                              CallToolRequest                                    
+2026-11-13T21:53:53.517173966Z INFO:     127.0.0.1:53682 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.517621091Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.518751799Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.518756091Z                              CallToolRequest                                    
+2026-11-13T21:53:53.519214049Z INFO:     127.0.0.1:53686 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.519620674Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.520557591Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.520559674Z                              CallToolRequest                                    
+2026-11-13T21:53:53.520953549Z INFO:     127.0.0.1:53696 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.521323091Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.522216549Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.522219549Z                              CallToolRequest                                    
+2026-11-13T21:53:53.522602549Z INFO:     127.0.0.1:53712 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.522989966Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.523911091Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.523913882Z                              CallToolRequest                                    
+2026-11-13T21:53:53.524306049Z INFO:     127.0.0.1:53728 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.524679632Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.525512049Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.525514341Z                              CallToolRequest                                    
+2026-11-13T21:53:53.525904549Z INFO:     127.0.0.1:53730 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.526258549Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.527115591Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.527117841Z                              CallToolRequest                                    
+2026-11-13T21:53:53.527534174Z INFO:     127.0.0.1:53734 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.527891216Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.528714591Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.528718049Z                              CallToolRequest                                    
+2026-11-13T21:53:53.529066091Z INFO:     127.0.0.1:53738 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.529411924Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.530307882Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.530309799Z                              CallToolRequest                                    
+2026-11-13T21:53:53.530702882Z INFO:     127.0.0.1:53750 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.531046341Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.531895632Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.531897924Z                              CallToolRequest                                    
+2026-11-13T21:53:53.532248132Z INFO:     127.0.0.1:53754 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.532588966Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:53:53.533370841Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:53:53.533372757Z                              CallToolRequest                                    
+2026-11-13T21:53:53.533752591Z INFO:     127.0.0.1:53756 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:53:53.534103924Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:54:45.614357420Z INFO:     127.0.0.1:36914 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:54:45.614846337Z [11/13/26 21:54:45] INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:54:45.615462004Z INFO:     127.0.0.1:36926 - "POST /mcp HTTP/1.1" 202 Accepted
+2026-11-13T21:54:45.615894087Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:54:45.616859504Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:54:45.616863504Z                              ListToolsRequest                                   
+2026-11-13T21:54:45.617037920Z INFO:     127.0.0.1:36932 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:54:45.617429337Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:54:45.618351504Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:54:45.618356129Z                              CallToolRequest                                    
+2026-11-13T21:54:45.618935754Z INFO:     127.0.0.1:36946 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:54:45.619332962Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:55:09.924848501Z [11/13/26 21:55:09] INFO     Processing request of type            server.py:733
+2026-11-13T21:55:09.924887918Z                              CallToolRequest                                    
+2026-11-13T21:55:38.769399417Z [11/13/26 21:55:38] INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:55:38.769412542Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:55:38.769413709Z                              _profiles/points/query "HTTP/1.1                   
+2026-11-13T21:55:38.769414584Z                              200 OK"                                            
+2026-11-13T21:55:39.102178751Z [11/13/26 21:55:39] INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:55:39.102192709Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:55:39.102194501Z                              _profiles/points/query "HTTP/1.1                   
+2026-11-13T21:55:39.102196042Z                              200 OK"                                            
+2026-11-13T21:55:39.103346501Z                     INFO     HTTP Request: GET                   _client.py:1025
+2026-11-13T21:55:39.103353501Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:55:39.103355001Z                              _chunks/exists "HTTP/1.1 200 OK"                   
+2026-11-13T21:55:39.417087501Z                     INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:55:39.417108584Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:55:39.417110084Z                              _chunks/points/query "HTTP/1.1 200                 
+2026-11-13T21:55:39.417111167Z                              OK"                                                
+2026-11-13T21:55:39.418191251Z INFO:     127.0.0.1:58956 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:55:39.418628209Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:55:39.419989376Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:55:39.419992626Z                              CallToolRequest                                    
+2026-11-13T21:57:20.225550756Z [11/13/26 21:57:20] INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:57:20.225562298Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:57:20.225564048Z                              _profiles/points/query "HTTP/1.1                   
+2026-11-13T21:57:20.225565339Z                              200 OK"                                            
+2026-11-13T21:57:20.440228423Z                     INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:57:20.440243631Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:57:20.440244798Z                              _profiles/points/query "HTTP/1.1                   
+2026-11-13T21:57:20.440245673Z                              200 OK"                                            
+2026-11-13T21:57:20.441305256Z                     INFO     HTTP Request: GET                   _client.py:1025
+2026-11-13T21:57:20.441310839Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:57:20.441311673Z                              _chunks/exists "HTTP/1.1 200 OK"                   
+2026-11-13T21:57:20.735781006Z                     INFO     HTTP Request: POST                  _client.py:1025
+2026-11-13T21:57:20.735789339Z                              http://qdrant:6333/collections/pdpa                
+2026-11-13T21:57:20.735790464Z                              _chunks/points/query "HTTP/1.1 200                 
+2026-11-13T21:57:20.735791298Z                              OK"                                                
+2026-11-13T21:57:20.736915006Z INFO:     127.0.0.1:53062 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:20.737388756Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:23.761462258Z [11/13/26 21:57:23] INFO     Processing request of type            server.py:733
+2026-11-13T21:57:23.761504299Z                              CallToolRequest                                    
+2026-11-13T21:57:23.763142216Z INFO:     127.0.0.1:39104 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:23.764266466Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:23.767475758Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:57:23.767482883Z                              CallToolRequest                                    
+2026-11-13T21:57:23.768798591Z INFO:     127.0.0.1:39118 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:23.769728799Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:26.116345425Z [11/13/26 21:57:26] INFO     Processing request of type            server.py:733
+2026-11-13T21:57:26.116385800Z                              CallToolRequest                                    
+2026-11-13T21:57:26.118144092Z INFO:     127.0.0.1:39128 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:26.119338092Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:26.122531967Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:57:26.122538675Z                              CallToolRequest                                    
+2026-11-13T21:57:26.123448925Z INFO:     127.0.0.1:39134 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:26.124204342Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:26.126175342Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:57:26.126186509Z                              CallToolRequest                                    
+2026-11-13T21:57:26.126929675Z INFO:     127.0.0.1:39138 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:26.127613925Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:40.812399335Z INFO:     127.0.0.1:37694 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:40.812911085Z [11/13/26 21:57:40] INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:40.814503001Z INFO:     127.0.0.1:37706 - "POST /mcp HTTP/1.1" 202 Accepted
+2026-11-13T21:57:40.814982376Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:40.816235376Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:57:40.816240585Z                              CallToolRequest                                    
+2026-11-13T21:57:40.816768418Z INFO:     127.0.0.1:37722 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:40.817196793Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:40.818189626Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:57:40.818192293Z                              CallToolRequest                                    
+2026-11-13T21:57:40.818623668Z INFO:     127.0.0.1:37732 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:40.819001918Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:40.820097251Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:57:40.820099793Z                              CallToolRequest                                    
+2026-11-13T21:57:40.820607876Z INFO:     127.0.0.1:37746 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:40.821006460Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:40.822170835Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:57:40.822177043Z                              CallToolRequest                                    
+2026-11-13T21:57:40.822686043Z INFO:     127.0.0.1:37752 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:40.823140043Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:40.824218251Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:57:40.824220793Z                              CallToolRequest                                    
+2026-11-13T21:57:40.824652335Z INFO:     127.0.0.1:37758 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:40.825046168Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:40.826019793Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:57:40.826022293Z                              CallToolRequest                                    
+2026-11-13T21:57:40.826446251Z INFO:     127.0.0.1:37766 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:40.826826876Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:40.827844960Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:57:40.827850335Z                              CallToolRequest                                    
+2026-11-13T21:57:40.828362376Z INFO:     127.0.0.1:37776 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:40.828818418Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:40.829934376Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:57:40.829938043Z                              CallToolRequest                                    
+2026-11-13T21:57:40.830430668Z INFO:     127.0.0.1:37786 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:40.830819501Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:40.831908210Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:57:40.831916668Z                              CallToolRequest                                    
+2026-11-13T21:57:40.832310501Z INFO:     127.0.0.1:37788 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:40.832698001Z                     INFO     Terminating session: None    streamable_http.py:831
+2026-11-13T21:57:40.833667626Z                     INFO     Processing request of type            server.py:733
+2026-11-13T21:57:40.833670626Z                              CallToolRequest                                    
+2026-11-13T21:57:40.834089335Z INFO:     127.0.0.1:37794 - "POST /mcp HTTP/1.1" 200 OK
+2026-11-13T21:57:40.834615626Z                     INFO     Terminating session: None    streamable_http.py:831

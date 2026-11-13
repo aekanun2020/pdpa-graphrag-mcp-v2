@@ -1,0 +1,10 @@
+{
+  "endpoint": "http://127.0.0.1:8100/mcp",
+  "protocol_version": "2024-11-05",
+  "server_name": "PDPA-RAG",
+  "server_version": "1.30.0",
+  "client_info": {"name": "pdpa-contract-agent", "version": "1.0.0"},
+  "allowed_tools": ["search_pdpa", "get_related_sections", "get_penalty", "get_pdpa_summary", "get_section_text"],
+  "max_response_bytes": 4194304,
+  "timeout_seconds": 120
+}

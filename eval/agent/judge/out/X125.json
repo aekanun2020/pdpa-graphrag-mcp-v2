@@ -1,0 +1,32 @@
+{
+ "code": "X125",
+ "n_claims": 12,
+ "n_correct": 12,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 3,
+ "conclusion": "correct",
+ "conclusion_reason": "s.24(3) allows collection without consent where necessary to perform a contract to which the data subject is party, which covers payroll under an employment contract; the notice duty in s.23 and the s.26 caveat are correctly added.",
+ "uses_key_sections": true,
+ "problems": [
+  {
+   "type": "not_in_evidence",
+   "quote": "มาตรา ๒๒ การเก็บรวบรวมต้องทำเท่าที่จำเป็นภายใต้วัตถุประสงค์อันชอบด้วยกฎหมายของผู้ควบคุมข้อมูลส่วนบุคคล",
+   "law_section": 22,
+   "why": "Correct per s.22, but s.22 was not retrieved (evidence: 4, 23, 24, 26, 27, 83); the tool results only name s.22 inside the s.83 list."
+  },
+  {
+   "type": "not_in_evidence",
+   "quote": "มาตรา ๒๑ ต้องเก็บรวบรวม ใช้ หรือเปิดเผยตามวัตถุประสงค์ที่ได้แจ้งเจ้าของข้อมูลส่วนบุคคลไว้ก่อนหรือในขณะที่เก็บรวบรวม",
+   "law_section": 21,
+   "why": "Correct per s.21 paras 1-2, but s.21 text was not retrieved and is not in the tool results."
+  },
+  {
+   "type": "not_in_evidence",
+   "quote": "มาตรา ๓๙ ผู้ควบคุมข้อมูลส่วนบุคคลต้องบันทึกรายการอย่างน้อยตามที่มาตรา ๓๙ กำหนด",
+   "law_section": 39,
+   "why": "Correct per s.39 para 1, but s.39 was not retrieved; the evidence (s.27 para 3) only refers to recording use/disclosure in the s.39 record."
+  }
+ ]
+}

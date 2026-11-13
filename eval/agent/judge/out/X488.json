@@ -1,0 +1,13 @@
+{
+ "code": "X488",
+ "n_claims": 13,
+ "n_correct": 13,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "Section 73 gives the data subject the right to complain and s.72(1) makes the expert committee the body that considers complaints (s.34 para 2 also says complaints go to the expert committee); the statute itself leaves filing details to the Committee's rules, as the answer says.",
+ "uses_key_sections": true,
+ "problems": []
+}

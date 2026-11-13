@@ -1,0 +1,20 @@
+{
+ "code": "X566",
+ "n_claims": 12,
+ "n_correct": 12,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 1,
+ "conclusion": "correct",
+ "conclusion_reason": "Section 31 para 1 (1) gives the data subject the right to have the controller send or transfer the data to another controller when it can be done by automatic means, subject to para 2 (consent or s.24(3) data) and para 3 exceptions, as the answer states.",
+ "uses_key_sections": true,
+ "problems": [
+  {
+   "type": "not_in_evidence",
+   "quote": "ต่างจากมาตรา ๓๐ วรรคสี่ที่กำหนดไม่เกินสามสิบวัน",
+   "law_section": 30,
+   "why": "Section 30 para 4 does set a 30-day limit, so the statement is correct, but s.30 was not among the retrieved sections and no tool result states the 30 days (s.82 only names 'มาตรา ๓๐ วรรคสี่')."
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "code": "X666",
+ "n_claims": 5,
+ "n_correct": 5,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "Section 20 para 1 (2) says that where the minor is not over ten years old consent must be sought from the person exercising parental power who has authority to act for the minor, which is the answer's bottom line for a 9-year-old.",
+ "uses_key_sections": true,
+ "problems": []
+}

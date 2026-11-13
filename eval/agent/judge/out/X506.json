@@ -1,0 +1,26 @@
+{
+ "code": "X506",
+ "n_claims": 6,
+ "n_correct": 5,
+ "n_partly": 1,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 1,
+ "conclusion": "correct",
+ "conclusion_reason": "s.37(4) requires notifying the Office without delay within 72 hours of becoming aware unless there is no risk to rights and freedoms, and notifying the data subject with remedial measures when the risk is high; the answer states exactly this, though it fails to identify s.83 as the penalty.",
+ "uses_key_sections": true,
+ "problems": [
+  {
+   "type": "partly",
+   "quote": "ข้อความที่ดึงมาในรอบนี้จึงยังไม่ยุติว่าการไม่แจ้งเหตุตามมาตรา 37 (4) มีบทลงโทษใดโดยเฉพาะ",
+   "law_section": 83,
+   "why": "s.83 (which was retrieved) expressly penalises a controller who fails to comply with s.37, with an administrative fine up to three million baht; the answer gives the amount only via s.86, which concerns processors and s.37(5), and leaves the point open."
+  },
+  {
+   "type": "not_in_evidence",
+   "quote": "มาตรา 40 (2) กำหนดหน้าที่ของผู้ประมวลผลข้อมูลส่วนบุคคลให้จัดให้มีมาตรการรักษาความมั่นคงปลอดภัยที่เหมาะสม",
+   "law_section": 40,
+   "why": "Correct per s.40(2), but s.40 is not in the retrieved set (22, 23, 28, 37, 79, 82-86) and its text is not in the tool results."
+  }
+ ]
+}
