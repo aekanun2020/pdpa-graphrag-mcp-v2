@@ -104,6 +104,11 @@ _EDGE_PRIORITY = {
 _DEFAULT_EDGE_PRIORITY = 2
 _STRUCTURAL_PRIORITY = 3      # เส้นโครงสร้าง: ได้ที่ใน context เฉพาะเมื่อยังเหลือโควตา
 
+# ชนิดโหนดที่ไม่ให้เป็น seed: โหนดตัว พ.ร.บ. (PDPA_2562) ติดอันดับต้นบ่อยเพราะ profile กว้าง
+# แต่เพื่อนบ้านมีแต่หมวด (HAS_CHAPTER) จึงกินที่ seed ไป 1 ใน 3 โดยไม่ได้ข้อมูลที่ช่วยตอบ
+# โหนดนี้ยังถูกค้นเจอและแสดง VALUE ใน context ได้ตามปกติ แค่ไม่ใช้เป็นจุดเริ่มเดินกราฟ
+_NON_SEED_LABELS = {"Law"}
+
 
 def _expand_from_graph(results: list[dict], G: nx.DiGraph,
                        max_expand: int = 3, max_hops: int = 2,
@@ -122,13 +127,16 @@ def _expand_from_graph(results: list[dict], G: nx.DiGraph,
         [hop2] sec_26 —GRANTS_EXEMPTION→ sec26_ex1: ...
     โหนดซ้ายคือโหนดที่เดินมาจาก ลูกศรชี้ตามทิศของเส้นในกราฟ
     """
-    # seed = node profiles อันดับต้น — กรอง edge profiles (id มี "--") ออก "ก่อน" ตัด top-N
+    # seed = node profiles อันดับต้น — กรอง edge profiles (id มี "--") และโหนดชนิด _NON_SEED_LABELS
+    # ออก "ก่อน" ตัด top-N
     # ไม่เช่นนั้นถ้า 3 อันดับแรกเป็น edge ทั้งหมดจะไม่มี seed และไม่มีการเดินกราฟเลย
     seed_ids = []
     for r in results:
         node_id = r["profile"]["id"]
         if "--" in node_id or not G.has_node(node_id):
             continue
+        if G.nodes[node_id].get("label") in _NON_SEED_LABELS:
+            continue                      # ข้ามไป ให้ node profile อันดับถัดไปขึ้นมาเป็น seed แทน
         seed_ids.append(node_id)
         if len(seed_ids) >= max_expand:
             break
