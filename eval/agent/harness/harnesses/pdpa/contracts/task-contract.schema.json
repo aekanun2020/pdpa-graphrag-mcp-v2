@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "task_id": {"type": "string"},
+    "question": {"type": "string"},
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string", "pattern": "^R[1-9][0-9]*$", "description": "Unique requirement id: R1, R2, R3, ..."},
+          "question_span_id": {"type": "string", "description": "ID from the supplied immutable question_spans map; select the narrowest supporting source span."},
+          "description": {"type": "string", "description": "The legal point the answer must settle, in the question's own terms."},
+          "issue_type": {"type": "string", "enum": ["scope_or_exemption", "definition", "lawful_basis", "duty", "right", "penalty", "procedure", "other"]}
+        },
+        "required": ["id", "question_span_id", "description", "issue_type"],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 8
+    },
+    "answer_requirements": {"type": "array", "items": {"type": "string"}}
+  },
+  "required": ["task_id", "question", "requirements", "answer_requirements"],
+  "additionalProperties": false
+}

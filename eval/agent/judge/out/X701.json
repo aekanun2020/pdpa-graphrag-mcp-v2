@@ -1,0 +1,13 @@
+{
+ "code": "X701",
+ "n_claims": 11,
+ "n_correct": 11,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "Section 73 gives the right to complain with filing governed by rules the Committee prescribes, and s.72(1) with s.74 makes the expert committee the body that considers and orders; the answer states this accurately and correctly notes the statute names no specific filing place.",
+ "uses_key_sections": true,
+ "problems": []
+}

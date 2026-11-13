@@ -1,0 +1,21 @@
+{
+  "schema": "configurable-llm-mcp-harness-v1",
+  "project_root": "../..",
+  "default_case": "../../cases/PDPA/case.json",
+  "assets": {
+    "skill": "prompts/skill.md",
+    "contract_compiler_prompt": "prompts/contract-compiler.md",
+    "investigator_prompt": "prompts/investigator.md",
+    "synthesizer_prompt": "prompts/synthesizer.md",
+    "task_contract_schema": "contracts/task-contract.schema.json",
+    "answer_template": "templates/answer.md"
+  },
+  "policy_files": {
+    "models": "policies/model-policy.json",
+    "mcp": "policies/mcp-main.json",
+    "phases": "policies/phase-policy.json",
+    "hooks": "policies/hook-policy.json",
+    "hook_settings": "policies/hook-settings.json",
+    "run": "policies/execution-budgets.json"
+  }
+}

@@ -1,0 +1,1057 @@
+[
+ {
+  "id": "H1",
+  "server": "branch",
+  "run": "r1",
+  "code": "X728",
+  "n_claims": 7,
+  "n_correct": 7,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 1,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๔ (๑) ยกเว้นการเก็บรวบรวม ใช้ หรือเปิดเผยเพื่อประโยชน์ส่วนตนหรือกิจกรรมในครอบครัวเท่านั้น การบันทึกเสียงเก็บไว้ฟังเองจึงอยู่นอกบังคับของพระราชบัญญัติ และคำตอบระบุข้อจำกัดของคำว่า เท่านั้น ไว้ถูกต้อง",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๕ กำหนดให้พระราชบัญญัตินี้ใช้บังคับแก่การเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลโดยผู้ควบคุมข้อมูลส่วนบุคคลหรือผู้ประมวลผลข้อมูลส่วนบุคคลซึ่งอยู่ในราชอาณาจักร",
+    "law_section": 5,
+    "why": "เนื้อหาตรงกับมาตรา ๕ วรรคหนึ่งและวรรคสอง แต่มาตรา ๕ ไม่อยู่ในชุดมาตราที่ดึงมา (๔, ๖, ๑๙, ๒๔, ๓๑, ๓๓, ๓๔, ๓๗, ๓๘, ๓๙, ๘๓) และไม่มีผลจากเครื่องมืออื่น",
+    "_text_in_raw_evidence": true
+   }
+  ]
+ },
+ {
+  "id": "H1",
+  "server": "main",
+  "run": "r1",
+  "code": "X165",
+  "n_claims": 13,
+  "n_correct": 13,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 2,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๔ (๑) กำหนดว่าพระราชบัญญัติไม่ใช้บังคับแก่การเก็บรวบรวมเพื่อประโยชน์ส่วนตนของผู้เก็บเท่านั้น การบันทึกเสียงไว้ฟังเองจึงไม่เป็นความผิดตามพระราชบัญญัตินี้ และคำตอบจำกัดข้อสรุปไว้เฉพาะกฎหมายฉบับนี้",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๓๙ ให้บันทึกรายการข้อมูลส่วนบุคคลที่เก็บรวบรวม วัตถุประสงค์ของการเก็บรวบรวม ข้อมูลเกี่ยวกับผู้ควบคุมข้อมูลส่วนบุคคล",
+    "law_section": 39,
+    "why": "รายการตรงกับมาตรา ๓๙ (๑)-(๕) แต่มาตรา ๓๙ ไม่อยู่ในชุดหลักฐานที่ดึงมาและไม่ปรากฏในผล graph lookup",
+    "_text_in_raw_evidence": true
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๔๐ กำหนดหน้าที่ของผู้ประมวลผลข้อมูลส่วนบุคคล",
+    "law_section": 40,
+    "why": "มาตรา ๔๐ กำหนดหน้าที่ของผู้ประมวลผลข้อมูลจริง แต่มาตรานี้ไม่อยู่ในชุดหลักฐานที่ดึงมา",
+    "_text_in_raw_evidence": true
+   }
+  ]
+ },
+ {
+  "id": "H2",
+  "server": "branch",
+  "run": "r1",
+  "code": "X769",
+  "n_claims": 5,
+  "n_correct": 5,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๔ วรรคหนึ่ง (๕) บัญญัติว่าพระราชบัญญัตินี้ไม่ใช้บังคับแก่การพิจารณาพิพากษาคดีของศาล จึงไม่มีหน้าที่ขอความยินยอมตามมาตรา ๒๔ และ ๒๗ โดยยังมีหน้าที่รักษาความมั่นคงปลอดภัยตามมาตรา ๔ วรรคสาม ซึ่งคำตอบสรุปตรงกัน แม้จะตั้งข้อสงวนว่าตัวบทไม่ได้ใช้คำว่าการเผยแพร่คำพิพากษาโดยตรง",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "H2",
+  "server": "main",
+  "run": "r1",
+  "code": "X346",
+  "n_claims": 6,
+  "n_correct": 6,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๔ (๕) กำหนดว่าพระราชบัญญัติไม่ใช้บังคับแก่การพิจารณาพิพากษาคดีของศาล จึงไม่มีหน้าที่ขอความยินยอมตามพระราชบัญญัตินี้ และคำตอบยังระบุหน้าที่รักษาความมั่นคงปลอดภัยตามมาตรา ๔ วรรคสามที่ยังคงอยู่ได้ถูกต้อง",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "H3",
+  "server": "branch",
+  "run": "r1",
+  "code": "X888",
+  "n_claims": 13,
+  "n_correct": 12,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 3,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 4 (3) ยกเว้นไม่ใช้บังคับ พ.ร.บ. แก่การใช้หรือเปิดเผยข้อมูลที่เก็บรวบรวมไว้เฉพาะเพื่องานวรรณกรรมอันเป็นไปตามจริยธรรมแห่งการประกอบวิชาชีพหรือเป็นประโยชน์สาธารณะ คำตอบสรุปถูกต้องว่าผิดหรือไม่ขึ้นกับการเข้าเงื่อนไขนี้ และหากไม่เข้าจึงต้องมีฐานตามมาตรา 24/26/27",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "มิฉะนั้นการใช้นั้นฝ่าฝืนมาตรา 27 และมีโทษตามมาตรา 79",
+    "law_section": 79,
+    "why": "มาตรา 79 ลงโทษอาญาเฉพาะการฝ่าฝืนมาตรา 27 อันเกี่ยวกับข้อมูลตามมาตรา 26 และต้องเป็นโดยประการที่น่าจะทำให้เสียหาย/อับอาย หรือเพื่อแสวงหาประโยชน์มิชอบ ข้อสรุปตัดเงื่อนไขเหล่านี้ออก ส่วนการฝ่าฝืนมาตรา 27 ทั่วไปมีโทษปรับทางปกครองตามมาตรา 83 ซึ่งคำตอบไม่ได้กล่าวถึง"
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา 5 กำหนดว่า พ.ร.บ.นี้ให้ใช้บังคับแก่การเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลโดยผู้ควบคุมข้อมูลส่วนบุคคล",
+    "law_section": 5,
+    "why": "เนื้อหาตรงกับมาตรา 5 วรรคหนึ่ง แต่มาตรา 5 ไม่อยู่ในชุดหลักฐานที่ดึงมาและไม่ปรากฏในผลเครื่องมืออื่น",
+    "_text_in_raw_evidence": true
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา 19 วรรคหนึ่ง กำหนดหลักทั่วไปว่า ผู้ควบคุมข้อมูลส่วนบุคคลจะกระทำการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลไม่ได้",
+    "law_section": 19,
+    "why": "เนื้อหาตรงกับมาตรา 19 วรรคหนึ่ง แต่มาตรา 19 ไม่อยู่ในชุดหลักฐานที่ดึงมา",
+    "_text_in_raw_evidence": false
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา 26 กำหนดว่า ห้ามมิให้เก็บรวบรวมข้อมูลส่วนบุคคลเกี่ยวกับเชื้อชาติ เผ่าพันธุ์ ความคิดเห็นทางการเมือง",
+    "law_section": 26,
+    "why": "เนื้อหาตรงกับมาตรา 26 วรรคหนึ่ง แต่มาตรา 26 ไม่อยู่ในชุดหลักฐานที่ดึงมา (มีเพียงการอ้างชื่อมาตราในมาตรา 27 และ 79)",
+    "_text_in_raw_evidence": true
+   }
+  ]
+ },
+ {
+  "id": "H3",
+  "server": "main",
+  "run": "r2",
+  "code": "X227",
+  "n_claims": 12,
+  "n_correct": 11,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๔ (๓) ยกเว้นการใช้หรือเปิดเผยข้อมูลที่เก็บรวบรวมไว้เฉพาะเพื่องานวรรณกรรมอันเป็นไปตามจริยธรรมวิชาชีพหรือเป็นประโยชน์สาธารณะ คำตอบสรุปว่าไม่ผิดหากเข้าเงื่อนไขนี้ และหากไม่เข้าต้องมีฐานตามมาตรา ๑๙/๒๔/๒๗ ซึ่งตรงกับตัวบท",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "เว้นแต่กรณี (1)–(5) ซึ่งรวมถึง (5)(ง) การศึกษาวิจัยทางวิทยาศาสตร์ ประวัติศาสตร์ หรือสถิติ หรือประโยชน์สาธารณะอื่น",
+    "law_section": 26,
+    "why": "มาตรา ๒๖ (๕) มีเงื่อนไขนำว่าต้อง \"เป็นการจำเป็นในการปฏิบัติตามกฎหมายเพื่อให้บรรลุวัตถุประสงค์เกี่ยวกับ\" (ก)-(จ) คำตอบตัดเงื่อนไขการปฏิบัติตามกฎหมายออก ทำให้ (๕)(ง) ดูเป็นข้อยกเว้นเพื่อการวิจัย/ประโยชน์สาธารณะโดยลำพัง ซึ่งกว้างกว่าตัวบท"
+   }
+  ]
+ },
+ {
+  "id": "N3",
+  "server": "branch",
+  "run": "r1",
+  "code": "X653",
+  "n_claims": 10,
+  "n_correct": 10,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๒๐ วรรคหนึ่ง (๒) บัญญัติว่าผู้เยาว์อายุไม่เกินสิบปีให้ขอความยินยอมจากผู้ใช้อำนาจปกครองที่มีอำนาจกระทำการแทนผู้เยาว์ ซึ่งตรงกับข้อสรุปของคำตอบ",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "N3",
+  "server": "main",
+  "run": "r1",
+  "code": "X666",
+  "n_claims": 5,
+  "n_correct": 5,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "Section 20 para 1 (2) says that where the minor is not over ten years old consent must be sought from the person exercising parental power who has authority to act for the minor, which is the answer's bottom line for a 9-year-old.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "N4",
+  "server": "branch",
+  "run": "r1",
+  "code": "X488",
+  "n_claims": 13,
+  "n_correct": 13,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "Section 73 gives the data subject the right to complain and s.72(1) makes the expert committee the body that considers complaints (s.34 para 2 also says complaints go to the expert committee); the statute itself leaves filing details to the Committee's rules, as the answer says.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "N4",
+  "server": "main",
+  "run": "r1",
+  "code": "X701",
+  "n_claims": 11,
+  "n_correct": 11,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "Section 73 gives the right to complain with filing governed by rules the Committee prescribes, and s.72(1) with s.74 makes the expert committee the body that considers and orders; the answer states this accurately and correctly notes the statute names no specific filing place.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "N6",
+  "server": "branch",
+  "run": "r1",
+  "code": "X506",
+  "n_claims": 6,
+  "n_correct": 5,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 1,
+  "conclusion": "correct",
+  "conclusion_reason": "s.37(4) requires notifying the Office without delay within 72 hours of becoming aware unless there is no risk to rights and freedoms, and notifying the data subject with remedial measures when the risk is high; the answer states exactly this, though it fails to identify s.83 as the penalty.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ข้อความที่ดึงมาในรอบนี้จึงยังไม่ยุติว่าการไม่แจ้งเหตุตามมาตรา 37 (4) มีบทลงโทษใดโดยเฉพาะ",
+    "law_section": 83,
+    "why": "s.83 (which was retrieved) expressly penalises a controller who fails to comply with s.37, with an administrative fine up to three million baht; the answer gives the amount only via s.86, which concerns processors and s.37(5), and leaves the point open."
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา 40 (2) กำหนดหน้าที่ของผู้ประมวลผลข้อมูลส่วนบุคคลให้จัดให้มีมาตรการรักษาความมั่นคงปลอดภัยที่เหมาะสม",
+    "law_section": 40,
+    "why": "Correct per s.40(2), but s.40 is not in the retrieved set (22, 23, 28, 37, 79, 82-86) and its text is not in the tool results.",
+    "_text_in_raw_evidence": true
+   }
+  ]
+ },
+ {
+  "id": "N6",
+  "server": "main",
+  "run": "r1",
+  "code": "X595",
+  "n_claims": 5,
+  "n_correct": 5,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๓๗ (๔) กำหนดให้ผู้ควบคุมข้อมูลแจ้งสำนักงานโดยไม่ชักช้าภายในเจ็ดสิบสองชั่วโมงนับแต่ทราบเหตุ เว้นแต่ไม่มีความเสี่ยง และแจ้งเจ้าของข้อมูลพร้อมแนวทางเยียวยาเมื่อมีความเสี่ยงสูง ตรงกับคำตอบทุกประเด็นที่ถาม (คำตอบไม่ได้กล่าวถึงโทษตามมาตรา ๘๓ แต่คำถามไม่ได้ถามเรื่องโทษ)",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "O1",
+  "server": "branch",
+  "run": "r1",
+  "code": "X812",
+  "n_claims": 6,
+  "n_correct": 6,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 1,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 30 วรรคสี่ให้ดำเนินการโดยไม่ชักช้าแต่ไม่เกินสามสิบวันนับแต่วันที่ได้รับคำขอ และวรรคสองให้ปฏิเสธได้เฉพาะกรณีตามกฎหมายหรือคำสั่งศาล และกรณีที่จะก่อความเสียหายต่อสิทธิและเสรีภาพของบุคคลอื่น ตรงตามที่คำตอบสรุป",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา 39 กำหนดให้ผู้ควบคุมข้อมูลส่วนบุคคลบันทึกรายการอย่างน้อยตามที่ระบุไว้ เพื่อให้เจ้าของข้อมูลส่วนบุคคลและสำนักงานสามารถตรวจสอบได้",
+    "law_section": 39,
+    "why": "เนื้อหารวมทั้งรายการ (7) ตรงกับมาตรา 39 วรรคหนึ่ง แต่มาตรา 39 ไม่อยู่ในชุดหลักฐานที่ดึงมา มาตรา 30 วรรคสามเพียงอ้างถึงรายการตามมาตรา 39 โดยไม่มีเนื้อหาของมาตรานั้น",
+    "_text_in_raw_evidence": true
+   }
+  ]
+ },
+ {
+  "id": "O1",
+  "server": "main",
+  "run": "r1",
+  "code": "X617",
+  "n_claims": 7,
+  "n_correct": 6,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "s.30 para 4 requires the controller to act without delay and within thirty days of receiving the request, and s.30 para 2 limits refusal to refusal under law or court order with likely harm to others' rights and freedoms; the answer gives the deadline and quotes the refusal clause, though its summary splits it into two grounds.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ธนาคารจะปฏิเสธคำขอได้เฉพาะสองกรณี คือ (๑) เป็นการปฏิเสธตามกฎหมายหรือคำสั่งศาล และ (๒) การเข้าถึงและขอรับสำเนา",
+    "law_section": 30,
+    "why": "s.30 para 2 joins the two elements with 'และ' in a single clause (refusal under law or court order AND access would likely harm others' rights and freedoms); presenting them as two separate cases widens the refusal ground beyond the literal text."
+   }
+  ]
+ },
+ {
+  "id": "O10",
+  "server": "branch",
+  "run": "r1",
+  "code": "X377",
+  "n_claims": 5,
+  "n_correct": 5,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 5 วรรคสอง (1) ให้ พ.ร.บ. ใช้บังคับแก่ผู้ควบคุมข้อมูลที่อยู่นอกราชอาณาจักรเมื่อเสนอสินค้าหรือบริการให้แก่เจ้าของข้อมูลซึ่งอยู่ในราชอาณาจักร ไม่ว่าจะมีการชำระเงินหรือไม่ คำตอบสรุปว่าต้องปฏิบัติตามจึงถูกต้อง",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "O10",
+  "server": "main",
+  "run": "r2",
+  "code": "X755",
+  "n_claims": 6,
+  "n_correct": 6,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๕ วรรคสอง (๑) ให้พระราชบัญญัติใช้บังคับแก่ผู้ควบคุมหรือผู้ประมวลผลนอกราชอาณาจักรที่เสนอสินค้าหรือบริการให้แก่เจ้าของข้อมูลซึ่งอยู่ในราชอาณาจักร คำตอบสรุปว่าต้องปฏิบัติตามและอ้างหน้าที่แต่งตั้งตัวแทนตามมาตรา ๓๗ (๕) กับข้อยกเว้นมาตรา ๓๘ ตรงตามตัวบท",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "O12",
+  "server": "branch",
+  "run": "r1",
+  "code": "X325",
+  "n_claims": 18,
+  "n_correct": 18,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 5,
+  "conclusion": "correct",
+  "conclusion_reason": "บริษัทรับทำบัญชีเงินเดือนที่ทำตามคำสั่งของลูกค้าเป็นผู้ประมวลผลข้อมูลส่วนบุคคลตามมาตรา ๖ และมีหน้าที่ตามมาตรา ๔๐ (๑)-(๓) รวมถึงผลตามวรรคสองและโทษตามมาตรา ๘๖ ซึ่งคำตอบระบุครบและตรงตัวบท",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๔๑ กำหนดให้ผู้ควบคุมข้อมูลส่วนบุคคลและผู้ประมวลผลข้อมูลส่วนบุคคลต้องจัดให้มีเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคลของตน",
+    "law_section": 41,
+    "why": "เนื้อหาตรงกับมาตรา ๔๑ วรรคหนึ่ง (๑)-(๓) แต่มาตรา ๔๑ ไม่อยู่ในชุดหลักฐาน มาตรา ๘๕ ที่ดึงมาเพียงอ้างเลขมาตราโดยไม่มีเนื้อหา",
+    "_text_in_raw_evidence": true
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๔๒ (๔) กำหนดให้เจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคลมีหน้าที่รักษาความลับของข้อมูลส่วนบุคคล",
+    "law_section": 42,
+    "why": "ตรงกับมาตรา ๔๒ (๔) แต่มาตรา ๔๒ ไม่อยู่ในชุดหลักฐานที่ดึงมา",
+    "_text_in_raw_evidence": true
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "หน้าที่จัดให้มีมาตรการรักษาความมั่นคงปลอดภัยตามมาตรา ๓๗ (๑) เป็นหน้าที่ของผู้ควบคุมข้อมูลส่วนบุคคล",
+    "law_section": 37,
+    "why": "มาตรา ๓๗ (๑) เป็นหน้าที่ของผู้ควบคุมข้อมูลจริง แต่มาตรา ๓๗ ไม่อยู่ในชุดหลักฐาน",
+    "_text_in_raw_evidence": true
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "ตามมาตรา ๓๗ (๔) ซึ่งต้องแจ้งเหตุการละเมิดข้อมูลส่วนบุคคลแก่สำนักงานโดยไม่ชักช้าภายในเจ็ดสิบสองชั่วโมง",
+    "law_section": 37,
+    "why": "ถ้อยคำตรงกับมาตรา ๓๗ (๔) ทั้งกำหนดเจ็ดสิบสองชั่วโมง ข้อยกเว้น และการแจ้งเจ้าของข้อมูลเมื่อมีความเสี่ยงสูง แต่มาตรา ๓๗ ไม่อยู่ในชุดหลักฐาน",
+    "_text_in_raw_evidence": true
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๓๓ เจ้าของข้อมูลส่วนบุคคลมีสิทธิขอให้ผู้ควบคุมข้อมูลส่วนบุคคลดำเนินการลบ หรือทำลาย",
+    "law_section": 33,
+    "why": "ตรงกับมาตรา ๓๓ วรรคหนึ่ง แต่มาตรา ๓๓ ไม่อยู่ในชุดหลักฐานและไม่ปรากฏในผล graph lookup",
+    "_text_in_raw_evidence": true
+   }
+  ]
+ },
+ {
+  "id": "O12",
+  "server": "main",
+  "run": "r1",
+  "code": "X882",
+  "n_claims": 14,
+  "n_correct": 14,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 1,
+  "conclusion": "correct",
+  "conclusion_reason": "คำตอบจัดบริษัทรับทำบัญชีเงินเดือนเป็นผู้ประมวลผลข้อมูลส่วนบุคคลตามมาตรา ๖ และไล่หน้าที่ตามมาตรา ๔๐ (๑)-(๓) พร้อมวรรคสองถึงวรรคสี่และโทษตามมาตรา ๘๖ ตรงตามตัวบท",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๔๑ วรรคหนึ่ง กำหนดว่า ผู้ควบคุมข้อมูลส่วนบุคคลและผู้ประมวลผลข้อมูลส่วนบุคคลต้องจัดให้มีเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคลของตน",
+    "law_section": 41,
+    "why": "เนื้อหาตรงกับมาตรา ๔๑ วรรคหนึ่ง (๑)-(๓) แต่มาตรา ๔๑ ไม่อยู่ในชุดมาตราที่ดึงมา (๔, ๕, ๖, ๒๖, ๓๗, ๓๘, ๔๐, ๘๖) และผลจากเครื่องมืออื่นก็ไม่มีข้อความนี้",
+    "_text_in_raw_evidence": true
+   }
+  ]
+ },
+ {
+  "id": "O15",
+  "server": "branch",
+  "run": "r1",
+  "code": "X344",
+  "n_claims": 9,
+  "n_correct": 9,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๒๒ ให้เก็บรวบรวมได้เท่าที่จำเป็นภายใต้วัตถุประสงค์อันชอบด้วยกฎหมาย การเก็บสำเนาบัตรประชาชนที่ไม่จำเป็นต่อการซื้อขายจึงขัดมาตรา ๒๒ ไม่เข้ามาตรา ๒๔ (๓) และมีโทษปรับทางปกครองไม่เกินสามล้านบาทตามมาตรา ๘๓",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "O15",
+  "server": "main",
+  "run": "r1",
+  "code": "X232",
+  "n_claims": 10,
+  "n_correct": 10,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 22 ให้เก็บรวบรวมได้เท่าที่จำเป็นภายใต้วัตถุประสงค์อันชอบด้วยกฎหมาย การเก็บสำเนาบัตรประชาชนที่ไม่จำเป็นต่อการซื้อขายจึงเก็บไม่ได้ และไม่เข้าฐานมาตรา 24 (3) โดยมีโทษปรับทางปกครองไม่เกินสามล้านบาทตามมาตรา 83 ตรงตามที่คำตอบสรุป",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "O2",
+  "server": "branch",
+  "run": "r1",
+  "code": "X566",
+  "n_claims": 12,
+  "n_correct": 12,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 1,
+  "conclusion": "correct",
+  "conclusion_reason": "Section 31 para 1 (1) gives the data subject the right to have the controller send or transfer the data to another controller when it can be done by automatic means, subject to para 2 (consent or s.24(3) data) and para 3 exceptions, as the answer states.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "ต่างจากมาตรา ๓๐ วรรคสี่ที่กำหนดไม่เกินสามสิบวัน",
+    "law_section": 30,
+    "why": "Section 30 para 4 does set a 30-day limit, so the statement is correct, but s.30 was not among the retrieved sections and no tool result states the 30 days (s.82 only names 'มาตรา ๓๐ วรรคสี่').",
+    "_text_in_raw_evidence": true
+   }
+  ]
+ },
+ {
+  "id": "O2",
+  "server": "main",
+  "run": "r1",
+  "code": "X609",
+  "n_claims": 10,
+  "n_correct": 9,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 2,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๓๑ วรรคหนึ่ง (๑) ให้เจ้าของข้อมูลมีสิทธิขอให้ผู้ควบคุมข้อมูลส่งหรือโอนข้อมูลในรูปแบบที่อ่านได้ด้วยเครื่องไปยังผู้ควบคุมข้อมูลรายอื่นเมื่อทำได้ด้วยวิธีการอัตโนมัติ ภายใต้เงื่อนไขวรรคสองและข้อจำกัดวรรคสาม ซึ่งคำตอบสรุปไว้ตรงตามนั้น",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๕ กำหนดว่าพระราชบัญญัตินี้ให้ใช้บังคับแก่การเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลโดยผู้ควบคุมข้อมูลส่วนบุคคล",
+    "law_section": 5,
+    "why": "เนื้อหาตรงกับมาตรา ๕ แต่มาตรา ๕ ไม่อยู่ในชุดหลักฐานที่ดึงมา (๒๔, ๒๗, ๓๑, ๓๙) และไม่ปรากฏในผลเครื่องมืออื่น",
+    "_text_in_raw_evidence": true
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๔ กำหนดข้อยกเว้น เช่น (๑) การเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของบุคคลที่ทำการเก็บรวบรวม",
+    "law_section": 4,
+    "why": "เนื้อหาตรงกับมาตรา ๔ แต่มาตรา ๔ ไม่อยู่ในชุดหลักฐานที่ดึงมา จึงเป็นการเขียนจากความจำ",
+    "_text_in_raw_evidence": true
+   },
+   {
+    "type": "partly",
+    "quote": "ผู้ควบคุมข้อมูลส่วนบุคคลต้องปฏิบัติตามคำขอ โดยต้องทำให้ข้อมูลอยู่ในรูปแบบที่อ่านหรือใช้งานได้โดยทั่วไปด้วยเครื่องมืออัตโนมัติ",
+    "law_section": 31,
+    "why": "มาตรา ๓๑ วรรคหนึ่งให้สิทธิเฉพาะ 'ในกรณีที่ผู้ควบคุมข้อมูลได้ทำให้ข้อมูลอยู่ในรูปแบบ' ดังกล่าวแล้ว เป็นเงื่อนไขของสิทธิ ไม่ได้บัญญัติเป็นหน้าที่ให้ต้องจัดทำรูปแบบนั้น และตัวบทไม่มีถ้อยคำว่าต้องปฏิบัติตามคำขอ"
+   }
+  ]
+ },
+ {
+  "id": "O7",
+  "server": "branch",
+  "run": "r1",
+  "code": "X253",
+  "n_claims": 11,
+  "n_correct": 11,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 1,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๒๔ (๓) ยกเว้นไม่ต้องขอความยินยอมเมื่อการเก็บรวบรวมจำเป็นเพื่อการปฏิบัติตามสัญญาซึ่งเจ้าของข้อมูลเป็นคู่สัญญา ซึ่งครอบคลุมการจ่ายเงินเดือนตามสัญญาจ้าง และคำตอบจำกัดไว้เฉพาะข้อมูลที่จำเป็นอย่างถูกต้อง",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา 22 กำหนดให้เก็บรวบรวมข้อมูลส่วนบุคคลได้เท่าที่จำเป็นภายใต้วัตถุประสงค์อันชอบด้วยกฎหมายของผู้ควบคุมข้อมูลส่วนบุคคล",
+    "law_section": 22,
+    "why": "เนื้อหาตรงกับมาตรา ๒๒ แต่มาตรา ๒๒ ไม่อยู่ในชุดหลักฐานที่ดึงมา และไม่ปรากฏในผล graph lookup จึงเขียนจากความจำ",
+    "_text_in_raw_evidence": true
+   }
+  ]
+ },
+ {
+  "id": "O7",
+  "server": "main",
+  "run": "r1",
+  "code": "X125",
+  "n_claims": 12,
+  "n_correct": 12,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 3,
+  "conclusion": "correct",
+  "conclusion_reason": "s.24(3) allows collection without consent where necessary to perform a contract to which the data subject is party, which covers payroll under an employment contract; the notice duty in s.23 and the s.26 caveat are correctly added.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๒๒ การเก็บรวบรวมต้องทำเท่าที่จำเป็นภายใต้วัตถุประสงค์อันชอบด้วยกฎหมายของผู้ควบคุมข้อมูลส่วนบุคคล",
+    "law_section": 22,
+    "why": "Correct per s.22, but s.22 was not retrieved (evidence: 4, 23, 24, 26, 27, 83); the tool results only name s.22 inside the s.83 list.",
+    "_text_in_raw_evidence": true
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๒๑ ต้องเก็บรวบรวม ใช้ หรือเปิดเผยตามวัตถุประสงค์ที่ได้แจ้งเจ้าของข้อมูลส่วนบุคคลไว้ก่อนหรือในขณะที่เก็บรวบรวม",
+    "law_section": 21,
+    "why": "Correct per s.21 paras 1-2, but s.21 text was not retrieved and is not in the tool results.",
+    "_text_in_raw_evidence": true
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๓๙ ผู้ควบคุมข้อมูลส่วนบุคคลต้องบันทึกรายการอย่างน้อยตามที่มาตรา ๓๙ กำหนด",
+    "law_section": 39,
+    "why": "Correct per s.39 para 1, but s.39 was not retrieved; the evidence (s.27 para 3) only refers to recording use/disclosure in the s.39 record.",
+    "_text_in_raw_evidence": false
+   }
+  ]
+ },
+ {
+  "id": "P1",
+  "server": "branch",
+  "run": "r1",
+  "code": "X770",
+  "n_claims": 5,
+  "n_correct": 5,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๘๒ กำหนดโทษปรับทางปกครองไม่เกินหนึ่งล้านบาทแก่ผู้ควบคุมข้อมูลส่วนบุคคลที่ไม่ปฏิบัติตามมาตรา ๓๙ วรรคหนึ่ง ตรงกับที่คำตอบสรุป (คำตอบไม่ได้กล่าวถึงกรณีบริษัทเป็นผู้ประมวลผลซึ่งอยู่ใต้มาตรา ๔๐ (๓) และมาตรา ๘๖ แต่ระบุสมมุติฐานว่าเป็นผู้ควบคุมไว้ชัด)",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "P1",
+  "server": "main",
+  "run": "r1",
+  "code": "X548",
+  "n_claims": 5,
+  "n_correct": 5,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "Section 39 para 1 requires the controller to keep the record and s.82 punishes failure to comply with s.39 para 1 with an administrative fine of up to one million baht, with the small-business exception in s.39 para 3 correctly noted.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "P12",
+  "server": "branch",
+  "run": "r1",
+  "code": "X635",
+  "n_claims": 7,
+  "n_correct": 7,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๘๑ ให้กรรมการที่สั่งการจนนิติบุคคลกระทำความผิดต้องรับโทษตามที่บัญญัติไว้สำหรับความผิดนั้นด้วย และการเปิดเผยข้อมูลสุขภาพ (ข้อมูลตามมาตรา ๒๖) เพื่อแสวงหาประโยชน์มิควรได้มีโทษตามมาตรา ๗๙ วรรคสอง จำคุกไม่เกินหนึ่งปีหรือปรับไม่เกินหนึ่งล้านบาท ตรงกับคำตอบ",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "P12",
+  "server": "main",
+  "run": "r1",
+  "code": "X902",
+  "n_claims": 11,
+  "n_correct": 11,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 1,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๘๑ ให้กรรมการที่สั่งการจนนิติบุคคลกระทำความผิดต้องรับโทษตามที่บัญญัติไว้สำหรับความผิดนั้นด้วย และคำตอบโยงกับมาตรา ๗๙ วรรคสอง (แสวงหาประโยชน์ที่มิควรได้ จำคุกไม่เกินหนึ่งปี/ปรับไม่เกินหนึ่งล้านบาท) ได้ถูกต้อง",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๒๔ กำหนดข้อยกเว้นการเก็บรวบรวมข้อมูลส่วนบุคคลโดยไม่ต้องขอความยินยอม เช่น ...",
+    "law_section": 24,
+    "why": "รายการข้อยกเว้นตรงกับมาตรา ๒๔ (๑)-(๖) แต่มาตรา ๒๔ ไม่อยู่ในชุดหลักฐาน ผลจาก graph lookup มีเพียงข้อความตัดตอนถึงต้น (๑) เท่านั้น ข้อ (๒)-(๖) จึงเขียนจากความจำ",
+    "_text_in_raw_evidence": true
+   }
+  ]
+ },
+ {
+  "id": "P3",
+  "server": "branch",
+  "run": "r1",
+  "code": "X678",
+  "n_claims": 3,
+  "n_correct": 3,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๘๒ กำหนดโทษปรับทางปกครองไม่เกินหนึ่งล้านบาทแก่ผู้ควบคุมข้อมูลที่ไม่ปฏิบัติตามมาตรา ๒๓ (หน้าที่แจ้งวัตถุประสงค์และรายละเอียดก่อนหรือขณะเก็บรวบรวม) ตรงกับคำตอบ",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "P3",
+  "server": "main",
+  "run": "r1",
+  "code": "X964",
+  "n_claims": 2,
+  "n_correct": 2,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๘๒ กำหนดโทษปรับทางปกครองไม่เกินหนึ่งล้านบาทแก่ผู้ควบคุมข้อมูลส่วนบุคคลที่ไม่ปฏิบัติตามหน้าที่แจ้งรายละเอียดตามมาตรา ๒๓ ตรงกับที่คำตอบสรุป",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "P5",
+  "server": "branch",
+  "run": "r1",
+  "code": "X316",
+  "n_claims": 14,
+  "n_correct": 14,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "การเก็บรวบรวมจากแหล่งอื่นโดยไม่แจ้งและไม่ได้รับความยินยอมฝ่าฝืนมาตรา 25 วรรคหนึ่ง (และการใช้ต่อฝ่าฝืนมาตรา 27 วรรคหนึ่ง) ซึ่งมาตรา 83 กำหนดโทษปรับทางปกครองไม่เกินสามล้านบาท คำตอบสรุปตรงตัวบทและระบุมาตรา 82 84 79 เป็นกรณีเพิ่มเติมอย่างมีเงื่อนไขถูกต้อง",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "P5",
+  "server": "main",
+  "run": "r1",
+  "code": "X342",
+  "n_claims": 11,
+  "n_correct": 11,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๘๓ กำหนดโทษปรับทางปกครองไม่เกินสามล้านบาทแก่ผู้ควบคุมข้อมูลที่ฝ่าฝืนมาตรา ๒๕ วรรคหนึ่งหรือมาตรา ๒๗ วรรคหนึ่ง และมาตรา ๗๙ ใช้เฉพาะข้อมูลตามมาตรา ๒๖ ตรงกับคำตอบ (คำตอบไม่ได้กล่าวถึงโทษตามมาตรา ๘๒ สำหรับการไม่แจ้งรายละเอียดตามมาตรา ๒๓ ที่นำมาใช้โดยอนุโลมตามมาตรา ๒๕ วรรคสอง แต่ไม่ทำให้ข้อสรุปหลักผิด)",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "P7",
+  "server": "branch",
+  "run": "r1",
+  "code": "X476",
+  "n_claims": 12,
+  "n_correct": 11,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "partly",
+  "conclusion_reason": "ส่วนโทษจำคุกและปรับอาญาตามมาตรา 79 ถูกต้อง แต่โทษปรับทางปกครองสำหรับการฝ่าฝืนมาตรา 27 อันเกี่ยวกับข้อมูลตามมาตรา 26 (ข้อมูลสุขภาพ) คือมาตรา 84 ไม่เกินห้าล้านบาท คำตอบกลับสรุปเพดานทางปกครองเพียงไม่เกินสามล้านบาทตามมาตรา 83 และไม่ได้ใช้มาตรา 84 เลย",
+  "uses_key_sections": false,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ยังมีโทษปรับทางปกครองตามมาตรา ๘๓ ไม่เกินสามล้านบาท อีกส่วนหนึ่ง",
+    "law_section": 84,
+    "why": "มาตรา 83 กล่าวถึงการฝ่าฝืนมาตรา 27 วรรคหนึ่งหรือวรรคสองจริง แต่เมื่อเป็นข้อมูลตามมาตรา 26 มาตรา 84 กำหนดโทษปรับทางปกครองไม่เกินห้าล้านบาทไว้โดยเฉพาะ การระบุเพดานทางปกครองว่าไม่เกินสามล้านบาทจึงต่ำกว่าที่ตัวบทกำหนดสำหรับกรณีนี้ (มาตรา 84 ไม่อยู่ในชุดหลักฐานที่ดึงมา)"
+   }
+  ]
+ },
+ {
+  "id": "P7",
+  "server": "main",
+  "run": "r1",
+  "code": "X540",
+  "n_claims": 17,
+  "n_correct": 17,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 3,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 79 วรรคหนึ่ง กำหนดโทษจำคุกไม่เกินหกเดือนหรือปรับไม่เกินห้าแสนบาทสำหรับการฝ่าฝืนมาตรา 27 เกี่ยวกับข้อมูลตามมาตรา 26 โดยประการที่น่าจะทำให้อับอาย และมาตรา 84 กำหนดโทษปรับทางปกครองไม่เกินห้าล้านบาท ซึ่งคำตอบสรุปตรงตามตัวบท",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา 19 กำหนดว่าผู้ควบคุมข้อมูลส่วนบุคคลจะกระทำการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลไม่ได้หากเจ้าของข้อมูลส่วนบุคคลไม่ได้ให้ความยินยอมไว้ก่อนหรือในขณะนั้น",
+    "law_section": 19,
+    "why": "เนื้อหาตรงกับมาตรา 19 วรรคหนึ่ง แต่มาตรา 19 ไม่อยู่ในชุดหลักฐานที่ดึงมา และผล graph lookup ก็ไม่มีข้อความของมาตรา 19",
+    "_text_in_raw_evidence": false
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา 39 กำหนดให้บันทึกรายการอย่างน้อยดังต่อไปนี้ (1) ข้อมูลส่วนบุคคลที่มีการเก็บรวบรวม (2) วัตถุประสงค์ของการเก็บรวบรวม",
+    "law_section": 39,
+    "why": "รายการ (1)-(8) ตรงกับมาตรา 39 วรรคหนึ่ง แต่มาตรา 39 ไม่ได้ถูกดึงข้อความเต็ม ผล graph lookup มีเพียงคำอธิบายที่ถูกตัดก่อนจบ (1) จึงไม่มีหลักฐานรองรับรายการ (2)-(8)",
+    "_text_in_raw_evidence": true
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา 80 ยังกำหนดโทษสำหรับผู้ใดล่วงรู้ข้อมูลส่วนบุคคลของผู้อื่นเนื่องจากการปฏิบัติหน้าที่ตามพระราชบัญญัตินี้ แล้วนำไปเปิดเผยแก่ผู้อื่น",
+    "law_section": 80,
+    "why": "เนื้อหาและอัตราโทษตรงกับมาตรา 80 วรรคหนึ่ง แต่มาตรา 80 ไม่อยู่ในชุดหลักฐานที่ดึงมา",
+    "_text_in_raw_evidence": true
+   }
+  ]
+ },
+ {
+  "id": "P9",
+  "server": "branch",
+  "run": "r1",
+  "code": "X965",
+  "n_claims": 4,
+  "n_correct": 4,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๘๐ วรรคหนึ่งกำหนดโทษจำคุกไม่เกินหกเดือน หรือปรับไม่เกินห้าแสนบาท หรือทั้งจำทั้งปรับ แก่ผู้ล่วงรู้ข้อมูลจากการปฏิบัติหน้าที่ตามพระราชบัญญัตินี้แล้วนำไปเปิดเผย และคำตอบยกข้อยกเว้นห้าข้อตามวรรคสองไว้ครบ",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "P9",
+  "server": "main",
+  "run": "r1",
+  "code": "X857",
+  "n_claims": 3,
+  "n_correct": 3,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 1,
+  "conclusion": "correct",
+  "conclusion_reason": "s.80 para 1 imposes imprisonment up to six months or a fine up to 500,000 baht or both on anyone who discloses personal data learned through performing duties under the Act, subject to the five exceptions in para 2, as the answer states.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๖ นิยาม “พนักงานเจ้าหน้าที่” หมายความว่า ผู้ซึ่งรัฐมนตรีแต่งตั้งให้ปฏิบัติการตามพระราชบัญญัตินี้",
+    "law_section": 6,
+    "why": "The definition is accurate per s.6, but only s.80 was retrieved and the tool results do not contain s.6.",
+    "_text_in_raw_evidence": true
+   }
+  ]
+ },
+ {
+  "id": "Q6",
+  "server": "branch",
+  "run": "r1",
+  "code": "X297",
+  "n_claims": 3,
+  "n_correct": 3,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "s.4(1) excludes collection for purely personal or household purposes from the Act, so neither the s.23 notice duty nor the s.19 consent rule applies to a burglar-deterrent camera inside one's own home.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "Q6",
+  "server": "main",
+  "run": "r1",
+  "code": "X257",
+  "n_claims": 7,
+  "n_correct": 7,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๔ (๑) ยกเว้นไม่ใช้บังคับพระราชบัญญัติแก่การเก็บรวบรวมเพื่อประโยชน์ส่วนตนหรือกิจกรรมในครอบครัวเท่านั้น หน้าที่แจ้งตามมาตรา ๒๓ และการขอความยินยอมตามมาตรา ๒๔ จึงไม่เกิด และคำตอบคงเงื่อนไข \"เท่านั้น\" ไว้ถูกต้อง",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "Q8",
+  "server": "branch",
+  "run": "r1",
+  "code": "X504",
+  "n_claims": 11,
+  "n_correct": 11,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 1,
+  "conclusion": "correct",
+  "conclusion_reason": "Fingerprint templates are biometric data under s.26, so explicit consent is required unless a s.26 exception applies; s.84 fine up to 5 million baht for breaching s.26 para 1, and s.79 criminal penalties correctly limited to unlawful use/disclosure.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา 19 กำหนดหลักทั่วไปว่า ผู้ควบคุมข้อมูลส่วนบุคคลจะกระทำการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลไม่ได้หากเจ้าของข้อมูลส่วนบุคคลไม่ได้ให้ความยินยอม",
+    "law_section": 19,
+    "why": "The statement matches s.19 paras 1-3, but s.19 is not among the retrieved sections (6, 24-27, 33, 37, 39, 79, 83, 84) and is not quoted in the tool results. (Minor, not counted: the biometric definition is s.26 paragraph two, not the last paragraph as the answer says.)",
+    "_text_in_raw_evidence": false
+   }
+  ]
+ },
+ {
+  "id": "Q8",
+  "server": "main",
+  "run": "r1",
+  "code": "X127",
+  "n_claims": 10,
+  "n_correct": 10,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 1,
+  "conclusion": "correct",
+  "conclusion_reason": "ลายนิ้วมือเป็นข้อมูลชีวภาพตามมาตรา 26 วรรคสอง จึงต้องได้รับความยินยอมโดยชัดแจ้งตามมาตรา 26 วรรคหนึ่งเว้นแต่เข้าข้อยกเว้น (1)-(5) การฝ่าฝืนมีโทษปรับทางปกครองไม่เกินห้าล้านบาทตามมาตรา 84 และมาตรา 79 ใช้เฉพาะกรณีใช้หรือเปิดเผย ซึ่งคำตอบแยกไว้ถูกต้อง",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา 24 วางข้อยกเว้นการเก็บรวบรวมข้อมูลส่วนบุคคลโดยไม่ต้องขอความยินยอม เช่น เพื่อป้องกันหรือระงับอันตรายต่อชีวิต ร่างกาย หรือสุขภาพของบุคคล",
+    "law_section": 24,
+    "why": "ข้อยกเว้นที่ยกมาตรงกับมาตรา 24 (2) (3) (5) (6) แต่มาตรา 24 ไม่อยู่ในชุดหลักฐานที่ดึงมา และผล graph lookup ไม่มีข้อความของมาตรา 24",
+    "_text_in_raw_evidence": true
+   }
+  ]
+ },
+ {
+  "id": "R1",
+  "server": "branch",
+  "run": "r1",
+  "code": "X592",
+  "n_claims": 19,
+  "n_correct": 18,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "คำตอบชี้ถูกว่าการขอลบตามมาตรา ๓๓ ทำได้ก็ต่อเมื่อสำนักข่าวไม่เข้าข้อยกเว้นมาตรา ๔ (๓) ซึ่งมีเงื่อนไขว่าต้องเป็นไปตามจริยธรรมแห่งการประกอบวิชาชีพหรือเป็นประโยชน์สาธารณะเท่านั้น และยกข้อยกเว้นเสรีภาพในการแสดงความคิดเห็นตามมาตรา ๓๓ วรรคสองไว้ครบ",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "มาตรา ๓๒ ให้เจ้าของข้อมูลส่วนบุคคลมีสิทธิคัดค้านการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลที่เกี่ยวกับตนเมื่อใดก็ได้",
+    "law_section": 32,
+    "why": "มาตรา ๓๒ ให้สิทธิคัดค้านเฉพาะสามกรณีตาม (๑)-(๓) คือข้อมูลที่เก็บตามมาตรา ๒๔ (๔) หรือ (๕) การตลาดแบบตรง และการศึกษาวิจัย ไม่ใช่สิทธิคัดค้านทั่วไป คำตอบตัดเงื่อนไขนี้ออก"
+   }
+  ]
+ },
+ {
+  "id": "R1",
+  "server": "main",
+  "run": "r2",
+  "code": "X288",
+  "n_claims": 14,
+  "n_correct": 14,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๔ (๓) ทำให้พระราชบัญญัติไม่ใช้บังคับแก่การใช้หรือเปิดเผยข้อมูลที่เก็บไว้เฉพาะเพื่อกิจการสื่อมวลชนอันเป็นไปตามจริยธรรมวิชาชีพหรือเป็นประโยชน์สาธารณะ จึงอ้างสิทธิลบตามมาตรา ๓๓ ไม่ได้ในกรณีนั้น และคำตอบระบุถูกต้องว่าหากไม่เข้าเงื่อนไข มาตรา ๓๓ ใช้ได้แต่ติดข้อยกเว้นวรรคสอง",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "R2",
+  "server": "branch",
+  "run": "r1",
+  "code": "X398",
+  "n_claims": 16,
+  "n_correct": 16,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "Section 79 criminalises a controller's breach of s.27 (or s.28) only for s.26 data in a manner likely to cause damage or humiliation; criminal records are listed in s.26 and a divorce certificate is not, and s.4(1) can take a purely personal/household use outside the Act - the answer says exactly this with the correct penalties.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "R2",
+  "server": "main",
+  "run": "r1",
+  "code": "X969",
+  "n_claims": 14,
+  "n_correct": 14,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๗๙ ลงโทษอาญาเฉพาะผู้ควบคุมข้อมูลที่ฝ่าฝืนมาตรา ๒๗ อันเกี่ยวกับข้อมูลตามมาตรา ๒๖ (ประวัติอาชญากรรมอยู่ในรายการ ใบสำคัญการหย่าไม่อยู่) และคำตอบระบุเงื่อนไขผู้ควบคุมข้อมูลกับข้อยกเว้นมาตรา ๔ (๑) ไว้ถูกต้อง",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "R3",
+  "server": "branch",
+  "run": "r1",
+  "code": "X894",
+  "n_claims": 12,
+  "n_correct": 11,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "partly",
+  "conclusion_reason": "The answer correctly makes s.4(1) decisive and states the s.83/s.82 fines accurately, but it never applies s.4(1) to the facts: the exemption turns on the collector's purpose (personal benefit or household activity only), which a home security camera ordinarily meets, yet the headline says it may be illegal and fined in the millions and treats the camera's view of a public road as possibly defeating the exemption, a limit the statute does not contain.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ล่วงล้ำไปเก็บข้อมูลของบุคคลอื่นในที่สาธารณะเกินกว่ากิจกรรมส่วนตัวหรือครอบครัว ย่อมมีปัญหาในการอ้างข้อยกเว้นนี้",
+    "law_section": 4,
+    "why": "Section 4(1) exempts collection, use or disclosure by a person who collects for personal benefit or household activity only; the test is the purpose, and the text says nothing about where the data is captured or whether other people in a public place appear."
+   }
+  ]
+ },
+ {
+  "id": "R3",
+  "server": "main",
+  "run": "r1",
+  "code": "X530",
+  "n_claims": 12,
+  "n_correct": 12,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "partly",
+  "conclusion_reason": "Every rule cited is accurate and s.4(1) is applied, but the answer declines to conclude; a camera at one's own home for one's own security is collection for personal benefit, so under s.4(1) the Act does not apply and no million-baht fine arises, which the answer leaves open while stressing the fines.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "id": "R4",
+  "server": "branch",
+  "run": "r1",
+  "code": "X851",
+  "n_claims": 15,
+  "n_correct": 15,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 2,
+  "conclusion": "correct",
+  "conclusion_reason": "Under s.4(1) the Act does not apply to collection for purely personal or household purposes, so incidental capture of others is not a PDPA violation in that case; outside it, ss.19/24/27 and the penalties in ss.79/83/84 apply as stated.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๕ กำหนดให้พระราชบัญญัตินี้ใช้บังคับแก่การเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลโดยผู้ควบคุมข้อมูลส่วนบุคคล",
+    "law_section": 5,
+    "why": "Accurate restatement of s.5 para 1, but s.5 is not in the retrieved set and does not appear in the tool results.",
+    "_text_in_raw_evidence": true
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๘๒ ... ไม่แจ้งผลกระทบจากการถอนความยินยอมตามมาตรา ๑๙ วรรคหก ต้องระวางโทษปรับทางปกครองไม่เกินหนึ่งล้านบาท",
+    "law_section": 82,
+    "why": "s.82 does say this, but s.82 was not retrieved; the graph snippet of s.82 is cut off before the withdrawal clause and the one-million-baht amount.",
+    "_text_in_raw_evidence": true
+   }
+  ]
+ },
+ {
+  "id": "R4",
+  "server": "main",
+  "run": "r1",
+  "code": "X952",
+  "n_claims": 13,
+  "n_correct": 12,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "คำตอบสรุปถูกว่าไม่ผิดทุกกรณี โดยต้องดูข้อยกเว้นประโยชน์ส่วนตนหรือกิจกรรมในครอบครัวตามมาตรา ๔ (๑) ก่อน แล้วจึงดูฐานตามมาตรา ๒๔ และการใช้หรือเปิดเผยตามมาตรา ๒๗ แม้จะกล่าวถึงโทษอาญามาตรา ๗๙ กว้างเกินไป",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "โทษอาญาตามมาตรา 79 ผูกกับความผิดฐานใช้/เปิดเผยข้อมูลโดยไม่ได้รับความยินยอม (มาตรา 27) หรือข้อมูลอ่อนไหว (มาตรา 26/28)",
+    "law_section": 79,
+    "why": "มาตรา ๗๙ ลงโทษการฝ่าฝืนมาตรา ๒๗ หรือมาตรา ๒๘ เฉพาะที่เกี่ยวกับข้อมูลส่วนบุคคลตามมาตรา ๒๖ และต้องน่าจะทำให้ผู้อื่นเสียหายหรือเพื่อแสวงหาประโยชน์มิชอบ การใช้หรือเปิดเผยภาพทั่วไปที่ไม่ใช่ข้อมูลตามมาตรา ๒๖ มีเพียงโทษปรับทางปกครองตามมาตรา ๘๓"
+   }
+  ]
+ }
+]

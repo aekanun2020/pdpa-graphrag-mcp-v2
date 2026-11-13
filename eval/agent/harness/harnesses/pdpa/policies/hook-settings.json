@@ -1,0 +1,8 @@
+{
+  "max_requirements": 8,
+  "max_bindings": 16,
+  "max_query_chars": 500,
+  "max_top_k": 10,
+  "max_verifier_sections": 20,
+  "penalty_section_range": [79, 90]
+}

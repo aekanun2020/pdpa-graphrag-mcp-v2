@@ -1,0 +1,20 @@
+{
+ "code": "X617",
+ "n_claims": 7,
+ "n_correct": 6,
+ "n_partly": 1,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "s.30 para 4 requires the controller to act without delay and within thirty days of receiving the request, and s.30 para 2 limits refusal to refusal under law or court order with likely harm to others' rights and freedoms; the answer gives the deadline and quotes the refusal clause, though its summary splits it into two grounds.",
+ "uses_key_sections": true,
+ "problems": [
+  {
+   "type": "partly",
+   "quote": "ธนาคารจะปฏิเสธคำขอได้เฉพาะสองกรณี คือ (๑) เป็นการปฏิเสธตามกฎหมายหรือคำสั่งศาล และ (๒) การเข้าถึงและขอรับสำเนา",
+   "law_section": 30,
+   "why": "s.30 para 2 joins the two elements with 'และ' in a single clause (refusal under law or court order AND access would likely harm others' rights and freedoms); presenting them as two separate cases widens the refusal ground beyond the literal text."
+  }
+ ]
+}

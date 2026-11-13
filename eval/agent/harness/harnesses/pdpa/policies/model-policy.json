@@ -1,0 +1,32 @@
+{
+  "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+  "api_key_environment_variable": "OPENROUTER_API_KEY",
+  "allowlist_file": "policies/model-allowlist.json",
+  "guard_environment_variables": [
+    "OPENROUTER_MODEL",
+    "OBSERVER_MODEL",
+    "ROUTER_MODEL",
+    "CONTRACT_AUTHOR_MODEL",
+    "SEMANTIC_REVIEWER_MODEL"
+  ],
+  "roles": {
+    "contract_compiler": "deepseek/deepseek-v4.1-flash",
+    "agent": "deepseek/deepseek-v4.1-flash",
+    "synthesizer": "deepseek/deepseek-v4.1-flash"
+  },
+  "selection_reason": "Same model, provider order, seed and budgets as the bps39 deepseek-v4.1-flash profile; HTTP headers removed.",
+  "response_model_token": "deepseek-v4.1-flash",
+  "max_calls": 20,
+  "timeout_seconds": 180,
+  "temperature": 0,
+  "tool_choice": "auto",
+  "parallel_tool_calls": true,
+  "tool_function_options": {
+    "strict": true
+  },
+  "preserve_message_fields": [
+    "reasoning",
+    "reasoning_details"
+  ],
+  "max_response_bytes": 8388608
+}

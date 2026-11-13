@@ -1,0 +1,57 @@
+{
+  "contract_compiler": {
+    "role": "contract_compiler",
+    "max_tokens": 9000,
+    "structured_output": {
+      "name": "compiled_task_contract",
+      "strict": true,
+      "schema_asset": "task_contract_schema"
+    },
+    "request_options": {
+      "reasoning": {
+        "max_tokens": 2000
+      },
+      "provider": {
+        "order": [
+          "DeepInfra"
+        ],
+        "allow_fallbacks": false
+      },
+      "seed": 39
+    },
+    "max_attempts": 2
+  },
+  "investigator": {
+    "role": "agent",
+    "max_tokens": 6000,
+    "request_options": {
+      "reasoning": {
+        "max_tokens": 1500
+      },
+      "provider": {
+        "order": [
+          "DeepInfra"
+        ],
+        "allow_fallbacks": false
+      },
+      "seed": 39
+    }
+  },
+  "synthesizer": {
+    "role": "synthesizer",
+    "max_tokens": 10000,
+    "request_options": {
+      "reasoning": {
+        "max_tokens": 2500
+      },
+      "provider": {
+        "order": [
+          "DeepInfra"
+        ],
+        "allow_fallbacks": false
+      },
+      "seed": 39
+    },
+    "max_attempts": 2
+  }
+}

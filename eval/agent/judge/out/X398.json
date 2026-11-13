@@ -1,0 +1,13 @@
+{
+ "code": "X398",
+ "n_claims": 16,
+ "n_correct": 16,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "Section 79 criminalises a controller's breach of s.27 (or s.28) only for s.26 data in a manner likely to cause damage or humiliation; criminal records are listed in s.26 and a divorce certificate is not, and s.4(1) can take a purely personal/household use outside the Act - the answer says exactly this with the correct penalties.",
+ "uses_key_sections": true,
+ "problems": []
+}

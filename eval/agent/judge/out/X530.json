@@ -1,0 +1,13 @@
+{
+ "code": "X530",
+ "n_claims": 12,
+ "n_correct": 12,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "partly",
+ "conclusion_reason": "Every rule cited is accurate and s.4(1) is applied, but the answer declines to conclude; a camera at one's own home for one's own security is collection for personal benefit, so under s.4(1) the Act does not apply and no million-baht fine arises, which the answer leaves open while stressing the fines.",
+ "uses_key_sections": true,
+ "problems": []
+}

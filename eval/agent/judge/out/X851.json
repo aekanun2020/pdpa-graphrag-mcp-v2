@@ -1,0 +1,26 @@
+{
+ "code": "X851",
+ "n_claims": 15,
+ "n_correct": 15,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 2,
+ "conclusion": "correct",
+ "conclusion_reason": "Under s.4(1) the Act does not apply to collection for purely personal or household purposes, so incidental capture of others is not a PDPA violation in that case; outside it, ss.19/24/27 and the penalties in ss.79/83/84 apply as stated.",
+ "uses_key_sections": true,
+ "problems": [
+  {
+   "type": "not_in_evidence",
+   "quote": "มาตรา ๕ กำหนดให้พระราชบัญญัตินี้ใช้บังคับแก่การเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลโดยผู้ควบคุมข้อมูลส่วนบุคคล",
+   "law_section": 5,
+   "why": "Accurate restatement of s.5 para 1, but s.5 is not in the retrieved set and does not appear in the tool results."
+  },
+  {
+   "type": "not_in_evidence",
+   "quote": "มาตรา ๘๒ ... ไม่แจ้งผลกระทบจากการถอนความยินยอมตามมาตรา ๑๙ วรรคหก ต้องระวางโทษปรับทางปกครองไม่เกินหนึ่งล้านบาท",
+   "law_section": 82,
+   "why": "s.82 does say this, but s.82 was not retrieved; the graph snippet of s.82 is cut off before the withdrawal clause and the one-million-baht amount."
+  }
+ ]
+}

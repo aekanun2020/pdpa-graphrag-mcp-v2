@@ -1,0 +1,17 @@
+{
+  "module": "hooks/pdpa.py",
+  "module_name": "pdpa_hooks",
+  "repair_instruction": "Repair the call against the live JSON Schema and hook policy. section_id is sec_<number>.",
+  "completion_repair_prefix": "Completion hook rejected this stop. Fix every item below in one corrected draft; call an MCP tool only where an item says no bound evidence shows a section. ",
+  "force_compose_when_evidence_complete": false,
+  "disable_tools_after_evidence_complete": false,
+  "evidence_complete_instruction": "Evidence is complete. Stop calling tools and write the required draft now.",
+  "post_tool_verifier": {
+    "command": ["{python}", "{config_root}/hooks/verify.py", "--harness", "{config_root}/harness.json", "--run-dir", "{run_dir}"],
+    "strip_environment": ["OPENROUTER_API_KEY", "OPENROUTER_MODEL", "OBSERVER_MODEL", "ROUTER_MODEL"],
+    "timeout_seconds": 600,
+    "success_exit_codes": [0],
+    "stdout_artifact": "verifier-output.txt",
+    "artifact_patterns": {"answer": "^Answer:\\s*(.+)$", "receipt": "^Receipt:\\s*(.+)$"}
+  }
+}

@@ -1,0 +1,13 @@
+{
+ "code": "X297",
+ "n_claims": 3,
+ "n_correct": 3,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "s.4(1) excludes collection for purely personal or household purposes from the Act, so neither the s.23 notice duty nor the s.19 consent rule applies to a burglar-deterrent camera inside one's own home.",
+ "uses_key_sections": true,
+ "problems": []
+}

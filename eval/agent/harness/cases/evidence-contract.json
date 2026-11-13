@@ -1,0 +1,1 @@
+{"schema":"pdpa-evidence-v1","requires":["live_summary","admitted_retrieval","requirement_evidence_bindings","fresh_section_reread"],"oracle_answer_used":false}
