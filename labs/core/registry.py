@@ -1,13 +1,12 @@
-"""core.registry — Tool Registry รวม tools จากหลาย MCP server (เริ่มใช้ Lab 4)
+"""core.registry — Tool Registry รวม tools จากหลาย MCP server
 
 หน้าที่:
   1) เชื่อม MCP server หลายตัว (initialize + tools/list)
   2) แปลง MCP inputSchema -> OpenAI function schema (ใช้ตรงได้เพราะเป็น JSON Schema)
   3) map tool_name -> client ตัวที่เป็นเจ้าของ เพื่อ dispatch ตอน LLM ขอเรียก tool
 
-โครงสร้างนี้ "รองรับหลาย MCP server" แต่ในหลักสูตรนี้เราต่อ PDPA GraphRAG MCP server ตัวเดียว
-เป็นแกน (สอดคล้องกับ Lab 8) — เพิ่ม server อื่น (เช่น RAG :8000) ได้โดยเรียก
-add_server() เพิ่มอีกตัวโดยไม่ต้องแก้ agent loop
+โครงสร้างนี้ "รองรับหลาย MCP server" แต่ใน repo นี้ lab8 ต่อ PDPA GraphRAG MCP server ตัวเดียว
+— เพิ่ม server อื่นได้โดยเรียก add_server() เพิ่มอีกตัวโดยไม่ต้องแก้ agent loop
 """
 from .mcp_client import MCPClient
 

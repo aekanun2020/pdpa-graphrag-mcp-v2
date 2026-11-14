@@ -18,7 +18,8 @@ LLM_MODEL = os.environ.get("LLM_MODEL", "gpt-oss-120b")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
-OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5:7b")
+# ไม่มีค่าเริ่มต้น: ถ้าใช้ LLM_PROVIDER=ollama ต้องตั้ง OLLAMA_MODEL เป็นชื่อโมเดลที่ pull ไว้เอง
+OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "")
 
 # --- Determinism config ---
 # temperature=0 (greedy) เป็นค่าเริ่มต้น เพื่อให้ keyword extraction / answer generation
@@ -80,6 +81,8 @@ def _query_openrouter(prompt, system_prompt="", model=None):
 
 def _query_ollama(prompt, system_prompt="", model=None):
     model = model or OLLAMA_MODEL
+    if not model:
+        return "[ERROR] OLLAMA_MODEL not set"
     options = {"temperature": LLM_TEMPERATURE}
     if LLM_SEED is not None:
         options["seed"] = LLM_SEED

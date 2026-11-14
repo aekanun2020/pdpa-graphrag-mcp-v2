@@ -51,18 +51,20 @@ scripts/
   validate_graph.py      counts nodes/edges from the data, checks connectivity and penalty reachability
 labs/
   core/                  minimal MCP client (httpx), tool registry (MCP inputSchema -> OpenAI tools), LLM client
-  lab7/agent_loop.py     the smallest possible agent loop, local tools only
-  lab8/agent_pdpa_mcp.py the same loop wired to this MCP server
+  lab8/agent_pdpa_mcp.py an agent loop wired to this MCP server
 examples/mcp_curl.sh     talk to the server with plain curl + jq
 docs/                    architecture and pipeline figures
 Dockerfile, docker-compose.yml, requirements.txt, .env.example
 ```
 
 `labs/` contains only the agent-side code; the course lab instructions are not part of this repo.
+`lab7` (an agent loop with local tools only, unrelated to PDPA) was moved out of `main` on 14 Nov 2026; a copy is kept on the `backup/labs` branch.
 
 ## Architecture
 
 ![Architecture: Agent -> MCP Server -> Engine -> Data](docs/fig1_architecture.png)
+
+Both figures are drawn by `docs/figures/make_figures.py` (redrawn on 14 Nov 2026 to match the current code; the earlier architecture figure said `get_penalty` walks 3 hops, but it reports at most 2).
 
 - **Knowledge graph**: NetworkX, in memory. 96 Section nodes plus Definition, LawfulBasis, Right,
   Obligation, Penalty, Exemption and Principle nodes; the backbone edges are `REFERENCES_SECTION`
@@ -126,13 +128,9 @@ python labs/lab8/agent_pdpa_mcp.py "เก็บข้อมูลสุขภ�
 
 The statute and the agent's system prompt are in Thai, so Thai questions work best (the model
 answers in Thai; change `SYSTEM` in `labs/lab8/agent_pdpa_mcp.py` to answer in another language).
-With this version, a run of the question above on 14 Nov 2026 made 5 tool calls in 6 rounds: `search_pdpa` ->
-`get_related_sections(sec_26)` -> `get_penalty(sec_26)` -> `get_section_text(sec_26)` ->
-`get_section_text(sec_84)` -> answer citing Sections 23 / 26 / 79 / 84. The sequence was the same against the
-author's server and against a server built fresh from the repo zip (one run each; see
-[`docs/eval/2026-11-14-learner-reproduction.md`](docs/eval/2026-11-14-learner-reproduction.md), in Thai).
-Expect the number and order of calls to vary between runs: the server-side keyword LLM and the agent's model
-are not deterministic. (With the original code a typical run made 7 tool calls in 4 rounds.)
+The agent uses `deepseek/deepseek-v4.1-flash` through OpenRouter, the `OPENROUTER_MODEL` value in `.env.example`.
+Expect the number and order of tool calls to vary between runs: the server-side keyword LLM and the agent's
+model are not deterministic. (With the original code a typical run made 7 tool calls in 4 rounds.)
 
 ## MCP tools
 

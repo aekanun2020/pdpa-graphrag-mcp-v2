@@ -1,7 +1,7 @@
-"""core.llm — OpenRouter client แบบ thin client (เริ่มใช้ Lab 1-2)
+"""core.llm — OpenRouter client แบบ thin client
 
-ใช้ OpenAI SDK ชี้ base_url ไปที่ OpenRouter — "ใต้ฝา" ของ LangFlow ในหลักสูตรที่ 1
-ก็คือการเรียกแบบนี้เอง (อ้างอิง outline บทที่ 1.2)
+ใช้ OpenAI SDK ชี้ base_url ไปที่ OpenRouter — เครื่องมือแบบ low-code ที่ต่อกับ LLM
+ก็เรียก API แบบเดียวกันนี้อยู่ข้างใต้
 """
 from openai import OpenAI
 
@@ -20,7 +20,7 @@ def chat(messages, model: str | None = None, tools=None, **kwargs):
     """เรียก chat completion ครั้งเดียว คืน message object ของ choice แรก.
 
     - messages : list ของ {"role","content",...}
-    - tools    : (ตัวเลือก) OpenAI-format tools สำหรับ tool calling (Lab 3+)
+    - tools    : (ตัวเลือก) OpenAI-format tools สำหรับ tool calling
     """
     client = build_client()
     params = {

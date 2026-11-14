@@ -49,14 +49,14 @@ scripts/
   validate_graph.py      นับโหนด/เส้นจากข้อมูลจริง ตรวจการเชื่อมต่อและการเดินไปถึงบทลงโทษ
 labs/
   core/                  MCP client ขนาดเล็ก (httpx), tool registry (MCP inputSchema -> OpenAI tools), LLM client
-  lab7/agent_loop.py     agent loop ที่เล็กที่สุด ใช้ tool ในเครื่องเท่านั้น
-  lab8/agent_pdpa_mcp.py loop เดียวกัน ต่อเข้ากับ MCP server นี้
+  lab8/agent_pdpa_mcp.py agent loop ที่ต่อเข้ากับ MCP server นี้
 examples/mcp_curl.sh     คุยกับ server ด้วย curl + jq
 docs/                    รูปสถาปัตยกรรมและ pipeline
 Dockerfile, docker-compose.yml, requirements.txt, .env.example
 ```
 
 `labs/` มีเฉพาะโค้ดฝั่ง agent เอกสารประกอบ lab ของคอร์สไม่ได้อยู่ใน repo นี้
+`lab7` (agent loop ที่ใช้ tool ในเครื่อง ไม่เกี่ยวกับ PDPA) ถูกย้ายออกจาก `main` เมื่อ 14 พ.ย. 2569 สำเนาอยู่ที่ branch `backup/labs`
 
 ## สถาปัตยกรรม
 
@@ -73,7 +73,7 @@ Dockerfile, docker-compose.yml, requirements.txt, .env.example
 - **LLM ฝั่ง server** ใช้ทำอย่างเดียว คือแตกคีย์เวิร์ดสำหรับค้น คำตอบเขียนโดยโมเดลของ agent เอง:
   *server ค้น ส่วน agent คิดและตอบ*
 
-ในรูปเขียนว่า `get_penalty` เดิน 3 hop แต่ผลจริงได้ไม่เกิน 2 hop (ดูตาราง MCP tools)
+รูปทั้งสองวาดจาก `docs/figures/make_figures.py` (แก้ล่าสุด 14 พ.ย. 2569 ให้ตรงกับโค้ดปัจจุบัน รูปเดิมเขียนว่า `get_penalty` เดิน 3 hop ซึ่งผลจริงได้ไม่เกิน 2 hop)
 
 ## เริ่มใช้งาน
 
@@ -125,11 +125,8 @@ python labs/lab8/agent_pdpa_mcp.py "เก็บข้อมูลสุขภ�
 
 ตัวบทและ system prompt ของ agent เป็นภาษาไทย คำถามภาษาไทยจึงได้ผลดีที่สุด
 (ถ้าต้องการให้ตอบภาษาอื่น แก้ `SYSTEM` ใน `labs/lab8/agent_pdpa_mcp.py`)
-กับฉบับนี้ การรันคำถามข้างบนเมื่อ 14 พ.ย. 2569 เรียก tool 5 ครั้งใน 6 รอบ: `search_pdpa` -> `get_related_sections(sec_26)` ->
-`get_penalty(sec_26)` -> `get_section_text(sec_26)` -> `get_section_text(sec_84)` -> ตอบโดยอ้างมาตรา 23 / 26 / 79 / 84
-ได้ลำดับเดียวกันทั้งกับ server ของผู้สอนและ server ที่ build ใหม่จาก zip ของ repo (รันฝั่งละครั้งเดียว ดู
-[`docs/eval/2026-11-14-learner-reproduction.md`](docs/eval/2026-11-14-learner-reproduction.md))
-จำนวนและลำดับการเรียกอาจต่างไปในแต่ละรอบ เพราะคีย์เวิร์ดจาก LLM ฝั่ง server และคำตอบของโมเดลฝั่ง agent ไม่คงที่
+agent ใช้โมเดล `deepseek/deepseek-v4.1-flash` ผ่าน OpenRouter ตามค่า `OPENROUTER_MODEL` ใน `.env.example`
+จำนวนและลำดับการเรียก tool ต่างไปได้ในแต่ละรอบ เพราะคีย์เวิร์ดจาก LLM ฝั่ง server และคำตอบของโมเดลฝั่ง agent ไม่คงที่
 (กับโค้ดของ repo เดิม การรันทั่วไปเรียก tool 7 ครั้งใน 4 รอบ)
 
 ## MCP tools
