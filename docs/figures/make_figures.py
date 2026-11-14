@@ -16,7 +16,9 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch
 
 OUT = Path(__file__).resolve().parent.parent
-plt.rcParams["font.family"] = ["Arial", "DejaVu Sans"]
+# Thai text needs a font whose vowel and tone marks stack correctly without a shaping engine. On macOS
+# "Arial Unicode MS" does in matplotlib; Thonburi, Tahoma, Sarabun and Noto Sans Thai do not.
+plt.rcParams["font.family"] = ["Arial", "Arial Unicode MS", "DejaVu Sans"]
 
 INK, GREY, LINE = "#1a1a1a", "#555555", "#c9cabd"
 PANEL, BLUE_FILL, BLUE_EDGE = "#ececea", "#dde6f0", "#2f7de1"
@@ -91,54 +93,56 @@ def fig1():
 
 
 def fig3():
-    W, H = 1340, 1500
+    # Thai is used wherever the running system uses Thai: the question, the keyword kinds named in the
+    # prompt, the statute text in a graph line, and the three context headers (copied from retrieval.py).
+    W, H = 1340, 1560
     fig, ax = canvas(W, H, "search_pdpa: one question, six steps, graph + statute text in one context")
-    ax.text(64, 78, "the only one of the 5 MCP tools that uses the LLM and vector search \u2014 the other four look up the graph or the statute text directly",
+    ax.text(64, 78, "the only one of the 5 MCP tools that uses the LLM and vector search — the other four look up the graph or the statute text directly",
             fontsize=10.2, color=GREY, va="center")
-    box(ax, 318, 96, 708, 100, "User question",
-        [("“Can a company collect employees’ fingerprints for timekeeping? Is consent required?”", GREY)],
-        center=True)
-    arrow(ax, [(672, 196), (672, 232)])
-    box(ax, 208, 232, 928, 158, "1  LLM keyword extraction (gpt-oss-120b via OpenRouter) — the only LLM call",
-        ["low-level ≤ 8: specific terms in the statute’s wording — rights, duties, penalties, scope",
-         "high-level ≤ 6: principles, categories, concepts",
-         ("section numbers only if the question names them or the model is sure (≤ 2) · each set is joined into one query string", GREY)])
-    arrow(ax, [(672, 390), (672, 418), (346, 418), (346, 446)])
-    arrow(ax, [(672, 418), (996, 418), (996, 446)])
-    box(ax, 64, 446, 566, 186, "2  Profile search · pdpa_profiles (570)",
+    box(ax, 268, 104, 808, 100, "User question (คำถามของผู้ใช้)",
+        [("“บริษัทเก็บลายนิ้วมือพนักงานเพื่อลงเวลาทำงาน ต้องขอความยินยอมไหม”", GREY)], center=True)
+    arrow(ax, [(672, 204), (672, 240)])
+    box(ax, 208, 240, 928, 186, "1  LLM keyword extraction (gpt-oss-120b via OpenRouter) — the only LLM call",
+        ["low-level ≤ 8 คำ: คำเฉพาะเจาะจง เช่น ชื่อหน่วยงาน สิทธิเฉพาะ หน้าที่เฉพาะ บทลงโทษ",
+         "high-level ≤ 6 คำ: คำกว้าง เช่น หลักการ หมวดหมู่ แนวคิด ขั้นตอน",
+         "ใช้ถ้อยคำแบบที่ตัวบทใช้ เช่น “ขายข้อมูล” → “เปิดเผยข้อมูลส่วนบุคคล”",
+         ("section numbers (เลขมาตรา) only if the question names them or the model is sure (≤ 2) · each set is joined into one query string", GREY)])
+    arrow(ax, [(672, 426), (672, 454), (346, 454), (346, 482)])
+    arrow(ax, [(672, 454), (996, 454), (996, 482)])
+    box(ax, 64, 482, 566, 186, "2  Profile search · pdpa_profiles (570)",
         ["round A: high-level query → top 5 (top_k)",
          "round B: low-level query → top 3",
          "each round: dense + sparse → RRF (k = 60)",
          ("merged list: A first, then new ones from B (≤ 8)", GREY)])
-    box(ax, 714, 446, 566, 186, "5  Chunk search · pdpa_chunks (96)",
+    box(ax, 714, 482, 566, 186, "5  Chunk search · pdpa_chunks (96)",
         ["low + high keywords combined into one query",
          "dense + sparse → RRF (k = 60)",
-         "full text of ≤ 5 sections",
+         "full text of ≤ 5 sections (ตัวบทเต็มของมาตรา)",
          ("independent of steps 3–4: does not use the graph", GREY)])
-    arrow(ax, [(346, 632), (346, 676)], "profile ids (node or edge profiles)", (366, 654))
-    box(ax, 64, 676, 566, 158, "3  Pick seeds — no LLM",
+    arrow(ax, [(346, 668), (346, 712)], "profile ids (node or edge profiles)", (366, 690))
+    box(ax, 64, 712, 566, 158, "3  Pick seeds — no LLM",
         ["walk the merged list in order",
          "skip edge profiles (id contains “--”) and the Act node",
          "first 3 node ids left = seeds, e.g. def_biometric"])
-    arrow(ax, [(346, 834), (346, 878)], "≤ 3 seed nodes", (366, 856))
-    box(ax, 64, 878, 566, 272, "4  Multi-hop BFS · NetworkX",
+    arrow(ax, [(346, 870), (346, 914)], "≤ 3 seed nodes", (366, 892))
+    box(ax, 64, 914, 566, 272, "4  Multi-hop BFS · NetworkX",
         ["2 hops from each seed, both edge directions",
          "keep ≤ 15 lines, quota shared round-robin across seeds",
          "order: penalty and obligation edges, then cross-references",
          "and exemptions, then other edges; structural edges last",
          ("penalty question: penalty sections citing the node go first", GREY),
-         "[hop1] def_biometric ←DEFINES— sec_26: …",
+         "[hop1] def_biometric ←DEFINES— sec_26: มาตรา ๒๖ ห้ามมิให้เก็บรวบรวม…",
          "[hop2] sec_26 —GRANTS_EXEMPTION→ sec26_ex1: …"],
-        fill=BLUE_FILL, edge=BLUE_EDGE, lw=2.2, mono=(5, 6))
-    arrow(ax, [(346, 1150), (346, 1180), (530, 1180), (530, 1210)])
-    arrow(ax, [(996, 632), (996, 1180), (814, 1180), (814, 1210)], "full section text", (1014, 900))
-    box(ax, 248, 1210, 848, 158, "6  Build hybrid context",
-        ["## Knowledge graph — VALUE of ≤ 8 profiles (step 2)",
-         "### Linked facts (multi-hop) — ≤ 15 lines (step 4)",
-         "## Original PDPA text — ≤ 5 full sections (step 5)"])
-    arrow(ax, [(672, 1368), (672, 1400)])
-    box(ax, 318, 1400, 708, 84, "JSON back to the agent",
-        [("the server retrieves · the agent’s LLM reads and answers", GREY)], center=True)
+        fill=BLUE_FILL, edge=BLUE_EDGE, lw=2.2, mono=(6,))
+    arrow(ax, [(346, 1186), (346, 1216), (530, 1216), (530, 1246)])
+    arrow(ax, [(996, 668), (996, 1216), (814, 1216), (814, 1246)], "full section text", (1014, 940))
+    box(ax, 248, 1246, 848, 158, "6  Build hybrid context — the headers are Thai in the real output",
+        ["## ความรู้จาก Knowledge Graph (PDPA) — VALUE of ≤ 8 profiles (step 2)",
+         "### ข้อมูลเชื่อมโยง (multi-hop graph): — ≤ 15 lines (step 4)",
+         "## เนื้อหาต้นฉบับ PDPA (Original Text) — ≤ 5 full sections (step 5)"])
+    arrow(ax, [(672, 1404), (672, 1436)])
+    box(ax, 318, 1436, 708, 84, "JSON back to the agent",
+        [("the server retrieves · the agent’s LLM reads and answers (lab8 answers in Thai)", GREY)], center=True)
     fig.savefig(OUT / "fig3_search_pipeline.png", facecolor="white"); plt.close(fig)
 
 
