@@ -1,0 +1,5 @@
+# Instructor-only material: kept in the repository, left out of downloaded archives
+# (GitHub "Download ZIP", zipball/tarball API and `git archive` all honour export-ignore).
+# The leading slash limits the rule to the top-level eval/ folder; docs/eval/ is not affected.
+/eval/          export-ignore
+.gitattributes  export-ignore
