@@ -172,7 +172,8 @@ class PDPALightRAG:
         G = self.knowledge_graph
         penalties = []
 
-        # BFS: section → ... → Penalty nodes (max 3 hops)
+        # BFS: section → ... → Penalty nodes — รายงานโหนด Penalty ที่อยู่ห่างไม่เกิน 2 hop
+        # (โหนดที่ hop 3 ถูกข้ามด้วย `if hop >= 3: continue` ก่อนถึงบรรทัดที่บันทึกผล)
         from collections import deque
         visited = set()
         queue = deque()

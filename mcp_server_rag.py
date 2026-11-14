@@ -1,7 +1,7 @@
 """
 MCP Server for PDPA RAG — FastMCP + streamable-http
 ====================================================
-4 tools: search_pdpa, get_related_sections, get_penalty, get_summary
+5 tools: search_pdpa, get_related_sections, get_penalty, get_pdpa_summary, get_section_text
 """
 
 import os
