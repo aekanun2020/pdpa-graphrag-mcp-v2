@@ -2,7 +2,7 @@
 Lab 8 — สร้าง Agent ที่เชื่อมต่อกับ PDPA GraphRAG MCP Server (จาก PART 1)
 อ้างอิง outline: บทที่ 1.4 / แบบฝึกหัดที่ 4
 
-ต่อยอด agent loop ของ Lab 7 แต่เปลี่ยนจาก local tool เป็น **MCP tools จริง**:
+ต่อยอด agent loop ของ Lab 7 (อยู่ที่ branch backup/labs) แต่เปลี่ยนจาก local tool เป็น **MCP tools จริง**:
   - MCP Tool Discovery อัตโนมัติผ่าน Streamable HTTP (core.mcp_client)
   - แปลง MCP inputSchema -> OpenAI function (core.registry.mcp_to_openai_tools)
   - Tool Registry รวม tools จากหลาย MCP server (ที่นี่ต่อ PDPA GraphRAG เป็นแกน)

@@ -51,14 +51,14 @@ scripts/
   validate_graph.py      counts nodes/edges from the data, checks connectivity and penalty reachability
 labs/
   core/                  minimal MCP client (httpx), tool registry (MCP inputSchema -> OpenAI tools), LLM client
-  lab7/agent_loop.py     the smallest possible agent loop, local tools only
-  lab8/agent_pdpa_mcp.py the same loop wired to this MCP server
+  lab8/agent_pdpa_mcp.py an agent loop wired to this MCP server
 examples/mcp_curl.sh     talk to the server with plain curl + jq
 docs/                    architecture and pipeline figures
 Dockerfile, docker-compose.yml, requirements.txt, .env.example
 ```
 
 `labs/` contains only the agent-side code; the course lab instructions are not part of this repo.
+`lab7` (an agent loop with local tools only, unrelated to PDPA) was moved out of `main` on 14 Nov 2026; a copy is kept on the `backup/labs` branch.
 
 ## Architecture
 

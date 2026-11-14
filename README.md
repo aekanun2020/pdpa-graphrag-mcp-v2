@@ -49,14 +49,14 @@ scripts/
   validate_graph.py      นับโหนด/เส้นจากข้อมูลจริง ตรวจการเชื่อมต่อและการเดินไปถึงบทลงโทษ
 labs/
   core/                  MCP client ขนาดเล็ก (httpx), tool registry (MCP inputSchema -> OpenAI tools), LLM client
-  lab7/agent_loop.py     agent loop ที่เล็กที่สุด ใช้ tool ในเครื่องเท่านั้น
-  lab8/agent_pdpa_mcp.py loop เดียวกัน ต่อเข้ากับ MCP server นี้
+  lab8/agent_pdpa_mcp.py agent loop ที่ต่อเข้ากับ MCP server นี้
 examples/mcp_curl.sh     คุยกับ server ด้วย curl + jq
 docs/                    รูปสถาปัตยกรรมและ pipeline
 Dockerfile, docker-compose.yml, requirements.txt, .env.example
 ```
 
 `labs/` มีเฉพาะโค้ดฝั่ง agent เอกสารประกอบ lab ของคอร์สไม่ได้อยู่ใน repo นี้
+`lab7` (agent loop ที่ใช้ tool ในเครื่อง ไม่เกี่ยวกับ PDPA) ถูกย้ายออกจาก `main` เมื่อ 14 พ.ย. 2569 สำเนาอยู่ที่ branch `backup/labs`
 
 ## สถาปัตยกรรม
 
