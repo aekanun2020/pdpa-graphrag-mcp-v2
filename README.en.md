@@ -90,8 +90,8 @@ Requirements: Docker with Compose and an [OpenRouter](https://openrouter.ai) API
   Most of it is torch and its dependencies, plus BGE-M3 (~2.3 GB), which is baked in at build time so the
   container starts offline.
 - **Pinned versions:** `requirements.txt` and `constraints.txt` fix every Python package, the `Dockerfile` uses
-  Python 3.11.18 and compose uses Qdrant 1.20.0 — the set that produced the results in `docs/eval/`. (Checked on
-  14 Nov 2026: a fresh build from the repo zip returned search contexts identical to the recorded ones when given
+  Python 3.11.18 and compose uses Qdrant 1.20.0 — the set the author tested with. (Checked on
+  14 Nov 2026: a fresh build from the repo zip returned search contexts identical to the author's when given
   the same keywords.) Not pinned: the BGE-M3 weights, downloaded from Hugging Face at build time (tested
   snapshot `5617a9f6`), and system packages from apt.
 
@@ -192,10 +192,8 @@ To use this on another statute, swap the heading pattern (`Article\s+(\d+)` for 
   start (no hot reload). For a corpus of laws use a graph database; `build_graph.py` also emits
   `pdpa_neo4j_import.cypher`.
 - Rule-based graph construction means porting to a new law is curation work, not configuration.
-- There is no standard evaluation set yet. What exists is a record of 12 internal test rounds in
-  [`docs/eval/`](docs/eval/) (in Thai).
-  The 52 questions and their expected sections were written during development, in the agent round each was
-  run once per build, and none has been reviewed by a lawyer. Contributions of question/answer pairs with expected section
+- There is no standard evaluation set yet. Testing so far has been the author's internal testing, with questions
+  written during development, and none of it has been reviewed by a lawyer. Contributions of question/answer pairs with expected section
   citations are welcome.
 - The shipped graph has a known gap that affects `get_penalty` for one section; it is the subject of
   part 2 of the article series and is left as is until that article is published. Only Sections 77,
