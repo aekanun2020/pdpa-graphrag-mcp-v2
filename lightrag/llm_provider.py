@@ -12,7 +12,9 @@ import json
 LLM_PROVIDER = os.environ.get("LLM_PROVIDER", "openrouter")
 
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
-OPENROUTER_MODEL = os.environ.get("LLM_MODEL", "gpt-oss-120b")
+# ชื่อโมเดลที่ server ส่งไป OpenRouter อ่านจาก env LLM_MODEL
+# (env OPENROUTER_MODEL เป็นของ agent ใน labs/ ไม่เกี่ยวกับ server)
+LLM_MODEL = os.environ.get("LLM_MODEL", "gpt-oss-120b")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
@@ -51,7 +53,7 @@ def query_llm_json(prompt: str, system_prompt: str = "", model: str = None) -> d
 
 
 def _query_openrouter(prompt, system_prompt="", model=None):
-    model = model or OPENROUTER_MODEL
+    model = model or LLM_MODEL
     if not OPENROUTER_API_KEY:
         return "[ERROR] OPENROUTER_API_KEY not set"
     messages = []

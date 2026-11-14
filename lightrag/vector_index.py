@@ -1,18 +1,16 @@
 """
 Vector Index — BGE-M3 (Dense + Sparse) + Qdrant (PDPA RAG version)
 ==================================================================
-ปรับจาก XXX version — ตัด fact graph profiles, เหลือ knowledge + chunks
+มี 2 collection: profiles ของ knowledge graph และ chunks ของตัวบท
 """
 
 import os
 import uuid
-import numpy as np
 from FlagEmbedding import BGEM3FlagModel
 from qdrant_client import QdrantClient
 from qdrant_client.models import (
     VectorParams, SparseVectorParams, SparseIndexParams,
     Distance, PointStruct, SparseVector,
-    Filter, FieldCondition, MatchValue,
     Prefetch, FusionQuery, Fusion,
 )
 

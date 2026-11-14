@@ -2,13 +2,13 @@
 Retrieval — PDPA Legal Knowledge Retrieval (PDPA RAG version)
 =============================================================
 keyword extraction → vector search → multi-hop BFS → hybrid context
-ปรับ prompts จาก XXX ระบบไฟฟ้า → PDPA กฎหมายคุ้มครองข้อมูลส่วนบุคคล
+server ค้นอย่างเดียว ไม่เขียนคำตอบ: คำตอบเป็นหน้าที่ของ agent ที่เรียกเครื่องมือ
 """
 
 import re
 
 import networkx as nx
-from .llm_provider import query_llm_json, query_llm
+from .llm_provider import query_llm_json
 from .vector_index import VectorIndex
 from .knowledge_graph import node_description
 
@@ -290,23 +290,3 @@ def _build_context(profile_results, expanded, chunk_results) -> str:
                 ctx += f"\n### {header}:\n{text}\n"
 
     return ctx
-
-
-def generate_answer(query: str, context: str) -> str:
-    """สร้างคำตอบจาก context"""
-    prompt = f"""ใช้ข้อมูลต่อไปนี้ในการตอบคำถามเกี่ยวกับ PDPA:
-
-{context}
-
-คำถาม: {query}
-
-กฎ:
-- ตอบเป็นภาษาไทย กระชับ ได้ใจความ
-- อ้างอิงมาตราที่เกี่ยวข้องให้ชัดเจน (เช่น "ตามมาตรา ๒๖")
-- แยกให้ชัดระหว่าง "บทบัญญัติตามกฎหมาย" กับ "คำแนะนำเพิ่มเติม"
-- ถ้ามีบทลงโทษที่เกี่ยวข้อง ให้ระบุด้วย
-- ถ้าข้อมูลไม่เพียงพอให้บอกตรงๆ"""
-
-    system = ("คุณเป็น AI ที่ปรึกษากฎหมาย PDPA (พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562) "
-              "ตอบคำถามโดยอ้างอิงจากเนื้อหากฎหมายจริง")
-    return query_llm(prompt, system_prompt=system)

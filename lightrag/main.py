@@ -2,13 +2,13 @@
 PDPA LightRAG — Main Library สำหรับ MCP Server
 ================================================
 Pipeline: Load pre-built graph → Parse MD → Embed → Index → Retrieve
-ไม่มี Fact Graph (ต่างจาก XXX) — ใช้ single knowledge graph
+ใช้ knowledge graph ชุดเดียว (ไม่มี fact graph แยก)
 """
 
 import sys
 from .knowledge_graph import ingest_pdpa, node_description
 from .vector_index import VectorIndex
-from .retrieval import retrieve, generate_answer
+from .retrieval import retrieve
 
 
 class PDPALightRAG:
@@ -72,13 +72,6 @@ class PDPALightRAG:
         if not self._initialized:
             return {"error": "PDPA LightRAG ยังไม่ได้ build"}
         return retrieve(query, self.index, self.knowledge_graph, top_k=top_k)
-
-    def query(self, question: str, top_k: int = 5) -> str:
-        """ค้นหา + สร้างคำตอบ (standalone test)"""
-        if not self._initialized:
-            return "[ERROR] กรุณาเรียก .build() ก่อน"
-        result = retrieve(question, self.index, self.knowledge_graph, top_k=top_k)
-        return generate_answer(question, result["context"])
 
     # ─── Graph Traversal Methods ─────────────────────────────
 

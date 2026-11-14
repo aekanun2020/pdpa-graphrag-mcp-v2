@@ -10,7 +10,7 @@ import os
 import re
 import json
 import networkx as nx
-from .llm_provider import query_llm_json, query_llm
+from .llm_provider import query_llm_json
 
 DATA_DIR = os.environ.get("DATA_DIR", os.path.join(os.path.dirname(__file__), "..", "data"))
 PDPA_MD = os.path.join(DATA_DIR, "pdpa_full_text_v2.md")
@@ -313,10 +313,10 @@ PROFILE_PROMPT = """จาก entity นี้ในบริบทกฎหม�
 
 # ─── Main Pipeline ───────────────────────────────────────
 
-def ingest_pdpa(use_llm_extract: bool = True, use_llm_profile: bool = False) -> tuple[nx.DiGraph, list[dict], dict]:
+def ingest_pdpa(use_llm_extract: bool = False, use_llm_profile: bool = False) -> tuple[nx.DiGraph, list[dict], dict]:
     """
     Pipeline หลัก:
-    1. Load pre-built rule-based graph (163 nodes, 343 edges)
+    1. Load pre-built rule-based graph (190 nodes, 380 edges)
     2. Parse PDPA markdown → chunks (1 chunk = 1 มาตรา)
     3. (Optional) LLM extract entities → merge เข้า graph
     4. Profile graph nodes → search profiles
