@@ -77,9 +77,18 @@ Dockerfile, docker-compose.yml, requirements.txt, .env.example
 
 ## เริ่มใช้งาน
 
-สิ่งที่ต้องมี: Docker พร้อม Compose, API key ของ [OpenRouter](https://openrouter.ai)
-และพื้นที่ดิสก์ประมาณ 5 GB สำหรับ image (BGE-M3 ขนาดราว 2.3 GB ถูกใส่ไว้ใน image ตอน build
-container จึงเริ่มได้โดยไม่ต้องต่ออินเทอร์เน็ต)
+สิ่งที่ต้องมี: Docker พร้อม Compose และ API key ของ [OpenRouter](https://openrouter.ai)
+
+- **หน่วยความจำของ Docker:** ตั้งไว้อย่างน้อย 8 GB และไม่ควรมี container อื่นที่ใช้หน่วยความจำมากรันอยู่ด้วย
+  ตอนเริ่ม server ใช้สูงสุดที่วัดได้ 4.7 GB (ช่วง embed ตัวบท) แล้วลดลงเหลือราว 2.8 GB ตอนทำงานปกติ
+  ถ้าหน่วยความจำไม่พอ container จะถูก kill ระหว่างเริ่ม (log ขึ้น `Killed` หรือสถานะ `Restarting (137)`)
+- **พื้นที่ดิสก์:** image ที่ build แล้วมีขนาดราว 18 GB ตามที่ Docker รายงาน (วัดบน Mac ชิป ARM, Docker Desktop)
+  ส่วนใหญ่เป็น torch กับไลบรารีที่ติดมา และ BGE-M3 ราว 2.3 GB ที่ถูกใส่ไว้ใน image ตอน build
+  container จึงเริ่มได้โดยไม่ต้องต่ออินเทอร์เน็ต
+- **รุ่นที่ตรึงไว้:** `requirements.txt` กับ `constraints.txt` ตรึงรุ่นไลบรารี Python ทุกตัว `Dockerfile` ใช้ Python 3.11.18
+  และ compose ใช้ Qdrant 1.20.0 เป็นชุดเดียวกับที่ใช้สร้างผลใน `docs/eval/` (ตรวจเมื่อ 14 พ.ย. 2569: build ใหม่จาก zip
+  ของ repo ได้ผลค้นตรงกับที่บันทึกไว้ทุกตัวอักษรเมื่อใช้คีย์เวิร์ดชุดเดียวกัน) สิ่งที่ไม่ได้ตรึงคือน้ำหนักของ BGE-M3
+  ซึ่งดาวน์โหลดจาก Hugging Face ตอน build (รุ่นที่ทดสอบคือ snapshot `5617a9f6`) และแพ็กเกจของระบบจาก apt
 
 ```bash
 cp .env.example .env            # ใส่ OPENROUTER_API_KEY ใน .env

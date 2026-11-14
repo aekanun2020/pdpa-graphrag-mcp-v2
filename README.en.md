@@ -78,8 +78,20 @@ Dockerfile, docker-compose.yml, requirements.txt, .env.example
 
 ## Quick start
 
-Requirements: Docker with Compose, an [OpenRouter](https://openrouter.ai) API key, and about 5 GB of
-disk for the image (BGE-M3, ~2.3 GB, is baked in at build time so the container starts offline).
+Requirements: Docker with Compose and an [OpenRouter](https://openrouter.ai) API key.
+
+- **Docker memory:** give Docker at least 8 GB and avoid running other memory-heavy containers next to it.
+  Startup peaked at 4.7 GB in our measurement (while embedding the statute text) and settles at about 2.8 GB.
+  With too little memory the container is killed during startup (the log shows `Killed`, or the status is
+  `Restarting (137)`).
+- **Disk:** the built image is about 18 GB as reported by Docker (measured on an ARM Mac with Docker Desktop).
+  Most of it is torch and its dependencies, plus BGE-M3 (~2.3 GB), which is baked in at build time so the
+  container starts offline.
+- **Pinned versions:** `requirements.txt` and `constraints.txt` fix every Python package, the `Dockerfile` uses
+  Python 3.11.18 and compose uses Qdrant 1.20.0 — the set that produced the results in `docs/eval/`. (Checked on
+  14 Nov 2026: a fresh build from the repo zip returned search contexts identical to the recorded ones when given
+  the same keywords.) Not pinned: the BGE-M3 weights, downloaded from Hugging Face at build time (tested
+  snapshot `5617a9f6`), and system packages from apt.
 
 ```bash
 cp .env.example .env            # put your OPENROUTER_API_KEY in .env

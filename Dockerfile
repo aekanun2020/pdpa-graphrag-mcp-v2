@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.11.18-slim
 
 WORKDIR /app
 
@@ -6,8 +6,8 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends gcc libc6-dev zlib1g-dev && rm -rf /var/lib/apt/lists/*
 
 # Dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt constraints.txt ./
+RUN pip install --no-cache-dir -r requirements.txt -c constraints.txt
 
 # Bake BGE-M3 model ใส่ image (~2.3 GB)
 RUN python -c "from FlagEmbedding import BGEM3FlagModel; BGEM3FlagModel('BAAI/bge-m3', use_fp16=True)"
