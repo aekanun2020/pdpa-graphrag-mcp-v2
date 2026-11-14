@@ -1,0 +1,7 @@
+{"code": "U676", "n_claims": 27, "n_correct": 26, "n_partly": 1, "n_wrong": 0, "n_citation_wrong": 0, "n_not_in_evidence": 1,
+ "conclusion": "correct", "conclusion_reason": "The answer lists all six items of section 23 (1)-(6) accurately, with the before-or-at-collection timing and the already-known exception, and correctly adds the section 82 fine of up to one million baht.",
+ "uses_key_sections": true,
+ "problems": [
+  {"type": "partly", "quote": "หากขอความยินยอมไม่เป็นไปตามที่กำหนด ไม่มีผลผูกพันเจ้าของข้อมูล (ม.๑๙ วรรคแปด)", "law_section": 19, "why": "The rule is correct but section 19 has only seven paragraphs; the non-binding rule is the seventh (last) paragraph, not an eighth."},
+  {"type": "not_in_evidence", "quote": "ม.๓๖ วรรคหนึ่ง – สิทธิร้องขอให้แก้ไขข้อมูลให้ถูกต้อง เป็นปัจจุบัน สมบูรณ์ ไม่ทำให้เข้าใจผิด", "law_section": 35, "why": "Section 36 para 1 only refers to a request to act 'ตามมาตรา ๓๕'; the accurate/up-to-date/complete/not-misleading wording is in section 35, which the agent did not retrieve and which does not appear in the other tool results. The content itself is correct."}
+ ]}

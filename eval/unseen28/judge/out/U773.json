@@ -1,0 +1,13 @@
+{
+ "code": "U773",
+ "n_claims": 3,
+ "n_correct": 3,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "มาตรา 19 วรรคหกกำหนดหน้าที่แจ้งผลกระทบจากการถอนความยินยอม และมาตรา 82 กำหนดโทษปรับทางปกครองไม่เกินหนึ่งล้านบาทสำหรับการไม่แจ้ง ตรงกับคำตอบ",
+ "uses_key_sections": true,
+ "problems": []
+}

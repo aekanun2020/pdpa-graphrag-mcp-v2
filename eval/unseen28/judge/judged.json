@@ -1,0 +1,1121 @@
+[
+ {
+  "system": "lab8",
+  "id": "P2",
+  "code": "U793",
+  "n_claims": 15,
+  "n_correct": 14,
+  "n_partly": 0,
+  "n_wrong": 1,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 2,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 82 กำหนดโทษปรับทางปกครองไม่เกินหนึ่งล้านบาทแก่ผู้ควบคุมที่ไม่ปฏิบัติตามมาตรา 41 วรรคหนึ่ง ไม่มีโทษจำคุก ตรงกับคำตอบ ข้อผิดพลาดเรื่องมาตรา 84 เป็นเพียงข้อเปรียบเทียบข้างเคียง",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "wrong",
+    "quote": "ต่างจากความผิดอาญาตามหมวด ๗ ส่วนที่ ๑ เช่น ม.๗๙, ม.๘๔ ที่เกี่ยวกับข้อมูลอ่อนไหว/การโอนข้อมูลข้ามพรมแดน ซึ่งมีโทษจำคุก",
+    "law_section": 84,
+    "why": "มาตรา 84 อยู่ในหมวด 7 ส่วนที่ 2 เป็นโทษปรับทางปกครองไม่เกินห้าล้านบาท ไม่ใช่ความผิดอาญาและไม่มีโทษจำคุก"
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "ต่างจากความผิดอาญาตามหมวด ๗ ส่วนที่ ๑ เช่น ม.๗๙, ม.๘๔ ... ซึ่งมีโทษจำคุก",
+    "law_section": 84,
+    "why": "มาตรา 84 ไม่อยู่ในชุดมาตราที่ดึงมา ผลการค้นกราฟมีเพียงข้อความตอนต้นที่ถูกตัด ไม่มีส่วนโทษ และไม่มีตัวบทใดรองรับว่ามีโทษจำคุก"
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "ความผิดอาญาตามหมวด ๗ ส่วนที่ ๑ เช่น ม.๗๙ ... ซึ่งมีโทษจำคุก",
+    "law_section": 79,
+    "why": "มาตรา 79 มีโทษจำคุกจริง (ไม่เกินหกเดือนหรือหนึ่งปี) แต่มาตรา 79 ไม่อยู่ในชุดมาตราที่ดึงมา และข้อความในผลกราฟถูกตัดก่อนถึงส่วนโทษ"
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "P2",
+  "code": "U219",
+  "n_claims": 7,
+  "n_correct": 7,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "Correctly states that a hospital falling under section 41 paragraph 1 (notably item (3), health data under section 26) that fails to appoint a DPO faces an administrative fine up to one million baht under section 82 as controller (section 85 if processor).",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "P4",
+  "code": "U672",
+  "n_claims": 12,
+  "n_correct": 12,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "Using data for a purpose different from the one notified without new notice and consent violates section 21 (and section 27), punishable under section 83 by an administrative fine of up to 3 million baht; the answer also correctly limits the section 84 fine (5 million) and section 79 criminal penalties to section 26 sensitive data.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "harness",
+  "id": "P4",
+  "code": "U408",
+  "n_claims": 10,
+  "n_correct": 9,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The penalty stated (administrative fine up to 3 million baht under ม.83, with ม.84/ม.79 only for ม.26 data) matches the statute, although the duty breached is grounded on ม.27 instead of the purpose-limitation rule in ม.21.",
+  "uses_key_sections": false,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ถือเป็นการใช้ข้อมูลส่วนบุคคลโดยไม่ได้รับความยินยอมตาม มาตรา 27 วรรคหนึ่ง",
+    "law_section": 21,
+    "why": "Use different from the notified purpose is governed by ม.21 วรรคสอง: prohibited unless the new purpose is notified and consent obtained first, or this Act or another law permits it. ม.27 วรรคหนึ่ง is the general no-use-without-consent rule and says nothing about changed purpose; ม.21 was never retrieved."
+   }
+  ]
+ },
+ {
+  "system": "lab8",
+  "id": "P6",
+  "code": "U751",
+  "n_claims": 12,
+  "n_correct": 10,
+  "n_partly": 1,
+  "n_wrong": 1,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 2,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 83 กำหนดโทษปรับทางปกครองไม่เกินสามล้านบาทสำหรับการฝ่าฝืนมาตรา 28 และมาตรา 84 ไม่เกินห้าล้านบาทเมื่อเกี่ยวกับข้อมูลตามมาตรา 26 ตรงกับข้อสรุป ข้อผิดพลาดอยู่เฉพาะในส่วนคำแนะนำท้ายคำตอบ",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "wrong",
+    "quote": "มีโทษปรับรายวันกรณีไม่ปฏิบัติตามคำสั่งของคณะกรรมการผู้เชี่ยวชาญด้วย",
+    "law_section": 89,
+    "why": "พระราชบัญญัติไม่มีโทษปรับรายวัน มาตรา 89 กำหนดเพียงโทษปรับทางปกครองไม่เกินห้าแสนบาทสำหรับการไม่ปฏิบัติตามคำสั่งของคณะกรรมการผู้เชี่ยวชาญ"
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มีโทษปรับรายวันกรณีไม่ปฏิบัติตามคำสั่งของคณะกรรมการผู้เชี่ยวชาญด้วย",
+    "law_section": 89,
+    "why": "ไม่มีตัวบทรองรับ และมาตรา 89 ไม่อยู่ในชุดมาตราที่ดึงมาหรือในผลเครื่องมืออื่น"
+   },
+   {
+    "type": "partly",
+    "quote": "โทษทางปกครองตาม ม.๘๓/๘๔/๘๖/๘๗ ยังอาจมี โทษทางอาญา ในกรณีของเจ้าหน้าที่/ผู้บริหารที่เกี่ยวข้องเพิ่มเติมได้",
+    "law_section": 81,
+    "why": "มาตรา 81 ให้กรรมการ ผู้จัดการ หรือผู้รับผิดชอบรับโทษด้วยเฉพาะเมื่อนิติบุคคลกระทำความผิด (เช่น ความผิดอาญาตามมาตรา 79) จากการสั่งการหรือละเว้นของผู้นั้น ไม่ใช่โทษอาญาที่ตามมาจากโทษปรับทางปกครองโดยทั่วไป"
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "ยังอาจมี โทษทางอาญา ในกรณีของเจ้าหน้าที่/ผู้บริหารที่เกี่ยวข้องเพิ่มเติมได้",
+    "law_section": 81,
+    "why": "ความรับผิดของผู้บริหารนิติบุคคลอยู่ในมาตรา 81 ซึ่งไม่อยู่ในชุดมาตราที่ดึงมา"
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "P6",
+  "code": "U620",
+  "n_claims": 16,
+  "n_correct": 16,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 83 กำหนดโทษปรับทางปกครองไม่เกินสามล้านบาทสำหรับการฝ่าฝืนมาตรา 28 และมาตรา 84 ไม่เกินห้าล้านบาทเมื่อเป็นข้อมูลตามมาตรา 26 ตรงกับคำตอบ รวมทั้งข้อยกเว้นมาตรา 28 (1)-(6) และมาตรา 29",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "P8",
+  "code": "U452",
+  "n_claims": 10,
+  "n_correct": 10,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 1,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 41 วรรคหนึ่ง บังคับผู้ประมวลผลให้มี DPO ในกรณีที่กำหนด และมาตรา 85 กำหนดโทษปรับทางปกครองไม่เกินหนึ่งล้านบาท ตรงกับคำตอบ",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "not_in_evidence",
+    "quote": "อาจมีคำสั่งทางปกครองอื่นควบคู่ (เช่น คำสั่งให้ดำเนินการแก้ไข)",
+    "law_section": 90,
+    "why": "อำนาจสั่งให้แก้ไขอยู่ในมาตรา 90 วรรคหนึ่ง (สั่งให้แก้ไขหรือตักเตือนก่อนก็ได้) และมาตรา 74 วรรคสาม (1) ซึ่งไม่อยู่ในชุดหลักฐานที่ agent ดึงมา; ตัวบทมาตรา 90 ใช้คำว่า 'ก่อน' ไม่ใช่ 'ควบคู่'"
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "P8",
+  "code": "U282",
+  "n_claims": 7,
+  "n_correct": 7,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 41 วรรคหนึ่งบังคับผู้ประมวลผลที่เข้าเกณฑ์ให้มี DPO และมาตรา 85 กำหนดโทษปรับทางปกครองไม่เกินหนึ่งล้านบาท ตรงกับคำตอบ",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "P10",
+  "code": "U458",
+  "n_claims": 9,
+  "n_correct": 8,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 89 กำหนดโทษปรับทางปกครองไม่เกินห้าแสนบาทแก่ผู้ไม่ปฏิบัติตามคำสั่งของคณะกรรมการผู้เชี่ยวชาญหรือไม่มาชี้แจงตามมาตรา 75 ตรงกับคำตอบ",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ตาม มาตรา ๗๔ วรรคหก คำสั่งของคณะกรรมการผู้เชี่ยวชาญ ให้เป็นที่สุด (และวรรคห้า ให้ประธานกรรมการผู้เชี่ยวชาญลงนามแทน)",
+    "law_section": 74,
+    "why": "ตามตัวบท การลงนามแทนโดยประธานอยู่วรรคหก และ 'ให้เป็นที่สุด' อยู่วรรคเจ็ด อีกทั้งความเป็นที่สุดจำกัดเฉพาะคำสั่ง 'ตามมาตรานี้' (มาตรา 74) ไม่ใช่คำสั่งทุกประเภท — เลขวรรคคลาดเคลื่อนและขอบเขตกว้างเกิน"
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "P10",
+  "code": "U694",
+  "n_claims": 6,
+  "n_correct": 6,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The answer correctly applies section 75 (expert committee's power to order documents and explanations) and section 89 (administrative fine not exceeding 500,000 baht for failing to comply or to appear), with section 90 on the power to fine, prior warning and enforcement accurately stated.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "P11",
+  "code": "U247",
+  "n_claims": 10,
+  "n_correct": 9,
+  "n_partly": 0,
+  "n_wrong": 1,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 2,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา ๑๙ วรรคหก กำหนดหน้าที่แจ้งผลกระทบจากการถอนความยินยอม และมาตรา ๘๒ กำหนดโทษปรับทางปกครองไม่เกินหนึ่งล้านบาทสำหรับการไม่แจ้งดังกล่าว ตรงกับข้อสรุปของคำตอบ",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "wrong",
+    "quote": "ไม่ต้องไปผ่าน ม.๘๓ (ซึ่งเป็นโทษอาญาสำหรับกรณีฝ่าฝืน ม.๒๑, ๒๒, ๒๔, ๒๕ วรรคหนึ่ง, ๒๗, ๒๘, ๓๒ วรรคสอง, ๓๗ เป็นต้น)",
+    "law_section": 83,
+    "why": "มาตรา ๘๓ อยู่ในส่วนที่ ๒ โทษทางปกครอง และกำหนดโทษปรับทางปกครองไม่เกินสามล้านบาท ไม่ใช่โทษอาญา"
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "ไม่ต้องไปผ่าน ม.๘๓ (ซึ่งเป็นโทษอาญาสำหรับกรณีฝ่าฝืน ม.๒๑, ๒๒, ๒๔, ๒๕ วรรคหนึ่ง, ๒๗, ๒๘, ๓๒ วรรคสอง, ๓๗ เป็นต้น)",
+    "law_section": 83,
+    "why": "มาตรา ๘๓ ไม่อยู่ในชุดมาตราที่ดึงตัวบทเต็ม ผลกราฟมีเพียงข้อความตัดตอนรายชื่อมาตราและระบุว่าอยู่ ch7_p2 ไม่มีที่ใดบอกว่าเป็นโทษอาญา"
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "อาจถูกสั่งให้แก้ไข/ดำเนินการให้ถูกต้องโดยคณะกรรมการผู้เชี่ยวชาญ รวมทั้งอาจต้องรับผิดชดใช้ค่าสินไหมทดแทน",
+    "law_section": 77,
+    "why": "เนื้อหาถูกต้องตามมาตรา ๗๔ (อำนาจออกคำสั่งของคณะกรรมการผู้เชี่ยวชาญ) และมาตรา ๗๗ (ค่าสินไหมทดแทน) แต่ทั้งสองมาตราไม่อยู่ในหลักฐานที่ agent ดึงมา"
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "P11",
+  "code": "U773",
+  "n_claims": 3,
+  "n_correct": 3,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 19 วรรคหกกำหนดหน้าที่แจ้งผลกระทบจากการถอนความยินยอม และมาตรา 82 กำหนดโทษปรับทางปกครองไม่เกินหนึ่งล้านบาทสำหรับการไม่แจ้ง ตรงกับคำตอบ",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "C1",
+  "code": "U862",
+  "n_claims": 10,
+  "n_correct": 9,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The shop as controller must keep the data accurate and up to date under section 35, and if it does not act on the request it must record the request with reasons in the section 39 record under section 36, with the customer able to complain to the expert committee via section 34 paragraph 2, as the answer states.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ระบบปลายทางที่ข้อมูลถูกส่งต่อไปแล้ว ... ตามหน้าที่ใน ม.๓๗(๒) ที่ต้องป้องกันมิให้ผู้อื่นใช้หรือเปิดเผยข้อมูลโดยมิชอบ",
+    "law_section": 37,
+    "why": "Section 37(2) only requires the controller to prevent a recipient from using or disclosing data without authority or unlawfully; it does not impose a duty to propagate corrections to recipients or processors."
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "C1",
+  "code": "U159",
+  "n_claims": 11,
+  "n_correct": 11,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The answer correctly states that the shop as controller must keep the address accurate and up to date under section 35, and that if it does not act on the request it must record the request with reasons in the section 39 record under section 36, with the customer able to complain to the expert committee via section 34 paragraph 2.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "Q1",
+  "code": "U115",
+  "n_claims": 15,
+  "n_correct": 14,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "Correctly identifies breach of section 37(1) and 37(4) (fine up to 3 million baht under section 83) and section 41 paragraph one (fine up to 1 million baht under section 82), noting the DPO duty applies only if a section 41 condition is met.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ฝ่าฝืน ม.๔๐ → ม.๘๖ ปรับทางปกครองไม่เกิน 3,000,000 บาท",
+    "law_section": 86,
+    "why": "มาตรา ๘๖ ลงโทษผู้ประมวลผลที่ไม่ปฏิบัติตามมาตรา ๔๐ เฉพาะเมื่อ \"โดยไม่มีเหตุอันควร\" คำตอบตัดเงื่อนไขนี้ออก"
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "Q1",
+  "code": "U206",
+  "n_claims": 8,
+  "n_correct": 8,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "Correctly identifies breaches of section 37(1) and 37(4) punished by an administrative fine up to three million baht under section 83, and of section 41 paragraph 1 (if its conditions are met) punished by an administrative fine up to one million baht under section 82.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "Q2",
+  "code": "U428",
+  "n_claims": 20,
+  "n_correct": 18,
+  "n_partly": 2,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The hospital as controller failed its ม.37 (1)-(3) security/prevention/destruction-audit duties over sensitive health data (ม.26) and faces an administrative fine up to 3 million baht under ม.83, plus civil liability; the answer states this.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "หน้าที่จัดให้มีข้อตกลงกับผู้ประมวลผล — มาตรา ๔๐ วรรคสอง",
+    "law_section": 40,
+    "why": "The controller's duty to have an agreement with the processor is ม.40 วรรคสาม; วรรคสอง deems a processor who disobeys (๑) to be a controller. Right section, wrong paragraph."
+   },
+   {
+    "type": "partly",
+    "quote": "ข้อมูลสุขภาพห้ามเก็บ/ใช้/เปิดเผยโดยไม่ได้รับความยินยอมโดยชัดแจ้ง เว้นแต่ข้อยกเว้นตาม (๑)–(๕)",
+    "law_section": 26,
+    "why": "ม.26 prohibits only collection of sensitive data without explicit consent; use and disclosure are governed by ม.27 (not retrieved), so the scope attributed to ม.26 is overstated."
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "Q2",
+  "code": "U920",
+  "n_claims": 8,
+  "n_correct": 7,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The answer correctly identifies the hospital's unmet controller duties under section 37(1), (2) and (4) plus the processor agreement under section 40, and the administrative fine of up to three million baht under section 83 with civil liability under section 77.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "มาตรา 40 วรรคท้าย กำหนดว่า ... ผู้ควบคุมข้อมูลส่วนบุคคลต้องจัดให้มีข้อตกลงระหว่างกัน",
+    "law_section": 40,
+    "why": "The agreement duty is in section 40 paragraph 3, not the last paragraph; the last (fourth) paragraph is the small-business exemption from (3). Content is otherwise accurate."
+   }
+  ]
+ },
+ {
+  "system": "lab8",
+  "id": "Q3",
+  "code": "U630",
+  "n_claims": 21,
+  "n_correct": 19,
+  "n_partly": 2,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 40 (1)(2) กำหนดให้ทำตามคำสั่งผู้ควบคุมเท่านั้นและแจ้งเหตุละเมิดแก่ผู้ควบคุม วรรคสองให้ถือเป็นผู้ควบคุมเมื่อไม่ทำตาม (1) และมาตรา 86 ปรับทางปกครองไม่เกินสามล้านบาท ตรงกับข้อสรุปของคำตอบ",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "หน้าที่ตาม ม.๓๗ (๕) (แต่งตั้งตัวแทน) ถูกนำมาใช้บังคับกับผู้ประมวลผล โดยอนุโลม ตาม มาตรา ๓๘ วรรคสอง",
+    "law_section": 38,
+    "why": "มาตรา 38 วรรคสองใช้เฉพาะกรณีผู้ควบคุมตามมาตรา 5 วรรคสอง (อยู่นอกราชอาณาจักร) มีผู้ประมวลผล คำตอบตัดเงื่อนไขนี้ออกจึงกล่าวกว้างเกินตัวบท"
+   },
+   {
+    "type": "partly",
+    "quote": "หากเป็นการ \"แสวงหาประโยชน์\" หรือทำให้เจ้าของข้อมูลเสียหาย/เสียชื่อเสียง โทษจะยกระดับเป็นอาญาตาม ม.๗๙",
+    "law_section": 79,
+    "why": "มาตรา 79 ใช้เฉพาะการฝ่าฝืนมาตรา 27 วรรคหนึ่งหรือวรรคสอง หรือไม่ปฏิบัติตามมาตรา 28 อันเกี่ยวกับข้อมูลตามมาตรา 26 เท่านั้น ประโยคนี้ตัดเงื่อนไขดังกล่าวออก"
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "Q3",
+  "code": "U244",
+  "n_claims": 11,
+  "n_correct": 11,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "คำตอบระบุหน้าที่ของผู้ประมวลผลตามมาตรา 40 (1)-(3) รวมถึงผลตามวรรคสอง และโทษปรับทางปกครองไม่เกินสามล้านบาทตามมาตรา 86 ตรงตามตัวบท",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "Q4",
+  "code": "U548",
+  "n_claims": 21,
+  "n_correct": 20,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 1,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "คำตอบสรุปถูกว่าหน่วยงาน (ผู้ควบคุม) ต้องรับผิดตามมาตรา 37/83 และมีหน้าที่จัดให้มีข้อตกลงตามมาตรา 40 วรรคสาม ส่วนบริษัท (ผู้ประมวลผล) รับผิดตามมาตรา 40/86 และทั้งสองฝ่ายรับผิดทางแพ่งตามมาตรา 77",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ผู้ควบคุมที่ฝ่าฝืนมาตรา ๒๗ (ใช้/เปิดเผยผิดวัตถุประสงค์) หรือมาตรา ๒๘ (ใช้/เปิดเผยข้อมูลอ่อนไหว)",
+    "law_section": 79,
+    "why": "มาตรา 79 ลงโทษการฝ่าฝืนมาตรา 27 วรรคหนึ่งหรือวรรคสอง หรือไม่ปฏิบัติตามมาตรา 28 อันเกี่ยวกับข้อมูลตามมาตรา 26; มาตรา 28 เป็นเรื่องส่งหรือโอนข้อมูลไปต่างประเทศ ไม่ใช่การใช้/เปิดเผยข้อมูลอ่อนไหว (อัตราโทษถูกต้อง)"
+   },
+   {
+    "type": "citation",
+    "quote": "ศาลอาจสั่งเพิ่มได้ไม่เกิน ๒ เท่า ของค่าสินไหมที่กำหนด",
+    "law_section": 78,
+    "why": "อำนาจศาลสั่งค่าสินไหมทดแทนเพื่อการลงโทษเพิ่มไม่เกินสองเท่าอยู่ในมาตรา 78 ไม่ใช่มาตรา 77 ตามที่คำตอบจัดไว้ (เนื้อหาถูกและปรากฏในผล graph pen_civil)"
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "Q4",
+  "code": "U269",
+  "n_claims": 11,
+  "n_correct": 11,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "คำตอบระบุถูกต้องว่าหน่วยงานเป็นผู้ควบคุม (หน้าที่มาตรา ๓๗ และข้อตกลงตามมาตรา ๔๐ วรรคสาม โทษมาตรา ๘๓) และบริษัทเป็นผู้ประมวลผล (หน้าที่มาตรา ๔๐ โทษมาตรา ๘๖) โทษปรับทางปกครองไม่เกินสามล้านบาททั้งสองฝ่าย แม้ไม่ได้กล่าวถึงความรับผิดทางแพ่งตามมาตรา ๗๗",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "Q5",
+  "code": "U777",
+  "n_claims": 18,
+  "n_correct": 18,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "ผู้ควบคุมมีหน้าที่ตามมาตรา 37 (1) โทษตามมาตรา 83 และผู้ประมวลผลมีหน้าที่ตามมาตรา 40 (2) โทษตามมาตรา 86 (ต้อง 'โดยไม่มีเหตุอันควร') เพดานปรับทางปกครองเท่ากันคือไม่เกินสามล้านบาท ตรงกับตัวบท",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "harness",
+  "id": "Q5",
+  "code": "U259",
+  "n_claims": 11,
+  "n_correct": 11,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "ผู้ควบคุมฝ่าฝืนมาตรา ๓๗ (๑) มีโทษตามมาตรา ๘๓ และผู้ประมวลผลไม่ปฏิบัติตามมาตรา ๔๐ (๒) โดยไม่มีเหตุอันควรมีโทษตามมาตรา ๘๖ ทั้งสองเป็นโทษปรับทางปกครองไม่เกินสามล้านบาท ตรงกับตัวบท",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "Q7",
+  "code": "U236",
+  "n_claims": 18,
+  "n_correct": 17,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 2,
+  "conclusion": "correct",
+  "conclusion_reason": "คำตอบชี้ขาดด้วยมาตรา 4(1) ว่าการใช้เพื่อประโยชน์ส่วนตน/กิจกรรมในครอบครัวเท่านั้นไม่อยู่ใต้บังคับ PDPA และหากไม่เข้าข้อยกเว้นจึงเข้าสู่มาตรา 19/27 และโทษตามมาตรา 79/83/84 ซึ่งตรงกับตัวบท",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ต้องเป็นการใช้เพื่อประโยชน์ส่วนตัว/ครอบครัวจริง ๆ ไม่ใช่การเผยแพร่ต่อสาธารณะ",
+    "law_section": 4,
+    "why": "มาตรา 4(1) บัญญัติเพียงว่าเพื่อประโยชน์ส่วนตนหรือกิจกรรมในครอบครัวของบุคคลนั้นเท่านั้น ไม่ได้บัญญัติเงื่อนไขเรื่องการเผยแพร่ต่อสาธารณะ เป็นการตีความเพิ่มจากตัวบท"
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๓๐ สิทธิขอเข้าถึง/ขอสำเนา",
+    "law_section": 30,
+    "why": "มาตรา 30 ให้สิทธิขอเข้าถึงและขอรับสำเนาจริง แต่มาตรา 30 ไม่อยู่ในชุดมาตราที่ดึงมาและผลกราฟไม่ได้ระบุเนื้อหานี้"
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "มาตรา ๓๑ สิทธิขอให้โอนข้อมูล",
+    "law_section": 31,
+    "why": "มาตรา 31 ให้สิทธิขอรับและขอให้ส่งหรือโอนข้อมูลจริง แต่มาตรา 31 ไม่อยู่ในชุดมาตราที่ดึงมา ผลกราฟมีเพียงชื่อมาตราโดยไม่มีเนื้อหาสิทธิ"
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "Q7",
+  "code": "U703",
+  "n_claims": 13,
+  "n_correct": 13,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The answer correctly rests on section 4(1): the Act does not apply to collection, use or disclosure for personal benefit or household activities only, so an incidental travel photo on a personal account is generally not a violation, while accurately noting that sections 19, 24, 27 and 79 would apply if the purpose goes beyond that.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "harness",
+  "id": "N1",
+  "code": "U980",
+  "n_claims": 10,
+  "n_correct": 10,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The answer correctly states that the local authority as data controller must maintain appropriate security measures under section 37(1) and notify the Office within 72 hours (and the data subjects when risk is high) under section 37(4), and that failure to comply with section 37 carries an administrative fine of up to three million baht under section 83, plus civil compensation under section 77.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "N2",
+  "code": "U461",
+  "n_claims": 17,
+  "n_correct": 15,
+  "n_partly": 2,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "partly",
+  "conclusion_reason": "ข้อสรุปว่าบริษัทในฐานะผู้ควบคุมฝ่าฝืนมาตรา 27 และมีโทษปรับทางปกครองตามมาตรา 83 (หรือ 84 หากเป็นข้อมูลมาตรา 26) รวมทั้งความรับผิดทางแพ่งถูกต้อง แต่ระบุโทษอาญามาตรา 79 โดยไม่จำกัดว่าต้องเป็นข้อมูลส่วนบุคคลตามมาตรา 26 จึงกล่าวเกินตัวบทในสาระสำคัญ",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ฝ่าฝืน ม.27 วรรคหนึ่ง/สอง โดยประการที่น่าจะทำให้ผู้อื่นเสียหาย เสียชื่อเสียง ถูกดูหมิ่น ถูกเกลียดชัง หรือได้รับความอับอาย",
+    "law_section": 79,
+    "why": "มาตรา 79 วรรคหนึ่ง ใช้กับการฝ่าฝืนมาตรา 27 หรือ 28 'อันเกี่ยวกับข้อมูลส่วนบุคคลตามมาตรา 26' เท่านั้น คำตอบตัดเงื่อนไขข้อมูลอ่อนไหวออก (อัตราโทษจำคุกไม่เกินหกเดือน/ปรับไม่เกินห้าแสนบาทถูกต้อง)"
+   },
+   {
+    "type": "partly",
+    "quote": "กรณี \"ขาย\" ข้อมูล เข้าข่ายวรรคสอง (แสวงหาประโยชน์) → โทษจำคุกไม่เกิน 1 ปี หรือปรับไม่เกิน 1 ล้านบาท",
+    "law_section": 79,
+    "why": "มาตรา 79 วรรคสอง ก็จำกัดเฉพาะการฝ่าฝืน 'อันเกี่ยวกับข้อมูลส่วนบุคคลตามมาตรา 26' เช่นกัน การขายข้อมูลทั่วไปไม่เข้ามาตรานี้ คำตอบปรับใช้โดยไม่มีเงื่อนไขดังกล่าว (อัตราโทษถูกต้อง)"
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "N2",
+  "code": "U974",
+  "n_claims": 15,
+  "n_correct": 14,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "partly",
+  "conclusion_reason": "The answer correctly finds a breach of section 27 paragraph 1 with the section 83 administrative fine of up to three million baht and civil liability under sections 77-78, but its bottom line also asserts criminal liability under section 79 without the condition that the data be section 26 sensitive data, which the facts do not show.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "บริษัทในฐานะผู้ควบคุมข้อมูลส่วนบุคคลจึงต้องรับผิดทั้งทางอาญา (มาตรา 79) ... การขายข้อมูลให้บุคคลภายนอก...จึงเข้าข่ายวรรคสอง",
+    "law_section": 79,
+    "why": "Section 79 punishes a breach of section 27 only when it concerns personal data under section 26 (sensitive data). The answer applies it to ordinary customer data without that condition, although it applies the same condition correctly to section 84."
+   }
+  ]
+ },
+ {
+  "system": "lab8",
+  "id": "N5",
+  "code": "U566",
+  "n_claims": 12,
+  "n_correct": 11,
+  "n_partly": 0,
+  "n_wrong": 1,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "partly",
+  "conclusion_reason": "Liability under section 77 and the 'not more than two times' wording of section 78 are stated correctly, but the answer then explains the cap as only one extra multiple (total 2x actual damages), whereas section 78 lets the court add punitive damages of up to two times the actual compensation on top of it.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "wrong",
+    "quote": "เพดานสูงสุด = ค่าเสียหายที่แท้จริง × ๒ (คือบวกเพิ่มได้อีกไม่เกิน 1 เท่าของตัวจริง)",
+    "law_section": 78,
+    "why": "มาตรา ๗๘ ให้ศาลสั่งจ่ายค่าสินไหมทดแทนเพื่อการลงโทษ 'เพิ่มขึ้นจาก' ค่าสินไหมทดแทนที่แท้จริงได้ไม่เกินสองเท่าของค่าสินไหมทดแทนที่แท้จริง ส่วนที่เพิ่มจึงได้ถึง 2 เท่า (รวมสูงสุด 3 เท่า) ไม่ใช่เพิ่มได้เพียง 1 เท่า"
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "N5",
+  "code": "U466",
+  "n_claims": 7,
+  "n_correct": 7,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "Section 77 makes the controller/processor liable for damage from non-compliance regardless of intent or negligence (subject to the two defences), and section 78 lets the court add punitive compensation up to twice the actual compensation, as the answer states.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "N7",
+  "code": "U655",
+  "n_claims": 15,
+  "n_correct": 13,
+  "n_partly": 2,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The answer correctly says buying a list from another source and cold-calling is prohibited in principle unless section 25 para 1 (notice within 30 days plus consent, or a section 24/26 exemption) and section 27 are met, with the section 83 administrative fine of up to 3 million baht; only the criminal-penalty rows overstate section 79.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ฝ่าฝืน ม.๒๗ วรรคหนึ่ง–สอง โดยน่าจะทำให้ผู้อื่นเสียหาย เสียชื่อเสียง ถูกดูหมิ่น เกลียดชัง อับอาย (ม.๗๙ วรรคหนึ่ง)",
+    "law_section": 79,
+    "why": "Section 79 para 1 applies only to violations of section 27 para 1/2 (or section 28) 'อันเกี่ยวกับข้อมูลส่วนบุคคลตามมาตรา ๒๖' (sensitive data). The answer drops that condition, so it overstates the criminal penalty for ordinary names and phone numbers; the penalty amounts are right."
+   },
+   {
+    "type": "partly",
+    "quote": "ฝ่าฝืน ม.๒๗ วรรคหนึ่ง–สอง เพื่อแสวงหาประโยชน์ที่มิควรได้ (ม.๗๙ วรรคสอง)",
+    "law_section": 79,
+    "why": "Section 79 para 2 is likewise limited to section 26 sensitive data; the answer omits the limitation. One year / one million baht and the compoundable-offence statement are correct."
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "N7",
+  "code": "U336",
+  "n_claims": 10,
+  "n_correct": 10,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "Buying a list is collection from another source, barred by ม.25 วรรคหนึ่ง unless notice within 30 days plus consent or a ม.24/26 exemption, and use needs consent under ม.27; breach is an administrative fine up to 3 million baht under ม.83 — the answer says exactly this.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "H4",
+  "code": "U612",
+  "n_claims": 21,
+  "n_correct": 21,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 23 กำหนดให้ผู้ควบคุมแจ้งรายละเอียด (1)-(6) ก่อนหรือขณะเก็บรวบรวม เว้นแต่เจ้าของข้อมูลทราบอยู่แล้ว ซึ่งคำตอบไล่ครบและตรงตัวบท พร้อมโทษตามมาตรา 82",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "harness",
+  "id": "H4",
+  "code": "U226",
+  "n_claims": 10,
+  "n_correct": 9,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 23 กำหนดให้ผู้ควบคุมข้อมูลแจ้งรายละเอียด (1)-(6) ก่อนหรือขณะเก็บรวบรวม เว้นแต่เจ้าของข้อมูลทราบอยู่แล้ว ซึ่งคำตอบระบุครบถ้วนตรงตามตัวบท พร้อมโทษตามมาตรา 82",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "หากการเก็บรวบรวมเข้าข้อยกเว้นของมาตรา 4 ก็ไม่ต้องใช้บังคับพระราชบัญญัตินี้ทั้งฉบับ",
+    "law_section": 4,
+    "why": "มาตรา 4 วรรคสาม ยังกำหนดให้ผู้ควบคุมข้อมูลตามวรรคหนึ่ง (2)-(6) ต้องจัดให้มีการรักษาความมั่นคงปลอดภัยของข้อมูลตามมาตรฐาน จึงไม่ใช่ยกเว้นทั้งฉบับทุกกรณี"
+   }
+  ]
+ },
+ {
+  "system": "lab8",
+  "id": "O3",
+  "code": "U134",
+  "n_claims": 13,
+  "n_correct": 13,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "Correctly rests on section 32 paragraph one (2): the data subject may object to direct marketing at any time with no ground for the controller to refuse, and under paragraph two the controller must stop and segregate the data immediately; supporting rights (sections 19, 33, 34) are stated accurately.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "harness",
+  "id": "O3",
+  "code": "U733",
+  "n_claims": 6,
+  "n_correct": 6,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 32 (2) ให้สิทธิคัดค้านการตลาดแบบตรงได้ทุกเมื่อ วรรคสองห้ามใช้ต่อและต้องแยกส่วนทันที วรรคสามไม่มีเหตุปฏิเสธสำหรับ (2) และมาตรา 83 ปรับทางปกครองไม่เกินสามล้านบาท ตรงกับคำตอบ",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "O4",
+  "code": "U903",
+  "n_claims": 18,
+  "n_correct": 16,
+  "n_partly": 1,
+  "n_wrong": 1,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 2,
+  "conclusion": "correct",
+  "conclusion_reason": "The answer correctly says the fitness centre must erase when a section 33 paragraph 1 ground applies (typically (1), data no longer necessary) unless a section 33 paragraph 2 exception allows retention, with complaint to the expert committee under paragraph 4.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ข้อมูลอ่อนไหว (ม.๒๖) เก็บได้ต่อเฉพาะกรณีตาม ม.๒๖ (๕)(ก) หรือ (ข) ... เท่านั้น",
+    "law_section": 33,
+    "why": "Section 33 paragraph 2 does not limit sensitive data to the 26(5)(a)/(b) purposes only; the legal-claims, legal-compliance and freedom-of-expression exceptions apply to it as well. The described content of 26(5)(a)/(b) is accurate."
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "ม.๒๖ (๕)(ก) หรือ (ข) (เวชศาสตร์ป้องกัน/อาชีวเวชศาสตร์/บริการสุขภาพ หรือประโยชน์สาธารณะด้านสาธารณสุข)",
+    "law_section": 26,
+    "why": "The content of section 26(5)(a) and (b) is only in section 26, whose full text was not retrieved; tool results show only the opening line of section 26."
+   },
+   {
+    "type": "wrong",
+    "quote": "แต่標準ที่ใช้คือ \"ไม่ชักช้า\" ตามหน้าที่ระบบจัดการคำขอในมาตรา ๓๗ (๓)",
+    "law_section": 37,
+    "why": "Section 37(3) only requires an examination system for erasure or destruction and contains no 'without delay' standard; neither section 33 nor 37(3) sets any time standard for erasure requests."
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "แต่標準ที่ใช้คือ \"ไม่ชักช้า\" ตามหน้าที่ระบบจัดการคำขอในมาตรา ๓๗ (๓)",
+    "law_section": 37,
+    "why": "No retrieved section or tool result states a 'without delay' standard for erasure; that phrase appears only in section 30 paragraph 4 (access) and section 37(4) (breach notification)."
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "O4",
+  "code": "U893",
+  "n_claims": 10,
+  "n_correct": 10,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The answer correctly says the fitness centre must erase when one of the section 33 paragraph 1 (1)-(4) grounds applies and need not where the section 33 paragraph 2 / section 37(3) retention exceptions apply, with the complaint route in section 33 paragraph 4 and the section 83 fine for breach of section 37.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "O5",
+  "code": "U871",
+  "n_claims": 15,
+  "n_correct": 14,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "Section 34(1) gives the data subject the right to have use suspended while the controller is verifying under a section 36 request, and section 34 paragraph 2 allows a complaint to the expert committee if the controller does not comply, exactly as the answer concludes.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "บันทึกทุกคำขอ/การปฏิเสธลงในรายการ (ROPA) ตาม ม.๓๙(๗) เพราะเป็นหน้าที่ตรงและมีโทษตาม ม.๘๒",
+    "law_section": 39,
+    "why": "Section 39(7) requires recording only refusals of requests or objections under sections 30 para 3, 31 para 3, 32 para 3 and 36 para 1, not every request, and it does not list refusal of a section 34 suspension request."
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "O5",
+  "code": "U787",
+  "n_claims": 10,
+  "n_correct": 10,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 34 (1) ให้สิทธิขอระงับการใช้ระหว่างที่ผู้ควบคุมตรวจสอบตามคำร้องขอตามมาตรา 36 และวรรคสองให้ร้องเรียนต่อคณะกรรมการผู้เชี่ยวชาญได้ ตรงกับคำตอบ แม้คำตอบจะออกตัวเกินจำเป็นว่าตัวบทไม่ได้ระบุหน้าที่ระงับโดยตรง",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "O6",
+  "code": "U301",
+  "n_claims": 9,
+  "n_correct": 8,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 1,
+  "conclusion": "correct",
+  "conclusion_reason": "มาตรา 19 วรรคห้าให้ถอนความยินยอมได้ทุกเมื่อและต้องถอนได้ง่าย วรรคหกให้ผู้ควบคุมแจ้งผลกระทบ และมาตรา 33 (2)/37 (3) ว่าด้วยการลบ ตรงกับคำตอบ",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ถอนยากผิดปกติ ถือว่าขัดมาตรา 19 วรรคห้า — ร้องเรียนต่อคณะกรรมการผู้เชี่ยวชาญได้ (ดู มาตรา 33 วรรคสี่",
+    "law_section": 33,
+    "why": "มาตรา 33 วรรคสี่ให้ร้องเรียนเฉพาะกรณีผู้ควบคุมไม่ดำเนินการลบตามวรรคหนึ่งหรือวรรคสาม ไม่ครอบคลุมกรณีถอนความยินยอมยาก สิทธิร้องเรียนทั่วไปอยู่ในมาตรา 73"
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "ถอนยากผิดปกติ ถือว่าขัดมาตรา 19 วรรคห้า — ร้องเรียนต่อคณะกรรมการผู้เชี่ยวชาญได้",
+    "law_section": 73,
+    "why": "สิทธิร้องเรียนกรณีฝ่าฝืนพระราชบัญญัติทั่วไปมาจากมาตรา 73 ซึ่งไม่อยู่ในชุดมาตราที่ดึงมา"
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "O6",
+  "code": "U691",
+  "n_claims": 10,
+  "n_correct": 10,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The answer correctly states that under section 19 the data subject may withdraw consent at any time as easily as giving it, that withdrawal does not affect prior lawful processing, and that the controller must notify the effects of withdrawal, with erasure duties under sections 33(2) and 37(3) and the section 82 fine accurately quoted.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "O8",
+  "code": "U848",
+  "n_claims": 22,
+  "n_correct": 21,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "Face-scan data is biometric data under section 26 paragraph 2, so collection needs explicit consent under section 26 paragraph 1 (no listed exception fits ordinary timekeeping), together with section 19 consent conditions, section 23 notice and section 37 security duties, as the answer says.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ห้ามผูกเงื่อนไขกับการจ้างงาน — ต้องมีช่องทางเลือกอื่นที่ไม่ใช้ไบโอเมตริก และต้องไม่ถือว่าการไม่ยินยอมเป็นความผิดทางวินัย",
+    "law_section": 19,
+    "why": "Section 19 paragraph 4 requires utmost regard for freedom of consent and bars conditioning a contract on consent only for data not necessary or related to that contract; it does not itself state an absolute ban, a duty to offer an alternative, or a rule on discipline."
+   }
+  ]
+ },
+ {
+  "system": "lab8",
+  "id": "O9",
+  "code": "U542",
+  "n_claims": 26,
+  "n_correct": 24,
+  "n_partly": 2,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "คำตอบชี้ถูกว่าการโอนในเครือธุรกิจเดียวกันทำได้ตามมาตรา 29 (นโยบายที่สำนักงานรับรอง หรือมาตรการคุ้มครองที่เหมาะสมตามวรรคสาม) มิฉะนั้นต้องเป็นไปตามมาตรา 28 และข้อยกเว้น (1)-(6) ตรงตามตัวบท",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ตามมาตรา 19 วรรคสาม หากขอความยินยอม ต้องแยกส่วน ชัดเจน อ่านง่าย ไม่หลอกลวง และถอนได้ง่าย",
+    "law_section": 19,
+    "why": "มาตรา 19 วรรคสามกำหนดเรื่องแยกส่วน เข้าใจง่าย ไม่หลอกลวง แต่การถอนความยินยอมได้ง่ายอยู่ในวรรคห้า ไม่ใช่วรรคสาม"
+   },
+   {
+    "type": "partly",
+    "quote": "ข้อตกลงระหว่างผู้ควบคุมกับผู้ประมวลผล ตามมาตรา 40 วรรคสอง",
+    "law_section": 40,
+    "why": "หน้าที่จัดให้มีข้อตกลงระหว่างกันอยู่ในมาตรา 40 วรรคสาม วรรคสองเป็นเรื่องให้ถือว่าผู้ประมวลผลเป็นผู้ควบคุมเมื่อไม่ปฏิบัติตาม (1)"
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "O9",
+  "code": "U518",
+  "n_claims": 17,
+  "n_correct": 17,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The answer correctly applies section 28 (adequate standard or one of six exceptions) and the same-group route in section 29 (office-certified policy, or appropriate safeguards under paragraph three) which exempts the transfer from section 28.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "O11",
+  "code": "U994",
+  "n_claims": 11,
+  "n_correct": 11,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The answer correctly lists the four DPO duties in section 42 paragraph 1 and states that under section 42 paragraph 3 the controller or processor may not dismiss the DPO or terminate the contract for performing duties under the Act, with the one million baht administrative fine under sections 82 and 85.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "harness",
+  "id": "O11",
+  "code": "U102",
+  "n_claims": 11,
+  "n_correct": 11,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "Lists the four DPO duties of section 42 paragraph one accurately and correctly states that section 42 paragraph three forbids dismissal or contract termination because the DPO performed duties under the Act.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "O13",
+  "code": "U676",
+  "n_claims": 27,
+  "n_correct": 26,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 1,
+  "conclusion": "correct",
+  "conclusion_reason": "The answer lists all six items of section 23 (1)-(6) accurately, with the before-or-at-collection timing and the already-known exception, and correctly adds the section 82 fine of up to one million baht.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "หากขอความยินยอมไม่เป็นไปตามที่กำหนด ไม่มีผลผูกพันเจ้าของข้อมูล (ม.๑๙ วรรคแปด)",
+    "law_section": 19,
+    "why": "The rule is correct but section 19 has only seven paragraphs; the non-binding rule is the seventh (last) paragraph, not an eighth."
+   },
+   {
+    "type": "not_in_evidence",
+    "quote": "ม.๓๖ วรรคหนึ่ง – สิทธิร้องขอให้แก้ไขข้อมูลให้ถูกต้อง เป็นปัจจุบัน สมบูรณ์ ไม่ทำให้เข้าใจผิด",
+    "law_section": 35,
+    "why": "Section 36 para 1 only refers to a request to act 'ตามมาตรา ๓๕'; the accurate/up-to-date/complete/not-misleading wording is in section 35, which the agent did not retrieve and which does not appear in the other tool results. The content itself is correct."
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "O13",
+  "code": "U320",
+  "n_claims": 9,
+  "n_correct": 8,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "คำตอบระบุรายละเอียดที่ต้องแจ้งครบทั้ง (1)-(6) ตามมาตรา 23 พร้อมข้อยกเว้นกรณีเจ้าของข้อมูลทราบอยู่แล้ว ตรงตามตัวบท",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "มาตรา 19 วรรคหนึ่ง ยังกำหนดให้ผู้ควบคุมข้อมูลส่วนบุคคลต้องแจ้งวัตถุประสงค์ของการเก็บรวบรวม ใช้ หรือเปิดเผย",
+    "law_section": 19,
+    "why": "หน้าที่แจ้งวัตถุประสงค์ในการขอความยินยอมอยู่ในมาตรา 19 วรรคสาม ไม่ใช่วรรคหนึ่ง เนื้อหาถูกแต่เลขวรรคผิด"
+   }
+  ]
+ },
+ {
+  "system": "lab8",
+  "id": "O14",
+  "code": "U599",
+  "n_claims": 18,
+  "n_correct": 17,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The answer correctly applies section 95 paragraphs 1 and 2: pre-existing data may continue to be collected and used for the original purpose subject to an easy, publicised consent-withdrawal method, with disclosure and other processing governed by the Act.",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "ฝ่าฝืน มาตรา ๒๗ (ใช้/เปิดเผยโดยไม่ได้รับความยินยอม) → มาตรา ๗๙ จำคุกไม่เกิน 6 เดือน หรือปรับไม่เกิน 500,000 บาท",
+    "law_section": 79,
+    "why": "มาตรา ๗๙ วรรคหนึ่งใช้เฉพาะการฝ่าฝืนมาตรา ๒๗ วรรคหนึ่งหรือวรรคสอง (หรือมาตรา ๒๘) อันเกี่ยวกับข้อมูลตามมาตรา ๒๖ และโดยประการที่น่าจะทำให้ผู้อื่นเสียหาย เสียชื่อเสียง ฯลฯ คำตอบตัดเงื่อนไขเหล่านี้ออกจากโทษขั้นแรก ทำให้ดูเหมือนใช้กับการฝ่าฝืนมาตรา ๒๗ ทุกกรณี"
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "O14",
+  "code": "U592",
+  "n_claims": 5,
+  "n_correct": 5,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The answer correctly applies section 95: data collected before the Act took effect may continue to be collected and used for the original purpose, provided the controller sets up and publicises an easy way to withdraw consent, while disclosure and other acts must follow the Act.",
+  "uses_key_sections": true,
+  "problems": []
+ },
+ {
+  "system": "lab8",
+  "id": "O16",
+  "code": "U551",
+  "n_claims": 24,
+  "n_correct": 23,
+  "n_partly": 1,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "คำตอบระบุหน้าที่และอำนาจสี่ประการตามมาตรา 72 ครบถ้วนตรงตามตัวบท และเสริมอำนาจตามมาตรา 74, 75, 90 ได้ถูกต้องเป็นส่วนใหญ่",
+  "uses_key_sections": true,
+  "problems": [
+   {
+    "type": "partly",
+    "quote": "คณะกรรมการผู้เชี่ยวชาญมีอำนาจฟ้องคดีต่อศาลปกครองเพื่อบังคับชำระค่าปรับ",
+    "law_section": 90,
+    "why": "มาตรา 90 วรรคสามให้อำนาจฟ้องคดีต่อศาลปกครองเฉพาะในกรณีที่ไม่มีเจ้าหน้าที่ดำเนินการบังคับตามคำสั่ง หรือมีแต่ไม่สามารถดำเนินการบังคับทางปกครองได้ คำตอบตัดเงื่อนไขนี้ออก"
+   }
+  ]
+ },
+ {
+  "system": "harness",
+  "id": "O16",
+  "code": "U464",
+  "n_claims": 13,
+  "n_correct": 13,
+  "n_partly": 0,
+  "n_wrong": 0,
+  "n_citation_wrong": 0,
+  "n_not_in_evidence": 0,
+  "conclusion": "correct",
+  "conclusion_reason": "The answer reproduces the four duties and powers in section 72 accurately and adds the related powers in sections 74, 75 and 90, all matching the statute text.",
+  "uses_key_sections": true,
+  "problems": []
+ }
+]

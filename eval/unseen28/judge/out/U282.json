@@ -1,0 +1,13 @@
+{
+ "code": "U282",
+ "n_claims": 7,
+ "n_correct": 7,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "มาตรา 41 วรรคหนึ่งบังคับผู้ประมวลผลที่เข้าเกณฑ์ให้มี DPO และมาตรา 85 กำหนดโทษปรับทางปกครองไม่เกินหนึ่งล้านบาท ตรงกับคำตอบ",
+ "uses_key_sections": true,
+ "problems": []
+}

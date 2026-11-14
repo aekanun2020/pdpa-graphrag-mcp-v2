@@ -1,0 +1,13 @@
+{
+ "code": "U612",
+ "n_claims": 21,
+ "n_correct": 21,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "มาตรา 23 กำหนดให้ผู้ควบคุมแจ้งรายละเอียด (1)-(6) ก่อนหรือขณะเก็บรวบรวม เว้นแต่เจ้าของข้อมูลทราบอยู่แล้ว ซึ่งคำตอบไล่ครบและตรงตัวบท พร้อมโทษตามมาตรา 82",
+ "uses_key_sections": true,
+ "problems": []
+}

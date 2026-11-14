@@ -86,3 +86,23 @@ python -B run_all.py --ids R1,H3,O10 --tag r2 --servers main
 | `judge/build_packets.py` | สร้างชุดตรวจจากผลรันในรูปแบบของ `eval/agent/judge/RUBRIC.md` |
 
 สำเนา runtime ใน `eval/agent/harness/src/dfai_harness/runtime.py` ต่างจากต้นฉบับ (commit `36f62c9`) 4 บรรทัด: รายชื่อโมเดลที่อนุญาตเหลือเฉพาะ `deepseek/deepseek-v4.1-flash` ซึ่งเป็นตัวเดียวที่ repo นี้ใช้กับ agent
+
+## unseen28/ — รอบ 13 (harness กับ lab8 บน 28 คำถามที่ยังไม่เคยใช้)
+
+รายงาน: `docs/eval/2026-11-14-unseen-28-questions.md`
+
+| ที่อยู่ | คืออะไร |
+|---|---|
+| `lab8/<id>.json` | ผลดิบของ lab8 28 ข้อ: คำตอบ การเรียกเครื่องมือพร้อมผลเต็ม การเรียกโมเดล และข้อความที่ lab8 พิมพ์ |
+| `harness-runs.tar.gz` | โฟลเดอร์ผลดิบของ harness 28 ข้อ (`r3/main/<id>/`) รูปแบบเดียวกับ `agent/runs/runs.tar.gz` |
+| `lab8.log`, `harness.log` | บรรทัดสรุปต่อข้อของตัวรันทั้งสอง |
+| `judge/build_blind.py` | สร้างชุดตรวจของสองระบบด้วยกติกาหลักฐานเดียวกัน ปนกันแล้วตั้งรหัสสุ่ม |
+| `judge/packets/`, `judge/out/`, `judge/key.json`, `judge/judged.json` | ชุดตรวจ 54 คำตอบ คำตัดสินรายคำตอบ ตารางรหัสกับระบบและข้อ และไฟล์รวม |
+
+รันซ้ำกับโมเดล (มีค่าใช้จ่าย ต้องมี `OPENROUTER_API_KEY` และ server ที่ port 8100):
+
+```bash
+MCP_SERVER_URL=http://127.0.0.1:8100/mcp python eval/lab8/run_lab8.py eval/agent/questions.json /tmp/lab8-runs P2 P4
+cd eval/agent && python3 -B run_all.py --ids P2,P4 --tag r3 --servers main
+```
+

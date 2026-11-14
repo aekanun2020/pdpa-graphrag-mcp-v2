@@ -1,0 +1,13 @@
+{
+ "code": "U620",
+ "n_claims": 16,
+ "n_correct": 16,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "มาตรา 83 กำหนดโทษปรับทางปกครองไม่เกินสามล้านบาทสำหรับการฝ่าฝืนมาตรา 28 และมาตรา 84 ไม่เกินห้าล้านบาทเมื่อเป็นข้อมูลตามมาตรา 26 ตรงกับคำตอบ รวมทั้งข้อยกเว้นมาตรา 28 (1)-(6) และมาตรา 29",
+ "uses_key_sections": true,
+ "problems": []
+}

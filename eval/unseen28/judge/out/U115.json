@@ -1,0 +1,20 @@
+{
+ "code": "U115",
+ "n_claims": 15,
+ "n_correct": 14,
+ "n_partly": 1,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "Correctly identifies breach of section 37(1) and 37(4) (fine up to 3 million baht under section 83) and section 41 paragraph one (fine up to 1 million baht under section 82), noting the DPO duty applies only if a section 41 condition is met.",
+ "uses_key_sections": true,
+ "problems": [
+  {
+   "type": "partly",
+   "quote": "ฝ่าฝืน ม.๔๐ → ม.๘๖ ปรับทางปกครองไม่เกิน 3,000,000 บาท",
+   "law_section": 86,
+   "why": "มาตรา ๘๖ ลงโทษผู้ประมวลผลที่ไม่ปฏิบัติตามมาตรา ๔๐ เฉพาะเมื่อ \"โดยไม่มีเหตุอันควร\" คำตอบตัดเงื่อนไขนี้ออก"
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+{"code": "U655", "n_claims": 15, "n_correct": 13, "n_partly": 2, "n_wrong": 0, "n_citation_wrong": 0, "n_not_in_evidence": 0,
+ "conclusion": "correct", "conclusion_reason": "The answer correctly says buying a list from another source and cold-calling is prohibited in principle unless section 25 para 1 (notice within 30 days plus consent, or a section 24/26 exemption) and section 27 are met, with the section 83 administrative fine of up to 3 million baht; only the criminal-penalty rows overstate section 79.",
+ "uses_key_sections": true,
+ "problems": [
+  {"type": "partly", "quote": "ฝ่าฝืน ม.๒๗ วรรคหนึ่ง–สอง โดยน่าจะทำให้ผู้อื่นเสียหาย เสียชื่อเสียง ถูกดูหมิ่น เกลียดชัง อับอาย (ม.๗๙ วรรคหนึ่ง)", "law_section": 79, "why": "Section 79 para 1 applies only to violations of section 27 para 1/2 (or section 28) 'อันเกี่ยวกับข้อมูลส่วนบุคคลตามมาตรา ๒๖' (sensitive data). The answer drops that condition, so it overstates the criminal penalty for ordinary names and phone numbers; the penalty amounts are right."},
+  {"type": "partly", "quote": "ฝ่าฝืน ม.๒๗ วรรคหนึ่ง–สอง เพื่อแสวงหาประโยชน์ที่มิควรได้ (ม.๗๙ วรรคสอง)", "law_section": 79, "why": "Section 79 para 2 is likewise limited to section 26 sensitive data; the answer omits the limitation. One year / one million baht and the compoundable-offence statement are correct."}
+ ]}

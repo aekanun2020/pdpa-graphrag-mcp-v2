@@ -1,0 +1,13 @@
+{
+ "code": "U134",
+ "n_claims": 13,
+ "n_correct": 13,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "Correctly rests on section 32 paragraph one (2): the data subject may object to direct marketing at any time with no ground for the controller to refuse, and under paragraph two the controller must stop and segregate the data immediately; supporting rights (sections 19, 33, 34) are stated accurately.",
+ "uses_key_sections": true,
+ "problems": []
+}

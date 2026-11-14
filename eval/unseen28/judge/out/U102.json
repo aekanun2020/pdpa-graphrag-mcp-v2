@@ -1,0 +1,13 @@
+{
+ "code": "U102",
+ "n_claims": 11,
+ "n_correct": 11,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "Lists the four DPO duties of section 42 paragraph one accurately and correctly states that section 42 paragraph three forbids dismissal or contract termination because the DPO performed duties under the Act.",
+ "uses_key_sections": true,
+ "problems": []
+}

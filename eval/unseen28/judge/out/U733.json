@@ -1,0 +1,13 @@
+{
+ "code": "U733",
+ "n_claims": 6,
+ "n_correct": 6,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "มาตรา 32 (2) ให้สิทธิคัดค้านการตลาดแบบตรงได้ทุกเมื่อ วรรคสองห้ามใช้ต่อและต้องแยกส่วนทันที วรรคสามไม่มีเหตุปฏิเสธสำหรับ (2) และมาตรา 83 ปรับทางปกครองไม่เกินสามล้านบาท ตรงกับคำตอบ",
+ "uses_key_sections": true,
+ "problems": []
+}

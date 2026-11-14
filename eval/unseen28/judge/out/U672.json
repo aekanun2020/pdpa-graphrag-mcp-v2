@@ -1,0 +1,4 @@
+{"code": "U672", "n_claims": 12, "n_correct": 12, "n_partly": 0, "n_wrong": 0, "n_citation_wrong": 0, "n_not_in_evidence": 0,
+ "conclusion": "correct", "conclusion_reason": "Using data for a purpose different from the one notified without new notice and consent violates section 21 (and section 27), punishable under section 83 by an administrative fine of up to 3 million baht; the answer also correctly limits the section 84 fine (5 million) and section 79 criminal penalties to section 26 sensitive data.",
+ "uses_key_sections": true,
+ "problems": []}

@@ -1,0 +1,20 @@
+{
+ "code": "U408",
+ "n_claims": 10,
+ "n_correct": 9,
+ "n_partly": 1,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "The penalty stated (administrative fine up to 3 million baht under ม.83, with ม.84/ม.79 only for ม.26 data) matches the statute, although the duty breached is grounded on ม.27 instead of the purpose-limitation rule in ม.21.",
+ "uses_key_sections": false,
+ "problems": [
+  {
+   "type": "partly",
+   "quote": "ถือเป็นการใช้ข้อมูลส่วนบุคคลโดยไม่ได้รับความยินยอมตาม มาตรา 27 วรรคหนึ่ง",
+   "law_section": 21,
+   "why": "Use different from the notified purpose is governed by ม.21 วรรคสอง: prohibited unless the new purpose is notified and consent obtained first, or this Act or another law permits it. ม.27 วรรคหนึ่ง is the general no-use-without-consent rule and says nothing about changed purpose; ม.21 was never retrieved."
+  }
+ ]
+}

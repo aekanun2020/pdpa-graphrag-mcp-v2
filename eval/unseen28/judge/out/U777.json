@@ -1,0 +1,13 @@
+{
+ "code": "U777",
+ "n_claims": 18,
+ "n_correct": 18,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "ผู้ควบคุมมีหน้าที่ตามมาตรา 37 (1) โทษตามมาตรา 83 และผู้ประมวลผลมีหน้าที่ตามมาตรา 40 (2) โทษตามมาตรา 86 (ต้อง 'โดยไม่มีเหตุอันควร') เพดานปรับทางปกครองเท่ากันคือไม่เกินสามล้านบาท ตรงกับตัวบท",
+ "uses_key_sections": true,
+ "problems": []
+}

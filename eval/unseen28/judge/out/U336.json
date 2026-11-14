@@ -1,0 +1,13 @@
+{
+ "code": "U336",
+ "n_claims": 10,
+ "n_correct": 10,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "Buying a list is collection from another source, barred by ม.25 วรรคหนึ่ง unless notice within 30 days plus consent or a ม.24/26 exemption, and use needs consent under ม.27; breach is an administrative fine up to 3 million baht under ม.83 — the answer says exactly this.",
+ "uses_key_sections": true,
+ "problems": []
+}

@@ -1,0 +1,26 @@
+{
+ "code": "U428",
+ "n_claims": 20,
+ "n_correct": 18,
+ "n_partly": 2,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "The hospital as controller failed its ม.37 (1)-(3) security/prevention/destruction-audit duties over sensitive health data (ม.26) and faces an administrative fine up to 3 million baht under ม.83, plus civil liability; the answer states this.",
+ "uses_key_sections": true,
+ "problems": [
+  {
+   "type": "partly",
+   "quote": "หน้าที่จัดให้มีข้อตกลงกับผู้ประมวลผล — มาตรา ๔๐ วรรคสอง",
+   "law_section": 40,
+   "why": "The controller's duty to have an agreement with the processor is ม.40 วรรคสาม; วรรคสอง deems a processor who disobeys (๑) to be a controller. Right section, wrong paragraph."
+  },
+  {
+   "type": "partly",
+   "quote": "ข้อมูลสุขภาพห้ามเก็บ/ใช้/เปิดเผยโดยไม่ได้รับความยินยอมโดยชัดแจ้ง เว้นแต่ข้อยกเว้นตาม (๑)–(๕)",
+   "law_section": 26,
+   "why": "ม.26 prohibits only collection of sensitive data without explicit consent; use and disclosure are governed by ม.27 (not retrieved), so the scope attributed to ม.26 is overstated."
+  }
+ ]
+}
