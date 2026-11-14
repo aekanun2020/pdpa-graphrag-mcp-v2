@@ -1,0 +1,20 @@
+{
+ "code": "L969",
+ "n_claims": 17,
+ "n_correct": 16,
+ "n_partly": 1,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "Under section 4(1) the Act does not apply to collection solely for personal benefit or household activity, so a home anti-theft camera needs neither a notice nor consent under the PDPA, as the answer concludes.",
+ "uses_key_sections": true,
+ "problems": [
+  {
+   "type": "partly",
+   "quote": "ถ้ากล้องจับภาพพื้นที่ภายนอก... ผู้มาเยือน/ลูกจ้าง ... ข้อยกเว้นตามมาตรา ๔ (๑) จะไม่ครอบคลุมอีกต่อไป",
+   "law_section": 4,
+   "why": "Section 4(1) turns only on the collector's purpose (personal benefit or household activity only); it says nothing about who or what area is captured, so stating that filming visitors or outside areas removes the exemption overstates the text."
+  }
+ ]
+}

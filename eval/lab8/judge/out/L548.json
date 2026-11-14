@@ -1,0 +1,20 @@
+{
+ "code": "L548",
+ "n_claims": 25,
+ "n_correct": 25,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 1,
+ "conclusion": "correct",
+ "conclusion_reason": "The answer correctly says the user may ask the controller to send or transfer the data to another controller under section 31 when it can be done by automatic means, subject to the section 31 conditions and exceptions.",
+ "uses_key_sections": true,
+ "problems": [
+  {
+   "type": "not_in_evidence",
+   "quote": "มาตรา ๒๓ — ต้องแจ้งรายละเอียด (รวมถึงปลายทาง/ผู้รับข้อมูล) ก่อนหรือในขณะเก็บรวบรวม",
+   "law_section": 23,
+   "why": "Correct under section 23 (4), but section 23 was not in the retrieved set and the graph excerpt of section 23 stops before the list of details, so the recipient item was not in the evidence."
+  }
+ ]
+}

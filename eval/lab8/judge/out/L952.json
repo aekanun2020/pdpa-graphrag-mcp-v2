@@ -1,0 +1,13 @@
+{
+ "code": "L952",
+ "n_claims": 20,
+ "n_correct": 20,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "The answer makes the outcome turn on section 4(3): if the broadcast is journalism within professional ethics or public interest the PDPA does not apply, otherwise the section 33 erasure right applies subject to its paragraph-two exceptions, which matches the statute.",
+ "uses_key_sections": true,
+ "problems": []
+}

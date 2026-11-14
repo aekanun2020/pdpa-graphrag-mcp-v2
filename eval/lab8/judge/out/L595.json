@@ -1,0 +1,20 @@
+{
+ "code": "L595",
+ "n_claims": 15,
+ "n_correct": 14,
+ "n_partly": 1,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "Section 73 gives the data subject the right to complain and section 72 (1) makes the expert committee the body that considers complaints, with the Office doing its administrative work under section 44, as the answer says.",
+ "uses_key_sections": true,
+ "problems": [
+  {
+   "type": "partly",
+   "quote": "ฝ่าฝืน ม.๒๗ (หรือไม่ปฏิบัติตาม ม.๒๘ อันเกี่ยวกับข้อมูลตาม ม.๒๖) โดยน่าจะทำให้ผู้อื่นเสียหาย",
+   "law_section": 79,
+   "why": "Section 79 punishes a data controller, and the qualifier 'relating to personal data under section 26' reads with the section 27 breach as well (compare sections 83 and 84); the answer attaches it to section 28 only and so presents the criminal penalty as covering any unauthorised disclosure."
+  }
+ ]
+}

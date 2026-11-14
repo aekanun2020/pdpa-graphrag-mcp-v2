@@ -1,0 +1,13 @@
+{
+ "code": "L346",
+ "n_claims": 8,
+ "n_correct": 8,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "มาตรา ๔ วรรคหนึ่ง (๕) ยกเว้นการพิจารณาพิพากษาคดีของศาลจากการใช้บังคับของ พ.ร.บ. จึงไม่ต้องขอความยินยอม และคำตอบยังระบุหน้าที่รักษาความมั่นคงปลอดภัยตามมาตรา ๔ วรรคสามไว้ถูกต้อง",
+ "uses_key_sections": true,
+ "problems": []
+}

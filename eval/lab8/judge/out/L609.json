@@ -1,0 +1,32 @@
+{
+ "code": "L609",
+ "n_claims": 24,
+ "n_correct": 22,
+ "n_partly": 1,
+ "n_wrong": 1,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 1,
+ "conclusion": "correct",
+ "conclusion_reason": "The answer correctly treats the payroll company as a data processor and sets out its section 40 duties (act only on the controller's instructions, security measures and breach notice to the controller, records of processing) plus the related DPO duties and penalties.",
+ "uses_key_sections": true,
+ "problems": [
+  {
+   "type": "partly",
+   "quote": "ต้องมีนโยบายคุ้มครองข้อมูลที่ผ่านการตรวจสอบรับรองจากสำนักงาน หรือมีมาตรการคุ้มครองที่เหมาะสมบังคับตามสิทธิได้",
+   "law_section": 29,
+   "why": "Section 29 is an optional exemption from section 28: a transfer under an Office-certified group policy, or with appropriate safeguards where there is no decision or policy, may be made without complying with section 28. It is not a standing requirement for every intra-group transfer."
+  },
+  {
+   "type": "wrong",
+   "quote": "แต่บริษัทต้องตรวจสอบว่ามีฐานรองรับก่อนประมวลผล",
+   "law_section": 24,
+   "why": "Section 24 forbids the data controller to collect without consent unless an exception applies; neither it nor section 40 imposes on a processor a duty to verify the controller's legal basis before processing."
+  },
+  {
+   "type": "not_in_evidence",
+   "quote": "แต่บริษัทต้องตรวจสอบว่ามีฐานรองรับก่อนประมวลผล",
+   "law_section": 24,
+   "why": "No retrieved section or graph result states such a processor duty; section 40 (1) only excepts instructions that are contrary to law."
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "code": "L888",
+ "n_claims": 22,
+ "n_correct": 22,
+ "n_partly": 0,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 0,
+ "conclusion": "correct",
+ "conclusion_reason": "สรุปถูกว่าขึ้นกับวัตถุประสงค์: ถ่ายเพื่อประโยชน์ส่วนตนหรือกิจกรรมในครอบครัวเท่านั้น PDPA ไม่ใช้บังคับตาม ม.4(1) หากเกินกว่านั้นต้องมีความยินยอมหรือฐานตาม ม.24/27 และมีโทษตาม ม.79, 83, 84",
+ "uses_key_sections": true,
+ "problems": []
+}

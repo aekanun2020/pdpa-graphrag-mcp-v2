@@ -1,0 +1,26 @@
+{
+ "code": "L964",
+ "n_claims": 10,
+ "n_correct": 9,
+ "n_partly": 1,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 1,
+ "conclusion": "correct",
+ "conclusion_reason": "A controller that keeps no record breaches section 39 paragraph one and faces an administrative fine of up to one million baht under section 82, exactly as the answer states.",
+ "uses_key_sections": true,
+ "problems": [
+  {
+   "type": "partly",
+   "quote": "จัดให้มีข้อตกลงระหว่างผู้ควบคุมและผู้ประมวลผล (ม.๔๐ วรรคสอง)",
+   "law_section": 40,
+   "why": "The controller-processor agreement duty is in section 40 paragraph three; paragraph two deems a processor who ignores instructions to be a controller."
+  },
+  {
+   "type": "not_in_evidence",
+   "quote": "ไม่มีมาตรการรักษาความมั่นคงปลอดภัย ม.๓๗ (๑) → ม.๘๓, ไม่แจ้งเหตุละเมิด ม.๓๗ (๔) → ม.๘๓",
+   "law_section": 83,
+   "why": "Correct (section 83 fines breach of section 37 up to three million baht), but section 83 was neither retrieved in full nor shown in the graph results."
+  }
+ ]
+}
