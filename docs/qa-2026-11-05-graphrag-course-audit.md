@@ -596,3 +596,36 @@ server รุ่น branch ยังเปิดค้างอยู่ที�
 - **คะแนนรวมน่าจะสูงกว่าความจริง:** prompt ของ harness เขียนตอนที่ผมรู้ประเภทคำถามแล้ว ตามที่รายงานไว้ก่อนหน้า
 
 คำตัดสินรายคำตอบพร้อมเหตุผลอยู่ที่ `eval/agent/judge/judged.json` บน branch `feat/expansion-quota-and-paths` ครับ
+
+## Q6 — ตรวจจากโค้ด และเอกสารใน remote repo อีกทีว่า ใช้โมเดลอะไร ที่ไหนบ้าง
+
+อาจารย์ครับ ผมตรวจจาก `main` ที่ commit `1c0ae67` ซึ่งตรงกับ remote ของ repo v2 แล้ว repo นี้ใช้โมเดล 4 ตัวใน 4 ที่ และโค้ดกับเอกสารสอดคล้องกัน ยกเว้น Q&A log ข้อ 4 ที่ยังเขียนชื่อโมเดลของ server ผิด
+
+## โมเดลที่ใช้และที่ที่ใช้
+
+| โมเดล | ใช้ที่ไหน | ทำอะไร | กำหนดที่ |
+|---|---|---|---|
+| `gpt-oss-120b` ผ่าน OpenRouter | MCP server | สกัด keyword ใน `search_pdpa` ครั้งละ 1 คำขอ | `LLM_MODEL` ใน `.env` อ่านโดย [lightrag/llm_provider.py:15](lightrag/llm_provider.py:15) |
+| `BAAI/bge-m3` รันในเครื่อง | MCP server | ทำ embedding ของ profile, chunk และคำค้น | [lightrag/vector_index.py:39](lightrag/vector_index.py:39) และอบไว้ใน image ที่ [Dockerfile:13](Dockerfile:13) |
+| `qwen/qwen3.5-35b-a3b` ผ่าน OpenRouter | agent ใน `labs/lab7` และ `labs/lab8` | เป็นตัว agent ที่เรียกเครื่องมือและเขียนคำตอบ | `OPENROUTER_MODEL` ใน `.env` อ่านโดย [labs/core/config.py:15](labs/core/config.py:15) |
+| `deepseek/deepseek-v4.1-flash` ผ่าน OpenRouter | harness ทดสอบใน `eval/agent/harness` | ทั้ง 3 บทบาทของ agent ในรอบ 11 | `policies/model-policy.json` และ [eval/agent/harness/run_pdpa.py:13](eval/agent/harness/run_pdpa.py:13) |
+
+## รายละเอียดฝั่ง server
+
+- **เครื่องมือที่เรียก LLM:** มีเพียง `search_pdpa` อีก 4 เครื่องมือไม่เรียก LLM
+- **คำตอบไม่ได้เขียนที่ server:** ฟังก์ชัน `generate_answer` มีอยู่ในโค้ด แต่ `mcp_server_rag.py` เรียกเฉพาะ `rag.search` จึงไม่ถูกใช้ ตรงกับที่ [README.md:73](README.md:73) เขียนไว้
+- **การสกัด entity ด้วย LLM ตอนเริ่ม server:** ปิดอยู่ (`USE_LLM_EXTRACT=false`) ตรงกับ log ตอนเริ่มที่ขึ้นว่า Skipping LLM extract
+- **ทางเลือก Ollama:** โค้ดรองรับ ค่าเริ่มต้นคือ `qwen2.5:7b` แต่ไม่ได้เปิดใช้ เพราะ `LLM_PROVIDER=openrouter`
+
+## เอกสารตรงกับโค้ดหรือไม่
+
+- **`.env.example`:** ตรง และเขียนแยกไว้ชัดว่า `LLM_MODEL` เป็นของ server ส่วน `OPENROUTER_MODEL` เป็นของ agent ใน labs การที่ผมเรียก LLM ของ server ว่า qwen จึงเป็นความผิดของผม ไม่ใช่ของ repo
+- **README ทั้งสองภาษา:** ระบุ BGE-M3 และบอกว่า LLM ฝั่ง server ทำแค่สกัด keyword ไม่ได้ระบุชื่อโมเดลของ LLM
+- **รายงานใน `docs/eval/`:** ตรงแล้วหลังการแก้วันนี้ ระบุ `gpt-oss-120b` สำหรับ server และ deepseek สำหรับ agent
+- **Q&A log ข้อ 4:** ยังมีข้อความ "server เรียก qwen สกัด keyword" ซึ่งผิด ผมคงไว้เพราะเป็นบันทึกตามต้นฉบับ
+
+## ข้อที่ควรทราบ
+
+- **ชื่อตัวแปรชวนสับสน:** ใน `llm_provider.py` ตัวแปรชื่อ `OPENROUTER_MODEL` แต่ดึงค่าจาก env ชื่อ `LLM_MODEL` ส่วนใน `labs/` ชื่อเดียวกันดึงจาก env ชื่อ `OPENROUTER_MODEL`
+- **โมเดลที่ไม่อยู่ใน repo:** การตรวจ correctness/faithfulness ใช้ subagent ของ Claude จึงไม่มีโค้ดเรียกใน repo มีเพียงเกณฑ์และผลใน `eval/agent/judge/`
+- **สิ่งที่ยืนยันจากการรันจริง:** มีเฉพาะ `gpt-oss-120b` ที่ผมเรียกตรวจเมื่อสักครู่ และ deepseek จากผลดิบของรอบ 11 ส่วน qwen ใน labs ผมตรวจจากโค้ดเท่านั้น ไม่ได้รัน
