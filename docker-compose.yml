@@ -1,6 +1,6 @@
 services:
   qdrant:
-    image: qdrant/qdrant:v1.20.0   # fixed: results in docs/eval were produced with 1.20.0
+    image: qdrant/qdrant:v1.20.0   # fixed: the version the author tested with
     container_name: qdrant
     ports:
       - "6333:6333"

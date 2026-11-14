@@ -4,7 +4,7 @@
 # platform-specific entries (nvidia-*, cuda-*) are ignored where they do not apply.
 # setuptools is not listed by pip freeze; 79.0.1 is the version in the tested image (it comes with the base image).
 # Verified 2026-11-14: a no-cache run of the Dockerfile through the pip install step, from the repo zip at
-# 34e7bd7, installed 116 packages (pip, setuptools and wheel included) identical to the image behind docs/eval.
+# 34e7bd7, installed 116 packages (pip, setuptools and wheel included) identical to the image the author tested with.
 accelerate==1.15.0
 aiohappyeyeballs==2.7.1
 aiohttp==3.14.5
