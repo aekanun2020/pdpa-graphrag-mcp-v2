@@ -1,14 +1,14 @@
 """
-Lab 8 — สร้าง Agent ที่เชื่อมต่อกับ PDPA GraphRAG MCP Server (จาก PART 1)
-อ้างอิง outline: บทที่ 1.4 / แบบฝึกหัดที่ 4
+Lab 8 — สร้าง Agent ที่เชื่อมต่อกับ PDPA GraphRAG MCP Server ของ repo นี้
 
-ต่อยอด agent loop ของ Lab 7 (อยู่ที่ branch backup/labs) แต่เปลี่ยนจาก local tool เป็น **MCP tools จริง**:
+agent loop แบบ "while loop + model + tools" ที่ใช้ **MCP tools จริง** (ตัวอย่าง loop ที่ใช้ local tool
+อยู่ที่ lab7 ใน branch backup/labs):
   - MCP Tool Discovery อัตโนมัติผ่าน Streamable HTTP (core.mcp_client)
   - แปลง MCP inputSchema -> OpenAI function (core.registry.mcp_to_openai_tools)
   - Tool Registry รวม tools จากหลาย MCP server (ที่นี่ต่อ PDPA GraphRAG เป็นแกน)
 
-นี่คือสะพานสำคัญที่สุดระหว่างสองหลักสูตร: PART 1 เราทำ PDPA GraphRAG แล้วเปิดเป็น MCP Server
-— Lab นี้เราเขียน MCP client เป็น Python เองแล้วต่อเข้ากับ agent loop (แทน Claude Desktop/LangFlow)
+server ฝั่ง PDPA GraphRAG เปิดเป็น MCP Server ไว้แล้ว (docker compose ของ repo นี้)
+— Lab นี้เขียน MCP client เป็น Python เองแล้วต่อเข้ากับ agent loop แทนการใช้ client สำเร็จรูป เช่น Claude Desktop หรือ LangFlow
 
 รัน:  python labs/lab8/agent_pdpa_mcp.py "เก็บข้อมูลสุขภาพพนักงานได้ไหม มีโทษอะไร"
 """
@@ -66,7 +66,7 @@ def main():
     # ---- Tool Registry : รองรับหลาย MCP server (ที่นี่ต่อ PDPA GraphRAG MCP server เป็นแกน) ----
     registry = ToolRegistry()
     n = registry.add_server(config.MCP_SERVER_URL)
-    # ตัวอย่างต่อ MCP เพิ่ม (ถ้ามีของหลักสูตรที่ 1): registry.add_server("http://localhost:8000/mcp")
+    # ตัวอย่างต่อ MCP server เพิ่มอีกตัว: registry.add_server("http://localhost:8000/mcp")
     print(f"[MCP] เชื่อม {config.MCP_SERVER_URL}")
     print(f"[MCP] ค้นพบ {n} tools: {registry.tool_names}\n")
 

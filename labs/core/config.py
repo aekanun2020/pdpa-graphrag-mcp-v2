@@ -1,4 +1,4 @@
-"""core.config — โหลดค่าตั้งจาก .env และรวมไว้ที่เดียว (เริ่มใช้ตั้งแต่ Lab 1)
+"""core.config — โหลดค่าตั้งจาก .env และรวมไว้ที่เดียว
 
 ทุก Lab import ค่าจากที่นี่ เพื่อไม่ให้กระจัดกระจาย และเปลี่ยน MCP server / โมเดล
 ได้จากจุดเดียว (แก้ .env อย่างเดียว)
@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # โหลด .env จาก root ของโปรเจกต์ (หาไฟล์ขึ้นไปจากตำแหน่งนี้)
 load_dotenv()
 
-# ---- OpenRouter (LLM provider แบบ thin client — แนวคิดเดียวกับหลักสูตรที่ 1) ----
+# ---- OpenRouter (LLM provider แบบ thin client) ----
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_BASE_URL = os.environ.get("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
 OPENROUTER_MODEL = os.environ.get("OPENROUTER_MODEL", "qwen/qwen3.5-35b-a3b")

@@ -1,7 +1,7 @@
-"""core.mcp_client — MCP client ขั้นต่ำผ่าน Streamable HTTP (เริ่มใช้ Lab 4)
+"""core.mcp_client — MCP client ขั้นต่ำผ่าน Streamable HTTP
 
 ทำ MCP lifecycle ด้วยมือ (ไม่พึ่ง framework) เพื่อให้เห็นว่า "ใต้ฝา" ของ MCP client
-ในหลักสูตรที่ 1 (Claude Desktop / LangFlow) ทำงานอย่างไร:
+สำเร็จรูป เช่น Claude Desktop หรือ LangFlow ทำงานอย่างไร:
 
     initialize  ->  notifications/initialized  ->  tools/list  ->  tools/call
 
