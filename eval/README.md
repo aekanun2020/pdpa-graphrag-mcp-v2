@@ -1,6 +1,6 @@
 # eval/ — เครื่องมือที่ใช้สร้างผลใน `docs/eval/`
 
-โฟลเดอร์นี้เก็บโค้ดและข้อมูลที่ใช้ทดสอบ branch `feat/expansion-quota-and-paths` เทียบกับ `main` รายงานของแต่ละรอบอยู่ที่ `docs/eval/` โฟลเดอร์นี้มีไว้ให้ตรวจย้อนและรันซ้ำได้
+โฟลเดอร์นี้เก็บโค้ดและข้อมูลที่ใช้ทดสอบ branch `feat/expansion-quota-and-paths` เทียบกับ `main` (branch นี้ถูก merge เข้า `main` เมื่อ 14 พ.ย. 2569 (merge commit `c283237`) แล้วลบชื่อ branch ออก ปลาย branch คือ commit `861258b` ซึ่งยังอยู่ในประวัติของ `main`) รายงานของแต่ละรอบอยู่ที่ `docs/eval/` โฟลเดอร์นี้มีไว้ให้ตรวจย้อนและรันซ้ำได้
 
 ไม่มี API key ในไฟล์ใด ทุกสคริปต์อ่าน key จาก environment ของ container `mcp-pdpa-rag`
 

@@ -178,8 +178,11 @@ To use this on another statute, swap the heading pattern (`Article\s+(\d+)` for 
   start (no hot reload). For a corpus of laws use a graph database; `build_graph.py` also emits
   `pdpa_neo4j_import.cypher`.
 - Rule-based graph construction means porting to a new law is curation work, not configuration.
-- There is no formal evaluation set yet. Contributions of question/answer pairs with expected
-  section citations are welcome.
+- There is no standard evaluation set yet. What exists is a record of 11 internal test rounds in
+  [`docs/eval/`](docs/eval/) (in Thai), with the code and raw data behind them in [`eval/`](eval/README.md).
+  The 52 questions and their expected sections were written during development, in the agent round each was
+  run once per build, and none has been reviewed by a lawyer. Contributions of question/answer pairs with expected section
+  citations are welcome.
 - The shipped graph has a known gap that affects `get_penalty` for one section; it is the subject of
   part 2 of the article series and is left as is until that article is published. Only Sections 77,
   79, 85, 86 and 90 have a Penalty node, so `get_penalty('sec_26')` returns the two criminal
