@@ -126,9 +126,13 @@ python labs/lab8/agent_pdpa_mcp.py "เก็บข้อมูลสุขภ�
 
 The statute and the agent's system prompt are in Thai, so Thai questions work best (the model
 answers in Thai; change `SYSTEM` in `labs/lab8/agent_pdpa_mcp.py` to answer in another language).
-With the original code a typical run made 7 tool calls in 4 rounds: `search_pdpa` ->
-`get_related_sections` + `get_penalty` -> `get_section_text` x4 -> answer citing Sections 26 / 79 / 84.
-The agent run has not been repeated with this version; expect the calls to differ.
+With this version, a run of the question above on 14 Nov 2026 made 5 tool calls in 6 rounds: `search_pdpa` ->
+`get_related_sections(sec_26)` -> `get_penalty(sec_26)` -> `get_section_text(sec_26)` ->
+`get_section_text(sec_84)` -> answer citing Sections 23 / 26 / 79 / 84. The sequence was the same against the
+author's server and against a server built fresh from the repo zip (one run each; see
+[`docs/eval/2026-11-14-learner-reproduction.md`](docs/eval/2026-11-14-learner-reproduction.md), in Thai).
+Expect the number and order of calls to vary between runs: the server-side keyword LLM and the agent's model
+are not deterministic. (With the original code a typical run made 7 tool calls in 4 rounds.)
 
 ## MCP tools
 

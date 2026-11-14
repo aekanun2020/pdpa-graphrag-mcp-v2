@@ -125,9 +125,12 @@ python labs/lab8/agent_pdpa_mcp.py "เก็บข้อมูลสุขภ�
 
 ตัวบทและ system prompt ของ agent เป็นภาษาไทย คำถามภาษาไทยจึงได้ผลดีที่สุด
 (ถ้าต้องการให้ตอบภาษาอื่น แก้ `SYSTEM` ใน `labs/lab8/agent_pdpa_mcp.py`)
-กับโค้ดของ repo เดิม การรันทั่วไปเรียก tool 7 ครั้งใน 4 รอบ: `search_pdpa` -> `get_related_sections` +
-`get_penalty` -> `get_section_text` x4 -> ตอบโดยอ้างมาตรา 26 / 79 / 84
-การรัน agent ยังไม่ได้ทำซ้ำกับฉบับนี้ จำนวนและลำดับการเรียกอาจต่างออกไป
+กับฉบับนี้ การรันคำถามข้างบนเมื่อ 14 พ.ย. 2569 เรียก tool 5 ครั้งใน 6 รอบ: `search_pdpa` -> `get_related_sections(sec_26)` ->
+`get_penalty(sec_26)` -> `get_section_text(sec_26)` -> `get_section_text(sec_84)` -> ตอบโดยอ้างมาตรา 23 / 26 / 79 / 84
+ได้ลำดับเดียวกันทั้งกับ server ของผู้สอนและ server ที่ build ใหม่จาก zip ของ repo (รันฝั่งละครั้งเดียว ดู
+[`docs/eval/2026-11-14-learner-reproduction.md`](docs/eval/2026-11-14-learner-reproduction.md))
+จำนวนและลำดับการเรียกอาจต่างไปในแต่ละรอบ เพราะคีย์เวิร์ดจาก LLM ฝั่ง server และคำตอบของโมเดลฝั่ง agent ไม่คงที่
+(กับโค้ดของ repo เดิม การรันทั่วไปเรียก tool 7 ครั้งใน 4 รอบ)
 
 ## MCP tools
 

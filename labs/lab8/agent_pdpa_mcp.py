@@ -63,14 +63,14 @@ def run_agent(question: str, registry: ToolRegistry, max_steps: int = 8):
 
 
 def main():
-    # ---- Tool Registry : รองรับหลาย MCP server (ที่นี่ต่อ MCP MSSQL จริงเป็นแกน) ----
+    # ---- Tool Registry : รองรับหลาย MCP server (ที่นี่ต่อ PDPA GraphRAG MCP server เป็นแกน) ----
     registry = ToolRegistry()
     n = registry.add_server(config.MCP_SERVER_URL)
     # ตัวอย่างต่อ MCP เพิ่ม (ถ้ามีของหลักสูตรที่ 1): registry.add_server("http://localhost:8000/mcp")
     print(f"[MCP] เชื่อม {config.MCP_SERVER_URL}")
     print(f"[MCP] ค้นพบ {n} tools: {registry.tool_names}\n")
 
-    q = sys.argv[1] if len(sys.argv) > 1 else "มีตารางอะไรบ้างในฐานข้อมูล และมีพนักงานทั้งหมดกี่คน"
+    q = sys.argv[1] if len(sys.argv) > 1 else "เก็บข้อมูลสุขภาพพนักงานได้ไหม ถ้าฝ่าฝืนมีโทษอะไร"
     print(f"[user] {q}")
     try:
         run_agent(q, registry)

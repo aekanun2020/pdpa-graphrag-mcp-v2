@@ -5,7 +5,7 @@
   2) แปลง MCP inputSchema -> OpenAI function schema (ใช้ตรงได้เพราะเป็น JSON Schema)
   3) map tool_name -> client ตัวที่เป็นเจ้าของ เพื่อ dispatch ตอน LLM ขอเรียก tool
 
-โครงสร้างนี้ "รองรับหลาย MCP server" แต่ในหลักสูตรนี้เราต่อ MCP MSSQL จริงตัวเดียว
+โครงสร้างนี้ "รองรับหลาย MCP server" แต่ในหลักสูตรนี้เราต่อ PDPA GraphRAG MCP server ตัวเดียว
 เป็นแกน (สอดคล้องกับ Lab 8) — เพิ่ม server อื่น (เช่น RAG :8000) ได้โดยเรียก
 add_server() เพิ่มอีกตัวโดยไม่ต้องแก้ agent loop
 """
