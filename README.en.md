@@ -196,7 +196,7 @@ To use this on another statute, swap the heading pattern (`Article\s+(\d+)` for 
   start (no hot reload). For a corpus of laws use a graph database; `build_graph.py` also emits
   `pdpa_neo4j_import.cypher`.
 - Rule-based graph construction means porting to a new law is curation work, not configuration.
-- There is no standard evaluation set yet. What exists is a record of 13 internal test rounds in
+- There is no standard evaluation set yet. What exists is a record of 14 internal test rounds in
   [`docs/eval/`](docs/eval/) (in Thai), with the code and raw data behind them in [`eval/`](eval/README.md).
   The 52 questions and their expected sections were written during development, in the agent round each was
   run once per build, and none has been reviewed by a lawyer. Contributions of question/answer pairs with expected section

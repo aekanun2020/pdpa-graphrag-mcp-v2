@@ -1,0 +1,6 @@
+{"code": "L342", "n_claims": 9, "n_correct": 8, "n_partly": 1, "n_wrong": 0, "n_citation_wrong": 0, "n_not_in_evidence": 1,
+ "conclusion": "correct", "conclusion_reason": "Failing to give the notice required by มาตรา 23 at or before collection is punishable under มาตรา 82 by an administrative fine of up to one million baht, which is the answer's bottom line.", "uses_key_sections": true,
+ "problems": [
+  {"type": "partly", "quote": "สำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (สคส.) อาจพิจารณาปรับตามความร้ายแรงของเหตุละเมิด แต่ไม่เกิน 1 ล้านบาท", "law_section": 90, "why": "Under มาตรา 90 the expert committee (คณะกรรมการผู้เชี่ยวชาญ), not the Office, orders administrative fines, weighing severity, size of the business and other circumstances, and may order correction or a warning first."},
+  {"type": "not_in_evidence", "quote": "สำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (สคส.) อาจพิจารณาปรับตามความร้ายแรงของเหตุละเมิด แต่ไม่เกิน 1 ล้านบาท", "law_section": 90, "why": "The severity-based fining power is in มาตรา 90, which is not among the retrieved sections (19, 23, 24, 25, 82, 95) and is not stated in the graph results."}
+ ]}

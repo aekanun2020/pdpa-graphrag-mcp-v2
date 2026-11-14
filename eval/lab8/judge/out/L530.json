@@ -1,0 +1,5 @@
+{"code": "L530", "n_claims": 3, "n_correct": 2, "n_partly": 1, "n_wrong": 0, "n_citation_wrong": 0, "n_not_in_evidence": 0,
+ "conclusion": "correct", "conclusion_reason": "The answer correctly concludes that the PDPA (including the erasure right) does not apply to the news agency because of the mass-media exemption in section 4(3), so deletion cannot be compelled under the PDPA.", "uses_key_sections": true,
+ "problems": [
+  {"type": "partly", "quote": "ข้อยกเว้นนี้จะใช้ได้ก็ต่อเมื่อสำนักข่าวปฏิบัติตาม \"จริยธรรมแห่งการประกอบวิชาชีพ\" อย่างเคร่งครัด", "law_section": 4, "why": "มาตรา 4(3) กำหนดว่า \"อันเป็นไปตามจริยธรรมแห่งการประกอบวิชาชีพ หรือเป็นประโยชน์สาธารณะ\" เป็นทางเลือก ไม่ได้บังคับว่าต้องเป็นไปตามจริยธรรมเสมอ และไม่ได้ระบุรายการเงื่อนไขย่อย (ตรวจสอบข้อเท็จจริง ให้โอกาสชี้แจง ฯลฯ) ตามที่คำตอบอ้าง"}
+ ]}

@@ -1,0 +1,38 @@
+{
+ "code": "L548",
+ "n_claims": 8,
+ "n_correct": 6,
+ "n_partly": 2,
+ "n_wrong": 0,
+ "n_citation_wrong": 0,
+ "n_not_in_evidence": 2,
+ "conclusion": "correct",
+ "conclusion_reason": "มาตรา 24(3) ยกเว้นไม่ต้องขอความยินยอมเมื่อจำเป็นเพื่อปฏิบัติตามสัญญาที่เจ้าของข้อมูลเป็นคู่สัญญา ซึ่งคำตอบสรุปตรงตามนั้น และยังต้องแจ้งตามมาตรา 23",
+ "uses_key_sections": true,
+ "problems": [
+  {
+   "type": "partly",
+   "quote": "(1) ชื่อและข้อมูลติดต่อของผู้ควบคุมข้อมูลส่วนบุคคล (2) วัตถุประสงค์ของการเก็บรวบรวม ใช้ หรือเปิดเผย (3) สิทธิของเจ้าของข้อมูลส่วนบุคคล",
+   "law_section": 23,
+   "why": "Presented as a quotation of s.23 but the numbering and wording are not the statute's: s.23(1) is the purpose, controller details are (5), rights are (6); (2)-(4) are different items."
+  },
+  {
+   "type": "not_in_evidence",
+   "quote": "(1) ชื่อและข้อมูลติดต่อของผู้ควบคุมข้อมูลส่วนบุคคล (2) วัตถุประสงค์ของการเก็บรวบรวม ใช้ หรือเปิดเผย (3) สิทธิของเจ้าของข้อมูลส่วนบุคคล",
+   "law_section": 23,
+   "why": "Full text of s.23 was not retrieved; the graph excerpt only contains the opening sentence, not the list of items."
+  },
+  {
+   "type": "not_in_evidence",
+   "quote": "ข้อมูลที่เก็บเพื่อจ่ายเงินเดือน ไม่สามารถนำไปใช้เพื่อวัตถุประสงค์อื่น (เช่น โฆษณา, ขายต่อ) ได้",
+   "law_section": 21,
+   "why": "Purpose limitation is s.21 (use outside the notified purpose is barred unless a new purpose is notified with consent or law permits); s.21 was not retrieved nor excerpted in the tool results."
+  },
+  {
+   "type": "partly",
+   "quote": "พนักงานยังมีสิทธิเข้าถึง, คัดค้าน, ลบข้อมูล ตามมาตรา 30-33",
+   "law_section": 32,
+   "why": "The s.32 right to object covers only data collected under s.24(4)/(5), direct marketing, and research; it does not extend to data collected under the s.24(3) contract basis used here. Access (s.30) and erasure (s.33, conditional) are right."
+  }
+ ]
+}

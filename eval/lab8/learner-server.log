@@ -1,0 +1,2153 @@
+🔧 MCP Server PDPA RAG — กำลังเตรียมระบบ...
+============================================================
+PDPA LightRAG: กำลังสร้างระบบ...
+============================================================
+
+[1/3] สร้าง Knowledge Graph จาก PDPA...
+  Loading pre-built PDPA graph from /app/data/pdpa_knowledge_graph.json...
+  ✅ Pre-built: 190 nodes, 380 edges
+  Parsing PDPA markdown from /app/data/pdpa_full_text_v2.md...
+  ✅ Parsed 96 sections (มาตรา), 96 chunks
+  ⏭️  Skipping LLM extract (use_llm_extract=False)
+  Profiling 190 nodes...
+  ✅ 570 profiles
+  ✅ 190 nodes, 380 edges
+
+[2/3] สร้าง Vector Index (BGE-M3 + Qdrant)...
+  Loading BGE-M3 model...
+Fetching 30 files:   0%|          | 0/30 [00:00<?, ?it/s]Fetching 30 files: 100%|██████████| 30/30 [00:00<00:00, 4537.00it/s]
+  Embedding 570 profiles (keys only)...
+pre tokenize:   0%|          | 0/18 [00:00<?, ?it/s]pre tokenize: 100%|██████████| 18/18 [00:00<00:00, 1286.05it/s]
+You're using a XLMRobertaTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Inference Embeddings:   0%|          | 0/18 [00:00<?, ?it/s]Inference Embeddings:   6%|▌         | 1/18 [00:03<01:06,  3.93s/it]Inference Embeddings:  11%|█         | 2/18 [00:06<00:53,  3.34s/it]Inference Embeddings:  17%|█▋        | 3/18 [00:09<00:44,  2.98s/it]Inference Embeddings:  22%|██▏       | 4/18 [00:11<00:37,  2.70s/it]Inference Embeddings:  28%|██▊       | 5/18 [00:13<00:29,  2.30s/it]Inference Embeddings:  33%|███▎      | 6/18 [00:14<00:23,  1.95s/it]Inference Embeddings:  39%|███▉      | 7/18 [00:15<00:17,  1.58s/it]Inference Embeddings:  44%|████▍     | 8/18 [00:15<00:12,  1.28s/it]Inference Embeddings:  50%|█████     | 9/18 [00:16<00:09,  1.05s/it]Inference Embeddings:  56%|█████▌    | 10/18 [00:17<00:07,  1.13it/s]Inference Embeddings:  61%|██████    | 11/18 [00:17<00:05,  1.31it/s]Inference Embeddings:  67%|██████▋   | 12/18 [00:18<00:04,  1.47it/s]Inference Embeddings:  72%|███████▏  | 13/18 [00:18<00:03,  1.60it/s]Inference Embeddings:  78%|███████▊  | 14/18 [00:19<00:02,  1.71it/s]Inference Embeddings:  83%|████████▎ | 15/18 [00:19<00:01,  1.83it/s]Inference Embeddings:  89%|████████▉ | 16/18 [00:19<00:01,  1.94it/s]Inference Embeddings:  94%|█████████▍| 17/18 [00:20<00:00,  1.97it/s]Inference Embeddings: 100%|██████████| 18/18 [00:20<00:00,  2.16it/s]Inference Embeddings: 100%|██████████| 18/18 [00:20<00:00,  1.15s/it]
+  ✅ Upserted 570 profile vectors to Qdrant (qdrant:6333)
+  ✅ 570 profiles indexed
+
+[3/3] Index มาตรา chunks...
+  Embedding 96 chunks (full text)...
+pre tokenize:   0%|          | 0/3 [00:00<?, ?it/s]pre tokenize: 100%|██████████| 3/3 [00:00<00:00, 369.49it/s]
+Inference Embeddings:   0%|          | 0/3 [00:00<?, ?it/s]Inference Embeddings:  33%|███▎      | 1/3 [00:33<01:06, 33.49s/it]Inference Embeddings:  67%|██████▋   | 2/3 [00:42<00:18, 18.86s/it]Inference Embeddings: 100%|██████████| 3/3 [00:46<00:00, 12.18s/it]Inference Embeddings: 100%|██████████| 3/3 [00:46<00:00, 15.45s/it]
+  ✅ Upserted 96 chunk vectors to Qdrant 'pdpa_chunks'
+  ✅ 96 chunks indexed
+
+============================================================
+PDPA LightRAG พร้อมใช้งาน!
+  Knowledge Graph: 190 nodes, 380 edges
+  Profiles: 570
+  Chunks: 96
+============================================================
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+[11/14/26 07:21:49] INFO     StreamableHTTP       streamable_http_manager.py:164
+                             session manager                                    
+                             started                                            
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8100 (Press CTRL+C to quit)
+[11/14/26 07:22:05] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+
+🚀 MCP Server PDPA RAG starting on 0.0.0.0:8100/mcp
+   Transport: streamable-http
+   Tools: 5 (search_pdpa, get_related_sections, get_section_text, get_penalty, get_pdpa_summary)
+INFO:     192.168.65.1:34392 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:25439 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:21382 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:36268 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:63311 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:22415 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:64053 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:35597 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:20203 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:24493 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:54811 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:59104 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:53374 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:26601 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:22909 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:16700 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:26864 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:30114 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:35785 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:19771 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:57535 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:26635 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:60213 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:50727 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:26186 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:39464 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:17870 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:21573 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:17460 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:41619 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:63374 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:29733 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:17674 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:30049 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:54648 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:21929 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:27826 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:59524 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:47769 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:45526 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:54114 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:25407 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:41550 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:55641 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:65018 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:49710 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:30078 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:19715 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:40059 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:24717 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:23489 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:52638 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:36593 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:54993 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:49912 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:65416 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:26075 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:16894 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:31210 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:33064 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:16519 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:52300 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:20612 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:20083 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:37822 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:19489 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:20885 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:42329 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:24567 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:32389 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:58702 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:40380 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:29151 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:44925 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:36758 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:43756 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56806 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:22971 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:42890 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:37904 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:45729 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:50784 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:26327 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:19076 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:40844 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:45925 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:30683 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:25773 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:46104 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:46543 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:64391 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:21032 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:21250 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:53811 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:47679 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:30190 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:20889 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:17433 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:65476 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:37610 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:33724 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:48159 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:47047 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:21663 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:22891 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:27867 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:53904 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:32550 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:39384 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:63319 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:16314 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:49669 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:54543 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:21893 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:52167 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:42891 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:52091 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:48718 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:47732 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:53161 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:28077 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:34621 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:20218 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:50834 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:21746 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:17098 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:38941 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:16169 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:40802 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:41185 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:60759 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:48328 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:51250 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:20246 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:31191 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:46294 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:16009 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:20986 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56841 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:58762 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:38726 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:49783 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:37167 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:43463 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:33099 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:53176 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:52225 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:45898 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:26904 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:64799 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:17351 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56840 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56249 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:52138 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:41087 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:24651 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:22:06] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56073 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:60963 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:43935 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:46277 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:39636 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:17181 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:52983 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:49855 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:27935 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:59439 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:52960 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:60038 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:18117 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:30251 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:32910 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:57235 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:58832 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:48494 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:63912 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:49230 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:51551 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:59897 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:18447 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:48651 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:62167 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:50116 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:17551 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:28912 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:55489 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:19291 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:41848 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:63310 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:42564 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:17899 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:45823 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:42682 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:40648 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:63921 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:51811 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:40121 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56187 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:41616 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:46649 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:24275 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:59532 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:22841 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:17049 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:20849 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:49860 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:49272 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:36964 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:41637 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:28559 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:43752 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:29780 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:24028 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:52619 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:34681 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:53634 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:27728 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:16132 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:65083 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:30488 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:54748 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:45886 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:47875 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:41045 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:42770 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:61205 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:65009 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:53372 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:49482 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:30067 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:55269 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:17210 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:64835 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:41387 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:30678 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:33437 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:45321 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:46044 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:38588 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:50066 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:27644 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:59848 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:36976 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:45098 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56514 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:57725 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:26595 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:49933 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:48476 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:60823 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:26857 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:48609 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:58421 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:54212 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:45868 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:23655 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:63614 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:46117 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:64055 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:47823 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:33101 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:45174 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:59684 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:32466 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:51377 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:28341 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:51745 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:31750 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:50905 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:25815 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:58853 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:65224 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:42095 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:47591 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:43541 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:59126 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:62115 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:57861 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:45449 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:20499 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:42819 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:64137 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:35212 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:48697 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:59259 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:23123 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:55689 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:25958 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:27932 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:46067 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:49607 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:22:17] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:49607 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:49607 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:22:19] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:22:45] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:49607 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:22:46] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:49607 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:22:48] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:49607 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:22:50] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:49607 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:37522 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:22:55] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:37522 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:37522 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:22:57] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:23:36] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:37522 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:23:37] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:37522 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:23:39] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:37522 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:23:42] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:37522 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:23:44] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:37522 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:62588 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:23:48] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:62588 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:62588 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:23:49] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:24:36] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+[11/14/26 07:24:37] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:62588 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:24:38] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:62588 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:62588 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:62588 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:62588 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:24:42] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:62588 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:62588 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:62588 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:62588 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:62588 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:56825 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:24:48] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:56825 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:56825 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:24:50] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:25:08] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:56825 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:25:09] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56825 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:25:11] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56825 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:25:14] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56825 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:25:15] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56825 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:25:16] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56825 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:25:17] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56825 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:57138 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:25:26] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:57138 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:57138 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:25:27] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:25:44] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:57138 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:25:46] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:57138 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:57138 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:25:48] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:57138 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:18610 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:25:54] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:18610 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:18610 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:25:55] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:26:30] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:18610 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:26:31] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:18610 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:26:33] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:18610 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:18610 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:26:34] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:18610 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:29489 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:26:41] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:29489 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:29489 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:26:43] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:27:02] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+[11/14/26 07:27:03] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:29489 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:30485 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:27:10] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:30485 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:30485 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:27:12] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:27:30] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:30485 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:27:31] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:30485 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:27:33] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:30485 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:27:35] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:30485 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:34689 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:27:43] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:34689 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:34689 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:27:45] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:28:12] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+[11/14/26 07:28:13] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:34689 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:28:14] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:34689 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:19239 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:28:20] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:19239 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:19239 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:28:21] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:28:44] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:19239 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:33935 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:28:51] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:33935 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:33935 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:28:52] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:29:25] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+[11/14/26 07:29:26] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:33935 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:29:27] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:33935 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:29:28] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:33935 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:29:29] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:33935 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:19199 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:29:34] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:19199 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:19199 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:29:36] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:30:14] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+[11/14/26 07:30:15] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:19199 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:30:16] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:19199 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:30:20] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:19199 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:56152 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:30:29] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:56152 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:56152 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:30:31] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:30:57] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+[11/14/26 07:30:58] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:56152 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:30:59] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56152 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:31:02] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56152 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:31:03] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56152 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:31:04] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:56152 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:63300 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:31:13] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:63300 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:63300 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:31:15] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:31:36] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:63300 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:31:37] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:63300 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:31:39] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:63300 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:31:40] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:63300 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:31:42] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:63300 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:31:43] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:63300 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:31:44] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:63300 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:31:45] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:63300 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:35121 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:35121 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:35121 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:31:47] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:32:24] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+[11/14/26 07:32:25] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:35121 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:31744 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:32:32] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:31744 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:31744 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:32:35] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:33:03] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:31744 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:33:05] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:31744 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:60948 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:33:09] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:60948 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:60948 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:33:11] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:33:14] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:60948 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:33:15] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:60948 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:29487 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:33:22] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:29487 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:29487 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:33:24] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:33:28] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:29487 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:33:30] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:29487 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:33:31] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:29487 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:22235 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:33:38] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:22235 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:22235 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:33:40] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:34:10] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+[11/14/26 07:34:11] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:22235 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:34:12] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:22235 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:34:14] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:22235 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:34:16] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:22235 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:34:19] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:22235 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:34952 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:34:25] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:34952 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:34952 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:34:27] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:35:08] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:34952 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:35:09] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:34952 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:35:11] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:34952 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:28769 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:35:20] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:28769 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:28769 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:35:21] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:35:53] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:28769 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:35:54] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:28769 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:33221 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:36:05] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:33221 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:33221 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:36:06] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:36:26] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+[11/14/26 07:36:27] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:33221 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:36:28] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:33221 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:36:29] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:33221 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:36:30] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:33221 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:36:31] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:33221 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:36:32] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:33221 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:36:33] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:33221 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:20437 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:36:40] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:20437 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:20437 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:36:41] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:37:01] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:20437 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:37:02] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:20437 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:37:03] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:20437 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:37:04] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:20437 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:37:06] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:20437 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:51843 - "POST /mcp HTTP/1.1" 200 OK
+[11/14/26 07:37:14] INFO     Terminating session: None    streamable_http.py:831
+INFO:     192.168.65.1:51843 - "POST /mcp HTTP/1.1" 202 Accepted
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+INFO:     192.168.65.1:51843 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:37:16] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[11/14/26 07:37:37] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+[11/14/26 07:37:38] INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _profiles/points/query "HTTP/1.1                   
+                             200 OK"                                            
+                    INFO     HTTP Request: GET                   _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/exists "HTTP/1.1 200 OK"                   
+                    INFO     HTTP Request: POST                  _client.py:1025
+                             http://qdrant:6333/collections/pdpa                
+                             _chunks/points/query "HTTP/1.1 200                 
+                             OK"                                                
+INFO:     192.168.65.1:51843 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:37:39] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:51843 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:51843 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:51843 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+[11/14/26 07:37:42] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:51843 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+INFO:     192.168.65.1:51843 - "POST /mcp HTTP/1.1" 200 OK
+                    INFO     Terminating session: None    streamable_http.py:831

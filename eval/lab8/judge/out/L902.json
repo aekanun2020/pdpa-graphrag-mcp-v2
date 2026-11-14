@@ -1,0 +1,7 @@
+{"code": "L902", "n_claims": 5, "n_correct": 3, "n_partly": 1, "n_wrong": 1, "n_citation_wrong": 0, "n_not_in_evidence": 1,
+ "conclusion": "correct", "conclusion_reason": "The bottom line matches the statute: a data controller that fails to keep the records required by section 39 paragraph one faces an administrative fine of up to one million baht under section 82; errors are confined to the small-business exception and the fining body.", "uses_key_sections": true,
+ "problems": [
+  {"type": "partly", "quote": "มาตรา 39 วรรคสอง ระบุว่า ความในข้อ (1) ถึง (8) อาจยกเว้นมิให้นำมาใช้บังคับกับ \"กิจการขนาดเล็ก\"", "law_section": 39, "why": "The small-business exception is in paragraph three, not two, and covers only items (1)-(6) and (8); item (7) is never exempted. The statute also says data with a risk to rights and freedoms, not 'high risk'."},
+  {"type": "wrong", "quote": "บริษัทอาจถูกสั่งปรับโดยคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (สคส.)", "law_section": 90, "why": "Section 90 gives the power to order administrative fines to the expert committee (คณะกรรมการผู้เชี่ยวชาญ), not the Personal Data Protection Committee or the Office."},
+  {"type": "not_in_evidence", "quote": "บริษัทอาจถูกสั่งปรับโดยคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (สคส.)", "law_section": 90, "why": "Who imposes the fine is governed by section 90, which the agent did not retrieve and which no tool result states; same claim as the wrong entry above."}
+ ]}
