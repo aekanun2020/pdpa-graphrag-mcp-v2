@@ -1,0 +1,10 @@
+# TEST ONLY — not part of the repo. Lets the learner stack run next to the instructor's containers.
+services:
+  qdrant:
+    container_name: qdrant-learner
+    ports: !override
+      - "6343:6333"
+  mcp-pdpa-rag:
+    container_name: mcp-pdpa-rag-learner
+    ports: !override
+      - "8110:8100"
