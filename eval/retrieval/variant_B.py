@@ -2,7 +2,7 @@
 Retrieval — PDPA Legal Knowledge Retrieval (PDPA RAG version)
 =============================================================
 keyword extraction → vector search → multi-hop BFS → hybrid context
-ปรับ prompts จาก XXX ระบบไฟฟ้า → PDPA กฎหมายคุ้มครองข้อมูลส่วนบุคคล
+keyword extraction ใช้ LLM ส่วนขั้นอื่นไม่ใช้
 """
 
 import networkx as nx

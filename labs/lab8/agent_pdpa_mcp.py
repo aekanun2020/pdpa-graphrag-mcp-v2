@@ -1,8 +1,7 @@
 """
 Lab 8 — สร้าง Agent ที่เชื่อมต่อกับ PDPA GraphRAG MCP Server ของ repo นี้
 
-agent loop แบบ "while loop + model + tools" ที่ใช้ **MCP tools จริง** (ตัวอย่าง loop ที่ใช้ local tool
-อยู่ที่ lab7 ใน branch backup/labs):
+agent loop แบบ "while loop + model + tools" ที่ใช้ **MCP tools จริง**:
   - MCP Tool Discovery อัตโนมัติผ่าน Streamable HTTP (core.mcp_client)
   - แปลง MCP inputSchema -> OpenAI function (core.registry.mcp_to_openai_tools)
   - Tool Registry รวม tools จากหลาย MCP server (ที่นี่ต่อ PDPA GraphRAG เป็นแกน)

@@ -58,7 +58,6 @@ Dockerfile, docker-compose.yml, requirements.txt, .env.example
 ```
 
 `labs/` contains only the agent-side code; the course lab instructions are not part of this repo.
-`lab7` (an agent loop with local tools only, unrelated to PDPA) was moved out of `main` on 14 Nov 2026; a copy is kept on the `backup/labs` branch.
 
 ## Architecture
 
@@ -75,7 +74,7 @@ Both figures are drawn by `docs/figures/make_figures.py` (redrawn on 14 Nov 2026
   rendered as a short text, so vector search can land on graph nodes).
 - **MCP server**: FastMCP, `stateless_http=True`. Each tool's docstring is the description the agent
   reads before choosing a tool.
-- **LLM on the server side** is used for exactly one thing, extracting search keywords. Answers are
+- **LLM on the server side** (`gpt-oss-120b` through OpenRouter) is used for exactly one thing, extracting search keywords. Answers are
   written by the agent's own model: *the server retrieves, the agent reasons.*
 
 ## Quick start
@@ -149,14 +148,15 @@ numerals (มาตรา ๒๖).
 
 ![search_pdpa pipeline](docs/fig3_search_pipeline.png)
 
-1. An LLM splits the question into low-level keywords (section numbers, named rights, penalties) and
-   high-level keywords (principles, concepts), after LightRAG's dual-level scheme.
-2. Profile search (`pdpa_profiles`, dense + sparse, RRF) runs once per keyword level; the top 3
-   node profiles become the seed nodes, skipping the Act node (`PDPA_2562`) because its neighbours are
-   only chapters. That node can still appear in the context; it is just not a starting point for the
-   graph walk. No LLM is involved in picking seeds.
-3. Chunk search (`pdpa_chunks`) fetches the full text of up to 5 sections, using the same keywords.
-   It does not use the graph result.
+1. The server-side LLM (`gpt-oss-120b`) splits the question into at most 8 low-level keywords (specific terms:
+   named rights, duties, penalties) and at most 6 high-level keywords (principles, concepts), after LightRAG's
+   dual-level scheme. This is the only step that calls an LLM.
+2. Profile search (`pdpa_profiles`, dense + sparse, RRF) runs twice: the high-level query asks for 5 results
+   (`top_k`), the low-level query for 3. High-level results come first, followed by low-level results not already
+   present, at most 8 in all.
+3. Seed selection: walk that list in order, skip edge profiles (ids containing `--`) and the Act node (`PDPA_2562`),
+   whose neighbours are only chapters, and take the first 3 nodes left. A skipped node can still appear in the
+   context; it is just not a starting point for the graph walk. No LLM is involved.
 4. BFS from the seeds, 2 hops, following edges in both directions. At most 15 reached nodes go into the
    context: every seed gets an equal share, penalty and obligation edges come first, then cross-reference and
    exemption edges. When the question or its keywords mention a penalty, sections of the penalty chapter
@@ -164,8 +164,10 @@ numerals (มาตรา ๒๖).
    structural edges (chapter/part) only fill what is left. Each node is written as
    `[hop1] def_biometric ←DEFINES— sec_26: ...`: the left node is where the walk came from and the arrow
    follows the edge's direction in the graph, so the model can read a path from the seed step by step.
-5. The context is capped (8 profiles, 15 expanded nodes, 5 full sections) and returned as JSON.
-   The server never writes the answer.
+5. Chunk search (`pdpa_chunks`) fetches the full text of up to 5 sections, using both keyword levels combined.
+   It does not use the graph result.
+6. The context is assembled from the three parts (at most 8 profiles, 15 graph lines, 5 full sections) and
+   returned as JSON. The server never writes the answer.
 
 ## Rebuilding and validating the graph
 
