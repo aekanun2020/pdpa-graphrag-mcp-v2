@@ -64,6 +64,8 @@ Dockerfile, docker-compose.yml, requirements.txt, .env.example
 
 ![Architecture: Agent -> MCP Server -> Engine -> Data](docs/fig1_architecture.png)
 
+Both figures are drawn by `docs/figures/make_figures.py` (redrawn on 14 Nov 2026 to match the current code; the earlier architecture figure said `get_penalty` walks 3 hops, but it reports at most 2).
+
 - **Knowledge graph**: NetworkX, in memory. 96 Section nodes plus Definition, LawfulBasis, Right,
   Obligation, Penalty, Exemption and Principle nodes; the backbone edges are `REFERENCES_SECTION`
   (122, section cites section) and `CONTAINS_SECTION` (119).

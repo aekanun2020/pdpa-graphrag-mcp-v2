@@ -73,7 +73,7 @@ Dockerfile, docker-compose.yml, requirements.txt, .env.example
 - **LLM ฝั่ง server** ใช้ทำอย่างเดียว คือแตกคีย์เวิร์ดสำหรับค้น คำตอบเขียนโดยโมเดลของ agent เอง:
   *server ค้น ส่วน agent คิดและตอบ*
 
-ในรูปเขียนว่า `get_penalty` เดิน 3 hop แต่ผลจริงได้ไม่เกิน 2 hop (ดูตาราง MCP tools)
+รูปทั้งสองวาดจาก `docs/figures/make_figures.py` (แก้ล่าสุด 14 พ.ย. 2569 ให้ตรงกับโค้ดปัจจุบัน รูปเดิมเขียนว่า `get_penalty` เดิน 3 hop ซึ่งผลจริงได้ไม่เกิน 2 hop)
 
 ## เริ่มใช้งาน
 
