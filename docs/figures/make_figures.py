@@ -53,43 +53,48 @@ def arrow(ax, pts, label=None, label_xy=None):
 
 
 def fig1():
-    W, H = 1340, 1040
+    W, H, D = 1340, 1126, 86
     fig, ax = canvas(W, H, "The agent calls 5 MCP tools that wrap a knowledge graph and a vector index")
     box(ax, 64, 100, 1216, 100, "Agent",
-        [("your own loop (labs/lab8: THINK → TOOL_USE → OBSERVE), Claude Desktop, LangFlow — any MCP client."
-          "  The agent’s own LLM writes the answer.", GREY)])
-    arrow(ax, [(672, 200), (672, 262)], "MCP streamable-http · tools/list → tools/call", (694, 231))
-    box(ax, 64, 262, 1216, 156, "MCP Server · FastMCP · port 8100",
-        ["5 tools: search_pdpa · get_related_sections · get_penalty · get_section_text · get_pdpa_summary",
-         ("stateless_http=True · each tool’s docstring is the description the agent reads before choosing a tool", GREY),
-         ("only search_pdpa calls an LLM · the server returns context and never writes the answer", GREY)])
-    arrow(ax, [(672, 418), (672, 474)], "search · traverse · read section text", (694, 447))
-    box(ax, 64, 474, 1216, 330, "PDPA LightRAG Engine · lightrag/", [], fill=PANEL)
-    ax.text(446, 508, "this repo’s own code, following the LightRAG approach (not the LightRAG library)",
+        [("your own loop (labs/lab8: THINK \u2192 TOOL_USE \u2192 OBSERVE), Claude Desktop, LangFlow \u2014 any MCP client."
+          "  The agent\u2019s own LLM writes the answer.", GREY)])
+    arrow(ax, [(672, 200), (672, 262)], "MCP streamable-http \u00b7 tools/list \u2192 tools/call", (694, 231))
+    box(ax, 64, 262, 1216, 156 + D, "MCP Server \u00b7 FastMCP \u00b7 port 8100 \u00b7 5 tools, each reaches the engine differently",
+        ["search_pdpa \u2192 keyword LLM + vector index (profiles, chunks) + graph BFS \u2014 the pipeline of the search figure",
+         "get_related_sections \u2192 knowledge graph only: edges in and out of one node",
+         "get_penalty \u2192 knowledge graph only: BFS from a section to Penalty nodes",
+         "get_section_text \u2192 statute text by section id, read from the Markdown \u00b7 get_pdpa_summary \u2192 counts and schema",
+         ("only search_pdpa uses the LLM and vector search; the other four are lookups by node id \u00b7 the server never writes the answer", GREY),
+         ("stateless_http=True \u00b7 each tool\u2019s docstring is the description the agent reads before choosing a tool", GREY)])
+    arrow(ax, [(672, 418 + D), (672, 474 + D)], "search \u00b7 traverse \u00b7 read section text", (694, 447 + D))
+    box(ax, 64, 474 + D, 1216, 330, "PDPA LightRAG Engine \u00b7 lightrag/", [], fill=PANEL)
+    ax.text(446, 508 + D, "this repo\u2019s own code, following the LightRAG approach (not the LightRAG library)",
             fontsize=10.2, color=GREY, va="center", zorder=3)
-    box(ax, 92, 545, 566, 186, "Knowledge Graph · NetworkX (in-memory)",
-        ["190 nodes · 380 edges",
-         "11 node types · 26 edge types",
-         "search_pdpa: BFS 2 hops from ≤ 3 seeds, both directions",
+    box(ax, 92, 545 + D, 566, 186, "Knowledge Graph \u00b7 NetworkX (in-memory)",
+        ["190 nodes \u00b7 380 edges",
+         "11 node types \u00b7 26 edge types",
+         "search_pdpa: BFS 2 hops from \u2264 3 seeds, both directions",
          "get_penalty: reports penalties within 2 hops"], fill=BLUE_FILL, edge=BLUE_EDGE, lw=2.2)
-    box(ax, 686, 545, 566, 186, "Vector Index · BGE-M3 + Qdrant",
+    box(ax, 686, 545 + D, 566, 186, "Vector Index \u00b7 BGE-M3 + Qdrant \u00b7 used by search_pdpa only",
         ["dense 1024-d + sparse (lexical weights)",
          "pdpa_profiles 570 = 190 node + 380 edge profiles",
          "pdpa_chunks 96 = full text, one per section",
-         "hybrid search → RRF fusion (k = 60)"])
-    ax.text(86, 770, "LLM (OpenRouter · gpt-oss-120b) only for keyword extraction in search_pdpa · "
+         "hybrid search \u2192 RRF fusion (k = 60)"], title_size=11.6)
+    ax.text(86, 770 + D, "LLM (OpenRouter \u00b7 gpt-oss-120b) only for keyword extraction in search_pdpa \u00b7 "
             "Qdrant 1.20.0 runs as a separate container", fontsize=10.4, color=GREY, va="center", zorder=3)
-    arrow(ax, [(672, 804), (672, 862)], "loaded at startup only · no hot-reload · both collections rebuilt at every start",
-          (694, 834))
-    box(ax, 64, 862, 1216, 128, "Data layer · ./data (folder mounted into the container)",
-        ["pdpa_full_text_v2.md · 96 sections (H1 Act → H2 Chapter → H3 Part → H4 Section)",
-         "pdpa_knowledge_graph.json · 190 nodes / 380 edges (pre-built by a rule-based parser)"])
+    arrow(ax, [(672, 804 + D), (672, 862 + D)],
+          "loaded at startup only \u00b7 no hot-reload \u00b7 both collections rebuilt at every start", (694, 834 + D))
+    box(ax, 64, 862 + D, 1216, 128, "Data layer \u00b7 ./data (folder mounted into the container)",
+        ["pdpa_full_text_v2.md \u00b7 96 sections (H1 Act \u2192 H2 Chapter \u2192 H3 Part \u2192 H4 Section)",
+         "pdpa_knowledge_graph.json \u00b7 190 nodes / 380 edges (pre-built by a rule-based parser)"])
     fig.savefig(OUT / "fig1_architecture.png", facecolor="white"); plt.close(fig)
 
 
 def fig3():
     W, H = 1340, 1500
     fig, ax = canvas(W, H, "search_pdpa: one question, six steps, graph + statute text in one context")
+    ax.text(64, 78, "the only one of the 5 MCP tools that uses the LLM and vector search \u2014 the other four look up the graph or the statute text directly",
+            fontsize=10.2, color=GREY, va="center")
     box(ax, 318, 96, 708, 100, "User question",
         [("“Can a company collect employees’ fingerprints for timekeeping? Is consent required?”", GREY)],
         center=True)
