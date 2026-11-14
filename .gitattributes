@@ -1,0 +1,9 @@
+# Instructor-only material: kept in the repository, left out of downloaded archives
+# (GitHub "Download ZIP", zipball/tarball API and `git archive` all honour export-ignore).
+# /eval/      test harness, questions, answer key, raw runs, verdicts
+# /docs/eval/ test reports and their result files
+# /docs/qa-*  the instructor's Q&A log
+/eval/          export-ignore
+/docs/eval/     export-ignore
+/docs/qa-*.md   export-ignore
+.gitattributes  export-ignore
