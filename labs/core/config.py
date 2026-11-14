@@ -12,7 +12,7 @@ load_dotenv()
 # ---- OpenRouter (LLM provider แบบ thin client) ----
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_BASE_URL = os.environ.get("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
-OPENROUTER_MODEL = os.environ.get("OPENROUTER_MODEL", "qwen/qwen3.5-35b-a3b")
+OPENROUTER_MODEL = os.environ.get("OPENROUTER_MODEL", "deepseek/deepseek-v4.1-flash")
 
 # ---- PDPA GraphRAG MCP server (Streamable HTTP) ----
 # Default = the docker-compose server on this machine; override MCP_SERVER_URL in .env if it runs elsewhere

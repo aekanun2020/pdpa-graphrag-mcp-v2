@@ -131,6 +131,9 @@ python labs/lab8/agent_pdpa_mcp.py "เก็บข้อมูลสุขภ�
 [`docs/eval/2026-11-14-learner-reproduction.md`](docs/eval/2026-11-14-learner-reproduction.md))
 จำนวนและลำดับการเรียกอาจต่างไปในแต่ละรอบ เพราะคีย์เวิร์ดจาก LLM ฝั่ง server และคำตอบของโมเดลฝั่ง agent ไม่คงที่
 (กับโค้ดของ repo เดิม การรันทั่วไปเรียก tool 7 ครั้งใน 4 รอบ)
+ผลข้างบนได้จากโมเดล `qwen/qwen3.5-35b-a3b` ซึ่งเป็นค่าเริ่มต้นของ lab8 ในวันนั้น ตั้งแต่ 14 พ.ย. 2569 ค่าเริ่มต้นใน `.env.example` เปลี่ยนเป็น
+`deepseek/deepseek-v4.1-flash` และยังไม่ได้รัน lab8 ซ้ำกับโมเดลนี้ ผลของ lab8 กับ 24 คำถาม (ด้วย qwen) อยู่ที่
+[`docs/eval/2026-11-14-lab8-24-questions.md`](docs/eval/2026-11-14-lab8-24-questions.md)
 
 ## MCP tools
 

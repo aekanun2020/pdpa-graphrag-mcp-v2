@@ -135,6 +135,9 @@ author's server and against a server built fresh from the repo zip (one run each
 [`docs/eval/2026-11-14-learner-reproduction.md`](docs/eval/2026-11-14-learner-reproduction.md), in Thai).
 Expect the number and order of calls to vary between runs: the server-side keyword LLM and the agent's model
 are not deterministic. (With the original code a typical run made 7 tool calls in 4 rounds.)
+The run above used `qwen/qwen3.5-35b-a3b`, lab8's default model on that day. Since 14 Nov 2026 the default in
+`.env.example` is `deepseek/deepseek-v4.1-flash`; lab8 has not been re-run with it yet. Results of lab8 on 24
+questions (with qwen) are in [`docs/eval/2026-11-14-lab8-24-questions.md`](docs/eval/2026-11-14-lab8-24-questions.md).
 
 ## MCP tools
 
