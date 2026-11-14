@@ -128,16 +128,9 @@ python labs/lab8/agent_pdpa_mcp.py "เก็บข้อมูลสุขภ�
 
 The statute and the agent's system prompt are in Thai, so Thai questions work best (the model
 answers in Thai; change `SYSTEM` in `labs/lab8/agent_pdpa_mcp.py` to answer in another language).
-With this version, a run of the question above on 14 Nov 2026 made 5 tool calls in 6 rounds: `search_pdpa` ->
-`get_related_sections(sec_26)` -> `get_penalty(sec_26)` -> `get_section_text(sec_26)` ->
-`get_section_text(sec_84)` -> answer citing Sections 23 / 26 / 79 / 84. The sequence was the same against the
-author's server and against a server built fresh from the repo zip (one run each; see
-[`docs/eval/2026-11-14-learner-reproduction.md`](docs/eval/2026-11-14-learner-reproduction.md), in Thai).
-Expect the number and order of calls to vary between runs: the server-side keyword LLM and the agent's model
-are not deterministic. (With the original code a typical run made 7 tool calls in 4 rounds.)
-The run above used `qwen/qwen3.5-35b-a3b`, lab8's default model on that day. Since 14 Nov 2026 the default in
-`.env.example` is `deepseek/deepseek-v4.1-flash`; lab8 has not been re-run with it yet. Results of lab8 on 24
-questions (with qwen) are in [`docs/eval/2026-11-14-lab8-24-questions.md`](docs/eval/2026-11-14-lab8-24-questions.md).
+The agent uses `deepseek/deepseek-v4.1-flash` through OpenRouter, the `OPENROUTER_MODEL` value in `.env.example`.
+Expect the number and order of tool calls to vary between runs: the server-side keyword LLM and the agent's
+model are not deterministic. (With the original code a typical run made 7 tool calls in 4 rounds.)
 
 ## MCP tools
 
@@ -199,7 +192,7 @@ To use this on another statute, swap the heading pattern (`Article\s+(\d+)` for 
   start (no hot reload). For a corpus of laws use a graph database; `build_graph.py` also emits
   `pdpa_neo4j_import.cypher`.
 - Rule-based graph construction means porting to a new law is curation work, not configuration.
-- There is no standard evaluation set yet. What exists is a record of 14 internal test rounds in
+- There is no standard evaluation set yet. What exists is a record of 12 internal test rounds in
   [`docs/eval/`](docs/eval/) (in Thai), with the code and raw data behind them in [`eval/`](eval/README.md).
   The 52 questions and their expected sections were written during development, in the agent round each was
   run once per build, and none has been reviewed by a lawyer. Contributions of question/answer pairs with expected section

@@ -23,9 +23,9 @@ from typing import Any
 
 
 # Models the owner has authorized, one per profile. Adding a model here is a policy decision,
-# recorded in AGENTS.md, not a configuration edit: qwen3.5 (root default) and deepseek-v4.1-flash
+# recorded in AGENTS.md, not a configuration edit: deepseek-v4.1-flash
 # (102/117 over three BPS-39 rounds, codex-queue jobs 014 and 016, 2026-10-01).
-AUTHORIZED_MODELS = ("qwen/qwen3.5-35b-a3b", "deepseek/deepseek-v4.1-flash")
+AUTHORIZED_MODELS = ("deepseek/deepseek-v4.1-flash",)
 
 
 class HarnessError(RuntimeError):
@@ -775,7 +775,7 @@ class Harness:
                 available_tools = [*(available_tools or []), final_tool]
                 if must_compose or force_compose:
                     available_tools = [final_tool]
-                    options['tool_choice'] = 'auto'  # Qwen thinking supports auto/none only; local gates still require FinalizeReport
+                    options['tool_choice'] = 'auto'  # some thinking models support auto/none only; local gates still require FinalizeReport
             selection = None
             model_messages = self.transcript
             if self.config.get('tool_routing', 'native') in ('direct-score', 'jev'):
@@ -1108,7 +1108,7 @@ class Harness:
             "case_id": self.case_metadata.get("case_id"),
             "resolved_models": dict(self.config["models"]["roles"]),
             "tool_routing": self.config.get('tool_routing', 'native'),
-            "model_profile": self.config.get('model_profile', 'qwen3.5'),
+            "model_profile": self.config.get('model_profile', 'deepseek-v4.1-flash'),
             "router_model": getattr(getattr(self, 'jev_client', None), 'model', None),
             "function_dispatch_fallback": self.state.get('function_dispatch_fallback', False),
             "model_calls": self.model.calls,

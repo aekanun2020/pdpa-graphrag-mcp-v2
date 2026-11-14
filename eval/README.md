@@ -78,21 +78,11 @@ python -B run_all.py --ids R1,H3,O10 --tag r2 --servers main
 
 ไฟล์ผลของรอบนี้ไม่ได้เก็บไว้ (ดูเหตุผลในรายงาน) สคริปต์ 3 ไฟล์เขียนกลับจากข้อความเดิมของสคริปต์ที่รันจริง `fixed_kw_learner.py` สร้าง collection ใน Qdrant ใหม่ทุกครั้งที่รัน จึงต้องรันกับ Qdrant ของชุดทดสอบเท่านั้น และ server หนึ่งชุดใช้หน่วยความจำสูงสุดราว 4.7 GB ตอนสร้าง index
 
-## lab8/ — รอบ 14 (lab8 กับ 24 คำถามเดิม บนชุดที่ผู้เรียนสร้างเอง)
-
-รายงาน: `docs/eval/2026-11-14-lab8-24-questions.md`
+## lab8/ — เครื่องมือสำหรับทดสอบ `labs/lab8` กับรายการคำถาม
 
 | ที่อยู่ | คืออะไร |
 |---|---|
 | `run_lab8.py` | เรียก `run_agent` ของ `labs/lab8` ตามเดิมกับรายการคำถาม และบันทึกผลที่เครื่องมือส่งกลับ ข้อมูลการเรียกโมเดล คำตอบ และเวลา รันจาก root ของ repo ด้วย venv ของ agent |
-| `runs/<id>.json` | ผลดิบ 24 ข้อ: คำถาม คำตอบ การเรียกเครื่องมือพร้อมผลเต็ม การเรียกโมเดล (โมเดล ผู้ให้บริการ token ค่าใช้จ่าย) และข้อความที่ lab8 พิมพ์ |
-| `learner-server.log` | log ของ server ชุดผู้เรียนตลอดการรัน |
-| `judge/build_packets.py` | สร้างชุดตรวจจาก `runs/` ในรูปแบบของ `eval/agent/judge/RUBRIC.md` |
-| `judge/packets/`, `judge/out/`, `judge/key.json`, `judge/judged.json` | ชุดตรวจ 22 คำตอบ คำตัดสินรายคำตอบ ตารางรหัสกับข้อ และไฟล์รวม |
+| `judge/build_packets.py` | สร้างชุดตรวจจากผลรันในรูปแบบของ `eval/agent/judge/RUBRIC.md` |
 
-รันซ้ำกับโมเดล (มีค่าใช้จ่าย ต้องมี `OPENROUTER_API_KEY` ใน `.env` และ server ที่รันอยู่):
-
-```bash
-MCP_SERVER_URL=http://127.0.0.1:8100/mcp python eval/lab8/run_lab8.py eval/agent/questions.json /tmp/lab8-runs P1 P3
-```
-
+สำเนา runtime ใน `eval/agent/harness/src/dfai_harness/runtime.py` ต่างจากต้นฉบับ (commit `36f62c9`) 4 บรรทัด: รายชื่อโมเดลที่อนุญาตเหลือเฉพาะ `deepseek/deepseek-v4.1-flash` ซึ่งเป็นตัวเดียวที่ repo นี้ใช้กับ agent
