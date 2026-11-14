@@ -13,6 +13,7 @@ LLM_PROVIDER = os.environ.get("LLM_PROVIDER", "openrouter")
 
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 # ชื่อโมเดลที่ server ส่งไป OpenRouter อ่านจาก env LLM_MODEL
+# (env OPENROUTER_MODEL เป็นของ agent ใน labs/ ไม่เกี่ยวกับ server)
 LLM_MODEL = os.environ.get("LLM_MODEL", "gpt-oss-120b")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 

@@ -25,7 +25,7 @@
 
 | ที่อยู่ | คืออะไร |
 |---|---|
-| `harness/src/dfai_harness/` | runtime ของ harness คัดลอกจาก `aekanun2020/SUT-AI-Chat-App-with-Fine-tuned-Harness-with-KM` commit `36f62c9` (`vendor/harness/src/dfai_harness/`) ต่างจากต้นฉบับ 4 บรรทัด: รายชื่อโมเดลที่อนุญาตเหลือเฉพาะ `deepseek/deepseek-v4.1-flash` |
+| `harness/src/dfai_harness/` | runtime ของ harness คัดลอกจาก `aekanun2020/SUT-AI-Chat-App-with-Fine-tuned-Harness-with-KM` commit `36f62c9` (`vendor/harness/src/dfai_harness/`) ไม่ได้แก้แม้ตัวอักษรเดียว |
 | `harness/harnesses/pdpa/` | ชุด PDPA ที่เขียนขึ้นสำหรับรอบนี้: `prompts/`, `hooks/pdpa.py`, `hooks/verify.py`, `policies/`, `contracts/`, `templates/` |
 | `harness/run_pdpa.py` | ตัวรันหนึ่งคำถามกับ server หนึ่งรุ่น (`--server main` คือ port 8100, `--server branch` คือ port 8101) |
 | `harness/offline_test.py` | ทดสอบ hook และตัวอ่านซ้ำ 20 ข้อโดยไม่เรียกโมเดล |
@@ -77,3 +77,12 @@ python -B run_all.py --ids R1,H3,O10 --tag r2 --servers main
 | `tools_dump.py` | เรียกเครื่องมือ 4 ตัวที่ไม่ใช้ LLM กับ `sec_1` ถึง `sec_96` ผ่าน MCP แล้วเก็บข้อความที่ได้ |
 
 ไฟล์ผลของรอบนี้ไม่ได้เก็บไว้ (ดูเหตุผลในรายงาน) สคริปต์ 3 ไฟล์เขียนกลับจากข้อความเดิมของสคริปต์ที่รันจริง `fixed_kw_learner.py` สร้าง collection ใน Qdrant ใหม่ทุกครั้งที่รัน จึงต้องรันกับ Qdrant ของชุดทดสอบเท่านั้น และ server หนึ่งชุดใช้หน่วยความจำสูงสุดราว 4.7 GB ตอนสร้าง index
+
+## lab8/ — เครื่องมือสำหรับทดสอบ `labs/lab8` กับรายการคำถาม
+
+| ที่อยู่ | คืออะไร |
+|---|---|
+| `run_lab8.py` | เรียก `run_agent` ของ `labs/lab8` ตามเดิมกับรายการคำถาม และบันทึกผลที่เครื่องมือส่งกลับ ข้อมูลการเรียกโมเดล คำตอบ และเวลา รันจาก root ของ repo ด้วย venv ของ agent |
+| `judge/build_packets.py` | สร้างชุดตรวจจากผลรันในรูปแบบของ `eval/agent/judge/RUBRIC.md` |
+
+สำเนา runtime ใน `eval/agent/harness/src/dfai_harness/runtime.py` ต่างจากต้นฉบับ (commit `36f62c9`) 4 บรรทัด: รายชื่อโมเดลที่อนุญาตเหลือเฉพาะ `deepseek/deepseek-v4.1-flash` ซึ่งเป็นตัวเดียวที่ repo นี้ใช้กับ agent

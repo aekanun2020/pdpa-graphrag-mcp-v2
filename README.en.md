@@ -49,12 +49,16 @@ data/
 scripts/
   build_graph.py         rule-based graph builder (sections + cross-references + curated nodes)
   validate_graph.py      counts nodes/edges from the data, checks connectivity and penalty reachability
+labs/
+  core/                  minimal MCP client (httpx), tool registry (MCP inputSchema -> OpenAI tools), LLM client
+  lab8/agent_pdpa_mcp.py an agent loop wired to this MCP server
 examples/mcp_curl.sh     talk to the server with plain curl + jq
 docs/                    architecture and pipeline figures
 Dockerfile, docker-compose.yml, requirements.txt, .env.example
 ```
 
-This repo contains the server side only, no agent code: connect any MCP client to the server (see Quick start).
+`labs/` contains only the agent-side code; the course lab instructions are not part of this repo.
+`lab7` (an agent loop with local tools only, unrelated to PDPA) was moved out of `main` on 14 Nov 2026; a copy is kept on the `backup/labs` branch.
 
 ## Architecture
 
@@ -114,10 +118,19 @@ A bare request without the `Accept: application/json, text/event-stream` header 
 `-32600 Client must accept text/event-stream`. That means the server is alive; the streamable-http
 transport simply requires the header.
 
-Connecting an agent: use any MCP client that supports the streamable-http transport and point it at
-`http://localhost:8100/mcp`. The client calls `tools/list` and gets the 5 tools with their descriptions. The statute
-and the tool descriptions are in Thai, so Thai questions work best. The server retrieves and returns context;
-writing the answer is the job of the agent's own model.
+Run the agent against the server:
+
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements-agent.txt
+python labs/lab8/agent_pdpa_mcp.py "เก็บข้อมูลสุขภาพพนักงานได้ไหม ถ้าฝ่าฝืนมีโทษอะไร"
+```
+
+The statute and the agent's system prompt are in Thai, so Thai questions work best (the model
+answers in Thai; change `SYSTEM` in `labs/lab8/agent_pdpa_mcp.py` to answer in another language).
+The agent uses `deepseek/deepseek-v4.1-flash` through OpenRouter, the `OPENROUTER_MODEL` value in `.env.example`.
+Expect the number and order of tool calls to vary between runs: the server-side keyword LLM and the agent's
+model are not deterministic. (With the original code a typical run made 7 tool calls in 4 rounds.)
 
 ## MCP tools
 

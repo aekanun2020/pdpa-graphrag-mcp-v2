@@ -47,12 +47,16 @@ data/
 scripts/
   build_graph.py         สร้างกราฟด้วยกฎ (มาตรา + การอ้างข้ามมาตรา + โหนดที่คัดเลือกด้วยมือ)
   validate_graph.py      นับโหนด/เส้นจากข้อมูลจริง ตรวจการเชื่อมต่อและการเดินไปถึงบทลงโทษ
+labs/
+  core/                  MCP client ขนาดเล็ก (httpx), tool registry (MCP inputSchema -> OpenAI tools), LLM client
+  lab8/agent_pdpa_mcp.py agent loop ที่ต่อเข้ากับ MCP server นี้
 examples/mcp_curl.sh     คุยกับ server ด้วย curl + jq
 docs/                    รูปสถาปัตยกรรมและ pipeline
 Dockerfile, docker-compose.yml, requirements.txt, .env.example
 ```
 
-repo นี้มีเฉพาะฝั่ง server ไม่มีโค้ดของ agent: ต่อ MCP client ตัวใดก็ได้เข้ากับ server (ดูหัวข้อเริ่มใช้งาน)
+`labs/` มีเฉพาะโค้ดฝั่ง agent เอกสารประกอบ lab ของคอร์สไม่ได้อยู่ใน repo นี้
+`lab7` (agent loop ที่ใช้ tool ในเครื่อง ไม่เกี่ยวกับ PDPA) ถูกย้ายออกจาก `main` เมื่อ 14 พ.ย. 2569 สำเนาอยู่ที่ branch `backup/labs`
 
 ## สถาปัตยกรรม
 
@@ -111,9 +115,19 @@ request ที่ไม่มี header `Accept: application/json, text/event-st
 `-32600 Client must accept text/event-stream` กลับมา แปลว่า server ทำงานอยู่
 transport แบบ streamable-http บังคับให้มี header นี้
 
-ต่อ agent เข้ากับ server: ใช้ MCP client ตัวใดก็ได้ที่รองรับ transport แบบ streamable-http ชี้ไปที่ `http://localhost:8100/mcp`
-client จะเรียก `tools/list` แล้วได้ tool 5 ตัวพร้อมคำอธิบาย ตัวบทและคำอธิบาย tool เป็นภาษาไทย คำถามภาษาไทยจึงได้ผลดีที่สุด
-server ทำหน้าที่ค้นและส่ง context กลับ ส่วนการเขียนคำตอบเป็นหน้าที่ของโมเดลฝั่ง agent
+รัน agent ต่อเข้ากับ server:
+
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements-agent.txt
+python labs/lab8/agent_pdpa_mcp.py "เก็บข้อมูลสุขภาพพนักงานได้ไหม ถ้าฝ่าฝืนมีโทษอะไร"
+```
+
+ตัวบทและ system prompt ของ agent เป็นภาษาไทย คำถามภาษาไทยจึงได้ผลดีที่สุด
+(ถ้าต้องการให้ตอบภาษาอื่น แก้ `SYSTEM` ใน `labs/lab8/agent_pdpa_mcp.py`)
+agent ใช้โมเดล `deepseek/deepseek-v4.1-flash` ผ่าน OpenRouter ตามค่า `OPENROUTER_MODEL` ใน `.env.example`
+จำนวนและลำดับการเรียก tool ต่างไปได้ในแต่ละรอบ เพราะคีย์เวิร์ดจาก LLM ฝั่ง server และคำตอบของโมเดลฝั่ง agent ไม่คงที่
+(กับโค้ดของ repo เดิม การรันทั่วไปเรียก tool 7 ครั้งใน 4 รอบ)
 
 ## MCP tools
 
