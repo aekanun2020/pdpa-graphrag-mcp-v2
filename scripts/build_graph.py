@@ -71,6 +71,7 @@ for old, new in replacements.items():
 
 # Remove page headers/footers
 raw = re.sub(r'้หนา\s+\d+.*?๒๕๖๒', '', raw)
+raw = re.sub(r'^้หนา[ \t]+[0-9๐-๙]+[ \t]*$', '', raw, flags=re.MULTILINE)
 raw = re.sub(r'--- PAGE \d+ ---', '', raw)
 # Collapse whitespace
 raw = re.sub(r'\n\s*\n', '\n', raw)
@@ -105,11 +106,14 @@ for num, pos in headers:
 
 unique_headers.sort(key=lambda x: x[1])
 
-# Extract text between consecutive headers
+# Stop each section before another Markdown heading or the closing material.
+section_end_pattern = re.compile(
+    r"\n(?:#{1,6}[ \t]+|ผู้รับสนองพระบรมราชโองการ[ \t]*(?=\n|$)|หมายเหตุ[ \t]*[:：])"
+)
 sections = {}
 for i, (num, pos) in enumerate(unique_headers):
     next_pos = unique_headers[i + 1][1] if i + 1 < len(unique_headers) else len(raw)
-    text = raw[pos:next_pos].strip()
+    text = section_end_pattern.split(raw[pos:next_pos], maxsplit=1)[0].strip()
     text = re.sub(r'\s+', ' ', text)
     if num not in sections or len(text) > len(sections[num]):
         sections[num] = text
@@ -354,10 +358,207 @@ exemptions = [
     {"id": "exempt_parliament", "name_th": "สภาผู้แทนราษฎร/วุฒิสภา/รัฐสภา", "section": 4},
     {"id": "exempt_court", "name_th": "การพิจารณาคดีของศาล", "section": 4},
     {"id": "exempt_credit", "name_th": "บริษัทข้อมูลเครดิต", "section": 4},
+    {
+        "id": "sec26_ex1",
+        "name_th": "ม.26(1) ป้องกันอันตรายต่อชีวิต",
+        "section": 26,
+        "description": "เก็บข้อมูลอ่อนไหวได้โดยไม่ต้อง consent หากเพื่อป้องกันหรือระงับอันตรายต่อชีวิต ร่างกาย หรือสุขภาพ เมื่อเจ้าของข้อมูลไม่สามารถให้ความยินยอมได้",
+        "exception_number": "1",
+    },
+    {
+        "id": "sec26_ex2",
+        "name_th": "ม.26(2) มูลนิธิ/สมาคม/องค์กรไม่แสวงหากำไร",
+        "section": 26,
+        "description": "เก็บข้อมูลอ่อนไหวได้โดยไม่ต้อง consent สำหรับกิจกรรมโดยชอบด้วยกฎหมายของมูลนิธิ สมาคม หรือองค์กรไม่แสวงหากำไร ที่มีวัตถุประสงค์ด้านการเมือง ศาสนา ปรัชญา หรือสหภาพแรงงาน โดยไม่เปิดเผยออกภายนอก",
+        "exception_number": "2",
+    },
+    {
+        "id": "sec26_ex3",
+        "name_th": "ม.26(3) ข้อมูลเปิดเผยสาธารณะ",
+        "section": 26,
+        "description": "เก็บข้อมูลอ่อนไหวได้โดยไม่ต้อง consent หากเป็นข้อมูลที่เจ้าของข้อมูลเปิดเผยต่อสาธารณะด้วยความยินยอมโดยชัดแจ้งแล้ว",
+        "exception_number": "3",
+    },
+    {
+        "id": "sec26_ex4",
+        "name_th": "ม.26(4) สิทธิเรียกร้องตามกฎหมาย",
+        "section": 26,
+        "description": "เก็บข้อมูลอ่อนไหวได้โดยไม่ต้อง consent หากจำเป็นเพื่อการก่อตั้งสิทธิเรียกร้อง การปฏิบัติตามหรือใช้สิทธิเรียกร้อง หรือการยกขึ้นต่อสู้สิทธิเรียกร้องตามกฎหมาย",
+        "exception_number": "4",
+    },
+    {
+        "id": "sec26_ex5a",
+        "name_th": "ม.26(5)(ก) เวชศาสตร์ป้องกัน/อาชีวเวชศาสตร์/การแพทย์",
+        "section": 26,
+        "description": "เก็บข้อมูลอ่อนไหวได้เพื่อปฏิบัติตามกฎหมายด้านเวชศาสตร์ป้องกัน อาชีวเวชศาสตร์ ประเมินความสามารถทำงานของลูกจ้าง วินิจฉัยโรค ให้บริการสุขภาพ/สังคม รักษาทางการแพทย์ จัดการสุขภาพ หรือสังคมสงเคราะห์",
+        "exception_number": "5ก",
+    },
+    {
+        "id": "sec26_ex5b",
+        "name_th": "ม.26(5)(ข) ประโยชน์สาธารณะด้านสาธารณสุข",
+        "section": 26,
+        "description": "เก็บข้อมูลอ่อนไหวได้เพื่อประโยชน์สาธารณะด้านสาธารณสุข เช่น ป้องกันโรคติดต่อ โรคระบาด ควบคุมมาตรฐานยา เวชภัณฑ์ เครื่องมือแพทย์ โดยต้องมีมาตรการคุ้มครองที่เหมาะสม",
+        "exception_number": "5ข",
+    },
+    {
+        "id": "sec26_ex5c",
+        "name_th": "ม.26(5)(ค) คุ้มครองแรงงาน/ประกันสังคม",
+        "section": 26,
+        "description": "เก็บข้อมูลอ่อนไหวได้เพื่อการคุ้มครองแรงงาน ประกันสังคม หลักประกันสุขภาพแห่งชาติ สวัสดิการรักษาพยาบาล คุ้มครองผู้ประสบภัยจากรถ หรือคุ้มครองทางสังคม โดยต้องจัดมาตรการคุ้มครองสิทธิขั้นพื้นฐาน",
+        "exception_number": "5ค",
+    },
+    {
+        "id": "sec26_ex5d",
+        "name_th": "ม.26(5)(ง) วิจัยทางวิทยาศาสตร์/ประวัติศาสตร์/สถิติ",
+        "section": 26,
+        "description": "เก็บข้อมูลอ่อนไหวได้เพื่อการศึกษาวิจัยทางวิทยาศาสตร์ ประวัติศาสตร์ สถิติ หรือประโยชน์สาธารณะอื่น ต้องเท่าที่จำเป็นและจัดมาตรการคุ้มครองตามที่คณะกรรมการกำหนด",
+        "exception_number": "5ง",
+    },
+    {
+        "id": "sec26_ex5e",
+        "name_th": "ม.26(5)(จ) ประโยชน์สาธารณะที่สำคัญ",
+        "section": 26,
+        "description": "เก็บข้อมูลอ่อนไหวได้เพื่อประโยชน์สาธารณะที่สำคัญ โดยต้องจัดมาตรการคุ้มครองสิทธิขั้นพื้นฐานและประโยชน์ของเจ้าของข้อมูล",
+        "exception_number": "5จ",
+    },
+    {
+        "id": "sec24_ex1",
+        "name_th": "ม.24(1) จดหมายเหตุ/วิจัย/สถิติ",
+        "section": 24,
+        "description": "เก็บข้อมูลส่วนบุคคลได้โดยไม่ต้อง consent เพื่อจัดทำเอกสารประวัติศาสตร์ จดหมายเหตุ ประโยชน์สาธารณะ หรือการศึกษาวิจัย/สถิติ โดยต้องมีมาตรการปกป้องที่เหมาะสม",
+        "exception_number": "1",
+    },
+    {
+        "id": "sec24_ex2",
+        "name_th": "ม.24(2) ป้องกันอันตรายต่อชีวิต",
+        "section": 24,
+        "description": "เก็บข้อมูลส่วนบุคคลได้โดยไม่ต้อง consent เพื่อป้องกันหรือระงับอันตรายต่อชีวิต ร่างกาย หรือสุขภาพของบุคคล",
+        "exception_number": "2",
+    },
+    {
+        "id": "sec24_ex3",
+        "name_th": "ม.24(3) ปฏิบัติตามสัญญา",
+        "section": 24,
+        "description": "เก็บข้อมูลส่วนบุคคลได้โดยไม่ต้อง consent หากจำเป็นเพื่อปฏิบัติตามสัญญาที่เจ้าของข้อมูลเป็นคู่สัญญา หรือเพื่อดำเนินการตามคำขอก่อนเข้าทำสัญญา",
+        "exception_number": "3",
+    },
+    {
+        "id": "sec24_ex4",
+        "name_th": "ม.24(4) ภารกิจรัฐ/ประโยชน์สาธารณะ",
+        "section": 24,
+        "description": "เก็บข้อมูลส่วนบุคคลได้โดยไม่ต้อง consent หากจำเป็นเพื่อปฏิบัติภารกิจเพื่อประโยชน์สาธารณะ หรือปฏิบัติหน้าที่ในการใช้อำนาจรัฐที่มอบให้ผู้ควบคุมข้อมูล",
+        "exception_number": "4",
+    },
+    {
+        "id": "sec24_ex5",
+        "name_th": "ม.24(5) ประโยชน์โดยชอบธรรม (Legitimate Interest)",
+        "section": 24,
+        "description": "เก็บข้อมูลส่วนบุคคลได้โดยไม่ต้อง consent หากจำเป็นเพื่อประโยชน์โดยชอบด้วยกฎหมาย (legitimate interest) ของผู้ควบคุมข้อมูลหรือบุคคลอื่น เว้นแต่ประโยชน์นั้นสำคัญน้อยกว่าสิทธิขั้นพื้นฐานของเจ้าของข้อมูล",
+        "exception_number": "5",
+    },
+    {
+        "id": "sec24_ex6",
+        "name_th": "ม.24(6) ปฏิบัติตามกฎหมาย (Legal Obligation)",
+        "section": 24,
+        "description": "เก็บข้อมูลส่วนบุคคลได้โดยไม่ต้อง consent หากเป็นการปฏิบัติตามกฎหมายของผู้ควบคุมข้อมูลส่วนบุคคล",
+        "exception_number": "6",
+    },
+    {
+        "id": "sec28_ex1",
+        "name_th": "ม.28(1) ปฏิบัติตามกฎหมาย",
+        "section": 28,
+        "description": "โอนข้อมูลส่วนบุคคลไปต่างประเทศได้แม้ไม่มีมาตรฐานเพียงพอ หากเป็นการปฏิบัติตามกฎหมาย",
+        "exception_number": "1",
+    },
+    {
+        "id": "sec28_ex2",
+        "name_th": "ม.28(2) ได้รับ consent พร้อมแจ้งความเสี่ยง",
+        "section": 28,
+        "description": "โอนข้อมูลส่วนบุคคลไปต่างประเทศได้หากได้รับ consent โดยต้องแจ้งให้ทราบถึงมาตรฐานคุ้มครองที่ไม่เพียงพอของประเทศปลายทางแล้ว",
+        "exception_number": "2",
+    },
+    {
+        "id": "sec28_ex3",
+        "name_th": "ม.28(3) ปฏิบัติตามสัญญากับเจ้าของข้อมูล",
+        "section": 28,
+        "description": "โอนข้อมูลส่วนบุคคลไปต่างประเทศได้หากจำเป็นเพื่อปฏิบัติตามสัญญาที่เจ้าของข้อมูลเป็นคู่สัญญา หรือตามคำขอก่อนเข้าทำสัญญา",
+        "exception_number": "3",
+    },
+    {
+        "id": "sec28_ex4",
+        "name_th": "ม.28(4) สัญญาเพื่อประโยชน์เจ้าของข้อมูล",
+        "section": 28,
+        "description": "โอนข้อมูลส่วนบุคคลไปต่างประเทศได้หากเป็นไปตามสัญญาระหว่างผู้ควบคุมข้อมูลกับบุคคลอื่นเพื่อประโยชน์ของเจ้าของข้อมูล",
+        "exception_number": "4",
+    },
+    {
+        "id": "sec28_ex5",
+        "name_th": "ม.28(5) ป้องกันอันตรายต่อชีวิต",
+        "section": 28,
+        "description": "โอนข้อมูลส่วนบุคคลไปต่างประเทศได้เพื่อป้องกันหรือระงับอันตรายต่อชีวิต ร่างกาย หรือสุขภาพ เมื่อเจ้าของข้อมูลไม่สามารถให้ consent ในขณะนั้นได้",
+        "exception_number": "5",
+    },
+    {
+        "id": "sec28_ex6",
+        "name_th": "ม.28(6) ประโยชน์สาธารณะที่สำคัญ",
+        "section": 28,
+        "description": "โอนข้อมูลส่วนบุคคลไปต่างประเทศได้หากจำเป็นเพื่อดำเนินภารกิจเพื่อประโยชน์สาธารณะที่สำคัญ",
+        "exception_number": "6",
+    },
+    {
+        "id": "sec37_ex_retention",
+        "name_th": "ม.37(3) ข้อยกเว้นการลบข้อมูล — เสรีภาพแสดงความคิดเห็น",
+        "section": 37,
+        "description": "ไม่ต้องลบ/ทำลายข้อมูลส่วนบุคคลหากเก็บรักษาไว้เพื่อวัตถุประสงค์ในการใช้เสรีภาพในการแสดงความคิดเห็น",
+        "exception_number": "3-เสรีภาพ",
+    },
+    {
+        "id": "sec37_ex_archive",
+        "name_th": "ม.37(3) ข้อยกเว้นการลบข้อมูล — จดหมายเหตุ/ภารกิจรัฐ",
+        "section": 37,
+        "description": "ไม่ต้องลบ/ทำลายข้อมูลส่วนบุคคลหากเก็บรักษาไว้ตาม ม.24(1) จดหมายเหตุ/วิจัย หรือ ม.24(4) ภารกิจรัฐ",
+        "exception_number": "3-จดหมายเหตุ",
+    },
+    {
+        "id": "sec37_ex_medical",
+        "name_th": "ม.37(3) ข้อยกเว้นการลบข้อมูล — เวชศาสตร์/สาธารณสุข",
+        "section": 37,
+        "description": "ไม่ต้องลบ/ทำลายข้อมูลส่วนบุคคลหากเก็บรักษาไว้ตาม ม.26(5)(ก) เวชศาสตร์ป้องกัน หรือ ม.26(5)(ข) ประโยชน์สาธารณสุข",
+        "exception_number": "3-การแพทย์",
+    },
+    {
+        "id": "sec37_ex_legal_claim",
+        "name_th": "ม.37(3) ข้อยกเว้นการลบข้อมูล — สิทธิเรียกร้องตามกฎหมาย",
+        "section": 37,
+        "description": "ไม่ต้องลบ/ทำลายข้อมูลส่วนบุคคลหากจำเป็นเพื่อก่อตั้ง ปฏิบัติตาม ใช้ หรือยกขึ้นต่อสู้สิทธิเรียกร้องตามกฎหมาย",
+        "exception_number": "3-สิทธิเรียกร้อง",
+    },
+    {
+        "id": "sec37_ex_legal_obligation",
+        "name_th": "ม.37(3) ข้อยกเว้นการลบข้อมูล — ปฏิบัติตามกฎหมาย",
+        "section": 37,
+        "description": "ไม่ต้องลบ/ทำลายข้อมูลส่วนบุคคลหากจำเป็นเพื่อการปฏิบัติตามกฎหมาย",
+        "exception_number": "3-กฎหมาย",
+    },
+    {
+        "id": "sec37_breach_exception",
+        "name_th": "ม.37(4) ข้อยกเว้นแจ้ง breach — ไม่มีความเสี่ยง",
+        "section": 37,
+        "description": "ไม่ต้องแจ้งเหตุละเมิดข้อมูลส่วนบุคคล (data breach) แก่สำนักงานภายใน 72 ชม. หากการละเมิดนั้นไม่มีความเสี่ยงที่จะมีผลกระทบต่อสิทธิและเสรีภาพของบุคคล",
+        "exception_number": "4",
+    },
 ]
 for ex in exemptions:
-    add_node(ex["id"], "Exemption", {"name_th": ex["name_th"]})
-    add_edge(f"sec_{ex['section']}", ex["id"], "GRANTS_EXEMPTION")
+    section_id = f"sec_{ex['section']}"
+    properties = {"name_th": ex["name_th"]}
+    if "exception_number" in ex:
+        properties.update(
+            description=ex["description"],
+            section_ref=section_id,
+            exception_number=ex["exception_number"],
+        )
+    add_node(ex["id"], "Exemption", properties)
+    add_edge(section_id, ex["id"], "GRANTS_EXEMPTION")
 
 # --- Principles ---
 principles = [
@@ -389,6 +590,20 @@ add_edge("def_committee", "def_data_processor", "REGULATES")
 add_edge("def_sensitive_data", "def_personal_data", "IS_SUBTYPE_OF")
 add_edge("def_biometric", "def_sensitive_data", "IS_SUBTYPE_OF")
 add_edge("def_consent", "def_personal_data", "AUTHORIZES_PROCESSING_OF")
+
+# --- Exemption lawful bases ---
+add_edge("sec24_ex5", "lb_legitimate", "IS_LAWFUL_BASIS")
+add_edge("sec24_ex6", "lb_legal", "IS_LAWFUL_BASIS")
+add_edge("sec24_ex3", "lb_contract", "IS_LAWFUL_BASIS")
+add_edge("sec24_ex2", "lb_vital", "IS_LAWFUL_BASIS")
+add_edge("sec24_ex4", "lb_public_task", "IS_LAWFUL_BASIS")
+add_edge("sec24_ex1", "lb_archive", "IS_LAWFUL_BASIS")
+
+# --- Exemption cross-references ---
+add_edge("sec37_ex_archive", "sec24_ex1", "REFERENCES_EXEMPTION")
+add_edge("sec37_ex_archive", "sec24_ex4", "REFERENCES_EXEMPTION")
+add_edge("sec37_ex_medical", "sec26_ex5a", "REFERENCES_EXEMPTION")
+add_edge("sec37_ex_medical", "sec26_ex5b", "REFERENCES_EXEMPTION")
 
 # ──────────────────────────────────────────────────────────────
 # 5. OUTPUT

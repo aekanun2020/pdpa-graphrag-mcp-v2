@@ -3,7 +3,7 @@
 [English](README.en.md)
 
 GraphRAG agent สำหรับพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA)
-ตัวบท 96 มาตราถูกแปลงเป็น knowledge graph ขนาด 190 โหนด 380 เส้น คู่กับ vector index แบบ dense + sparse
+ตัวบท 96 มาตราถูกแปลงเป็น knowledge graph ขนาด 190 โหนด 382 เส้น คู่กับ vector index แบบ dense + sparse
 แล้วเปิดให้ agent ใดก็ได้เรียกใช้ผ่าน MCP tool 5 ตัว ทุกอย่างรันบนเครื่องด้วย Docker
 
 repo นี้คือฉบับที่ใช้ในคอร์ส GraphRAG ต่อยอดจาก
@@ -31,10 +31,11 @@ vector search หาครึ่งแรกเจอ การเดินก�
 | ค่า k ของ RRF | ไม่ได้ตั้ง จึงใช้ค่าเริ่มต้นของ Qdrant คือ k = 2 | `RRF_K` ค่าเริ่มต้น 60 |
 | ลำดับผลค้น | คะแนน RRF เท่ากันบ่อยและ Qdrant ไม่กำหนดลำดับของคะแนนที่เท่ากัน คีย์เวิร์ดชุดเดิมจึงได้ seed ต่างกันในแต่ละครั้ง | เรียงผลรวมด้วย (คะแนน, id) คีย์เวิร์ดชุดเดิมได้ context เหมือนเดิม |
 | การเลือก seed | ตัด profile 3 อันดับแรกก่อน แล้วค่อยทิ้ง edge profile จึงอาจไม่เหลือ seed เลย | ทิ้ง edge profile และโหนดตัว พ.ร.บ. (`PDPA_2562`) ก่อน แล้วค่อยเลือก 3 |
-| `build_graph.py` | ตัดตัวบทของมาตราที่ 3,000 ตัวอักษร | ไม่ตัด |
+| `build_graph.py` | ตัดตัวบทของมาตราที่ 3,000 ตัวอักษร | เก็บตัวบทครบ 96 มาตรา โดยแยกหัวข้อหมวด/ส่วน ข้อความท้ายกฎหมาย และเลขหน้า OCR ออก |
 
-ส่วนที่ไม่ได้แก้: `get_penalty` และกราฟที่ให้มา (ดูข้อจำกัดที่ทราบ), ตัวเลขใน `metadata` ของไฟล์กราฟ
-และการจำกัดผลการเดินกราฟไว้ที่ 15 โหนด
+กราฟสำเร็จรูปและผลจาก builder ตรงกันทั้งไฟล์ มี 190 โหนด / 382 เส้น พร้อม `metadata` ที่นับจากกราฟจริง
+`get_penalty` รายงานบทลงโทษภายใน 2 hop ส่วนการขยายกราฟใน `search_pdpa` ให้ context ไม่เกิน 15 บรรทัด
+(ดูข้อจำกัดที่ทราบ)
 
 ## ใน repo มีอะไรบ้าง
 
@@ -43,7 +44,7 @@ mcp_server_rag.py        FastMCP server (streamable-http, port 8100) เปิ�
 lightrag/                retrieval engine: ตัด Markdown, กราฟ NetworkX, index BGE-M3 + Qdrant, hybrid retrieval
 data/
   pdpa_full_text_v2.md   ตัวบทในรูป Markdown (H1 พ.ร.บ. -> H2 หมวด -> H3 ส่วน -> H4 มาตรา)
-  pdpa_knowledge_graph.json   กราฟสำเร็จรูป: 190 โหนด / 380 เส้น, โหนด 11 ประเภท, เส้น 26 ประเภท
+  pdpa_knowledge_graph.json   กราฟสำเร็จรูป: 190 โหนด / 382 เส้น, โหนด 11 ประเภท, เส้น 26 ประเภท
 scripts/
   build_graph.py         สร้างกราฟด้วยกฎ (มาตรา + การอ้างข้ามมาตรา + โหนดที่คัดเลือกด้วยมือ)
   validate_graph.py      นับโหนด/เส้นจากข้อมูลจริง ตรวจการเชื่อมต่อและการเดินไปถึงบทลงโทษ
@@ -55,6 +56,11 @@ docs/                    รูปสถาปัตยกรรมและ pip
 Dockerfile, docker-compose.yml, requirements.txt, .env.example
 ```
 
+- [กราฟสำหรับ LAB 2](data/pdpa_knowledge_graph.json) และ [ตัวบท 96 มาตรา](data/pdpa_full_text_v2.md)
+- [ตัวสร้างกราฟสำหรับ LAB 3](scripts/build_graph.py) และ [ตัวตรวจกราฟ](scripts/validate_graph.py)
+- [MCP server](mcp_server_rag.py), [Docker Compose](docker-compose.yml), [agent ของ LAB 8](labs/lab8/agent_pdpa_mcp.py) และ [ทดสอบด้วย curl](examples/mcp_curl.sh)
+- [ภาพสถาปัตยกรรม](docs/fig1_architecture.png), [ภาพขั้นตอนค้น](docs/fig3_search_pipeline.png) และ [สคริปต์สร้างภาพ](docs/figures/make_figures.py)
+
 `labs/` มีเฉพาะโค้ดฝั่ง agent เอกสารประกอบ lab ของคอร์สไม่ได้อยู่ใน repo นี้
 
 ## สถาปัตยกรรม
@@ -63,16 +69,18 @@ Dockerfile, docker-compose.yml, requirements.txt, .env.example
 
 - **Knowledge graph**: NetworkX อยู่ในหน่วยความจำ มีโหนด Section 96 โหนด และโหนด Definition, LawfulBasis,
   Right, Obligation, Penalty, Exemption, Principle เส้นหลักคือ `REFERENCES_SECTION`
-  (122 เส้น มาตราอ้างถึงมาตรา) และ `CONTAINS_SECTION` (119 เส้น)
+  (124 เส้น มาตราอ้างถึงมาตรา) และ `CONTAINS_SECTION` (119 เส้น)
 - **Vector index**: BGE-M3 (dense 1024 มิติ + sparse แบบ lexical weights) ใน Qdrant รวมผลด้วย RRF
   (k = 60 ตั้งได้ด้วย `RRF_K` ต้องใช้ Qdrant server และ client รุ่น 1.16 ขึ้นไป ถ้าต่ำกว่านั้นจะใช้ค่าเริ่มต้นของ Qdrant คือ k = 2)
-  มีสอง collection คือ `pdpa_chunks` (ตัวบทเต็ม 96 มาตรา) และ `pdpa_profiles` (570 รายการ คือทุกโหนดและทุกเส้น
-  เขียนเป็นข้อความสั้น ๆ เพื่อให้ vector search ค้นเจอโหนดในกราฟได้)
+  มีสอง collection คือ `pdpa_chunks` (96 chunks จากตัวบทเต็ม 96 มาตรา มาตราละหนึ่ง chunk)
+  และ `pdpa_profiles` (572 รายการ = 190 node profiles + 382 edge profiles)
+  แต่ละ profile เขียนเป็นข้อความสั้น ๆ เพื่อให้ vector search ค้นเจอโหนดและความสัมพันธ์ในกราฟได้
 - **MCP server**: FastMCP, `stateless_http=True` docstring ของแต่ละ tool คือคำอธิบายที่ agent อ่านก่อนเลือกใช้
-- **LLM ฝั่ง server** (`gpt-oss-120b` ผ่าน OpenRouter) ใช้ทำอย่างเดียว คือแตกคีย์เวิร์ดสำหรับค้น คำตอบเขียนโดยโมเดลของ agent เอง:
+- **LLM ฝั่ง server** (กำหนดด้วย `LLM_MODEL` ผ่าน OpenRouter) ใช้ทำอย่างเดียว คือแตกคีย์เวิร์ดสำหรับค้น คำตอบเขียนโดยโมเดลของ agent เอง:
   *server ค้น ส่วน agent คิดและตอบ*
 
-รูปทั้งสองวาดจาก `docs/figures/make_figures.py` (แก้ล่าสุด 14 พ.ย. 2569 ให้ตรงกับโค้ดปัจจุบัน รูปเดิมเขียนว่า `get_penalty` เดิน 3 hop ซึ่งผลจริงได้ไม่เกิน 2 hop)
+รูปทั้งสองสร้างด้วย [สคริปต์ Matplotlib](docs/figures/make_figures.py) และเรนเดอร์ใหม่วันที่ 18 พ.ย. 2569
+ให้ตรงกับกราฟ 190 โหนด / 382 เส้น และ Qdrant 572 profiles / 96 chunks
 
 ## เริ่มใช้งาน
 
@@ -98,7 +106,7 @@ docker compose up --build       # เริ่ม Qdrant + MCP server; build ค
 
 ```
 Parsed 96 sections (มาตรา), 96 chunks
-Upserted 570 profile vectors
+Upserted 572 profile vectors
 Upserted 96 chunk vectors
 ```
 
@@ -135,7 +143,7 @@ agent ใช้โมเดล `deepseek/deepseek-v4.1-flash` ผ่าน OpenR
 | `search_pdpa(query, top_k=5)` | Hybrid retrieval: LLM แตกคีย์เวิร์ด -> ค้น profile -> BFS 2 hop -> ค้น chunk -> context (JSON) |
 | `get_related_sections(section_id)` | เส้นขาเข้าและขาออกของมาตราหนึ่ง แยกตามชนิดความสัมพันธ์ |
 | `get_penalty(section_id)` | BFS สองทิศจากมาตราที่ถูกฝ่าฝืนไปหาโหนด Penalty รายงานโหนด Penalty ที่อยู่ห่างไม่เกิน 2 hop (ลูปหยุดที่ hop 3 ก่อนบันทึกผล) ให้ส่งมาตราที่ถูกฝ่าฝืน (`sec_26`) ไม่ใช่มาตราโทษ |
-| `get_section_text(section_id)` | ตัวบทเต็มของมาตราตาม id แบบกำหนดแน่นอน (ไม่ใช้ vector search) อ่านจาก Markdown ไม่ได้อ่านจากโหนดในกราฟ ซึ่ง `text` ถูกตัดที่ 3,000 ตัวอักษร |
+| `get_section_text(section_id)` | อ่านตัวบทเต็มของมาตราจาก Markdown ตาม id แบบกำหนดแน่นอน โดยค้นหามาตราตรงตาม id |
 | `get_pdpa_summary()` | จำนวนโหนด/เส้น และ schema ของกราฟ |
 
 id ของมาตราใช้รูป `sec_<เลข>` ด้วยเลขอารบิก (`sec_26`) แม้ตัวบทจะใช้เลขไทย (มาตรา ๒๖)
@@ -144,7 +152,7 @@ id ของมาตราใช้รูป `sec_<เลข>` ด้วยเ�
 
 ![search_pdpa pipeline](docs/fig3_search_pipeline.png)
 
-1. LLM ฝั่ง server (`gpt-oss-120b`) แยกคำถามเป็นคีย์เวิร์ด low-level ไม่เกิน 8 คำ (คำเฉพาะ เช่น ชื่อสิทธิ หน้าที่ บทลงโทษ)
+1. LLM ฝั่ง server (กำหนดด้วย `LLM_MODEL`) แยกคำถามเป็นคีย์เวิร์ด low-level ไม่เกิน 8 คำ (คำเฉพาะ เช่น ชื่อสิทธิ หน้าที่ บทลงโทษ)
    และ high-level ไม่เกิน 6 คำ (หลักการ แนวคิด) ตามแนวทาง dual-level ของ LightRAG ขั้นนี้เป็นจุดเดียวที่เรียก LLM
 2. ค้น profile (`pdpa_profiles`, dense + sparse, RRF) สองรอบ: รอบ high-level ขอ 5 รายการ (`top_k`) และรอบ low-level ขอ 3 รายการ
    นำผลรอบ high-level ขึ้นก่อน แล้วต่อด้วยผลรอบ low-level ที่ยังไม่ซ้ำ ได้ไม่เกิน 8 รายการ
@@ -167,11 +175,17 @@ python scripts/validate_graph.py         # ตรวจ data/pdpa_knowledge_grap
 python scripts/validate_graph.py build/pdpa_knowledge_graph.json
 ```
 
-`build_graph.py` ทำงานด้วยกฎ: regex ตัวหนึ่งหาหัวมาตราใน Markdown อีกตัวหาการอ้างข้ามมาตรา
+[`build_graph.py`](scripts/build_graph.py) ทำงานด้วยกฎ: regex ตัวหนึ่งหาหัวมาตราใน
+[`pdpa_full_text_v2.md`](data/pdpa_full_text_v2.md) อีกตัวหาการอ้างข้ามมาตรา
 (เส้น `REFERENCES_SECTION`) ส่วนโหนดเชิงความหมาย (นิยาม สิทธิ หน้าที่ บทลงโทษ ข้อยกเว้น หลักการ ฐานทางกฎหมาย)
-เป็นรายการที่คัดเลือกไว้ในสคริปต์ ผลที่ได้คือกราฟฐาน (163 โหนด / 345 เส้น)
-ไฟล์ `data/pdpa_knowledge_graph.json` ที่ให้มาคือกราฟฐานบวกโหนดข้อยกเว้นที่เพิ่มด้วยมือ (190 / 380)
-block `metadata` ในไฟล์ยังรายงานตัวเลขเก่า 163 / 343 ให้นับจากข้อมูลจริงเสมอ ซึ่ง `validate_graph.py` ทำแบบนั้น
+เป็นรายการที่คัดเลือกไว้ในสคริปต์ รวมข้อยกเว้นเพิ่มเติม 27 โหนด เส้น `IS_LAWFUL_BASIS` 6 เส้น
+และ `REFERENCES_EXEMPTION` 4 เส้น สคริปต์นี้สร้างกราฟ 190 โหนด / 382 เส้น
+`Section.text` สิ้นสุดก่อนหัวข้อ Markdown ถัดไป หรือก่อนข้อความลงนามและหมายเหตุท้ายกฎหมาย
+บรรทัดเลขหน้า OCR รูปแบบ `้หนา ๖๐` จะถูกลบก่อนตัดข้อความของแต่ละมาตรา
+ผลสร้างใหม่อยู่ใน `build/` และตรวจได้ด้วย [`validate_graph.py`](scripts/validate_graph.py)
+ไฟล์ [`data/pdpa_knowledge_graph.json`](data/pdpa_knowledge_graph.json) สำหรับ LAB 2 และ
+`build/pdpa_knowledge_graph.json` จาก LAB 3 ตรงกันทุกไบต์ รวมลำดับข้อมูลและ `metadata`
+ซึ่งระบุ 190 โหนด / 382 เส้น / เส้น 26 ประเภท กราฟนี้ให้ 572 profiles และ Markdown ให้ 96 chunks
 
 ถ้าจะใช้กับกฎหมายฉบับอื่น ให้เปลี่ยน pattern ของหัวข้อ (`Article\s+(\d+)` สำหรับ GDPR,
 `第([一二三四五六七八九十百]+)条` สำหรับ APPI ของญี่ปุ่น) แล้วคัดเลือกโหนดเชิงความหมายใหม่

@@ -3,7 +3,7 @@
 [ภาษาไทย](README.md)
 
 A GraphRAG agent over Thailand's Personal Data Protection Act (PDPA, B.E. 2562 / 2019).
-The 96 sections of the statute become a 190-node / 380-edge knowledge graph plus a dense + sparse
+The 96 sections of the statute become a 190-node / 382-edge knowledge graph plus a dense + sparse
 vector index, exposed as five MCP tools that any agent can call. Everything runs locally with
 Docker.
 
@@ -33,10 +33,11 @@ and the embedding model is multilingual.
 | RRF constant | Not set, so Qdrant's default k = 2 | `RRF_K`, default 60 |
 | Result order | RRF scores tie often and Qdrant does not order ties, so the same keywords gave different seeds per call | Fused candidates are sorted by (score, id); the same keywords give the same context |
 | Seed selection | Took the top 3 profiles, then dropped edge profiles: possibly no seed at all | Drops edge profiles and the Act node (`PDPA_2562`) first, then takes 3 |
-| `build_graph.py` | Truncated section text at 3,000 characters | No truncation |
+| `build_graph.py` | Truncated section text at 3,000 characters | Preserves all 96 sections, excluding chapter/part headings, closing material and OCR page labels |
 
-Not changed: `get_penalty` and the shipped graph (see Known limitations), the graph's `metadata`
-counts, and the 15-node cap on graph expansion.
+The shipped graph and the builder output are byte-for-byte identical, with 190 nodes / 382 edges
+and `metadata` computed from the graph. `get_penalty` reports penalties within 2 hops, and graph
+expansion in `search_pdpa` contributes at most 15 context lines (see Known limitations).
 
 ## What's inside
 
@@ -45,7 +46,7 @@ mcp_server_rag.py        FastMCP server (streamable-http, port 8100) exposing 5 
 lightrag/                retrieval engine: Markdown chunker, NetworkX graph, BGE-M3 + Qdrant index, hybrid retrieval
 data/
   pdpa_full_text_v2.md   the statute as Markdown (H1 Act -> H2 Chapter -> H3 Part -> H4 Section)
-  pdpa_knowledge_graph.json   pre-built graph: 190 nodes / 380 edges, 11 node types, 26 edge types
+  pdpa_knowledge_graph.json   pre-built graph: 190 nodes / 382 edges, 11 node types, 26 edge types
 scripts/
   build_graph.py         rule-based graph builder (sections + cross-references + curated nodes)
   validate_graph.py      counts nodes/edges from the data, checks connectivity and penalty reachability
@@ -57,24 +58,31 @@ docs/                    architecture and pipeline figures
 Dockerfile, docker-compose.yml, requirements.txt, .env.example
 ```
 
+- [LAB 2 graph](data/pdpa_knowledge_graph.json) and [statute text, all 96 sections](data/pdpa_full_text_v2.md)
+- [LAB 3 graph builder](scripts/build_graph.py) and [graph validator](scripts/validate_graph.py)
+- [MCP server](mcp_server_rag.py), [Docker Compose](docker-compose.yml), [LAB 8 agent](labs/lab8/agent_pdpa_mcp.py) and [curl smoke test](examples/mcp_curl.sh)
+- [Architecture figure](docs/fig1_architecture.png), [search pipeline figure](docs/fig3_search_pipeline.png) and [figure generator](docs/figures/make_figures.py)
+
 `labs/` contains only the agent-side code; the course lab instructions are not part of this repo.
 
 ## Architecture
 
 ![Architecture: Agent -> MCP Server -> Engine -> Data](docs/fig1_architecture.png)
 
-Both figures are drawn by `docs/figures/make_figures.py` (redrawn on 14 Nov 2026 to match the current code; the earlier architecture figure said `get_penalty` walks 3 hops, but it reports at most 2).
+Both figures are drawn by the [Matplotlib script](docs/figures/make_figures.py) and were regenerated
+on 18 Nov 2026 to show 190 nodes / 382 edges and Qdrant's 572 profiles / 96 chunks.
 
 - **Knowledge graph**: NetworkX, in memory. 96 Section nodes plus Definition, LawfulBasis, Right,
   Obligation, Penalty, Exemption and Principle nodes; the backbone edges are `REFERENCES_SECTION`
-  (122, section cites section) and `CONTAINS_SECTION` (119).
+  (124, section cites section) and `CONTAINS_SECTION` (119).
 - **Vector index**: BGE-M3 (dense 1024-d + sparse lexical weights) in Qdrant with RRF fusion
   (k = 60, set with `RRF_K`; needs Qdrant server and client 1.16+, otherwise Qdrant's default k = 2 applies).
-  Two collections: `pdpa_chunks` (96 full sections) and `pdpa_profiles` (570 = every node and edge
-  rendered as a short text, so vector search can land on graph nodes).
+  Two collections: `pdpa_chunks` (96 chunks, one full section per chunk) and `pdpa_profiles`
+  (572 = 190 node profiles + 382 edge profiles). Each profile is a short text that lets vector
+  search find graph nodes and relationships.
 - **MCP server**: FastMCP, `stateless_http=True`. Each tool's docstring is the description the agent
   reads before choosing a tool.
-- **LLM on the server side** (`gpt-oss-120b` through OpenRouter) is used for exactly one thing, extracting search keywords. Answers are
+- **LLM on the server side** (configured by `LLM_MODEL` through OpenRouter) is used for exactly one thing, extracting search keywords. Answers are
   written by the agent's own model: *the server retrieves, the agent reasons.*
 
 ## Quick start
@@ -103,7 +111,7 @@ Startup is done when the log shows:
 
 ```
 Parsed 96 sections (มาตรา), 96 chunks
-Upserted 570 profile vectors
+Upserted 572 profile vectors
 Upserted 96 chunk vectors
 ```
 
@@ -138,7 +146,7 @@ model are not deterministic. (With the original code a typical run made 7 tool c
 | `search_pdpa(query, top_k=5)` | Hybrid retrieval: LLM keywords -> profile search -> 2-hop BFS -> chunk search -> context (JSON) |
 | `get_related_sections(section_id)` | In- and out-edges of one section, grouped by relationship |
 | `get_penalty(section_id)` | BFS in both directions from the violated section to Penalty nodes. It reports Penalty nodes up to 2 hops away (the loop stops at hop 3 before recording one). Pass the violated section (`sec_26`), not the penalty section |
-| `get_section_text(section_id)` | Full statute text of one section by id, deterministic (no vector search). Read from the Markdown, not from the graph node, whose `text` is cut at 3,000 characters |
+| `get_section_text(section_id)` | Reads the full statute section from the Markdown by its exact id, deterministically |
 | `get_pdpa_summary()` | Node/edge counts and the schema of the graph |
 
 Section ids are `sec_<number>` with Arabic digits (`sec_26`), even though the statute text uses Thai
@@ -148,7 +156,7 @@ numerals (มาตรา ๒๖).
 
 ![search_pdpa pipeline](docs/fig3_search_pipeline.png)
 
-1. The server-side LLM (`gpt-oss-120b`) splits the question into at most 8 low-level keywords (specific terms:
+1. The server-side LLM (configured by `LLM_MODEL`) splits the question into at most 8 low-level keywords (specific terms:
    named rights, duties, penalties) and at most 6 high-level keywords (principles, concepts), after LightRAG's
    dual-level scheme. This is the only step that calls an LLM.
 2. Profile search (`pdpa_profiles`, dense + sparse, RRF) runs twice: the high-level query asks for 5 results
@@ -177,13 +185,20 @@ python scripts/validate_graph.py         # checks data/pdpa_knowledge_graph.json
 python scripts/validate_graph.py build/pdpa_knowledge_graph.json
 ```
 
-`build_graph.py` is rule-based: a regex finds section headings in the Markdown, a second regex finds
-cross-references inside each section (`REFERENCES_SECTION` edges), and the semantic nodes
-(definitions, rights, obligations, penalties, exemptions, principles, lawful bases) are curated lists
-inside the script. It reproduces the base graph (163 nodes / 345 edges). The shipped
-`data/pdpa_knowledge_graph.json` is that base graph plus hand-added exemption nodes (190 / 380).
-Its `metadata` block still reports the older 163 / 343 counts; always count from the data, which is
-what `validate_graph.py` does.
+[`build_graph.py`](scripts/build_graph.py) is rule-based. One regex finds section headings in
+[`pdpa_full_text_v2.md`](data/pdpa_full_text_v2.md), and another finds cross-references inside each
+section (`REFERENCES_SECTION` edges). Semantic nodes (definitions, rights, obligations, penalties,
+exemptions, principles, lawful bases) are curated lists in the script, including the additional
+27 exemption nodes, 6 `IS_LAWFUL_BASIS` edges and 4 `REFERENCES_EXEMPTION` edges. The script
+builds 190 nodes / 382 edges. `Section.text` ends before the next Markdown heading or the closing
+signature and explanatory note. Standalone OCR page labels such as `้หนา ๖๐` are removed before
+splitting the sections. Outputs go to `build/` and can be checked with
+[`validate_graph.py`](scripts/validate_graph.py).
+
+The LAB 2 graph in [`data/pdpa_knowledge_graph.json`](data/pdpa_knowledge_graph.json) and the LAB 3
+output `build/pdpa_knowledge_graph.json` are byte-for-byte identical, including ordering and
+`metadata` (190 nodes / 382 edges / 26 edge types). This graph provides 572 profiles, and the
+Markdown provides 96 chunks.
 
 To use this on another statute, swap the heading pattern (`Article\s+(\d+)` for GDPR,
 `第([一二三四五六七八九十百]+)条` for Japan's APPI) and re-curate the semantic nodes.
