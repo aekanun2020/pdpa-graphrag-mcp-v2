@@ -227,3 +227,28 @@ Codex ตรวจผลตอบกลับ MCP โดยตรงและอ
 ตรวจข้อความเทียบกับที่ผู้ใช้ระบุและตรวจภาพทั้งสามหน้าแล้ว ข้อความครบและอยู่ในกรอบ ฟอนต์ ตัวหนา ขีดเส้นใต้ และลิงก์เดิมอยู่ครบ
 
 [เปิดหน้า 15](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f325e14071_0_1086) · [เปิดหน้า 33](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f2ef25f744_1_326) · [เปิดหน้า 45](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f325e14071_0_1174)
+
+---
+
+## M1 — หน้า 10 เปลี่ยนรูปสถาปัตยกรรมอีกครั้ง (รอแก้ในสไลด์)
+
+**สถานะ ณ 20 พ.ย. 2569:** repo แก้รูปแล้วที่ commit `2199942` ส่วนรูปในสไลด์หน้า 10 ยังเป็นรูปจาก commit `0a02321` ตามรายการ "หน้า 10 — รูปสถาปัตยกรรม (แทนทั้งรูป)" ด้านบน รายการนี้ยังไม่ได้ทำในสไลด์
+
+**เหตุที่ต้องแก้:** ข้อความ 2 บรรทัดในรูปเดิมไม่ตรงกับโค้ด `labs/lab8/agent_pdpa_mcp.py` พิมพ์ขั้นของ loop ว่า `THINK`, `TOOL_USE` และ `END_TURN` ไม่มี `OBSERVE` และ `get_pdpa_summary` คืนจำนวนโหนดและเส้นแยกตามประเภท ไม่ได้คืน schema
+
+### หน้า 10 — รูปสถาปัตยกรรม (แทนทั้งรูป)
+
+- **จาก:** `docs/fig1_architecture.png` จาก repo ที่ commit `0a02321`
+- **เป็น:** `docs/fig1_architecture.png` จาก repo ที่ commit `2199942`
+  - **ไฟล์:** <https://raw.githubusercontent.com/aekanun2020/pdpa-graphrag-mcp-v2/2199942/docs/fig1_architecture.png>
+  - **ขนาด:** 2680 x 2252 พิกเซล อัตราส่วนเท่ารูปเดิม
+  - **SHA-256:** `aa414dd7019fff5c0eb9384fb37d4465c42b197ba77a43d980c79d12981598b3`
+- **ข้อความในรูปที่เปลี่ยน:**
+  - `THINK → TOOL_USE → OBSERVE` → `THINK → TOOL_USE → END_TURN`
+  - `counts and schema` → `counts by node and edge type`
+- **alt text (description) ของรูป:**
+  - **จาก:** แผนผังจาก repo v2 commit 0a02321 กราฟมี 190 โหนดและ 382 เส้น รวมเป็น 572 profiles ใน pdpa_profiles
+  - **เป็น:** แผนผังจาก repo v2 commit 2199942 กราฟมี 190 โหนดและ 382 เส้น รวมเป็น 572 profiles ใน pdpa_profiles
+- **คงไว้:** ตำแหน่งและขนาดของรูป ลิงก์ของรูป title ของรูป ("สถาปัตยกรรม PDPA GraphRAG และ MCP") และข้อความใต้รูปที่ขึ้นต้นว่า `LLM_MODEL = gpt-oss-120b`
+
+**ขอบเขต:** ตรวจสไลด์ชุด 14–15 พ.ย. ทั้ง 3 Part (54, 41 และ 41 หน้า) เมื่อ 20 พ.ย. 2569 โดยเทียบรูปทุกรูปกับรูปใน repo พบรูปนี้ที่ Part 1 หน้า 10 หน้าเดียว รูป pipeline ใน Part 2 หน้า 4 ตรงกับ repo แล้ว ไม่ต้องแก้
