@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Talk to the MCP server with plain curl. Needs jq.
-# A bare request without the Accept header returns -32600 "Client must accept text/event-stream":
-# that means the server is up; streamable-http just requires the header below.
+# A bare request without the Accept header returns -32600 "Not Acceptable: Client must accept application/json":
+# that means the server is up; streamable-http just requires an Accept header that includes application/json.
 URL=${MCP_SERVER_URL:-http://localhost:8100/mcp}
 H=(-H "Content-Type: application/json" -H "Accept: application/json, text/event-stream")
 
