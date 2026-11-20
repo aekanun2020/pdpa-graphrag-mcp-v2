@@ -96,7 +96,8 @@ on 18 Nov 2026 to show 190 nodes / 382 edges and Qdrant's 572 profiles / 96 chun
 Requirements: Docker with Compose and an [OpenRouter](https://openrouter.ai) API key.
 
 - **Docker memory:** give Docker at least 8 GB and avoid running other memory-heavy containers next to it.
-  Startup peaked at 4.7 GB in our measurement (while embedding the statute text) and settles at about 2.8 GB.
+  Startup peaked at 4.8 GB in our measurement (while embedding the statute text) and settles at about 3–3.7 GB
+  (measured with `docker stats` on 20 Nov 2026 on a fresh install from the zip).
   With too little memory the container is killed during startup (the log shows `Killed`, or the status is
   `Restarting (137)`).
 - **Disk:** the built image is about 18 GB as reported by Docker (measured on an ARM Mac with Docker Desktop).
@@ -137,9 +138,10 @@ Smoke test with curl (needs `jq`):
 ./examples/mcp_curl.sh
 ```
 
-If you write your own curl command and get `-32600 Client must accept text/event-stream`, the server
-is alive but the request lacks the `Accept: application/json, text/event-stream` header, which the
-streamable-http transport requires. The `mcp_curl.sh` script already sends it.
+If you write your own curl command and get `-32600 Not Acceptable: Client must accept application/json`,
+the server is alive but the request lacks an `Accept` header that includes `application/json`, which the
+streamable-http transport requires. The `mcp_curl.sh` script already sends
+`Accept: application/json, text/event-stream`.
 
 Run the agent against the server:
 

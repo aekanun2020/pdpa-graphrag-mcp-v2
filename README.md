@@ -92,7 +92,8 @@ README.en.md, LICENSE
 สิ่งที่ต้องมี: Docker พร้อม Compose และ API key ของ [OpenRouter](https://openrouter.ai)
 
 - **หน่วยความจำของ Docker:** ตั้งไว้อย่างน้อย 8 GB และไม่ควรมี container อื่นที่ใช้หน่วยความจำมากรันอยู่ด้วย
-  ตอนเริ่ม server ใช้สูงสุดที่วัดได้ 4.7 GB (ช่วง embed ตัวบท) แล้วลดลงเหลือราว 2.8 GB ตอนทำงานปกติ
+  ตอนเริ่ม server ใช้สูงสุดที่วัดได้ 4.8 GB (ช่วง embed ตัวบท) แล้วลดลงเหลือราว 3–3.7 GB ตอนทำงานปกติ
+  (วัดด้วย `docker stats` เมื่อ 20 พ.ย. 2569 จากการติดตั้งใหม่จาก zip)
   ถ้าหน่วยความจำไม่พอ container จะถูก kill ระหว่างเริ่ม (log ขึ้น `Killed` หรือสถานะ `Restarting (137)`)
 - **พื้นที่ดิสก์:** image ที่ build แล้วมีขนาดราว 18 GB ตามที่ Docker รายงาน (วัดบน Mac ชิป ARM, Docker Desktop)
   ส่วนใหญ่เป็น torch กับไลบรารีที่ติดมา และ BGE-M3 ราว 2.3 GB ที่ถูกใส่ไว้ใน image ตอน build
@@ -132,9 +133,9 @@ Upserted 96 chunk vectors
 ./examples/mcp_curl.sh
 ```
 
-ถ้าเขียนคำสั่ง curl เองแล้วได้ `-32600 Client must accept text/event-stream` กลับมา แปลว่า server ทำงานอยู่
-แต่ request ขาด header `Accept: application/json, text/event-stream` ซึ่ง transport แบบ streamable-http บังคับให้มี
-สคริปต์ `mcp_curl.sh` ใส่ header นี้ให้แล้ว
+ถ้าเขียนคำสั่ง curl เองแล้วได้ `-32600 Not Acceptable: Client must accept application/json` กลับมา แปลว่า server ทำงานอยู่
+แต่ request ขาด header `Accept` ที่มี `application/json` ซึ่ง transport แบบ streamable-http บังคับให้มี
+สคริปต์ `mcp_curl.sh` ส่ง `Accept: application/json, text/event-stream` ให้แล้ว
 
 รัน agent ต่อเข้ากับ server:
 
