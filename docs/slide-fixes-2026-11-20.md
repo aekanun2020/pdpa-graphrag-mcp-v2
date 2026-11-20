@@ -179,3 +179,35 @@ Codex ตรวจผลตอบกลับ MCP โดยตรงและอ
 ผล Qwen เดิมทั้งสองชุดให้ลำดับต่างกันแม้ใช้คำค้นและพารามิเตอร์เดียวกัน ตารางจึงสรุปความต่างที่สังเกตได้จากแต่ละรอบ
 
 หลักฐานในเครื่องอยู่ในชุด `pdpa-v2-gpt-oss-rerun-20261120-113405` โดยแยกผลใหม่เป็น `set-1-latest-graph/search_pdpa.result.json` และ `set-2-lab1/search_pdpa.result.json` พร้อม `comparison.json` สำหรับตรวจเทียบ
+
+---
+
+## M1 — การสร้างกราฟแบบ Rule-based
+
+แก้สำเนา M1 ชุด 14–15 พ.ย. เมื่อ **20 พ.ย. 2569 เวลา 15:22:51 น. (ICT)** ให้ชัดว่า `scripts/build_graph.py` สร้างกราฟด้วย regex และรายการที่กำหนดไว้ในสคริปต์ ส่วนการสกัดโหนดเพิ่มด้วย LLM เป็นตัวเลือกตอนเริ่ม MCP server [README ของ repo v2 ที่ commit `6f57cb0`](https://github.com/aekanun2020/pdpa-graphrag-mcp-v2/blob/6f57cb006104d6734204f84ff245c16f6b4517d3/README.md#สร้างและตรวจกราฟใหม่)
+
+### หน้า 45 — Rule-based Parser vs. LLM-based Entity Extraction
+
+- **จาก** โปรเจกต์นี้ เลือก Rule-based เป็นค่าเริ่มต้น เพราะตัวบทกฎหมายมีโครงสร้างชัดเจน ("มาตรา <เลข>") จึงเหมาะกับ regex ที่เร็วและตรวจสอบได้
+- **เป็น** โปรเจกต์นี้สร้างกราฟด้วย Rule-based ทั้งหมด ไม่ใช้ LLM เพราะตัวบทกฎหมายมีโครงสร้างชัดเจน ("มาตรา <เลข>") จึงเหมาะกับ regex ที่เร็วและตรวจสอบได้
+
+[เปิดหน้า 45](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f325e14071_0_1174)
+
+### หน้า 15 — Environment Configuration
+
+- **จาก** `USE_LLM_EXTRACT=false`
+- **เป็น**
+
+  ```dotenv
+  # ทางเลือก: ให้ LLM สกัดโหนดเพิ่มตอน server เริ่ม (ปิดไว้ · ทุก LAB ไม่ใช้)
+  USE_LLM_EXTRACT=false
+  ```
+
+ปรับขนาดตัวอักษรเฉพาะกล่อง `.env.example` จาก 11.5 เป็น 10.5 pt เพื่อให้บรรทัดใหม่อยู่ในกรอบ [เปิดหน้า 15](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f325e14071_0_1086)
+
+### หน้า 33 — Node Types ทั้ง 11 ประเภท [2/2]
+
+- **จาก** เมื่อมี Schema แล้ว จึงสามารถสร้าง Data จากเอกสารด้วย build_graph.py ได้กราฟ 190 โหนด / 382 เส้น ในครั้งเดียว (รวมข้อยกเว้น 33 โหนดที่กำหนดไว้ในสคริปต์)
+- **เป็น** เมื่อมี Schema แล้ว จึงสามารถสร้าง Data ด้วย build_graph.py (regex อ่านตัวบท + รายการที่กำหนดไว้ในสคริปต์ ไม่ใช้ LLM) ได้กราฟ 190 โหนด / 382 เส้น ในครั้งเดียว (รวมข้อยกเว้น 33 โหนดที่กำหนดไว้ในสคริปต์)
+
+[เปิดหน้า 33](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f2ef25f744_1_326)
