@@ -154,7 +154,7 @@ model are not deterministic. (With the original code a typical run made 7 tool c
 |---|---|
 | `search_pdpa(query, top_k=5)` | Hybrid retrieval: LLM keywords -> profile search -> 2-hop BFS -> chunk search -> context (JSON) |
 | `get_related_sections(section_id)` | In- and out-edges of one section, grouped by relationship |
-| `get_penalty(section_id)` | BFS in both directions from the violated section to Penalty nodes. It reports Penalty nodes up to 2 hops away (the loop stops at hop 3 before recording one). Pass the violated section (`sec_26`), not the penalty section |
+| `get_penalty(section_id)` | Finds the penalties for a violated section by following graph edges from that section, both incoming and outgoing, up to 2 hops. The result is the Penalty nodes found.<br>**Input:** the violated section, e.g. `sec_26`, not the section that sets the penalty |
 | `get_section_text(section_id)` | Reads the full statute section from the Markdown by its exact id, deterministically |
 | `get_pdpa_summary()` | Node/edge counts and the schema of the graph |
 

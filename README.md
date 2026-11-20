@@ -152,7 +152,7 @@ agent ใช้โมเดล `deepseek/deepseek-v4.1-flash` ผ่าน OpenR
 |---|---|
 | `search_pdpa(query, top_k=5)` | Hybrid retrieval: LLM แตกคีย์เวิร์ด -> ค้น profile -> BFS 2 hop -> ค้น chunk -> context (JSON) |
 | `get_related_sections(section_id)` | เส้นขาเข้าและขาออกของมาตราหนึ่ง แยกตามชนิดความสัมพันธ์ |
-| `get_penalty(section_id)` | BFS สองทิศจากมาตราที่ถูกฝ่าฝืนไปหาโหนด Penalty รายงานโหนด Penalty ที่อยู่ห่างไม่เกิน 2 hop (ลูปหยุดที่ hop 3 ก่อนบันทึกผล) ให้ส่งมาตราที่ถูกฝ่าฝืน (`sec_26`) ไม่ใช่มาตราโทษ |
+| `get_penalty(section_id)` | หาบทลงโทษของมาตราที่ถูกฝ่าฝืน โดยเดินตามเส้นในกราฟจากมาตรานั้น ทั้งขาเข้าและขาออก ไม่เกิน 2 hop ผลที่ได้คือโหนด Penalty ที่พบ<br>**ค่าที่ต้องใส่:** มาตราที่ถูกฝ่าฝืน เช่น `sec_26` ไม่ใช่มาตราที่กำหนดโทษ |
 | `get_section_text(section_id)` | อ่านตัวบทเต็มของมาตราจาก Markdown ตาม id แบบกำหนดแน่นอน โดยค้นหามาตราตรงตาม id |
 | `get_pdpa_summary()` | จำนวนโหนด/เส้น และ schema ของกราฟ |
 
