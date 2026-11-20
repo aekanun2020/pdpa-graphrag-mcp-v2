@@ -116,6 +116,9 @@ cp .env.example .env            # put your OPENROUTER_API_KEY in .env
 docker compose up --build       # starts Qdrant + the MCP server; the first build downloads BGE-M3
 ```
 
+This command keeps the terminal busy showing the log. Leave it running and open a new terminal in the
+same folder for the commands in the next steps.
+
 Startup is done when the log shows:
 
 ```
@@ -188,7 +191,11 @@ numerals (มาตรา ๒๖).
 
 ## Rebuilding and validating the graph
 
+Run these in the venv created under "Quick start". `build_graph.py` uses only the Python standard
+library; `validate_graph.py` also needs `networkx`.
+
 ```bash
+pip install networkx                     # used only by validate_graph.py
 python scripts/build_graph.py            # -> build/ (never overwrites data/)
 python scripts/validate_graph.py         # checks data/pdpa_knowledge_graph.json
 python scripts/validate_graph.py build/pdpa_knowledge_graph.json

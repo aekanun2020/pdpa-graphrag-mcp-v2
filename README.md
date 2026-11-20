@@ -112,6 +112,8 @@ cp .env.example .env            # ใส่ OPENROUTER_API_KEY ใน .env
 docker compose up --build       # เริ่ม Qdrant + MCP server; build ครั้งแรกจะดาวน์โหลด BGE-M3
 ```
 
+คำสั่งนี้ค้างหน้าจอไว้เพื่อแสดง log ให้ปล่อย terminal นี้ไว้ แล้วเปิด terminal ใหม่ในโฟลเดอร์เดียวกันสำหรับคำสั่งในขั้นถัดไป
+
 ระบบพร้อมเมื่อ log แสดง:
 
 ```
@@ -179,7 +181,11 @@ id ของมาตราใช้รูป `sec_<เลข>` ด้วยเ�
 
 ## สร้างและตรวจกราฟใหม่
 
+รันใน venv ที่สร้างไว้ในหัวข้อ "เริ่มใช้งาน" `build_graph.py` ใช้เฉพาะไลบรารีมาตรฐานของ Python
+ส่วน `validate_graph.py` ต้องติดตั้ง `networkx` เพิ่ม
+
 ```bash
+pip install networkx                     # ใช้โดย validate_graph.py เท่านั้น
 python scripts/build_graph.py            # -> build/ (ไม่เขียนทับ data/)
 python scripts/validate_graph.py         # ตรวจ data/pdpa_knowledge_graph.json
 python scripts/validate_graph.py build/pdpa_knowledge_graph.json
