@@ -3,7 +3,9 @@
 # /eval/      test harness, questions, answer key, raw runs, verdicts
 # /docs/eval/ test reports and their result files
 # /docs/qa-*  the instructor's Q&A log
+# /docs/slide-fixes-*  the instructor's slide correction lists
 /eval/          export-ignore
 /docs/eval/     export-ignore
 /docs/qa-*.md   export-ignore
+/docs/slide-fixes-*.md export-ignore
 .gitattributes  export-ignore
