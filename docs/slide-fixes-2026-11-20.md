@@ -2,7 +2,7 @@
 
 **สถานะสไลด์ชุด 14–15 พ.ย. ณ วันที่ 20 พ.ย. 2569**
 
-- [M1 (Part 1)](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit) รอบแรกแก้ 10 หน้า ได้แก่ 8, 10, 11, 15, 17, 23, 33, 49, 51 และ 52 รอบตรวจซ้ำเก็บจุดค้าง 11 หน้า รวมลิงก์ใหม่ใน [LAB 2 หน้า 42](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f325e14071_0_1061) **ยังค้าง 1 รายการ:** หน้า 10 ต้องเปลี่ยนรูปสถาปัตยกรรมอีกครั้ง ดู [รายการท้ายไฟล์](#m1--หน้า-10-เปลี่ยนรูปสถาปัตยกรรมอีกครั้ง-รอแก้ในสไลด์)
+- [M1 (Part 1)](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit) รอบแรกแก้ 10 หน้า ได้แก่ 8, 10, 11, 15, 17, 23, 33, 49, 51 และ 52 รอบตรวจซ้ำเก็บจุดค้าง 11 หน้า รวมลิงก์ใหม่ใน [LAB 2 หน้า 42](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f325e14071_0_1061) หน้า 10 เปลี่ยนรูปสถาปัตยกรรมอีกครั้งเมื่อ 20 พ.ย. 2569 ดู [รายการท้ายไฟล์](#m1--หน้า-10-เปลี่ยนรูปสถาปัตยกรรมอีกครั้ง-แก้ในสไลด์แล้ว)
 - [M2 (Part 2)](https://docs.google.com/presentation/d/1I5tX-OmqbKuiawnQDP3szX_eD3-5kHABt6OB8C8dOBI/edit) แก้แล้ว 2 หน้า ได้แก่ หน้า 4 และ [หน้า 28 — ผลรัน LAB 4](https://docs.google.com/presentation/d/1I5tX-OmqbKuiawnQDP3szX_eD3-5kHABt6OB8C8dOBI/edit#slide=id.g3f418c17505_0_634)
 - [M3 (Part 3)](https://docs.google.com/presentation/d/1ZRoWvedmiVt3JhQ1D92K-FNwfhquzdXeBkVZgHL0SuU/edit) ไม่มีรายการแก้ไข
 
@@ -230,9 +230,11 @@ Codex ตรวจผลตอบกลับ MCP โดยตรงและอ
 
 ---
 
-## M1 — หน้า 10 เปลี่ยนรูปสถาปัตยกรรมอีกครั้ง (รอแก้ในสไลด์)
+## M1 — หน้า 10 เปลี่ยนรูปสถาปัตยกรรมอีกครั้ง (แก้ในสไลด์แล้ว)
 
-**สถานะ ณ 20 พ.ย. 2569:** repo แก้รูปแล้วที่ commit `2199942` ส่วนรูปในสไลด์หน้า 10 ยังเป็นรูปจาก commit `0a02321` ตามรายการ "หน้า 10 — รูปสถาปัตยกรรม (แทนทั้งรูป)" ด้านบน รายการนี้ยังไม่ได้ทำในสไลด์
+**สถานะ ณ 20 พ.ย. 2569:** repo แก้รูปที่ commit `2199942` และสไลด์หน้า 10 เปลี่ยนเป็นรูปนี้แล้ว รูปก่อนหน้าเป็นรูปจาก commit `0a02321` ตามรายการ "หน้า 10 — รูปสถาปัตยกรรม (แทนทั้งรูป)" ด้านบน
+
+**ผลตรวจหลังแก้ (20 พ.ย. 2569 เวลา 22:06 น. ICT ตรวจจากไฟล์ PPTX ที่ export จากสไลด์ เทียบกับไฟล์ที่ export ก่อนแก้):** รูปในหน้า 10 ตรงกับรูปที่ commit `2199942` ตำแหน่ง ขนาด ลิงก์ title และข้อความใต้รูปเหมือนเดิม alt text เป็นเลข commit ใหม่ สไลด์ยังมี 54 หน้า ข้อความทุกหน้าไม่เปลี่ยน และรูปเปลี่ยนเฉพาะหน้า 10
 
 **เหตุที่ต้องแก้:** ข้อความ 2 บรรทัดในรูปเดิมไม่ตรงกับโค้ด `labs/lab8/agent_pdpa_mcp.py` พิมพ์ขั้นของ loop ว่า `THINK`, `TOOL_USE` และ `END_TURN` ไม่มี `OBSERVE` และ `get_pdpa_summary` คืนจำนวนโหนดและเส้นแยกตามประเภท ไม่ได้คืน schema
 
