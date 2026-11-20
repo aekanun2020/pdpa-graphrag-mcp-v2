@@ -1,10 +1,10 @@
-# รายการแก้ไขสไลด์ชุดใหม่ ให้ตัวเลขตรงกับ repo ปัจจุบัน (20 พ.ย. 2569)
+# บันทึกการแก้สไลด์ M1 และ M2 ให้ตรงกับ repo v2 (20 พ.ย. 2569)
 
-**สไลด์ที่ตรวจ** (ชุดใหม่ version 14–15 พ.ย. — อ่านอย่างเดียว)
+**สถานะสไลด์ชุด 14–15 พ.ย. ณ วันที่ 20 พ.ย. 2569**
 
-- Part 1: https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ
-- Part 2: https://docs.google.com/presentation/d/1I5tX-OmqbKuiawnQDP3szX_eD3-5kHABt6OB8C8dOBI
-- Part 3: https://docs.google.com/presentation/d/1ZRoWvedmiVt3JhQ1D92K-FNwfhquzdXeBkVZgHL0SuU
+- [M1 (Part 1)](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit) แก้แล้ว 10 หน้า ได้แก่ 8, 10, 11, 15, 17, 23, 33, 49, 51 และ 52
+- [M2 (Part 2)](https://docs.google.com/presentation/d/1I5tX-OmqbKuiawnQDP3szX_eD3-5kHABt6OB8C8dOBI/edit) แก้แล้ว 2 หน้า ได้แก่ หน้า 4 และ [หน้า 28 — ผลรัน LAB 4](https://docs.google.com/presentation/d/1I5tX-OmqbKuiawnQDP3szX_eD3-5kHABt6OB8C8dOBI/edit#slide=id.g3f418c17505_0_634)
+- [M3 (Part 3)](https://docs.google.com/presentation/d/1ZRoWvedmiVt3JhQ1D92K-FNwfhquzdXeBkVZgHL0SuU/edit) ไม่มีรายการแก้ไข
 
 **repo ที่ใช้เทียบ:** `aekanun2020/pdpa-graphrag-mcp-v2` branch `main` commit `0a02321` (18 พ.ย. 2569)
 
@@ -47,6 +47,7 @@
 
 - **จาก:** `│   └── pdpa_knowledge_graph.json # กราฟสำเร็จรูป (190 nodes, 380 edges)`
 - **เป็น:** `│   └── pdpa_knowledge_graph.json # กราฟสำเร็จรูป (190 nodes, 382 edges)`
+- ปรับคำอธิบาย `build_graph.py` เป็น «สร้างกราฟด้วยกฎ → build/»
 
 ### หน้า 15 — Architecture Diagram
 
@@ -77,7 +78,7 @@
 
 - **จาก:** ผลการรันได้ 5 ไฟล์ใน build/ เป็นกราฟฐาน 163 โหนด / 345 เส้น แล้วเทียบกับกราฟที่ใช้จริงใน data/ (190 / 380) ด้วย python scripts/validate_graph.py build/pdpa_knowledge_graph.json
 - **เป็น:** ผลการรันได้ 5 ไฟล์ใน build/ เป็นกราฟ 190 โหนด / 382 เส้น ซึ่งตรงกับกราฟที่ใช้จริงใน data/ ทุกไบต์ ตรวจด้วย python scripts/validate_graph.py build/pdpa_knowledge_graph.json
-- **เพิ่มได้ (ไม่บังคับ):** คำสั่งเทียบไฟล์ `cmp build/pdpa_knowledge_graph.json data/pdpa_knowledge_graph.json` ถ้าไม่มีข้อความใดออกมา แปลว่าตรงกันทุกไบต์
+- **ผลตรวจ:** รัน `build_graph.py` แล้วได้ 5 ไฟล์ `validate_graph.py` ยืนยัน 190 โหนด / 382 เส้น และ `cmp` ยืนยันว่าไฟล์กราฟที่สร้างตรงกับไฟล์ใน `data/` ทุกไบต์
 
 ---
 
@@ -99,6 +100,27 @@
 - **เพิ่มข้อความใต้รูป** (รูปใหม่เขียน `LLM_MODEL` แทนชื่อโมเดลในขั้นที่ 1):
   - **ข้อความ:** ขั้นที่ 1 ใช้ LLM_MODEL = gpt-oss-120b (ค่าใน .env.example ที่ผู้สอนใช้ · ผ่าน OpenRouter)
 
+### หน้า 28 — ผลรันจริง LAB 4
+
+รัน `search_pdpa` หนึ่งครั้งผ่าน MCP บนเซิร์ฟเวอร์ v2 เมื่อ **20 พ.ย. 2569 เวลา 09:44:48 น. (ICT)** ใช้กราฟ **190 โหนด / 382 เส้น** และใช้ `qwen/qwen3.5-35b-a3b` ผ่าน OpenRouter สำหรับแตกคีย์เวิร์ด
+
+| รายการ | ผลรัน |
+|---|---|
+| คำค้นเดิม | เก็บข้อมูลชีวภาพ ลายนิ้วมือ ข้อมูลอ่อนไหว |
+| พารามิเตอร์ | `top_k=5` |
+| คีย์เวิร์ด | low-level 8 คำ รวม «มาตรา ๒๖» และ high-level 6 คำ |
+| โปรไฟล์ที่คืน | 8 รายการ |
+| ตัวบทที่คืน | 5 มาตรา เรียง **26, 24, 23, 6, 28** |
+
+ผลตอบกลับมีตัวอย่างเส้นทางสอง hop ดังนี้
+
+```text
+[hop1] sec_42 ←REFERENCES_SECTION— sec_82
+[hop2] sec_82 —REFERENCES_SECTION→ sec_23
+```
+
+Codex ตรวจผลตอบกลับ MCP โดยตรงและอัปเดตภาพ Terminal กับคำอธิบายบนหน้า 28 ด้วยผลรันนี้ ภาพเดิมวันที่ 14 พ.ย. แสดงลำดับ 26, 24, 25, 95, 19
+
 ---
 
 ## Part 3
@@ -107,14 +129,11 @@
 
 ---
 
-## จุดที่ไม่ใช่ตัวเลข แต่พบระหว่างตรวจ
+## ตรวจสอบเพิ่มเติม
 
-| ชุด/หน้า | สิ่งที่พบ | ข้อเสนอ |
-|---|---|---|
-| Part 1 หน้า 32 | ตัวเลขในตารางถูกต้อง แต่คำบรรยายในรูปยังเขียนชื่อ repo เก่า "(2026-GraphRAG-PDPA)" | ถ่ายรูปตารางใหม่ หรือครอบคำบรรยายด้วยข้อความ "(pdpa-graphrag-mcp-v2)" |
-| Part 2 หน้า 28 | ผลรันตัวอย่างระบุลำดับมาตราที่ค้นได้ "26, 24, 25, 95, 19" ซึ่งเป็นผลจาก server ก่อนแก้กราฟ | รัน `search_pdpa` ด้วยคำถามเดิมกับ server ปัจจุบัน แล้วถ่ายภาพผลใหม่ (ยังไม่ได้ตรวจว่าผลเปลี่ยนหรือไม่) |
+ตรวจ M1 หน้า 32 แล้ว คำบรรยายใต้ตารางแสดงชื่อ `pdpa-graphrag-mcp-v2` ถูกต้องอยู่แล้ว
 
-## สรุปจำนวนจุดที่ต้องแก้
+## สรุปหน้าที่แก้
 
 | ชุด | หน้า | ประเภท |
 |---|---|---|
@@ -122,4 +141,5 @@
 | Part 1 | 10 | แทนรูป และเพิ่มข้อความชื่อโมเดลใต้รูป |
 | Part 1 | 11, 15, 17, 33, 49, 51, 52 | ข้อความ |
 | Part 2 | 4 | ข้อความ 1 จุด แทนรูป 1 รูป และเพิ่มข้อความชื่อโมเดลใต้รูป |
+| Part 2 | 28 | ภาพ Terminal และคำอธิบายจากผลรันจริง |
 | Part 3 | — | ไม่มี |
