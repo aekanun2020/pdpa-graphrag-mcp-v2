@@ -2,17 +2,20 @@
 """
 Build PDPA Knowledge Graph from full-text source.
 
-Reads pdpa_full_text.txt (raw OCR text from rongkat.go.th PDF),
+Reads data/pdpa_full_text_v2.md (the statute as Markdown, one #### heading per section),
 extracts 96 sections with cross-references, and outputs:
-  - pdpa_knowledge_graph.json  (main graph — used by LightRAG)
+  - pdpa_knowledge_graph.json  (main graph — loaded by the engine in lightrag/)
   - pdpa_networkx.json         (NetworkX node-link format)
   - pdpa_neo4j_import.cypher   (Neo4j import script)
   - nodes.csv / edges.csv      (tabular format)
 
 Usage:
-    python scripts/build_graph.py                          # defaults
-    python scripts/build_graph.py --input /path/to/txt     # custom input
-    python scripts/build_graph.py --output ./data          # custom output dir
+    python scripts/build_graph.py                          # data/pdpa_full_text_v2.md -> build/
+    python scripts/build_graph.py --input /path/to/md      # custom input
+    python scripts/build_graph.py --output ./out           # custom output dir
+
+The default output is build/, never data/, so the shipped graph is not overwritten.
+The result is byte-for-byte identical to data/pdpa_knowledge_graph.json (190 nodes / 382 edges).
 """
 
 import re

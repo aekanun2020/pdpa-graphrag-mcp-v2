@@ -55,7 +55,10 @@ labs/
   lab8/agent_pdpa_mcp.py an agent loop wired to this MCP server
 examples/mcp_curl.sh     talk to the server with plain curl + jq
 docs/                    architecture and pipeline figures
-Dockerfile, docker-compose.yml, requirements.txt, .env.example
+Dockerfile, docker-compose.yml, .env.example
+requirements.txt, constraints.txt   server libraries and their pinned versions (used when building the image)
+requirements-agent.txt              agent-side libraries for running labs/lab8
+README.md, LICENSE
 ```
 
 - [LAB 2 graph](data/pdpa_knowledge_graph.json) and [statute text, all 96 sections](data/pdpa_full_text_v2.md)
@@ -82,7 +85,7 @@ on 18 Nov 2026 to show 190 nodes / 382 edges and Qdrant's 572 profiles / 96 chun
   search find graph nodes and relationships.
 - **MCP server**: FastMCP, `stateless_http=True`. Each tool's docstring is the description the agent
   reads before choosing a tool.
-- **LLM on the server side** (configured by `LLM_MODEL` through OpenRouter) is used for exactly one thing, extracting search keywords. Answers are
+- **LLM on the server side** (configured by `LLM_MODEL` through OpenRouter; `.env.example` sets it to `gpt-oss-120b`, the model the author uses) is used for exactly one thing, extracting search keywords. Answers are
   written by the agent's own model: *the server retrieves, the agent reasons.*
 
 ## Quick start
@@ -98,9 +101,15 @@ Requirements: Docker with Compose and an [OpenRouter](https://openrouter.ai) API
   container starts offline.
 - **Pinned versions:** `requirements.txt` and `constraints.txt` fix every Python package, the `Dockerfile` uses
   Python 3.11.18 and compose uses Qdrant 1.20.0 — the set the author tested with. (Checked on
-  14 Nov 2026: a fresh build from the repo zip returned search contexts identical to the author's when given
-  the same keywords.) Not pinned: the BGE-M3 weights, downloaded from Hugging Face at build time (tested
+  14 Nov 2026 against the earlier 380-edge graph: a fresh build from the repo zip returned search contexts
+  identical to the author's when given the same keywords. Not re-checked since the graph changed to 382 edges
+  on 18 Nov 2026.) Not pinned: the BGE-M3 weights, downloaded from Hugging Face at build time (tested
   snapshot `5617a9f6`), and system packages from apt.
+
+**The graph ships with the repo:** [`data/pdpa_knowledge_graph.json`](data/pdpa_knowledge_graph.json)
+(190 nodes / 382 edges) is in the zip; you do not build it before running. The server loads it at startup
+from the `data/` folder mounted into the container. Only the vector index in Qdrant is rebuilt at every
+start. `scripts/build_graph.py` (LAB 3) writes to `build/`, so it does not affect the running system.
 
 ```bash
 cp .env.example .env            # put your OPENROUTER_API_KEY in .env
@@ -156,7 +165,7 @@ numerals (มาตรา ๒๖).
 
 ![search_pdpa pipeline](docs/fig3_search_pipeline.png)
 
-1. The server-side LLM (configured by `LLM_MODEL`) splits the question into at most 8 low-level keywords (specific terms:
+1. The server-side LLM (configured by `LLM_MODEL`, set to `gpt-oss-120b` in `.env.example`) splits the question into at most 8 low-level keywords (specific terms:
    named rights, duties, penalties) and at most 6 high-level keywords (principles, concepts), after LightRAG's
    dual-level scheme. This is the only step that calls an LLM.
 2. Profile search (`pdpa_profiles`, dense + sparse, RRF) runs twice: the high-level query asks for 5 results

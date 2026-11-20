@@ -2,8 +2,8 @@
 Knowledge Graph — สร้างจาก PDPA Markdown + LLM extraction (PDPA RAG version)
 =============================================================================
 - ใช้ MarkdownNodeParser-style chunking (split ตาม heading hierarchy)
-- LLM extract legal entities/relations จากแต่ละมาตรา
-- Load pre-built rule-based graph จาก pdpa_knowledge_graph.json
+- Load pre-built rule-based graph จาก pdpa_knowledge_graph.json (ค่าเริ่มต้น: ใช้กราฟนี้อย่างเดียว)
+- LLM extract legal entities/relations จากแต่ละมาตรา เป็นทางเลือก เปิดด้วย USE_LLM_EXTRACT=true (ค่าเริ่มต้นปิด)
 """
 
 import os

@@ -154,8 +154,8 @@ class PDPALightRAG:
                 "error": f"'{sid}' ไม่ใช่ node ประเภท Section (เป็น {node.get('label')})",
             }
 
-        # ตัวบทเต็มมาจาก markdown (แหล่งเดียวกับ pdpa_chunks) — field "text" ใน graph
-        # ถูกตัดที่ 3000 ตัวอักษรตอน build (ม.26 ขาดวรรคข้อมูลชีวภาพ) จึงใช้เป็น fallback เท่านั้น
+        # ตัวบทเต็มมาจาก markdown (แหล่งเดียวกับ pdpa_chunks) — field "text" ใน graph ใช้เป็น fallback เท่านั้น
+        # (กราฟรุ่นก่อน 18 พ.ย. 2569 ตัด text ที่ 3000 ตัวอักษร กราฟปัจจุบันเก็บครบ แต่ text ขึ้นต้นด้วย "#### ")
         text = (self._section_bodies.get(node.get("number")) or node.get("text") or "").strip()
         return {
             "section_id": sid,

@@ -16,7 +16,7 @@ p = argparse.ArgumentParser()
 p.add_argument("path", nargs="?", default=os.path.join(os.path.dirname(__file__), "..", "data", "pdpa_knowledge_graph.json"))
 p.add_argument("--sections", type=int, default=96, help="expected number of Section nodes")
 p.add_argument("--penalty", default="sec_26", help="section id that must reach a Penalty node within --hops")
-p.add_argument("--hops", type=int, default=3)
+p.add_argument("--hops", type=int, default=2, help="default 2 = the distance get_penalty reports")
 a = p.parse_args()
 
 g = json.load(open(a.path, encoding="utf-8"))

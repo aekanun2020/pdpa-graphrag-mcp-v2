@@ -62,12 +62,13 @@ def retrieve(query: str, index: VectorIndex,
              knowledge_graph: nx.DiGraph,
              top_k: int = 5, max_chunks: int = 5) -> dict:
     """
-    PDPA retrieval pipeline:
+    PDPA retrieval pipeline (6 ขั้น ลำดับเดียวกับ README และ docs/fig3_search_pipeline.png):
     1. LLM extract keywords จากคำถาม
-    2. Vector search profiles (graph nodes/edges)
-    3. Vector search chunks (เนื้อหามาตรา)
+    2. Vector search profiles (graph nodes/edges) สองรอบ: high-level แล้ว low-level
+    3. เลือก seed (ใน _expand_from_graph: ข้าม edge profile และโหนด พ.ร.บ. แล้วหยิบ 3 โหนดแรก)
     4. Multi-hop BFS expansion จาก graph
-    5. Build hybrid context
+    5. Vector search chunks (เนื้อหามาตรา) — ไม่ใช้ผลจากกราฟ
+    6. Build hybrid context
     """
     keywords = extract_query_keywords(query)
     low_query = " ".join(keywords["low_level"])

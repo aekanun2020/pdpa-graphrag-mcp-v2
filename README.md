@@ -53,7 +53,10 @@ labs/
   lab8/agent_pdpa_mcp.py agent loop ที่ต่อเข้ากับ MCP server นี้
 examples/mcp_curl.sh     คุยกับ server ด้วย curl + jq
 docs/                    รูปสถาปัตยกรรมและ pipeline
-Dockerfile, docker-compose.yml, requirements.txt, .env.example
+Dockerfile, docker-compose.yml, .env.example
+requirements.txt, constraints.txt   ไลบรารีของ server และรุ่นที่ตรึงไว้ (ใช้ตอน build image)
+requirements-agent.txt              ไลบรารีฝั่ง agent สำหรับรัน labs/lab8
+README.en.md, LICENSE
 ```
 
 - [กราฟสำหรับ LAB 2](data/pdpa_knowledge_graph.json) และ [ตัวบท 96 มาตรา](data/pdpa_full_text_v2.md)
@@ -76,7 +79,7 @@ Dockerfile, docker-compose.yml, requirements.txt, .env.example
   และ `pdpa_profiles` (572 รายการ = 190 node profiles + 382 edge profiles)
   แต่ละ profile เขียนเป็นข้อความสั้น ๆ เพื่อให้ vector search ค้นเจอโหนดและความสัมพันธ์ในกราฟได้
 - **MCP server**: FastMCP, `stateless_http=True` docstring ของแต่ละ tool คือคำอธิบายที่ agent อ่านก่อนเลือกใช้
-- **LLM ฝั่ง server** (กำหนดด้วย `LLM_MODEL` ผ่าน OpenRouter) ใช้ทำอย่างเดียว คือแตกคีย์เวิร์ดสำหรับค้น คำตอบเขียนโดยโมเดลของ agent เอง:
+- **LLM ฝั่ง server** (กำหนดด้วย `LLM_MODEL` ผ่าน OpenRouter ค่าใน `.env.example` ที่ผู้เขียนใช้คือ `gpt-oss-120b`) ใช้ทำอย่างเดียว คือแตกคีย์เวิร์ดสำหรับค้น คำตอบเขียนโดยโมเดลของ agent เอง:
   *server ค้น ส่วน agent คิดและตอบ*
 
 รูปทั้งสองสร้างด้วย [สคริปต์ Matplotlib](docs/figures/make_figures.py) และเรนเดอร์ใหม่วันที่ 18 พ.ย. 2569
@@ -93,9 +96,15 @@ Dockerfile, docker-compose.yml, requirements.txt, .env.example
   ส่วนใหญ่เป็น torch กับไลบรารีที่ติดมา และ BGE-M3 ราว 2.3 GB ที่ถูกใส่ไว้ใน image ตอน build
   container จึงเริ่มได้โดยไม่ต้องต่ออินเทอร์เน็ต
 - **รุ่นที่ตรึงไว้:** `requirements.txt` กับ `constraints.txt` ตรึงรุ่นไลบรารี Python ทุกตัว `Dockerfile` ใช้ Python 3.11.18
-  และ compose ใช้ Qdrant 1.20.0 เป็นชุดที่ผู้เขียนใช้ทดสอบ (ตรวจเมื่อ 14 พ.ย. 2569: build ใหม่จาก zip
-  ของ repo ได้ผลค้นตรงกับเครื่องของผู้เขียนทุกตัวอักษรเมื่อใช้คีย์เวิร์ดชุดเดียวกัน) สิ่งที่ไม่ได้ตรึงคือน้ำหนักของ BGE-M3
+  และ compose ใช้ Qdrant 1.20.0 เป็นชุดที่ผู้เขียนใช้ทดสอบ (ตรวจเมื่อ 14 พ.ย. 2569 กับกราฟรุ่นก่อน
+  ซึ่งมี 380 เส้น: build ใหม่จาก zip ของ repo ได้ผลค้นตรงกับเครื่องของผู้เขียนทุกตัวอักษรเมื่อใช้คีย์เวิร์ดชุดเดียวกัน
+  ยังไม่ได้ตรวจซ้ำหลังแก้กราฟเป็น 382 เส้นเมื่อ 18 พ.ย. 2569) สิ่งที่ไม่ได้ตรึงคือน้ำหนักของ BGE-M3
   ซึ่งดาวน์โหลดจาก Hugging Face ตอน build (รุ่นที่ทดสอบคือ snapshot `5617a9f6`) และแพ็กเกจของระบบจาก apt
+
+**กราฟมากับ repo แล้ว:** [`data/pdpa_knowledge_graph.json`](data/pdpa_knowledge_graph.json) (190 โหนด / 382 เส้น)
+อยู่ใน zip ไม่ต้องสร้างก่อนรัน server โหลดไฟล์นี้ตอนเริ่มผ่านโฟลเดอร์ `data/` ที่ mount เข้า container
+สิ่งที่สร้างใหม่ทุกครั้งที่เริ่มคือ vector index ใน Qdrant เท่านั้น ส่วน `scripts/build_graph.py` (LAB 3)
+เขียนผลลง `build/` จึงไม่กระทบระบบที่รันอยู่
 
 ```bash
 cp .env.example .env            # ใส่ OPENROUTER_API_KEY ใน .env
@@ -152,7 +161,7 @@ id ของมาตราใช้รูป `sec_<เลข>` ด้วยเ�
 
 ![search_pdpa pipeline](docs/fig3_search_pipeline.png)
 
-1. LLM ฝั่ง server (กำหนดด้วย `LLM_MODEL`) แยกคำถามเป็นคีย์เวิร์ด low-level ไม่เกิน 8 คำ (คำเฉพาะ เช่น ชื่อสิทธิ หน้าที่ บทลงโทษ)
+1. LLM ฝั่ง server (กำหนดด้วย `LLM_MODEL` ซึ่ง `.env.example` ตั้งเป็น `gpt-oss-120b`) แยกคำถามเป็นคีย์เวิร์ด low-level ไม่เกิน 8 คำ (คำเฉพาะ เช่น ชื่อสิทธิ หน้าที่ บทลงโทษ)
    และ high-level ไม่เกิน 6 คำ (หลักการ แนวคิด) ตามแนวทาง dual-level ของ LightRAG ขั้นนี้เป็นจุดเดียวที่เรียก LLM
 2. ค้น profile (`pdpa_profiles`, dense + sparse, RRF) สองรอบ: รอบ high-level ขอ 5 รายการ (`top_k`) และรอบ low-level ขอ 3 รายการ
    นำผลรอบ high-level ขึ้นก่อน แล้วต่อด้วยผลรอบ low-level ที่ยังไม่ซ้ำ ได้ไม่เกิน 8 รายการ
