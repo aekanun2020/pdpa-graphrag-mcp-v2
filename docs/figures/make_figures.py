@@ -7,6 +7,9 @@ text here and re-run:
     python docs/figures/make_figures.py
 
 Needs matplotlib only. Output goes to docs/.
+
+The PNGs in the repo were drawn with matplotlib 3.11.2 on macOS. Other versions set text slightly wider or
+narrower (3.9.2: about 1.5% wider), so re-running with another version changes every line of both figures.
 """
 from pathlib import Path
 
@@ -58,14 +61,14 @@ def fig1():
     W, H, D = 1340, 1126, 86
     fig, ax = canvas(W, H, "The agent calls 5 MCP tools that wrap a knowledge graph and a vector index")
     box(ax, 64, 100, 1216, 100, "Agent",
-        [("your own loop (labs/lab8: THINK \u2192 TOOL_USE \u2192 OBSERVE), Claude Desktop, LangFlow \u2014 any MCP client."
+        [("your own loop (labs/lab8: THINK \u2192 TOOL_USE \u2192 END_TURN), Claude Desktop, LangFlow \u2014 any MCP client."
           "  The agent\u2019s own LLM writes the answer.", GREY)])
     arrow(ax, [(672, 200), (672, 262)], "MCP streamable-http \u00b7 tools/list \u2192 tools/call", (694, 231))
     box(ax, 64, 262, 1216, 156 + D, "MCP Server \u00b7 FastMCP \u00b7 port 8100 \u00b7 5 tools, each reaches the engine differently",
         ["search_pdpa \u2192 keyword LLM + vector index (profiles, chunks) + graph BFS \u2014 the pipeline of the search figure",
          "get_related_sections \u2192 knowledge graph only: edges in and out of one node",
          "get_penalty \u2192 knowledge graph only: BFS from a section to Penalty nodes",
-         "get_section_text \u2192 statute text by section id, read from the Markdown \u00b7 get_pdpa_summary \u2192 counts and schema",
+         "get_section_text \u2192 statute text by section id, read from the Markdown \u00b7 get_pdpa_summary \u2192 counts by node and edge type",
          ("only search_pdpa uses the LLM and vector search; the other four read the graph or statute text directly", GREY),
          ("stateless_http=True \u00b7 each tool\u2019s docstring is the description the agent reads before choosing a tool", GREY)])
     arrow(ax, [(672, 418 + D), (672, 474 + D)], "search \u00b7 traverse \u00b7 read section text", (694, 447 + D))
