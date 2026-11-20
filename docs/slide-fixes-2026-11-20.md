@@ -2,11 +2,11 @@
 
 **สถานะสไลด์ชุด 14–15 พ.ย. ณ วันที่ 20 พ.ย. 2569**
 
-- [M1 (Part 1)](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit) รอบแรกแก้ 10 หน้า ได้แก่ 8, 10, 11, 15, 17, 23, 33, 49, 51 และ 52 รอบตรวจซ้ำเก็บจุดค้าง 11 หน้า รวมลิงก์ใหม่ใน [LAB 2 หน้า 42](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f325e14071_0_1061)
+- [M1 (Part 1)](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit) รอบแรกแก้ 10 หน้า ได้แก่ 8, 10, 11, 15, 17, 23, 33, 49, 51 และ 52 รอบตรวจซ้ำเก็บจุดค้าง 11 หน้า รวมลิงก์ใหม่ใน [LAB 2 หน้า 42](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f325e14071_0_1061) **ยังค้าง 1 รายการ:** หน้า 10 ต้องเปลี่ยนรูปสถาปัตยกรรมอีกครั้ง ดู [รายการท้ายไฟล์](#m1--หน้า-10-เปลี่ยนรูปสถาปัตยกรรมอีกครั้ง-รอแก้ในสไลด์)
 - [M2 (Part 2)](https://docs.google.com/presentation/d/1I5tX-OmqbKuiawnQDP3szX_eD3-5kHABt6OB8C8dOBI/edit) แก้แล้ว 2 หน้า ได้แก่ หน้า 4 และ [หน้า 28 — ผลรัน LAB 4](https://docs.google.com/presentation/d/1I5tX-OmqbKuiawnQDP3szX_eD3-5kHABt6OB8C8dOBI/edit#slide=id.g3f418c17505_0_634)
 - [M3 (Part 3)](https://docs.google.com/presentation/d/1ZRoWvedmiVt3JhQ1D92K-FNwfhquzdXeBkVZgHL0SuU/edit) ไม่มีรายการแก้ไข
 
-**repo ที่ใช้เทียบ:** `aekanun2020/pdpa-graphrag-mcp-v2` branch `main` commit `0a02321` (18 พ.ย. 2569)
+**repo ที่ใช้เทียบ:** `aekanun2020/pdpa-graphrag-mcp-v2` branch `main` commit `0a02321` (18 พ.ย. 2569) ยกเว้นรายการรูปหน้า 10 ท้ายไฟล์ ซึ่งเทียบกับ commit `2199942` (20 พ.ย. 2569)
 
 **เหตุที่ต้องแก้:** สไลด์ชุดใหม่แก้ตามรายการวันที่ 14 พ.ย. หลังจากนั้น commit `0a02321` แก้กราฟและ `build_graph.py` ตัวเลข 5 ชุดจึงเปลี่ยน
 
