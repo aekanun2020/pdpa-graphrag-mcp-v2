@@ -211,3 +211,19 @@ Codex ตรวจผลตอบกลับ MCP โดยตรงและอ
 - **เป็น** เมื่อมี Schema แล้ว จึงสามารถสร้าง Data ด้วย build_graph.py (regex อ่านตัวบท + รายการที่กำหนดไว้ในสคริปต์ ไม่ใช้ LLM) ได้กราฟ 190 โหนด / 382 เส้น ในครั้งเดียว (รวมข้อยกเว้น 33 โหนดที่กำหนดไว้ในสคริปต์)
 
 [เปิดหน้า 33](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f2ef25f744_1_326)
+
+---
+
+## M1 — ตรวจเครื่องหมายและสีของข้อความที่แก้
+
+ตรวจและแก้สไตล์ของสำเนา M1 ชุด 14–15 พ.ย. เมื่อ **20 พ.ย. 2569 เวลา 18:57:03 น. (ICT)** หลังพบว่าหน้า 45 ขาดเครื่องหมายและข้อความที่แก้ยังเป็นสีดำ
+
+| หน้า | ผลตรวจและการแก้ |
+|---|---|
+| 15 | หัวข้อมี `** ` สีแดง และคอมเมนต์ใหม่เหนือ `USE_LLM_EXTRACT=false` เป็นสีแดงครบ ขนาดตัวอักษร 10.5 pt |
+| 33 | หัวข้อมี `** ` สีแดงแล้ว ปรับทั้งประโยคที่แทนเกี่ยวกับ `build_graph.py` เป็นสีแดง ขนาด 20 pt |
+| 45 | เติม `** ` สีแดงหน้าหัวข้อ และปรับทั้งประโยคที่แทนเกี่ยวกับ Rule-based เป็นสีแดง ขนาด 16 pt |
+
+ตรวจข้อความเทียบกับที่ผู้ใช้ระบุและตรวจภาพทั้งสามหน้าแล้ว ข้อความครบและอยู่ในกรอบ ฟอนต์ ตัวหนา ขีดเส้นใต้ และลิงก์เดิมอยู่ครบ
+
+[เปิดหน้า 15](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f325e14071_0_1086) · [เปิดหน้า 33](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f2ef25f744_1_326) · [เปิดหน้า 45](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f325e14071_0_1174)
