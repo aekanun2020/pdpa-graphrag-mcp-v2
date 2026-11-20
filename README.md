@@ -46,7 +46,7 @@ data/
   pdpa_full_text_v2.md   ตัวบทในรูป Markdown (H1 พ.ร.บ. -> H2 หมวด -> H3 ส่วน -> H4 มาตรา)
   pdpa_knowledge_graph.json   กราฟสำเร็จรูป: 190 โหนด / 382 เส้น, โหนด 11 ประเภท, เส้น 26 ประเภท
 scripts/
-  build_graph.py         สร้างกราฟด้วยกฎ (มาตรา + การอ้างข้ามมาตรา + โหนดที่คัดเลือกด้วยมือ)
+  build_graph.py         สร้างกราฟด้วย regex และรายการที่คัดเลือกด้วยมือ ไม่ใช้ LLM
   validate_graph.py      นับโหนด/เส้นจากข้อมูลจริง ตรวจการเชื่อมต่อและการเดินไปถึงบทลงโทษ
 labs/
   core/                  MCP client ขนาดเล็ก (httpx), tool registry (MCP inputSchema -> OpenAI tools), LLM client
@@ -185,7 +185,7 @@ python scripts/validate_graph.py         # ตรวจ data/pdpa_knowledge_grap
 python scripts/validate_graph.py build/pdpa_knowledge_graph.json
 ```
 
-[`build_graph.py`](scripts/build_graph.py) ทำงานด้วยกฎ: regex ตัวหนึ่งหาหัวมาตราใน
+[`build_graph.py`](scripts/build_graph.py) ไม่ใช้ LLM และไม่ต้องมี API key ทำงานด้วยกฎทั้งหมด: regex ตัวหนึ่งหาหัวมาตราใน
 [`pdpa_full_text_v2.md`](data/pdpa_full_text_v2.md) อีกตัวหาการอ้างข้ามมาตรา
 (เส้น `REFERENCES_SECTION`) ส่วนโหนดเชิงความหมาย (นิยาม สิทธิ หน้าที่ บทลงโทษ ข้อยกเว้น หลักการ ฐานทางกฎหมาย)
 เป็นรายการที่คัดเลือกไว้ในสคริปต์ รวมข้อยกเว้นเพิ่มเติม 27 โหนด เส้น `IS_LAWFUL_BASIS` 6 เส้น
@@ -196,6 +196,9 @@ python scripts/validate_graph.py build/pdpa_knowledge_graph.json
 ไฟล์ [`data/pdpa_knowledge_graph.json`](data/pdpa_knowledge_graph.json) สำหรับ LAB 2 และ
 `build/pdpa_knowledge_graph.json` จาก LAB 3 ตรงกันทุกไบต์ รวมลำดับข้อมูลและ `metadata`
 ซึ่งระบุ 190 โหนด / 382 เส้น / เส้น 26 ประเภท กราฟนี้ให้ 572 profiles และ Markdown ให้ 96 chunks
+
+ใน [`.env.example`](.env.example) มี `USE_LLM_EXTRACT` (ค่าเริ่มต้น `false`) สำหรับให้ LLM สกัดโหนดเพิ่มตอน server เริ่มทำงาน
+กราฟที่ให้มาและทุก LAB ไม่ได้ใช้ทางนี้
 
 ถ้าจะใช้กับกฎหมายฉบับอื่น ให้เปลี่ยน pattern ของหัวข้อ (`Article\s+(\d+)` สำหรับ GDPR,
 `第([一二三四五六七八九十百]+)条` สำหรับ APPI ของญี่ปุ่น) แล้วคัดเลือกโหนดเชิงความหมายใหม่

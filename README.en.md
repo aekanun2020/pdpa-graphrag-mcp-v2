@@ -48,7 +48,7 @@ data/
   pdpa_full_text_v2.md   the statute as Markdown (H1 Act -> H2 Chapter -> H3 Part -> H4 Section)
   pdpa_knowledge_graph.json   pre-built graph: 190 nodes / 382 edges, 11 node types, 26 edge types
 scripts/
-  build_graph.py         rule-based graph builder (sections + cross-references + curated nodes)
+  build_graph.py         builds the graph with regexes and hand-curated lists; no LLM
   validate_graph.py      counts nodes/edges from the data, checks connectivity and penalty reachability
 labs/
   core/                  minimal MCP client (httpx), tool registry (MCP inputSchema -> OpenAI tools), LLM client
@@ -194,7 +194,8 @@ python scripts/validate_graph.py         # checks data/pdpa_knowledge_graph.json
 python scripts/validate_graph.py build/pdpa_knowledge_graph.json
 ```
 
-[`build_graph.py`](scripts/build_graph.py) is rule-based. One regex finds section headings in
+[`build_graph.py`](scripts/build_graph.py) uses no LLM and needs no API key; it is entirely
+rule-based. One regex finds section headings in
 [`pdpa_full_text_v2.md`](data/pdpa_full_text_v2.md), and another finds cross-references inside each
 section (`REFERENCES_SECTION` edges). Semantic nodes (definitions, rights, obligations, penalties,
 exemptions, principles, lawful bases) are curated lists in the script, including the additional
@@ -203,6 +204,9 @@ builds 190 nodes / 382 edges. `Section.text` ends before the next Markdown headi
 signature and explanatory note. Standalone OCR page labels such as `้หนา ๖๐` are removed before
 splitting the sections. Outputs go to `build/` and can be checked with
 [`validate_graph.py`](scripts/validate_graph.py).
+
+[`.env.example`](.env.example) has `USE_LLM_EXTRACT` (default `false`), which lets an LLM extract extra nodes
+when the server starts. The shipped graph and all labs do not use it.
 
 The LAB 2 graph in [`data/pdpa_knowledge_graph.json`](data/pdpa_knowledge_graph.json) and the LAB 3
 output `build/pdpa_knowledge_graph.json` are byte-for-byte identical, including ordering and
