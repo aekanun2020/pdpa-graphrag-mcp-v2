@@ -316,7 +316,7 @@ PROFILE_PROMPT = """จาก entity นี้ในบริบทกฎหม�
 def ingest_pdpa(use_llm_extract: bool = False, use_llm_profile: bool = False) -> tuple[nx.DiGraph, list[dict], dict]:
     """
     Pipeline หลัก:
-    1. Load pre-built rule-based graph (190 nodes, 380 edges)
+    1. Load pre-built rule-based graph (190 nodes, 382 edges)
     2. Parse PDPA markdown → chunks (1 chunk = 1 มาตรา)
     3. (Optional) LLM extract entities → merge เข้า graph
     4. Profile graph nodes → search profiles
