@@ -84,8 +84,9 @@ README.en.md, LICENSE
 - **LLM ฝั่ง server** (กำหนดด้วย `LLM_MODEL` ผ่าน OpenRouter ซึ่ง `.env.example` ตั้งเป็น `gpt-oss-120b`) ใช้ทำอย่างเดียว คือแตกคีย์เวิร์ดสำหรับค้น คำตอบเขียนโดยโมเดลของ agent เอง:
   *server ค้น ส่วน agent คิดและตอบ*
 
-รูปทั้งสองสร้างด้วย [สคริปต์ Matplotlib](docs/figures/make_figures.py) และเรนเดอร์ใหม่วันที่ 18 พ.ย. 2569
+รูปทั้งสองสร้างด้วย [สคริปต์ Matplotlib](docs/figures/make_figures.py)
 ให้ตรงกับกราฟ 190 โหนด / 382 เส้น และ Qdrant 572 profiles / 96 chunks
+รูปขั้นตอนค้นเรนเดอร์เมื่อ 18 พ.ย. 2569 ส่วนรูปสถาปัตยกรรมเรนเดอร์ใหม่เมื่อ 20 พ.ย. 2569
 
 ## เริ่มใช้งาน
 
