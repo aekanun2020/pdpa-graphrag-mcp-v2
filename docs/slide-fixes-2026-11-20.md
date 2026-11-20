@@ -2,11 +2,11 @@
 
 **สถานะสไลด์ชุด 14–15 พ.ย. ณ วันที่ 20 พ.ย. 2569**
 
-- [M1 (Part 1)](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit) รอบแรกแก้ 10 หน้า ได้แก่ 8, 10, 11, 15, 17, 23, 33, 49, 51 และ 52 รอบตรวจซ้ำเก็บจุดค้าง 11 หน้า รวมลิงก์ใหม่ใน [LAB 2 หน้า 42](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f325e14071_0_1061) หน้า 10 เปลี่ยนรูปสถาปัตยกรรมอีกครั้งเมื่อ 20 พ.ย. 2569 ดู [รายการท้ายไฟล์](#m1--หน้า-10-เปลี่ยนรูปสถาปัตยกรรมอีกครั้ง-แก้ในสไลด์แล้ว)
+- [M1 (Part 1)](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit) รอบแรกแก้ 10 หน้า ได้แก่ 8, 10, 11, 15, 17, 23, 33, 49, 51 และ 52 รอบตรวจซ้ำเก็บจุดค้าง 11 หน้า รวมลิงก์ใหม่ใน [LAB 2 หน้า 42](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f325e14071_0_1061) หน้า 10 เปลี่ยนรูปสถาปัตยกรรมอีกครั้งเมื่อ 20 พ.ย. 2569 ดู [รายการท้ายไฟล์](#m1--หน้า-10-เปลี่ยนรูปสถาปัตยกรรมอีกครั้ง-แก้ในสไลด์แล้ว) **ยังค้าง 1 รายการ:** หน้า 10 ต้องเปลี่ยนรูปเป็นฉบับ 4 ขั้น ดู [รายการรอบที่ 3](#m1--หน้า-10-รูปสถาปัตยกรรมฉบับ-4-ขั้น-รอแก้ในสไลด์)
 - [M2 (Part 2)](https://docs.google.com/presentation/d/1I5tX-OmqbKuiawnQDP3szX_eD3-5kHABt6OB8C8dOBI/edit) แก้แล้ว 2 หน้า ได้แก่ หน้า 4 และ [หน้า 28 — ผลรัน LAB 4](https://docs.google.com/presentation/d/1I5tX-OmqbKuiawnQDP3szX_eD3-5kHABt6OB8C8dOBI/edit#slide=id.g3f418c17505_0_634)
 - [M3 (Part 3)](https://docs.google.com/presentation/d/1ZRoWvedmiVt3JhQ1D92K-FNwfhquzdXeBkVZgHL0SuU/edit) ไม่มีรายการแก้ไข
 
-**repo ที่ใช้เทียบ:** `aekanun2020/pdpa-graphrag-mcp-v2` branch `main` commit `0a02321` (18 พ.ย. 2569) ยกเว้นรายการรูปหน้า 10 ท้ายไฟล์ ซึ่งเทียบกับ commit `2199942` (20 พ.ย. 2569)
+**repo ที่ใช้เทียบ:** `aekanun2020/pdpa-graphrag-mcp-v2` branch `main` commit `0a02321` (18 พ.ย. 2569) ยกเว้นรายการรูปหน้า 10 ท้ายไฟล์ ซึ่งเทียบกับ commit `2199942` และ `e90d1e1` (20 พ.ย. 2569)
 
 **เหตุที่ต้องแก้:** สไลด์ชุดใหม่แก้ตามรายการวันที่ 14 พ.ย. หลังจากนั้น commit `0a02321` แก้กราฟและ `build_graph.py` ตัวเลข 5 ชุดจึงเปลี่ยน
 
@@ -254,3 +254,25 @@ Codex ตรวจผลตอบกลับ MCP โดยตรงและอ
 - **คงไว้:** ตำแหน่งและขนาดของรูป ลิงก์ของรูป title ของรูป ("สถาปัตยกรรม PDPA GraphRAG และ MCP") และข้อความใต้รูปที่ขึ้นต้นว่า `LLM_MODEL = gpt-oss-120b`
 
 **ขอบเขต:** ตรวจสไลด์ชุด 14–15 พ.ย. ทั้ง 3 Part (54, 41 และ 41 หน้า) เมื่อ 20 พ.ย. 2569 โดยเทียบรูปทุกรูปกับรูปใน repo พบรูปนี้ที่ Part 1 หน้า 10 หน้าเดียว รูป pipeline ใน Part 2 หน้า 4 ตรงกับ repo แล้ว ไม่ต้องแก้
+
+---
+
+## M1 — หน้า 10 รูปสถาปัตยกรรมฉบับ 4 ขั้น (รอแก้ในสไลด์)
+
+**สถานะ ณ 20 พ.ย. 2569:** repo แก้รูปแล้วที่ commit `e90d1e1` ส่วนรูปในสไลด์หน้า 10 ยังเป็นรูปจาก commit `2199942` รายการนี้ยังไม่ได้ทำในสไลด์
+
+**หมายเหตุแก้ไขรายการก่อนหน้า (20 พ.ย. 2569):** รายการ "เปลี่ยนรูปสถาปัตยกรรมอีกครั้ง" ด้านบนให้เหตุผลว่า loop ของ LAB 8 ไม่มี `OBSERVE` ข้อความนั้นถูกเฉพาะส่วนป้ายที่โค้ดพิมพ์ตอนรัน (`THINK`, `TOOL_USE`, `END_TURN`) ขั้น OBSERVE มีอยู่ใน loop คือจุดที่ใส่ผลของ tool กลับเข้า `messages` และโค้ด LAB 7 (`labs/lab7/agent_loop.py` บน branch `backup/labs`) เขียน comment `# OBSERVE` ไว้ที่จุดนั้น commit `e90d1e1` เติม comment เดียวกันใน `labs/lab8/agent_pdpa_mcp.py` และแก้รูปให้มีครบ 4 ขั้น
+
+### หน้า 10 — รูปสถาปัตยกรรม (แทนทั้งรูป)
+
+- **จาก:** `docs/fig1_architecture.png` จาก repo ที่ commit `2199942`
+- **เป็น:** `docs/fig1_architecture.png` จาก repo ที่ commit `e90d1e1`
+  - **ไฟล์:** <https://raw.githubusercontent.com/aekanun2020/pdpa-graphrag-mcp-v2/e90d1e1/docs/fig1_architecture.png>
+  - **ขนาด:** 2680 x 2252 พิกเซล อัตราส่วนเท่ารูปเดิม
+  - **SHA-256:** `38e9faf0e273a3aa0f2565937d5964fa4a0dcbbdf14abebbbb4b53a0e8e25c4c`
+- **ข้อความในรูปที่เปลี่ยน:**
+  - `THINK → TOOL_USE → END_TURN` → `THINK → TOOL_USE → OBSERVE → END_TURN`
+- **alt text (description) ของรูป:**
+  - **จาก:** แผนผังจาก repo v2 commit 2199942 กราฟมี 190 โหนดและ 382 เส้น รวมเป็น 572 profiles ใน pdpa_profiles
+  - **เป็น:** แผนผังจาก repo v2 commit e90d1e1 กราฟมี 190 โหนดและ 382 เส้น รวมเป็น 572 profiles ใน pdpa_profiles
+- **คงไว้:** ตำแหน่งและขนาดของรูป ลิงก์ของรูป title ของรูป ("สถาปัตยกรรม PDPA GraphRAG และ MCP") และข้อความใต้รูปที่ขึ้นต้นว่า `LLM_MODEL = gpt-oss-120b`
