@@ -48,7 +48,8 @@ def run_agent(question: str, registry: ToolRegistry, max_steps: int = 8):
                 print(f"           TOOL_USE {call.function.name}({preview})")
                 result = registry.dispatch(call.function.name, args)
                 messages.append({
-                    "role": "tool", "tool_call_id": call.id, "content": result,
+                    "role": "tool", "tool_call_id": call.id,
+                    "content": result,   # OBSERVE: ป้อนผล tool กลับเข้า context
                 })
             continue
 

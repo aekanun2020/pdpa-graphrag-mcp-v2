@@ -61,7 +61,7 @@ def fig1():
     W, H, D = 1340, 1126, 86
     fig, ax = canvas(W, H, "The agent calls 5 MCP tools that wrap a knowledge graph and a vector index")
     box(ax, 64, 100, 1216, 100, "Agent",
-        [("your own loop (labs/lab8: THINK \u2192 TOOL_USE \u2192 END_TURN), Claude Desktop, LangFlow \u2014 any MCP client."
+        [("your own loop (labs/lab8: THINK \u2192 TOOL_USE \u2192 OBSERVE \u2192 END_TURN), Claude Desktop, LangFlow \u2014 any MCP client."
           "  The agent\u2019s own LLM writes the answer.", GREY)])
     arrow(ax, [(672, 200), (672, 262)], "MCP streamable-http \u00b7 tools/list \u2192 tools/call", (694, 231))
     box(ax, 64, 262, 1216, 156 + D, "MCP Server \u00b7 FastMCP \u00b7 port 8100 \u00b7 5 tools, each reaches the engine differently",
