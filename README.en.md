@@ -152,7 +152,7 @@ model are not deterministic. (With the original code a typical run made 7 tool c
 
 | Tool | What it does |
 |---|---|
-| `search_pdpa(query, top_k=5)` | Hybrid retrieval: LLM keywords -> profile search -> 2-hop BFS -> chunk search -> context (JSON) |
+| `search_pdpa(query, top_k=5)` | Finds the sections relevant to a question. Always the first tool to call, and the only tool that calls the LLM.<br>**Steps:** LLM extracts keywords -> profile search -> 2-hop BFS -> chunk search -> builds the context<br>**Result:** JSON with the keywords and a `context` for the agent to answer from<br>**Input:** `query` is a question or search phrase in Thai; `top_k` is the number of profiles retrieved with the high-level keywords |
 | `get_related_sections(section_id)` | Finds the nodes directly connected to a section in the graph (1 hop). The result is a list of nodes in two groups: nodes this section points to, and nodes that point to this section. Each node comes with its relation type. Use it after `search_pdpa` to find exceptions, rights, duties, penalty sections and the sections to read next.<br>**Input:** a section id, e.g. `sec_26` |
 | `get_penalty(section_id)` | Finds the penalties for a violated section by following graph edges from that section, both incoming and outgoing, up to 2 hops. The result is the Penalty nodes found.<br>**Input:** the violated section, e.g. `sec_26`, not the section that sets the penalty |
 | `get_section_text(section_id)` | Reads the full statute section from the Markdown by its exact id, deterministically |
