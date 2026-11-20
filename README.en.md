@@ -14,9 +14,10 @@ archived. The original shows the system exactly as the articles describe it; thi
 defects found in a pre-course review (see [What changed from the original](#what-changed-from-the-original)),
 so its search results differ from the runs shown in the articles.
 
-Statutes do not repeat themselves, they *point*: a prohibition lives in one section, its exceptions
-in sub-clauses, and the penalty chapters later in a sentence that only says "whoever violates
-Section 26". Vector search finds the first half; the graph walk finds the second.
+Statutes do not repeat themselves, they *point* to other sections: a prohibition lives in one section,
+its exceptions in sub-clauses, and the penalty in a later chapter, in a sentence that only says "whoever
+violates Section 26". Vector search finds the prohibition, the first half of the answer; the exceptions
+and penalties are the second half and are found by walking the graph.
 
 The example is Thai law, but the structure is the same for GDPR, HIPAA, the CCPA or Japan's APPI,
 and the embedding model is multilingual.
@@ -35,9 +36,11 @@ and the embedding model is multilingual.
 | Seed selection | Took the top 3 profiles, then dropped edge profiles: possibly no seed at all | Drops edge profiles and the Act node (`PDPA_2562`) first, then takes 3 |
 | `build_graph.py` | Truncated section text at 3,000 characters | Preserves all 96 sections, excluding chapter/part headings, closing material and OCR page labels |
 
-The shipped graph and the builder output are byte-for-byte identical, with 190 nodes / 382 edges
-and `metadata` computed from the graph. `get_penalty` reports penalties within 2 hops, and graph
-expansion in `search_pdpa` contributes at most 15 context lines (see Known limitations).
+- The shipped graph in `data/` and the output of `build_graph.py` are byte-for-byte identical, with
+  190 nodes / 382 edges, and the file's `metadata` is computed from the graph.
+- `get_penalty` reports Penalty nodes up to 2 hops away, and only some sections have a Penalty node
+  (see item 4 under [Known limitations](#known-limitations)).
+- The graph-walk part of the `search_pdpa` context has at most 15 lines.
 
 ## What's inside
 
@@ -75,9 +78,9 @@ README.md, LICENSE
 Both figures are drawn by the [Matplotlib script](docs/figures/make_figures.py) and were regenerated
 on 18 Nov 2026 to show 190 nodes / 382 edges and Qdrant's 572 profiles / 96 chunks.
 
-- **Knowledge graph**: NetworkX, in memory. 96 Section nodes plus Definition, LawfulBasis, Right,
-  Obligation, Penalty, Exemption and Principle nodes; the backbone edges are `REFERENCES_SECTION`
-  (124, section cites section) and `CONTAINS_SECTION` (119).
+- **Knowledge graph**: NetworkX, in memory. 190 nodes of 11 types: Section 96, Exemption 33, Definition 11,
+  Chapter 9, Right 8, LawfulBasis 7, Obligation 7, Principle 7, Penalty 6, Part 5 and Law 1. The backbone
+  edges are `REFERENCES_SECTION` (124, section cites section) and `CONTAINS_SECTION` (119).
 - **Vector index**: BGE-M3 (dense 1024-d + sparse lexical weights) in Qdrant with RRF fusion
   (k = 60, set with `RRF_K`; needs Qdrant server and client 1.16+, otherwise Qdrant's default k = 2 applies).
   Two collections: `pdpa_chunks` (96 chunks, one full section per chunk) and `pdpa_profiles`
@@ -100,11 +103,12 @@ Requirements: Docker with Compose and an [OpenRouter](https://openrouter.ai) API
   Most of it is torch and its dependencies, plus BGE-M3 (~2.3 GB), which is baked in at build time so the
   container starts offline.
 - **Pinned versions:** `requirements.txt` and `constraints.txt` fix every Python package, the `Dockerfile` uses
-  Python 3.11.18 and compose uses Qdrant 1.20.0 — the set the author tested with. (Checked on
-  14 Nov 2026 against the earlier 380-edge graph: a fresh build from the repo zip returned search contexts
-  identical to the author's when given the same keywords. Not re-checked since the graph changed to 382 edges
-  on 18 Nov 2026.) Not pinned: the BGE-M3 weights, downloaded from Hugging Face at build time (tested
-  snapshot `5617a9f6`), and system packages from apt.
+  Python 3.11.18 and compose uses Qdrant 1.20.0. This is the set the author tested with.
+- **Not pinned:** the BGE-M3 weights, downloaded from Hugging Face at build time (tested snapshot `5617a9f6`),
+  and system packages from apt.
+- **Install test from the zip:** done on 14 Nov 2026 against the earlier 380-edge graph. A fresh build from
+  the repo zip returned search contexts identical to the author's when given the same keywords. It has not
+  been repeated with the 382-edge graph of 18 Nov 2026.
 
 **The graph ships with the repo:** [`data/pdpa_knowledge_graph.json`](data/pdpa_knowledge_graph.json)
 (190 nodes / 382 edges) is in the zip; you do not build it before running. The server loads it at startup
@@ -149,7 +153,7 @@ The statute and the agent's system prompt are in Thai, so Thai questions work be
 answers in Thai; change `SYSTEM` in `labs/lab8/agent_pdpa_mcp.py` to answer in another language).
 The agent uses `deepseek/deepseek-v4.1-flash` through OpenRouter, the `OPENROUTER_MODEL` value in `.env.example`.
 Expect the number and order of tool calls to vary between runs: the server-side keyword LLM and the agent's
-model are not deterministic. (With the original code a typical run made 7 tool calls in 4 rounds.)
+model are not deterministic.
 
 ## MCP tools
 
@@ -178,10 +182,15 @@ numerals (มาตรา ๒๖).
    whose neighbours are only chapters, and take the first 3 nodes left. A skipped node can still appear in the
    context; it is just not a starting point for the graph walk. No LLM is involved.
 4. BFS from the seeds, 2 hops, following edges in both directions. At most 15 reached nodes go into the
-   context: every seed gets an equal share, penalty and obligation edges come first, then cross-reference and
-   exemption edges. When the question or its keywords mention a penalty, sections of the penalty chapter
-   that reference a reached node (e.g. `sec_83` referencing `sec_37`) also come first. Finally,
-   structural edges (chapter/part) only fill what is left. Each node is written as
+   context, and every seed gets an equal share. The order of selection depends on the edge type:
+   - First: penalty edges (`PRESCRIBES_PENALTY`) and obligation edges (`IMPOSES_OBLIGATION`)
+   - Second: cross-reference edges and exemption edges
+   - Third: other edge types
+   - Last: structural edges (chapter/part), chosen only when there is room left
+   - Special case: when the question or its keywords mention a penalty, sections of the penalty chapter
+     that reference a reached node (e.g. `sec_83` referencing `sec_37`) also come first
+
+   Each node is written as
    `[hop1] def_biometric ←DEFINES— sec_26: ...`: the left node is where the walk came from and the arrow
    follows the edge's direction in the graph, so the model can read a path from the seed step by step.
 5. Chunk search (`pdpa_chunks`) fetches the full text of up to 5 sections, using both keyword levels combined.
