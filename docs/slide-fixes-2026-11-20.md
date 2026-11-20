@@ -2,7 +2,7 @@
 
 **สถานะสไลด์ชุด 14–15 พ.ย. ณ วันที่ 20 พ.ย. 2569**
 
-- [M1 (Part 1)](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit) แก้แล้ว 10 หน้า ได้แก่ 8, 10, 11, 15, 17, 23, 33, 49, 51 และ 52
+- [M1 (Part 1)](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit) รอบแรกแก้ 10 หน้า ได้แก่ 8, 10, 11, 15, 17, 23, 33, 49, 51 และ 52 รอบตรวจซ้ำเก็บจุดค้าง 11 หน้า รวมลิงก์ใหม่ใน [LAB 2 หน้า 42](https://docs.google.com/presentation/d/1kmoIsLDs7w6Nygdz4eogU8EtRbQOOk9vSxb-HhsZ0bQ/edit#slide=id.g3f325e14071_0_1061)
 - [M2 (Part 2)](https://docs.google.com/presentation/d/1I5tX-OmqbKuiawnQDP3szX_eD3-5kHABt6OB8C8dOBI/edit) แก้แล้ว 2 หน้า ได้แก่ หน้า 4 และ [หน้า 28 — ผลรัน LAB 4](https://docs.google.com/presentation/d/1I5tX-OmqbKuiawnQDP3szX_eD3-5kHABt6OB8C8dOBI/edit#slide=id.g3f418c17505_0_634)
 - [M3 (Part 3)](https://docs.google.com/presentation/d/1ZRoWvedmiVt3JhQ1D92K-FNwfhquzdXeBkVZgHL0SuU/edit) ไม่มีรายการแก้ไข
 
@@ -80,6 +80,17 @@
 - **เป็น:** ผลการรันได้ 5 ไฟล์ใน build/ เป็นกราฟ 190 โหนด / 382 เส้น ซึ่งตรงกับกราฟที่ใช้จริงใน data/ ทุกไบต์ ตรวจด้วย python scripts/validate_graph.py build/pdpa_knowledge_graph.json
 - **ผลตรวจ:** รัน `build_graph.py` แล้วได้ 5 ไฟล์ `validate_graph.py` ยืนยัน 190 โหนด / 382 เส้น และ `cmp` ยืนยันว่าไฟล์กราฟที่สร้างตรงกับไฟล์ใน `data/` ทุกไบต์
 
+### จุดที่แก้หลังตรวจ M1 รอบล่าสุด
+
+| หน้า | สิ่งที่แก้ |
+|---|---|
+| 8 | อัปเดตลิงก์ข้อมูลกราฟและ README ทั้งบนสไลด์และในโน้ตผู้สอนให้ชี้ไป v2 commit `0a02321` ตรงกับป้ายกำกับ โน้ตระบุว่า `sec_26.text` ในกราฟมี 3,414 อักขระ |
+| 32 | ลบชื่อ `2026-GraphRAG-PDPA` ที่ฝังในภาพตารางต้นฉบับ คงตารางจำนวนโหนด 11 ประเภทและป้ายชื่อ v2 ที่แสดงบนหน้า |
+| 35, 38 | เปลี่ยนภาพตัวอย่างจากไฟล์ JSON ปัจจุบัน โดย `nodes` เริ่มที่บรรทัด 50 และ `edges` เริ่มที่บรรทัด 1276 |
+| 42 | เพิ่มป้าย `[ Link for Graph JSON (v2) ]` ตามสไตล์หน้า LAB เดิม ตรวจแล้วว่าลิงก์เปิด [ไฟล์กราฟ v2](../data/pdpa_knowledge_graph.json) โดยตรง |
+| 46, 48–51 | อัปเดตเลขบรรทัดของ `build_graph.py` ในโน้ตผู้สอน เช่น ส่วน `OUTPUT` อยู่ที่บรรทัด 612–695 |
+| 47 | แก้โน้ตให้ระบุ `Chapter` 9 โหนดในกราฟและ H2 8 หัวข้อใน Markdown พร้อมเปลี่ยนตัวอย่างเส้นอ้างอิงเป็น ม.23 → ม.19 ตามกราฟ |
+
 ---
 
 ## Part 2
@@ -121,6 +132,14 @@
 
 Codex ตรวจผลตอบกลับ MCP โดยตรงและอัปเดตภาพ Terminal กับคำอธิบายบนหน้า 28 ด้วยผลรันนี้ ภาพเดิมวันที่ 14 พ.ย. แสดงลำดับ 26, 24, 25, 95, 19
 
+### โมเดลของ MCP server สำหรับ LAB 4
+
+รูปสถาปัตยกรรมและ pipeline ใช้ชื่อพารามิเตอร์ `LLM_MODEL` ส่วนคำบรรยายใต้รูปอ้างค่าจาก [`.env.example`](../.env.example) ที่ระบุ `gpt-oss-120b` ค่านี้ตรงกับค่าเริ่มต้นใน [`lightrag/llm_provider.py`](../lightrag/llm_provider.py)
+
+ผลรันที่แสดงบน M2 หน้า 28 ใช้ `qwen/qwen3.5-35b-a3b` แตกคีย์เวิร์ด ตรวจโปรเซส MCP server v2 ที่พอร์ต 8100 แบบอ่านอย่างเดียวเมื่อ **20 พ.ย. 2569 เวลา 10:06 น. (ICT)** พบว่าโปรเซสที่ให้บริการ ณ เวลาตรวจตั้ง `LLM_PROVIDER=openrouter` และ `LLM_MODEL=gpt-oss-120b`
+
+หากรัน LAB 4 ด้วยโมเดลเดียวกับผลที่บันทึกไว้ ให้ตรวจว่าโปรเซสของ MCP server ใช้ `LLM_MODEL=qwen/qwen3.5-35b-a3b` ก่อนเรียก `search_pdpa` ค่า `OPENROUTER_MODEL` ใช้ฝั่ง agent ใน LAB 8
+
 ---
 
 ## Part 3
@@ -129,10 +148,6 @@ Codex ตรวจผลตอบกลับ MCP โดยตรงและอ
 
 ---
 
-## ตรวจสอบเพิ่มเติม
-
-ตรวจ M1 หน้า 32 แล้ว คำบรรยายใต้ตารางแสดงชื่อ `pdpa-graphrag-mcp-v2` ถูกต้องอยู่แล้ว
-
 ## สรุปหน้าที่แก้
 
 | ชุด | หน้า | ประเภท |
@@ -140,6 +155,7 @@ Codex ตรวจผลตอบกลับ MCP โดยตรงและอ
 | Part 1 | 8, 23 | ป้าย commit |
 | Part 1 | 10 | แทนรูป และเพิ่มข้อความชื่อโมเดลใต้รูป |
 | Part 1 | 11, 15, 17, 33, 49, 51, 52 | ข้อความ |
+| Part 1 · รอบตรวจซ้ำ | 8, 32, 35, 38, 42, 46–51 | ลิงก์ รูปตัวอย่าง และโน้ตผู้สอน |
 | Part 2 | 4 | ข้อความ 1 จุด แทนรูป 1 รูป และเพิ่มข้อความชื่อโมเดลใต้รูป |
 | Part 2 | 28 | ภาพ Terminal และคำอธิบายจากผลรันจริง |
 | Part 3 | — | ไม่มี |
