@@ -137,9 +137,9 @@ Smoke test with curl (needs `jq`):
 ./examples/mcp_curl.sh
 ```
 
-A bare request without the `Accept: application/json, text/event-stream` header returns
-`-32600 Client must accept text/event-stream`. That means the server is alive; the streamable-http
-transport simply requires the header.
+If you write your own curl command and get `-32600 Client must accept text/event-stream`, the server
+is alive but the request lacks the `Accept: application/json, text/event-stream` header, which the
+streamable-http transport requires. The `mcp_curl.sh` script already sends it.
 
 Run the agent against the server:
 
@@ -214,11 +214,12 @@ python scripts/validate_graph.py build/pdpa_knowledge_graph.json
 rule-based. One regex finds section headings in
 [`pdpa_full_text_v2.md`](data/pdpa_full_text_v2.md), and another finds cross-references inside each
 section (`REFERENCES_SECTION` edges). Semantic nodes (definitions, rights, obligations, penalties,
-exemptions, principles, lawful bases) are curated lists in the script, including the additional
-27 exemption nodes, 6 `IS_LAWFUL_BASIS` edges and 4 `REFERENCES_EXEMPTION` edges. The script
+exemptions, principles, lawful bases) are curated lists in the script, including 33 exemption
+nodes (6 for Section 4 and 27 for Sections 24, 26, 28 and 37), 6 `IS_LAWFUL_BASIS` edges and 4 `REFERENCES_EXEMPTION` edges. The script
 builds 190 nodes / 382 edges. `Section.text` ends before the next Markdown heading or the closing
-signature and explanatory note. Standalone OCR page labels such as `้หนา ๖๐` are removed before
-splitting the sections. Outputs go to `build/` and can be checked with
+signature and explanatory note. Standalone OCR page labels are removed before
+splitting the sections; in the source file they appear misspelled as `้หนา ๖๐` (the Thai word for
+"page" with its tone mark out of place). Outputs go to `build/` and can be checked with
 [`validate_graph.py`](scripts/validate_graph.py).
 
 [`.env.example`](.env.example) has `USE_LLM_EXTRACT` (default `false`), which lets an LLM extract extra nodes
@@ -241,10 +242,10 @@ To use this on another statute, swap the heading pattern (`Article\s+(\d+)` for 
 - There is no standard evaluation set yet. Testing so far has been the author's internal testing, with questions
   written during development, and none of it has been reviewed by a lawyer. Contributions of question/answer pairs with expected section
   citations are welcome.
-- The shipped graph has a known gap that affects `get_penalty` for one section; it is the subject of
-  part 2 of the article series and is left as is until that article is published. Only Sections 77,
-  79, 85, 86 and 90 have a Penalty node, so `get_penalty('sec_26')` returns the two criminal
-  penalties of Section 79 and no administrative fine.
+- The shipped graph has a known gap in its penalty data that affects `get_penalty` for Section 26:
+  only Sections 77, 79, 85, 86 and 90 have a Penalty node, so `get_penalty('sec_26')` returns the two
+  criminal penalties of Section 79 and no administrative fine. This is the subject of part 2 of the
+  article series and is left as is until that article is published.
 - The keyword LLM is the remaining source of run-to-run variation: at temperature 0 the same question
   still produced two different keyword sets in four calls, and each set gives its own context.
 - The keyword prompt invites the LLM to guess section numbers, and the guesses can be wrong.
