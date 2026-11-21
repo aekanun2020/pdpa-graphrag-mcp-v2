@@ -68,6 +68,7 @@ README.md, LICENSE
 - [LAB 3 graph builder](scripts/build_graph.py) and [graph validator](scripts/validate_graph.py)
 - [MCP server](mcp_server_rag.py), [Docker Compose](docker-compose.yml), [LAB 8 agent](labs/lab8/agent_pdpa_mcp.py) and [curl smoke test](examples/mcp_curl.sh)
 - [Architecture figure](docs/fig1_architecture.png), [search pipeline figure](docs/fig3_search_pipeline.png) and [figure generator](docs/figures/make_figures.py)
+- [Slide fix log for M1 and M2](docs/slide-fixes-2026-11-20.md) (in Thai) — the list of fixes, with direct links to the slides that changed
 
 `labs/` contains only the agent-side code; the course lab instructions are not part of this repo.
 
