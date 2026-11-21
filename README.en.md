@@ -76,8 +76,8 @@ README.md, LICENSE
 ![Architecture: Agent -> MCP Server -> Engine -> Data](docs/fig1_architecture.png)
 
 Both figures are drawn by the [Matplotlib script](docs/figures/make_figures.py) to show
-190 nodes / 382 edges and Qdrant's 572 profiles / 96 chunks. The search pipeline figure was rendered
-on 18 Nov 2026 and the architecture figure was re-rendered on 20 Nov 2026.
+190 nodes / 382 edges and Qdrant's 572 profiles / 96 chunks. The architecture figure was re-rendered
+on 20 Nov 2026 and the search pipeline figure on 21 Nov 2026.
 
 - **Knowledge graph**: NetworkX, in memory. 190 nodes of 11 types: Section 96, Exemption 33, Definition 11,
   Chapter 9, Right 8, LawfulBasis 7, Obligation 7, Principle 7, Penalty 6, Part 5 and Law 1. The backbone
